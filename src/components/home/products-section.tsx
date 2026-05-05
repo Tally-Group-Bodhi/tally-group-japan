@@ -52,12 +52,13 @@ export function ProductsSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
-            If you run an energy retail business, our platform is built for you
+            We&rsquo;re enabling seamless access to energy for all. Want to join
+            us?
           </h2>
           <p className="mt-[16px] text-lg leading-[1.6] text-fg2 max-w-[64ch]">
-            We enable retailers, contact centres, sales teams and operations
-            staff to bill, serve and acquire customers easily and cost
-            effectively.
+            Tally Group designs, builds and operates next-generation software
+            that automates billing, empowers customers and fast-tracks
+            innovation. Let&rsquo;s take your business to the next level.
           </p>
           <Link
             href="/contact"

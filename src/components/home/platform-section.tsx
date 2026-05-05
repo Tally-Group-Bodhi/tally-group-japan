@@ -1,44 +1,32 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const solutions = [
   {
     stage: "Customer Self-Service",
-    products: "Tally+ \u00b7 Tally Digital",
-    description:
-      "Billing, usage, plan switching and solar exports \u2014 a modern customer portal and white-labelled signup flow.",
-    href: "#",
-    icon: "person",
-    gradient: "from-turquoise/10 to-turquoise/5",
+    image:
+      "https://images.unsplash.com/photo-1758526214018-a746f9554b8b?auto=format&fit=crop&w=1200&q=80",
+    alt: "Young woman smiling while paying a bill on her phone with a credit card",
   },
   {
     stage: "Agent Desktop",
-    products: "Glass Vision \u00b7 Tally CRM",
-    description:
-      "Real-time cockpit for call centres. Every account fact in a single dense panel, with AI-powered summaries.",
-    href: "#",
-    icon: "desktop_windows",
-    gradient: "from-navy/10 to-navy/5",
+    image:
+      "https://www.shutterstock.com/image-photo/computer-contact-us-happy-woman-call-600nw-2748143915.jpg",
+    alt: "Happy contact-centre agent with headset at her computer",
   },
   {
     stage: "Sales & Acquisition",
-    products: "Tally S&A \u00b7 Field Sales",
-    description:
-      "A field-ready quote-to-sign flow for door-knockers, retail partners and broker channels with live pricing.",
-    href: "#",
-    icon: "handshake",
-    gradient: "from-[#8B5CF6]/10 to-[#8B5CF6]/5",
+    image:
+      "https://plus.unsplash.com/premium_photo-1682141308411-29d7662447cb?auto=format&fit=crop&w=1200&q=80",
+    alt: "Man in formal clothes working thoughtfully on a laptop in a modern office",
   },
   {
     stage: "Operations & Billing",
-    products: "Orion \u00b7 Acquire \u00b7 Settlements",
-    description:
-      "Reconciliation, settlements, partner onboarding and embedded-network operations \u2014 the engine room.",
-    href: "#",
-    icon: "settings",
-    gradient: "from-[#F59E0B]/10 to-[#F59E0B]/5",
+    image:
+      "https://plus.unsplash.com/premium_photo-1683880731743-da95ceb12e15?auto=format&fit=crop&w=1200&q=80",
+    alt: "Operations team working together at a desk in a modern office",
   },
 ];
 
@@ -63,16 +51,15 @@ export function PlatformSection() {
     >
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.div
-          className="max-w-[720px] mx-auto text-center mb-[56px]"
+          className="max-w-[820px] mx-auto text-center mb-[56px]"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
-            Experience the platform built{" "}
-            <em className="not-italic text-turquoise">for</em> energy retailers,{" "}
-            <em className="not-italic text-turquoise">by</em> energy retailers
+          <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.15] tracking-[-0.02em] text-navy">
+            Energy industry expertise meets modern technology &mdash; built for
+            today&rsquo;s retailers.
           </h2>
         </motion.div>
 
@@ -85,32 +72,19 @@ export function PlatformSection() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl group"
             >
-              <Link
-                href={s.href}
-                className={`group block h-full bg-gradient-to-b ${s.gradient} border border-stroke1 rounded-2xl p-[28px] transition-all hover:border-navy/30 hover:shadow-[0_8px_32px_rgba(44,54,93,0.08)]`}
-              >
-                <div className="w-11 h-11 rounded-xl bg-white border border-stroke1 grid place-items-center text-navy mb-[20px]">
-                  <span className="material-symbols-outlined text-[22px]">
-                    {s.icon}
-                  </span>
-                </div>
-                <h3 className="text-[17px] font-semibold text-fg1 leading-[1.3] tracking-[-0.01em]">
-                  {s.stage}
-                </h3>
-                <p className="text-[13px] font-medium text-turquoise mt-[4px] mb-[12px]">
-                  {s.products}
-                </p>
-                <p className="text-[14px] leading-[1.55] text-fg2 m-0">
-                  {s.description}
-                </p>
-                <span className="mt-[20px] inline-flex items-center gap-1 text-[13px] font-semibold text-navy group-hover:text-turquoise transition-colors">
-                  Learn more{" "}
-                  <span className="material-symbols-outlined text-[16px]">
-                    arrow_forward
-                  </span>
-                </span>
-              </Link>
+              <Image
+                src={s.image}
+                alt={s.alt}
+                fill
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+              <h3 className="absolute left-[20px] right-[20px] bottom-[20px] text-white text-[18px] sm:text-[20px] font-semibold leading-[1.25] tracking-[-0.01em]">
+                {s.stage}
+              </h3>
             </motion.div>
           ))}
         </div>
