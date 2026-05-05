@@ -11,7 +11,7 @@ const leaders = [
     name: "Andrew Duncan",
     role: "Chief Executive Officer",
     bio: "Founder and Chairman of Tally. Appointed CEO in 2022 after merger of Tally Group. 20+ years experience in the Australian energy market. Andrew founded and sold Serviceworks to Computershare in 2011 (first bureau provider to Australian deregulated energy market). Leading Founder and Investor in Australian Energy market.",
-    photo: "Andrew.jfif",
+    photo: "Andrew.jpg",
   },
   {
     name: "Travis Lehman",
@@ -29,13 +29,13 @@ const leaders = [
     name: "Eric Yilmaz",
     role: "Chief Technology Officer",
     bio: "Joined as Chief Technology Officer in 2023. Previous CTO of Sorted and EY Innovation. 20+ years of experience across strategy, digital, infrastructure, operations and product development.",
-    photo: "Eric Yilmaz.jfif",
+    photo: "Eric Yilmaz.jpg",
   },
   {
     name: "Roger Barnes",
     role: "Global Chief Product Officer",
     bio: "President for AU/NZ at Tally Group before being appointed Global Chief Product Officer. 15+ years of experience in Energy and Utilities markets leading digital and product innovation, including CEO of Billcap and Programme Manager at Red Energy, Lumo Energy & BT Group.",
-    photo: "Roger Barnes.jfif",
+    photo: "Roger Barnes.jpg",
   },
   {
     name: "Peter Weigand",

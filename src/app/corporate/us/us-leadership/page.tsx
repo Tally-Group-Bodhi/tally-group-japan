@@ -32,7 +32,7 @@ const leaders: {
   {
     name: "Atsuyo Miller",
     role: "Director of Marketing",
-    photo: "Atsuyo Miller.jfif",
+    photo: "Atsuyo Miller.jpg",
     bio: "Joined Tally in 2026 as Director of Marketing. Former VP of Marketing with deep expertise in B2B technology and energy sectors, having held leadership roles at Microsoft and Toshiba. Brings a strong track record in brand strategy, demand generation, and global marketing operations.",
   },
   {
