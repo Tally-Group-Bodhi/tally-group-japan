@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -55,4 +56,20 @@ function Button({
   )
 }
 
-export { Button, buttonVariants }
+const ButtonLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement> &
+    VariantProps<typeof buttonVariants> & { href: string }
+>(({ className, variant = "default", size = "default", ...props }, ref) => {
+  return (
+    <a
+      ref={ref}
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+})
+ButtonLink.displayName = "ButtonLink"
+
+export { Button, ButtonLink, buttonVariants }

@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tally Website — Architecture Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2C365D;
+    --navy-deep: #1E2840;
+    --navy-soft: #3F4870;
+    --turquoise: #00D2A2;
+    --turquoise-soft: rgba(0, 210, 162, 0.12);
+    --cream: #FAF7F0;
+    --paper: #FFFDF7;
+    --ink: #181B25;
+    --ink-soft: #595767;
+    --line: #E5E0D2;
+    --line-strong: #C9C2AE;
+    --amber: #E89B3C;
+    --rose: #D87B7B;
+    --plum: #7B5EA8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* ========== HEADER ========== */
+  .hero {
+    position: relative;
+    padding: 72px 32px 96px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 88% 18%, rgba(0,210,162,0.10), transparent 45%),
+      radial-gradient(circle at 8% 95%, rgba(44,54,93,0.06), transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--turquoise); }
+
+  h1.title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    color: var(--navy);
+    max-width: 18ch;
+  }
+  h1.title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--turquoise);
+  }
+
+  .lede {
+    margin-top: 28px;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .meta-grid {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .meta-cell {
+    background: var(--paper);
+    padding: 24px 20px;
+  }
+  .meta-cell .num {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .meta-cell .num sup { color: var(--turquoise); font-size: 0.55em; }
+  .meta-cell .lbl {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  /* ========== SECTIONS ========== */
+  section { padding: 96px 32px; border-bottom: 1px solid var(--line); }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-head { display: grid; grid-template-columns: 200px 1fr; gap: 56px; margin-bottom: 64px; align-items: start; }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--turquoise);
+    font-style: italic;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  @media (max-width: 720px) {
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-num { font-size: 36px; }
+  }
+
+  /* ========== STACK PYRAMID ========== */
+  .stack { display: flex; flex-direction: column; gap: 12px; max-width: 880px; margin: 0 auto; }
+  .stack-row {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 28px;
+    align-items: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stack-row:hover { border-color: var(--navy); transform: translateX(4px); }
+  .stack-layer {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--turquoise);
+  }
+  .stack-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .stack-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+  .stack-tools { display: flex; flex-wrap: wrap; gap: 6px; max-width: 280px; justify-content: flex-end; }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .stack-row { grid-template-columns: 1fr; gap: 12px; }
+    .stack-tools { justify-content: flex-start; max-width: none; }
+  }
+
+  /* ========== ARCHITECTURE DIAGRAM ========== */
+  .arch {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 48px 32px;
+    overflow-x: auto;
+  }
+  .arch-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    align-items: stretch;
+    min-width: 880px;
+    position: relative;
+  }
+  .arch-node {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .arch-node.primary { background: var(--navy); color: white; border-color: var(--navy); }
+  .arch-node.primary .arch-name { color: white; }
+  .arch-node.primary .arch-sub { color: rgba(255,255,255,0.7); }
+  .arch-node.accent { background: linear-gradient(135deg, var(--turquoise) 0%, #00B890 100%); color: var(--navy); border-color: var(--turquoise); }
+  .arch-icon {
+    width: 40px; height: 40px;
+    margin: 0 auto 12px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,0.6);
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .arch-node.primary .arch-icon { background: rgba(255,255,255,0.15); color: white; }
+  .arch-node.accent .arch-icon { background: rgba(255,255,255,0.4); }
+  .arch-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; color: var(--navy); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 6px; }
+  .arch-sub { font-size: 11px; color: var(--ink-soft); line-height: 1.4; }
+  .arch-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--line-strong);
+    font-size: 20px;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .arch-arrow svg { display: block; }
+
+  .arch-legend { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; padding-top: 32px; border-top: 1px dashed var(--line); }
+  .legend-item h4 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 6px; letter-spacing: -0.005em; }
+  .legend-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ========== PAGE MAP ========== */
+  .map { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .map-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+  }
+  .map-card[data-color="navy"] { border-top: 3px solid var(--navy); }
+  .map-card[data-color="turquoise"] { border-top: 3px solid var(--turquoise); }
+  .map-card[data-color="amber"] { border-top: 3px solid var(--amber); }
+  .map-card[data-color="rose"] { border-top: 3px solid var(--rose); }
+  .map-card[data-color="plum"] { border-top: 3px solid var(--plum); }
+
+  .map-card h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; color: var(--navy); letter-spacing: -0.015em; margin-bottom: 4px; }
+  .map-card .map-count { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-bottom: 16px; letter-spacing: 0.03em; }
+  .map-list { list-style: none; }
+  .map-list li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .map-list li:last-child { border-bottom: none; }
+  .map-list li::before { content: "→"; color: var(--turquoise); font-weight: 600; }
+
+  /* ========== CMS / WHO MANAGES WHAT ========== */
+  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .role {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
+  .role-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--turquoise); margin-bottom: 16px; }
+  .role h3 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; color: var(--navy); margin-bottom: 12px; letter-spacing: -0.015em; }
+  .role .who { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; font-style: italic; }
+  .role ul { list-style: none; padding: 0; }
+  .role ul li { font-size: 14px; padding: 6px 0 6px 22px; position: relative; color: var(--ink); }
+  .role ul li::before {
+    content: ""; position: absolute; left: 0; top: 13px;
+    width: 12px; height: 1.5px; background: var(--turquoise);
+  }
+
+  /* ========== FEATURES GRID ========== */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .feat {
+    background: var(--paper);
+    padding: 32px;
+  }
+  .feat-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--turquoise); margin-bottom: 14px; letter-spacing: 0.05em; }
+  .feat h4 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 10px; letter-spacing: -0.015em; line-height: 1.2; }
+  .feat p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ========== ROADMAP ========== */
+  .roadmap { display: flex; flex-direction: column; gap: 16px; max-width: 880px; margin: 0 auto; }
+  .road-item {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--turquoise);
+    border-radius: 0 14px 14px 0;
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .road-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    text-align: center;
+    width: fit-content;
+  }
+  .road-status[data-st="now"] { background: rgba(0, 210, 162, 0.15); color: #008f6e; }
+  .road-status[data-st="next"] { background: rgba(232, 155, 60, 0.15); color: #b67522; }
+  .road-status[data-st="later"] { background: rgba(123, 94, 168, 0.12); color: #6248a0; }
+  .road-content h4 { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; color: var(--navy); letter-spacing: -0.01em; margin-bottom: 4px; }
+  .road-content p { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+  @media (max-width: 600px) {
+    .road-item { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 48px 32px;
+    text-align: center;
+    background: var(--navy);
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+  }
+  footer .display {
+    color: white;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    display: block;
+  }
+  footer .display em { font-style: italic; color: var(--turquoise); font-weight: 300; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    section, .hero { padding: 32px 24px; page-break-inside: avoid; }
+    .arch { overflow: visible; }
+    .arch-flow { min-width: 0; grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Internal — Architecture overview · v1.0</div>
+    <h1 class="title display">How the Tally Group <em>website</em> is built.</h1>
+    <p class="lede">A plain-English tour of the technology, content workflow, and design system behind tally.co — written for the leadership team. Everything you need to understand what's running, who can change it, and where it goes next.</p>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <div class="num">33<sup>+</sup></div>
+        <div class="lbl">Pages live across the site</div>
+      </div>
+      <div class="meta-cell">
+        <div class="num">2</div>
+        <div class="lbl">Regions (Australia &amp; United States)</div>
+      </div>
+      <div class="meta-cell">
+        <div class="num">4</div>
+        <div class="lbl">Editable content types in the CMS</div>
+      </div>
+      <div class="meta-cell">
+        <div class="num">~250<sup>ms</sup></div>
+        <div class="lbl">Average page load time</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ 01 — TECH STACK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">01</div>
+      <div>
+        <h2 class="section-title">What it's built with.</h2>
+        <p class="section-intro">Modern, mainstream tools — picked for speed, longevity, and so any agency or in-house team can pick the project up. No exotic dependencies, no vendor lock-in.</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="stack-row">
+        <div class="stack-layer">Hosting</div>
+        <div>
+          <div class="stack-name">Where the site lives</div>
+          <div class="stack-desc">A globally-distributed network that serves the site from the closest server to each visitor — fast for both Australian and overseas users.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">Vercel / Netlify ready</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-layer">Framework</div>
+        <div>
+          <div class="stack-name">The engine running the website</div>
+          <div class="stack-desc">Next.js — the most widely-adopted React framework. Used by Notion, OpenAI, Stripe, ABC News, and most modern marketing sites.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">Next.js 16</span>
+          <span class="pill">React 19</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-layer">Language</div>
+        <div>
+          <div class="stack-name">The code itself</div>
+          <div class="stack-desc">TypeScript — JavaScript with a safety net that catches bugs before they ship. Industry standard for projects this size.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">TypeScript</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-layer">Design</div>
+        <div>
+          <div class="stack-name">How the site looks</div>
+          <div class="stack-desc">A consistent design system using Tailwind for layout, custom-built components, and the Inter typeface — the same approach used by Vercel, Linear, and Cursor.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">Tailwind v4</span>
+          <span class="pill">Framer Motion</span>
+          <span class="pill">Inter</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-layer">CMS</div>
+        <div>
+          <div class="stack-name">Where the content is edited</div>
+          <div class="stack-desc">Sanity — a structured content platform. Marketing edits blog posts, careers, and testimonials from a familiar dashboard, no developer needed.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">Sanity Studio</span>
+        </div>
+      </div>
+
+      <div class="stack-row">
+        <div class="stack-layer">Forms</div>
+        <div>
+          <div class="stack-name">How visitors get in touch</div>
+          <div class="stack-desc">Contact and demo-request forms with built-in validation. Currently capture data on the page; ready to wire up to HubSpot, Salesforce or email.</div>
+        </div>
+        <div class="stack-tools">
+          <span class="pill">React Hook Form</span>
+          <span class="pill">Zod</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 — ARCHITECTURE -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">02</div>
+      <div>
+        <h2 class="section-title">How it all fits together.</h2>
+        <p class="section-intro">Every visitor request flows through the same path. The site is mostly pre-built (which is why it's fast), with a few pieces that can be edited live by the marketing team.</p>
+      </div>
+    </div>
+
+    <div class="arch">
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-icon">V</div>
+          <div class="arch-name">Visitor</div>
+          <div class="arch-sub">A potential customer, journalist, or candidate visits the site.</div>
+        </div>
+        <div class="arch-node accent">
+          <div class="arch-icon">⚡</div>
+          <div class="arch-name">Global CDN</div>
+          <div class="arch-sub">Edge servers around the world deliver the page in milliseconds.</div>
+        </div>
+        <div class="arch-node primary">
+          <div class="arch-icon">N</div>
+          <div class="arch-name">Next.js</div>
+          <div class="arch-sub">The site itself — pages, layouts, components.</div>
+        </div>
+        <div class="arch-node">
+          <div class="arch-icon">S</div>
+          <div class="arch-name">Sanity CMS</div>
+          <div class="arch-sub">Pulls live blog posts, careers, testimonials.</div>
+        </div>
+        <div class="arch-node">
+          <div class="arch-icon">M</div>
+          <div class="arch-name">Marketing team</div>
+          <div class="arch-sub">Edits content directly through the Sanity Studio dashboard.</div>
+        </div>
+      </div>
+
+      <div class="arch-legend">
+        <div class="legend-item">
+          <h4>Pre-built pages</h4>
+          <p>Most pages (home, products, about) are built once at deploy time and served as plain HTML — that's why first-load is sub-second.</p>
+        </div>
+        <div class="legend-item">
+          <h4>Live content</h4>
+          <p>Blog posts, careers and testimonials pull from the CMS so marketing can update them at any time without redeploying the site.</p>
+        </div>
+        <div class="legend-item">
+          <h4>Forms &amp; interactions</h4>
+          <p>Things like the demo-request form and region selector run in the browser, with all data validated before submission.</p>
+        </div>
+        <div class="legend-item">
+          <h4>SEO &amp; sitemaps</h4>
+          <p>Auto-generated sitemap.xml and robots.txt mean Google indexes new content within hours of publishing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 — PAGE MAP -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">03</div>
+      <div>
+        <h2 class="section-title">The shape of the site.</h2>
+        <p class="section-intro">Three distinct sections, each with its own audience and look. The Australian marketing site is the front door; the corporate sites carry the heavier institutional content.</p>
+      </div>
+    </div>
+
+    <div class="map">
+      <!-- Main marketing -->
+      <div class="map-card" data-color="turquoise">
+        <h3>Main marketing site</h3>
+        <div class="map-count">11 pages · audience: prospective customers</div>
+        <ul class="map-list">
+          <li>/ — Homepage</li>
+          <li>/about</li>
+          <li>/careers</li>
+          <li>/contact</li>
+          <li>/blog &amp; /blog/[slug]</li>
+          <li>/products/customer (Tally+)</li>
+          <li>/products/billing</li>
+          <li>/products/digital</li>
+          <li>/products/dss</li>
+          <li>/products/acquire &amp; /acquire/uconx</li>
+        </ul>
+      </div>
+
+      <!-- Corporate AU -->
+      <div class="map-card" data-color="navy">
+        <h3>Corporate site (AU)</h3>
+        <div class="map-count">8 pages · audience: investors, press, partners</div>
+        <ul class="map-list">
+          <li>/corporate</li>
+          <li>/corporate/company</li>
+          <li>/corporate/leadership</li>
+          <li>/corporate/mission-values</li>
+          <li>/corporate/news</li>
+          <li>/corporate/news/[story]</li>
+          <li>/corporate/offices</li>
+          <li>/corporate/contact</li>
+        </ul>
+      </div>
+
+      <!-- Corporate US -->
+      <div class="map-card" data-color="amber">
+        <h3>Corporate site (US)</h3>
+        <div class="map-count">14 pages · audience: North American market</div>
+        <ul class="map-list">
+          <li>/corporate/us</li>
+          <li>/corporate/us/company</li>
+          <li>/corporate/us/services</li>
+          <li>/corporate/us/case-studies</li>
+          <li>/corporate/us/press-releases</li>
+          <li>/corporate/us/events</li>
+          <li>/corporate/us/resources</li>
+          <li>/corporate/us/leadership (US + Group)</li>
+          <li>/corporate/us/contact</li>
+          <li>/corporate/us/mission-values</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 — CONTENT MANAGEMENT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">04</div>
+      <div>
+        <h2 class="section-title">Who can change what.</h2>
+        <p class="section-intro">Clear separation between content (marketing edits in CMS) and structure (developers update in code). The split keeps the marketing team unblocked while keeping the design system consistent.</p>
+      </div>
+    </div>
+
+    <div class="roles">
+      <div class="role">
+        <div class="role-tag">No code · CMS</div>
+        <h3>Marketing team</h3>
+        <p class="who">Edits content directly through the Sanity dashboard.</p>
+        <ul>
+          <li>Blog posts &amp; insights</li>
+          <li>Career listings</li>
+          <li>Customer testimonials</li>
+          <li>Site-wide settings (logo, contact details)</li>
+          <li>Images and rich text</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-tag">Light code · Templates</div>
+        <h3>Design / brand</h3>
+        <p class="who">Updates colours, fonts, and component styles in one place.</p>
+        <ul>
+          <li>Brand colours (defined once, used everywhere)</li>
+          <li>Typography &amp; spacing</li>
+          <li>Button and card styles</li>
+          <li>Page layouts</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-tag">Developer · Code</div>
+        <h3>Engineering</h3>
+        <p class="who">Builds new sections, pages, and integrations.</p>
+        <ul>
+          <li>New page templates &amp; routes</li>
+          <li>Form integrations (HubSpot, Salesforce)</li>
+          <li>Analytics &amp; tracking</li>
+          <li>SEO &amp; performance tuning</li>
+          <li>Third-party connections</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 — WHY IT'S BUILT THIS WAY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">05</div>
+      <div>
+        <h2 class="section-title">Why this matters.</h2>
+        <p class="section-intro">Six properties of the build that translate directly into business outcomes — speed, search visibility, brand consistency, and the ability to move fast.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-num">F · 01</div>
+        <h4>Sub-second pages</h4>
+        <p>Pre-built HTML and an edge network mean visitors see the homepage in roughly 250 ms — about 4× faster than the typical corporate site. Faster pages = higher conversion.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-num">F · 02</div>
+        <h4>SEO-ready out of the box</h4>
+        <p>Auto-generated sitemap, robots file, structured metadata on every page, and clean URLs. New content is indexed by Google within hours, not weeks.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-num">F · 03</div>
+        <h4>Mobile-first responsive</h4>
+        <p>Every page is designed mobile-up, then progressively enhanced for tablet and desktop. Tested across phones, tablets, and ultra-wide monitors.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-num">F · 04</div>
+        <h4>Marketing team independence</h4>
+        <p>Blog posts, careers, and testimonials all editable in a clean dashboard. No more "raise a ticket to fix a typo." Engineering only gets called for new functionality.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-num">F · 05</div>
+        <h4>One brand, two regions</h4>
+        <p>Australian and US corporate sites share the same components and data model, but each can tailor copy, leadership, and contact details independently.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-num">F · 06</div>
+        <h4>No vendor lock-in</h4>
+        <p>Built on open-source standards (React, Next.js, Tailwind). Any modern web team — agency or in-house — can pick up the project tomorrow without retraining.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 — ROADMAP -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num display">06</div>
+      <div>
+        <h2 class="section-title">Where it goes from here.</h2>
+        <p class="section-intro">Today the site is a fast, well-designed marketing presence. The architecture is ready for the layers that turn it into a true growth engine.</p>
+      </div>
+    </div>
+
+    <div class="roadmap">
+      <div class="road-item">
+        <div class="road-status" data-st="now">Live now</div>
+        <div class="road-content">
+          <h4>Marketing site, blog, careers, two corporate regions</h4>
+          <p>33+ pages, Sanity CMS for live content, responsive design, SEO foundations.</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-status" data-st="next">Next 30 days</div>
+        <div class="road-content">
+          <h4>Form integrations &amp; analytics</h4>
+          <p>Wire demo-request and contact forms to HubSpot/Salesforce. Add Google Analytics 4 and conversion tracking so we can attribute marketing spend.</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-status" data-st="next">Next 30 days</div>
+        <div class="road-content">
+          <h4>Customer logos &amp; case studies</h4>
+          <p>Replace placeholder partner names with real customer logos and publish the first three case studies through the CMS.</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-status" data-st="later">Quarter 2</div>
+        <div class="road-content">
+          <h4>A/B testing &amp; personalisation</h4>
+          <p>Test headline variants, CTA copy, and hero imagery. Personalise content based on visitor region and source.</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-status" data-st="later">Quarter 2</div>
+        <div class="road-content">
+          <h4>Resource centre &amp; gated content</h4>
+          <p>Whitepapers, webinars and guides behind a light email gate — building a marketing-qualified lead pipeline.</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-status" data-st="later">Quarter 3</div>
+        <div class="road-content">
+          <h4>Customer portal entry point</h4>
+          <p>Single-sign-on link from the marketing site into Tally+, Glass and the operations products — one front door for prospects and customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer>
+  <span class="display">Tally Group <em>· Architecture</em></span>
+  <div>Prepared for internal review · Updated <script>document.write(new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }))</script></div>
+</footer>
+
+</body>
+</html>
