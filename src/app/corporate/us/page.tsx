@@ -25,7 +25,7 @@ export default function USHomePage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[30px] lg:text-[40px] font-bold leading-[1.15] tracking-[-0.02em] text-navy max-w-[52rem]">
+          <h1 className="text-[30px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy max-w-[52rem]">
             We are a{" "}
             <span className="text-turquoise">global customer engagement and management solutions</span>{" "}
             company, serving{" "}
@@ -60,7 +60,7 @@ export default function USHomePage() {
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Our platform
           </div>
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[48px]">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[48px]">
             Products built for&nbsp;energy.
           </h2>
 
@@ -103,7 +103,7 @@ export default function USHomePage() {
       {/* How It Works */}
       <section className="py-[96px] border-b border-stroke1">
         <div className="max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[20px]">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[20px]">
             How It Works
           </h2>
           <p className="text-lg leading-[1.55] text-fg2 max-w-[60ch] mx-auto mb-[48px]">
@@ -152,7 +152,7 @@ export default function USHomePage() {
       {/* CTA */}
       <section className="py-[96px] bg-navy text-white">
         <div className="max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em]">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em]">
             Ready to see the platform?
           </h2>
           <p className="mt-[16px] text-lg leading-[1.55] text-white/70 max-w-[50ch] mx-auto">

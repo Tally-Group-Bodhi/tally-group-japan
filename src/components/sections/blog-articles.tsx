@@ -31,7 +31,7 @@ export function BlogArticles({ posts }: { posts: Post[] }) {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               All articles
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Latest from the team
             </h2>
           </div>

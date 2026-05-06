@@ -20,7 +20,7 @@ export function CareersSection() {
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Careers
           </div>
-          <h2 className="mt-[12px] text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+          <h2 className="mt-[12px] text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
             Come build the boring, important stuff.
           </h2>
           <p className="mt-[16px] text-lg leading-[1.55] text-fg2 max-w-[60ch]">

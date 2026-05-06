@@ -47,20 +47,20 @@ export function PlatformSection() {
   return (
     <section
       id="platform"
-      className="py-[96px] lg:py-[120px] border-t border-stroke1"
+      className="pt-[96px] lg:pt-[120px] pb-0 border-t border-stroke1"
       style={{
         background:
           "linear-gradient(180deg, #F9F9FB 0%, #FFFFFF 60%, #F9F9FB 100%)",
       }}
     >
       <motion.div
-        className="max-w-[820px] mx-auto text-center mb-[56px] px-8"
+        className="max-w-[820px] lg:max-w-[1280px] mx-auto text-center mb-[56px] px-8"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.15] tracking-[-0.02em] text-navy">
+        <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy">
           Energy industry expertise meets modern technology &mdash; built for
           today&rsquo;s retailers.
         </h2>

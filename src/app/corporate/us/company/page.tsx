@@ -78,7 +78,7 @@ export default function CompanyPage() {
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Our story
           </div>
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[20px]">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[20px]">
             History
           </h2>
           <p className="text-lg leading-[1.55] text-fg2 max-w-[720px] mb-[48px]">

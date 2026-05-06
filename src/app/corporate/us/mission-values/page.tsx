@@ -60,7 +60,7 @@ export default function MissionValuesPage() {
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Our commitments
           </div>
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[48px]">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[48px]">
             What we stand&nbsp;for.
           </h2>
 

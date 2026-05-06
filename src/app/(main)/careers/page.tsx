@@ -88,7 +88,7 @@ export default function CareersPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Life at Tally
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Make a real impact in the energy sector.
             </h2>
           </div>
@@ -114,7 +114,7 @@ export default function CareersPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Why Tally
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               A workplace where you&apos;ll thrive.
             </h2>
             <p className="mt-[20px] text-[17px] leading-[1.55] text-fg2 max-w-[50ch]">
@@ -146,7 +146,7 @@ export default function CareersPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Open positions
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Join us and our growing team.
             </h2>
           </div>
@@ -161,7 +161,7 @@ export default function CareersPage() {
           background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)"
         }} />
         <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-white">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-white">
             Don&apos;t see the right role? Get in touch.
           </h2>
           <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.55]">

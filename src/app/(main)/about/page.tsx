@@ -160,7 +160,7 @@ export default function AboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Our story
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Energizing innovation in utility technology and energy retail operations.
             </h2>
           </div>
@@ -186,7 +186,7 @@ export default function AboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Unparalleled breadth of experience
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               More new energy expertise than any other provider in Australia.
             </h2>
 
@@ -223,7 +223,7 @@ export default function AboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Meet the team
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Meet our management team.
             </h2>
           </div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               What our partners say
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               Operators, not slides.
             </h2>
           </div>
@@ -306,7 +306,7 @@ export default function AboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Our commitments
             </div>
-            <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               What we stand for.
             </h2>
           </div>
@@ -325,7 +325,7 @@ export default function AboutPage() {
           background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)"
         }} />
         <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-white">
+          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-white">
             Find out how Tally Group can help your business.
           </h2>
           <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.55]">

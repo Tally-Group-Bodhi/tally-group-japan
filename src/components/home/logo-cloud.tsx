@@ -46,7 +46,7 @@ export function LogoCloud() {
     <section className="py-[64px] lg:py-[80px] border-b border-stroke1">
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.h2
-          className="text-center text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.15] tracking-[-0.02em] text-navy"
+          className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}

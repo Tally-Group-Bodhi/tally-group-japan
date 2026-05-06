@@ -26,7 +26,7 @@ export default function SkippingStoneAcquisitionPage() {
             <span className="text-fg1 font-medium">Press release</span>
           </p>
 
-          <h1 className="mt-[10px] text-[30px] lg:text-[40px] font-bold leading-[1.1] tracking-[-0.02em] text-navy max-w-[18ch]">
+          <h1 className="mt-[10px] text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy max-w-[18ch]">
             Tally Group Expands Global Footprint with Acquisition Of Skipping Stone
           </h1>
           <p className="mt-[12px] font-mono text-sm font-semibold text-turquoise">

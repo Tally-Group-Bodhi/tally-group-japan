@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function TestimonialsSection() {
   return (
-    <section className="py-[96px] lg:py-[120px] border-b border-stroke1">
+    <section className="bg-bg2 py-[96px] lg:py-[120px] border-b border-stroke1">
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.div
           className="max-w-[720px] mx-auto text-center mb-[56px]"
@@ -13,7 +13,7 @@ export function TestimonialsSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-navy">
+          <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
             The #1 trusted platform for energy retailers, operators &amp;
             contact centres
           </h2>
