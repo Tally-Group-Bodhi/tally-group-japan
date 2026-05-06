@@ -38,7 +38,7 @@ export function CorporatePageHero({ breadcrumbs, title, lede, ledeAccent, childr
           ))}
         </p>
 
-        <h1 className="mt-[10px] text-[44px] lg:text-[64px] font-extrabold leading-[1.04] tracking-[-0.025em] text-navy max-w-[18ch]">
+        <h1 className="mt-[10px] text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy max-w-[18ch]">
           {title}
         </h1>
 

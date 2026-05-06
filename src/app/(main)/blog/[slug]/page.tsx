@@ -48,7 +48,7 @@ export default async function BlogPostPage({
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-tally-navy">Post not found</h1>
+          <h1 className="text-4xl font-light text-tally-navy">Post not found</h1>
           <p className="mt-4 text-tally-gray">This blog post could not be found.</p>
           <Link
             href="/blog"
@@ -80,7 +80,7 @@ export default async function BlogPostPage({
               <span>&middot;</span>
               <span>{post.category}</span>
             </div>
-            <h1 className="mt-4 text-4xl font-bold text-tally-navy sm:text-5xl">{post.title}</h1>
+            <h1 className="mt-4 text-4xl font-light text-tally-navy sm:text-5xl">{post.title}</h1>
           </div>
 
           <div className="mb-8 aspect-[2/1] rounded-2xl bg-gradient-to-br from-tally-gray-light to-tally-green/5" />

@@ -61,7 +61,7 @@ export default function CareersPage() {
             Careers
           </span>
 
-          <h1 className="mt-[24px] text-[44px] lg:text-[64px] font-extrabold leading-[1.04] tracking-[-0.025em] text-navy">
+          <h1 className="mt-[24px] text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
             Join our team.
           </h1>
 

@@ -14,7 +14,7 @@ export function ProductHero({ title, subtitle, features }: ProductHeroProps) {
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-tally-navy sm:text-5xl">
+            <h1 className="text-4xl font-light tracking-tight text-tally-navy sm:text-5xl">
               {title}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-tally-gray">{subtitle}</p>

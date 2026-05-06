@@ -60,7 +60,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[38px] sm:text-[48px] lg:text-[64px] font-extrabold leading-[1.08] tracking-[-0.03em] text-white">
+            <h1 className="text-[38px] sm:text-[48px] lg:text-[64px] font-light leading-[1.08] tracking-[-0.03em] text-white">
               The operating system for
               <br />
               Australian energy retailers
@@ -71,7 +71,7 @@ export function HeroSection() {
               <AnimatePresence mode="wait">
                 <motion.span
                   key={rotatingWords[wordIndex]}
-                  className="text-[40px] sm:text-[52px] lg:text-[68px] font-extrabold tracking-[-0.03em] text-turquoise block"
+                  className="text-[40px] sm:text-[52px] lg:text-[68px] font-light tracking-[-0.03em] text-turquoise block"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
