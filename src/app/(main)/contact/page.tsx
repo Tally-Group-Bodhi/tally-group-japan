@@ -62,7 +62,7 @@ export default function ContactPage() {
             Contact
           </span>
 
-          <h1 className="mt-[24px] text-[44px] lg:text-[64px] font-extrabold leading-[1.04] tracking-[-0.025em] text-navy">
+          <h1 className="mt-[24px] text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
             Get in touch.
           </h1>
 

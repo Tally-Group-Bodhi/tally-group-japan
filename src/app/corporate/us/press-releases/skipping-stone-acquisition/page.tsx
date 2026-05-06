@@ -74,7 +74,7 @@ export default function SkippingStoneAcquisitionPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               About
             </div>
-            <h2 className="text-[24px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[12px]">
+            <h2 className="text-[24px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[12px]">
               About Skipping Stone
             </h2>
             <p className="text-lg leading-[1.55] text-fg2">
