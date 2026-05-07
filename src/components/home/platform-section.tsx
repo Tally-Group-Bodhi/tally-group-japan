@@ -47,11 +47,7 @@ export function PlatformSection() {
   return (
     <section
       id="platform"
-      className="pt-[96px] lg:pt-[120px] pb-0 border-t border-stroke1"
-      style={{
-        background:
-          "linear-gradient(180deg, #F9F9FB 0%, #FFFFFF 60%, #F9F9FB 100%)",
-      }}
+      className="pt-[96px] lg:pt-[120px] pb-0 bg-white"
     >
       <motion.div
         className="max-w-[820px] lg:max-w-[1280px] mx-auto text-center mb-[56px] px-8"

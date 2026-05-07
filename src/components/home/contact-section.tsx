@@ -5,8 +5,22 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export function ContactSection() {
-  const [email, setEmail] = useState("");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    businessEmail: "",
+    companyName: "",
+  });
   const [subscribed, setSubscribed] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const inputClass =
+    "w-full border border-stroke1 rounded-lg px-[14px] py-[11px] text-[15px] text-fg1 bg-white placeholder:text-fg2/60 transition-all focus:outline-none focus:border-navy focus:ring-[3px] focus:ring-navy/10";
 
   return (
     <>
@@ -14,7 +28,7 @@ export function ContactSection() {
       <section className="py-[64px] lg:py-[80px] border-t border-stroke1 bg-bg2">
         <div className="max-w-[1600px] mx-auto px-8">
           <motion.div
-            className="max-w-[520px]"
+            className="max-w-[560px]"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -29,26 +43,104 @@ export function ContactSection() {
             </p>
 
             <form
-              className="mt-[24px] flex gap-[10px]"
+              className="mt-[24px] flex flex-col gap-[16px]"
               onSubmit={(e) => {
                 e.preventDefault();
                 setSubscribed(true);
               }}
             >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 min-w-0 border border-stroke1 rounded-full px-4 py-[12px] text-[15px] text-fg1 bg-white transition-all focus:outline-none focus:border-navy focus:ring-[3px] focus:ring-navy/10"
-              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px]">
+                <div>
+                  <label
+                    htmlFor="newsletter-firstName"
+                    className="block text-[13px] font-medium text-fg1 mb-[6px]"
+                  >
+                    First name<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="newsletter-firstName"
+                    name="firstName"
+                    type="text"
+                    value={form.firstName}
+                    onChange={handleChange}
+                    placeholder="First name"
+                    required
+                    autoComplete="given-name"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="newsletter-lastName"
+                    className="block text-[13px] font-medium text-fg1 mb-[6px]"
+                  >
+                    Last name<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="newsletter-lastName"
+                    name="lastName"
+                    type="text"
+                    value={form.lastName}
+                    onChange={handleChange}
+                    placeholder="Last name"
+                    required
+                    autoComplete="family-name"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="newsletter-businessEmail"
+                  className="block text-[13px] font-medium text-fg1 mb-[6px]"
+                >
+                  Business email<span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="newsletter-businessEmail"
+                  name="businessEmail"
+                  type="email"
+                  value={form.businessEmail}
+                  onChange={handleChange}
+                  placeholder="Enter business email"
+                  required
+                  autoComplete="email"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="newsletter-companyName"
+                  className="block text-[13px] font-medium text-fg1 mb-[6px]"
+                >
+                  Company name<span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="newsletter-companyName"
+                  name="companyName"
+                  type="text"
+                  value={form.companyName}
+                  onChange={handleChange}
+                  placeholder="Enter company"
+                  required
+                  autoComplete="organization"
+                  className={inputClass}
+                />
+              </div>
+
               <button
                 type="submit"
                 disabled={subscribed}
-                className="shrink-0 px-6 py-[12px] rounded-full text-[15px] font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all disabled:opacity-60 shadow-sm"
+                className="mt-[8px] w-full sm:w-auto sm:self-start inline-flex items-center justify-center gap-2 px-7 py-[12px] rounded-lg text-[15px] font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all disabled:opacity-60 shadow-sm"
               >
                 {subscribed ? "Subscribed" : "Subscribe"}
+                {!subscribed && (
+                  <span className="material-symbols-outlined text-[16px]">
+                    arrow_forward
+                  </span>
+                )}
               </button>
             </form>
           </motion.div>

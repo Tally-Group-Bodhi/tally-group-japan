@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-bg2 py-[96px] lg:py-[120px] border-b border-stroke1">
+    <section className="py-[96px] lg:py-[120px]">
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.div
           className="max-w-[720px] mx-auto text-center mb-[56px]"

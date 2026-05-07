@@ -14,7 +14,7 @@ const regions = [
 
 const navLinks: { href: string; label: string; hasMenu?: boolean }[] = [
   { href: "/", label: "Home" },
-  { href: "#products", label: "Products", hasMenu: true },
+  { href: "/#platform", label: "Products", hasMenu: true },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
   { href: "/blog", label: "Insights" },
