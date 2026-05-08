@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Tally Group — The operating system for Australian energy retailers",
+    default: "Tally Group — The platform for Australian energy retailers",
     template: "%s | Tally Group",
   },
   description:

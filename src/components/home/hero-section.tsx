@@ -60,27 +60,37 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[38px] sm:text-[48px] lg:text-[64px] font-light leading-[1.08] tracking-[-0.03em] text-white">
-              The operating system for
-              <br />
-              Australian energy retailers
-            </h1>
-
-            {/* Rotating word */}
-            <div className="h-[64px] sm:h-[76px] lg:h-[88px] flex items-center justify-center overflow-hidden mt-[4px]">
-              <AnimatePresence mode="wait">
+            <h1 className="text-[40px] sm:text-[52px] lg:text-[68px] font-light leading-[1.15] tracking-[-0.03em] text-white">
+              <span className="inline-flex items-baseline justify-center gap-[0.25em] flex-wrap">
+                <span>The</span>
                 <motion.span
-                  key={rotatingWords[wordIndex]}
-                  className="text-[40px] sm:text-[52px] lg:text-[68px] font-light tracking-[-0.03em] text-turquoise block"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  layout
+                  className="relative inline-flex h-[1.15em] overflow-hidden -mb-[0.1em] align-baseline"
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {rotatingWords[wordIndex]}
+                  <AnimatePresence mode="popLayout">
+                    <motion.span
+                      key={rotatingWords[wordIndex]}
+                      className="block text-turquoise leading-[1.15] whitespace-nowrap"
+                      initial={{ opacity: 0, y: "100%" }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: "-100%" }}
+                      transition={{
+                        y: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+                        opacity: { duration: 0.22, ease: [0.4, 0, 0.2, 1] },
+                      }}
+                    >
+                      {rotatingWords[wordIndex]}
+                    </motion.span>
+                  </AnimatePresence>
                 </motion.span>
-              </AnimatePresence>
-            </div>
+                <motion.span layout transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                  platform
+                </motion.span>
+              </span>
+              <br />
+              for Australian energy retailers
+            </h1>
 
             <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.6] text-white/80 max-w-[56ch] mx-auto">
               One platform, eight products &mdash; running the retail, sales and

@@ -15,7 +15,7 @@ export function Footer() {
           <div>
             <Image src="/logos/TallyOfficialLogo.svg" alt="Tally Group" width={140} height={27} className="h-[27px] w-auto brightness-0 invert" />
             <p className="mt-[16px] text-sm text-white/60 leading-relaxed max-w-[30ch]">
-              The operating system for Australian energy retailers. Built in Sydney, trusted across the NEM.
+              The platform for Australian energy retailers. Built in Sydney, trusted across the NEM.
             </p>
           </div>
           <FooterCol title="Products" links={productLinks} />
