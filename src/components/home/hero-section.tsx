@@ -66,7 +66,7 @@ export function HeroSection() {
                 <motion.span
                   layout
                   className="relative inline-flex h-[1.15em] overflow-hidden -mb-[0.1em] align-baseline"
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
                 >
                   <AnimatePresence mode="popLayout">
                     <motion.span
@@ -76,15 +76,18 @@ export function HeroSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: "-100%" }}
                       transition={{
-                        y: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-                        opacity: { duration: 0.22, ease: [0.4, 0, 0.2, 1] },
+                        y: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                        opacity: { duration: 0.28, ease: [0.4, 0, 0.2, 1] },
                       }}
                     >
                       {rotatingWords[wordIndex]}
                     </motion.span>
                   </AnimatePresence>
                 </motion.span>
-                <motion.span layout transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                <motion.span
+                  layout
+                  transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
+                >
                   platform
                 </motion.span>
               </span>
