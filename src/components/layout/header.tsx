@@ -12,10 +12,25 @@ const regions = [
   { id: "ae", label: "UAE", flag: "🇦🇪" },
 ];
 
-const navLinks: { href: string; label: string; hasMenu?: boolean }[] = [
+type NavChild = { href: string; label: string };
+type NavLink = {
+  href: string;
+  label: string;
+  hasMenu?: boolean;
+  children?: NavChild[];
+};
+
+const aboutMenu: NavChild[] = [
+  { href: "/about#who-we-are", label: "Who we are" },
+  { href: "/about#history", label: "Our history" },
+  { href: "/about#leadership", label: "Leadership" },
+  { href: "/about#mission-values", label: "Mission and values" },
+];
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/#platform", label: "Products", hasMenu: true },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About", hasMenu: true, children: aboutMenu },
   { href: "/careers", label: "Careers" },
   { href: "/blog", label: "Insights" },
   { href: "/contact", label: "Contact" },
@@ -26,18 +41,24 @@ export function Header() {
   const [region, setRegion] = useState(regions[0]);
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
       }
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
+      }
     }
     function handleKey(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpen(false);
         setMobileOpen(false);
+        setOpenMenu(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -58,19 +79,68 @@ export function Header() {
             <Image src="/logos/TallyPlus.svg" alt="Tally+" width={130} height={25} className="h-[25px] w-auto" />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6 ml-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-[15px] font-normal text-[#2A2E3A] hover:text-navy transition-colors leading-none inline-flex items-center gap-[3px]"
-              >
-                {link.label}
-                {link.hasMenu && (
-                  <span className="material-symbols-outlined text-[15px] opacity-60">expand_more</span>
-                )}
-              </Link>
-            ))}
+          <nav ref={navRef} className="hidden lg:flex items-center gap-6 ml-8">
+            {navLinks.map((link) => {
+              if (link.children) {
+                const isOpen = openMenu === link.label;
+                return (
+                  <div
+                    key={link.label}
+                    className="relative"
+                    onMouseEnter={() => setOpenMenu(link.label)}
+                    onMouseLeave={() => setOpenMenu(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      className="text-[15px] font-normal text-[#2A2E3A] hover:text-navy transition-colors leading-none inline-flex items-center gap-[3px] py-[18px]"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                    >
+                      {link.label}
+                      <span
+                        className={`material-symbols-outlined text-[15px] opacity-60 transition-transform ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      >
+                        expand_more
+                      </span>
+                    </Link>
+                    {isOpen && (
+                      <div className="absolute top-full left-0 pt-2 z-50">
+                        <div
+                          className="w-[240px] bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] py-1.5"
+                          role="menu"
+                        >
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              role="menuitem"
+                              onClick={() => setOpenMenu(null)}
+                              className="block px-4 py-2.5 text-[14px] text-fg1 hover:bg-bg2 hover:text-navy transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-[15px] font-normal text-[#2A2E3A] hover:text-navy transition-colors leading-none inline-flex items-center gap-[3px]"
+                >
+                  {link.label}
+                  {link.hasMenu && (
+                    <span className="material-symbols-outlined text-[15px] opacity-60">expand_more</span>
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="ml-auto hidden lg:flex items-center gap-3">
@@ -137,14 +207,29 @@ export function Header() {
           >
             <div className="flex flex-col">
               {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={closeMobile}
-                  className="py-2.5 text-[15px] font-normal text-[#2A2E3A] hover:text-navy transition-colors"
-                >
-                  {link.label}
-                </Link>
+                <div key={link.label}>
+                  <Link
+                    href={link.href}
+                    onClick={closeMobile}
+                    className="block py-2.5 text-[15px] font-normal text-[#2A2E3A] hover:text-navy transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children && (
+                    <div className="pl-4 pb-1 flex flex-col border-l border-stroke1 ml-1">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={closeMobile}
+                          className="py-2 pl-3 text-[13px] font-normal text-fg2 hover:text-navy transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
