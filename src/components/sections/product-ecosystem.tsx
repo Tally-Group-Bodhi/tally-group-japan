@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useMarketingHref } from "@/contexts/marketing-region";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Monitor, BarChart3, Headphones } from "lucide-react";
 
@@ -30,6 +33,8 @@ const products = [
 ];
 
 export function ProductEcosystem() {
+  const href = useMarketingHref();
+
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -46,7 +51,7 @@ export function ProductEcosystem() {
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
-            <Link key={product.title} href={product.href}>
+            <Link key={product.title} href={href(product.href)}>
               <Card className="group h-full border-0 bg-tally-gray-light transition-all hover:shadow-lg hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-tally-green/10">

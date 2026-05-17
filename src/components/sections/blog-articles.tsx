@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMarketingHref } from "@/contexts/marketing-region";
 
 interface Post {
   title: string;
@@ -18,6 +19,7 @@ interface Post {
 const categories = ["All", "Insights", "Case study", "Whitepaper", "Guide", "Product Updates", "Company News"];
 
 export function BlogArticles({ posts }: { posts: Post[] }) {
+  const href = useMarketingHref();
   const [active, setActive] = useState("All");
 
   const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
@@ -57,7 +59,7 @@ export function BlogArticles({ posts }: { posts: Post[] }) {
           {filtered.map((post) => (
             <Link
               key={post.slug}
-              href={`/blog/${post.slug}`}
+              href={href(`/blog/${post.slug}`)}
               className="group bg-white border border-stroke1 rounded-xl overflow-hidden flex flex-col transition-all hover:border-navy hover:shadow-[0_2px_2px_-1px_rgba(10,13,18,0.04),0_4px_6px_-2px_rgba(10,13,18,0.03)]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">

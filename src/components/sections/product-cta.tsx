@@ -1,4 +1,6 @@
-import { ButtonLink } from "@/components/ui/button";
+"use client";
+
+import { MarketingContactLink } from "@/components/marketing/marketing-contact-link";
 
 interface ProductCTAProps {
   productName: string;
@@ -12,9 +14,9 @@ export function ProductCTA({ productName }: ProductCTAProps) {
           Discover what <span className="text-tally-green">{productName}</span> can do for your
           business?
         </p>
-        <ButtonLink href="/contact" className="bg-tally-green hover:bg-tally-green-dark text-white">
+        <MarketingContactLink className="bg-tally-green hover:bg-tally-green-dark text-white">
           Request a demo
-        </ButtonLink>
+        </MarketingContactLink>
       </div>
     </section>
   );

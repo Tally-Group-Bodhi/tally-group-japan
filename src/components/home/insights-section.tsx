@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getLatestInsights } from "@/lib/insights";
+import { useMarketingHref } from "@/contexts/marketing-region";
 
 const stories = getLatestInsights(4);
 
@@ -17,6 +18,7 @@ const fadeUp = {
 };
 
 export function InsightsSection() {
+  const href = useMarketingHref();
   return (
     <section id="insights" className="py-[96px] lg:py-[120px]">
       <div className="max-w-[1600px] mx-auto px-8">
@@ -37,7 +39,7 @@ export function InsightsSection() {
             </h2>
           </div>
           <Link
-            href="/blog"
+            href={href("/blog")}
             className="inline-flex items-center gap-[6px] font-semibold text-[15px] text-navy hover:text-turquoise transition-colors shrink-0"
           >
             View all articles{" "}
@@ -58,7 +60,7 @@ export function InsightsSection() {
               variants={fadeUp}
             >
               <Link
-                href={`/blog/${story.slug}`}
+                href={href(`/blog/${story.slug}`)}
                 className="group block h-full bg-white border border-stroke1 rounded-2xl overflow-hidden transition-all hover:border-navy/30 hover:shadow-[0_8px_32px_rgba(44,54,93,0.08)]"
               >
                 <div className="aspect-[16/10] relative overflow-hidden">

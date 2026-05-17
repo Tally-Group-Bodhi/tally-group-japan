@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useMarketingHref } from "@/contexts/marketing-region";
 
 export function ContactSection() {
+  const href = useMarketingHref();
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -178,13 +180,13 @@ export function ContactSection() {
 
             <div className="flex flex-wrap gap-3 mt-[32px] justify-center">
               <Link
-                href="/contact"
+                href={href("/contact")}
                 className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
               >
                 Book a demo
               </Link>
               <Link
-                href="/contact"
+                href={href("/contact")}
                 className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold text-white border border-white/25 hover:bg-white/10 transition-all"
               >
                 Contact us

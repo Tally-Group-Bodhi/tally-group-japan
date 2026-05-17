@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useMarketingHref } from "@/contexts/marketing-region";
 
 const products = [
   {
@@ -36,6 +37,8 @@ const products = [
 ];
 
 export function TallyPlusSection() {
+  const href = useMarketingHref();
+
   return (
     <section className="py-[64px] lg:py-[96px]">
       <div className="max-w-[1600px] mx-auto px-8">
@@ -80,7 +83,7 @@ export function TallyPlusSection() {
             </div>
 
             <Link
-              href="/#platform"
+              href={href("/#platform")}
               className="inline-flex items-center gap-[6px] mt-[28px] text-[15px] font-semibold text-navy hover:text-turquoise transition-colors"
             >
               Explore the platform{" "}
@@ -100,7 +103,7 @@ export function TallyPlusSection() {
                 transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
               >
                 <Link
-                  href={p.href}
+                  href={href(p.href)}
                   aria-label={p.name}
                   className="group flex items-center justify-center bg-bg2 rounded-2xl aspect-[16/9] px-[24px] py-[28px] transition-all hover:bg-white hover:shadow-[0_8px_32px_rgba(44,54,93,0.08)] hover:-translate-y-[2px]"
                 >

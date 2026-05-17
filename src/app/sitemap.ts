@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tally.co";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = [
+  const auPages = [
     "",
     "/about",
     "/careers",
@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/acquire",
     "/products/acquire/uconx",
   ];
+
+  const staticPages = [...auPages, ...auPages.map((path) => (path === "" ? "/us" : `/us${path}`))];
 
   return staticPages.map((path) => ({
     url: `${BASE_URL}${path}`,

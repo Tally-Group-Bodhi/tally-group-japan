@@ -145,7 +145,7 @@ export function CorporateHeader() {
                           onClick={() => {
                             if (region.key === "us") {
                               setLocationOpen(false);
-                              router.push("/corporate/us");
+                              router.push("/us");
                               return;
                             }
                             setActiveRegion(region);

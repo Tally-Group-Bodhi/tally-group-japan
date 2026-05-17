@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useMarketingHref } from "@/contexts/marketing-region";
 
 const solutions = [
   {
@@ -44,6 +45,8 @@ const fadeUp = {
 };
 
 export function PlatformSection() {
+  const href = useMarketingHref();
+
   return (
     <section
       id="platform"
@@ -73,7 +76,7 @@ export function PlatformSection() {
             variants={fadeUp}
           >
             <Link
-              href={s.href}
+              href={href(s.href)}
               aria-label={`${s.stage} — Learn more`}
               className="relative block aspect-[2/1] sm:aspect-auto sm:h-[clamp(440px,32vw,560px)] overflow-hidden rounded-[20px] group"
             >

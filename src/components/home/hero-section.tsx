@@ -4,6 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import {
+  US_MARKETING_BASE,
+  useMarketingBasePath,
+  useMarketingHref,
+} from "@/contexts/marketing-region";
 
 const rotatingWords = ["Billing", "Sales", "Operations", "Compliance"];
 
@@ -26,6 +31,8 @@ const stats = [
 ];
 
 export function HeroSection() {
+  const href = useMarketingHref();
+  const isUS = useMarketingBasePath() === US_MARKETING_BASE;
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -92,17 +99,18 @@ export function HeroSection() {
                 </motion.span>
               </span>
               <br />
-              for Australian energy retailers
+              for {isUS ? "energy retailers" : "Australian energy retailers"}
             </h1>
 
             <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.6] text-white/80 max-w-[56ch] mx-auto">
               One platform, eight products &mdash; running the retail, sales and
-              operations software behind Australia&apos;s energy retailers
+              operations software behind{" "}
+              {isUS ? "energy retailers" : "Australia's energy retailers"}
             </p>
 
             <div className="flex flex-wrap gap-3 mt-[36px] justify-center">
               <Link
-                href="/contact"
+                href={href("/contact")}
                 className="inline-flex items-center gap-2 px-7 py-[14px] rounded-full text-[15px] font-semibold bg-white text-navy hover:bg-white/90 transition-all shadow-lg"
               >
                 Book a demo

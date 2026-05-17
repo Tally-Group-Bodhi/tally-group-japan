@@ -15,7 +15,7 @@ const stats = [
 
 const countrySolutions = [
   { label: "Australia/New Zealand", href: "#" },
-  { label: "United States", href: "/corporate/us" },
+  { label: "United States", href: "/us" },
   { label: "Japan", href: "#" },
   { label: "United Arab Emirates", href: "#" },
 ];

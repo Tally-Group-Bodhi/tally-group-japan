@@ -106,6 +106,43 @@ const supportingTestimonials = [
   },
 ];
 
+const usLeaders = [
+  {
+    name: "Peter Weigand",
+    role: "Chief Growth Officer",
+    bio: "Joined Tally as Chief Growth Officer in 2026 to lead U.S. and Japan markets. Former CEO of four energy and technology companies, including one successful IPO. Recognized among PennWell\u2019s Top 50 Most Influential People in Energy, with extensive experience scaling businesses and driving growth across global energy and technology sectors.",
+    photo: "Peter Weigand.jpg",
+  },
+  {
+    name: "Raine Figaro",
+    role: "Delivery Lead",
+    bio: "Joined Tally as the U.S. Delivery Lead in 2023. 20+ years of experience in global program, project and portfolio management, consulting, and relationship management, including delivery lead roles at Amazon Web Services, Capital One, Microsoft and Verizon.",
+    photo: "Raine Figaro.jpg",
+  },
+  {
+    name: "TBD",
+    role: "Sales Manager",
+    bio: "Bio coming soon.",
+  },
+  {
+    name: "Atsuyo Miller",
+    role: "Director of Marketing",
+    bio: "Joined Tally as Director of Marketing in 2026, leading U.S. and Japan markets. Previously VP of Marketing at an energy consulting firm, with experience across Fortune Global 500 environments including Microsoft and Toshiba. Brings expertise across energy and technology sectors and experience leading cross-cultural, cross-functional teams.",
+    photo: "Atsuyo Miller.jpg",
+  },
+  {
+    name: "Chris Bates",
+    role: "Product Manager Orion | Product & Client",
+    bio: "Joined Tally as a Data Engineer in 2012, transitioned to Architect for US Energy Platforms with 14+ years of experience in designing enterprise-grade billing and regulatory solutions and driving architectural standards for the energy and utilities sector.",
+    photo: "Chris Bates.jpg",
+  },
+  {
+    name: "TBD",
+    role: "Sales & Marketing Coordinator",
+    bio: "Bio coming soon.",
+  },
+];
+
 const leaders = [
   {
     name: "Andrew Duncan",
@@ -235,13 +272,41 @@ export default function AboutPage() {
         background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
+          <div id="us-leadership" className="scroll-mt-[88px]">
+            <div className="mb-[40px] max-w-[720px]">
+              <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
+                <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
+                U.S. leadership
+              </div>
+              <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
+                Leaders shaping growth and delivery across the United States.
+              </h2>
+              <p className="mt-[16px] text-sm leading-[1.55] text-fg2 m-0 max-w-[52ch]">
+                Meet the U.S. leadership team. Additional roles and bios may be added as the team grows.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+              {usLeaders.map((leader) => (
+                <LeaderCard
+                  key={`${leader.name}-${leader.role}`}
+                  leader={leader}
+                  photoSrc={leader.photo ? `/us/${leader.photo}` : undefined}
+                />
+              ))}
+            </div>
+          </div>
+          <div
+            id="global-leadership"
+            className="scroll-mt-[88px] mt-[80px] pt-[80px] border-t border-stroke1"
+          >
           <div className="mb-[48px] max-w-[720px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              Meet the team
+              Global Leadership
             </div>
             <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              Meet our management team.
+              Tally Group leadership.
             </h2>
           </div>
 
@@ -276,6 +341,7 @@ export default function AboutPage() {
                 </p>
               </article>
             ))}
+          </div>
           </div>
         </div>
       </section>
@@ -389,6 +455,54 @@ export default function AboutPage() {
         </div>
       </section>
     </>
+  );
+}
+
+type LeaderProfile = {
+  name: string;
+  role: string;
+  bio: string;
+  photo?: string;
+};
+
+function LeaderCard({
+  leader,
+  photoSrc,
+}: {
+  leader: LeaderProfile;
+  photoSrc?: string;
+}) {
+  const photo = photoSrc ? (
+    <div className="w-[88px] h-[88px] rounded-full overflow-hidden shrink-0 border border-stroke1 bg-bg2">
+      <Image
+        src={photoSrc}
+        alt={`Portrait of ${leader.name}`}
+        width={88}
+        height={88}
+        className="w-full h-full object-cover object-[center_top]"
+        loading="lazy"
+      />
+    </div>
+  ) : (
+    <div
+      className="w-[88px] h-[88px] rounded-full shrink-0 border border-stroke1 bg-bg2"
+      aria-hidden
+    />
+  );
+
+  return (
+    <article className="bg-white border border-stroke1 rounded-xl p-[24px] flex flex-col gap-[16px] transition-all hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+      <div className="flex items-center gap-[14px]">
+        {photo}
+        <div>
+          <h3 className="m-0 mb-[2px] text-base font-semibold text-navy tracking-tight leading-tight">
+            {leader.name}
+          </h3>
+          <p className="m-0 text-sm text-fg2">{leader.role}</p>
+        </div>
+      </div>
+      <p className="m-0 text-sm leading-[1.55] text-fg2">{leader.bio}</p>
+    </article>
   );
 }
 

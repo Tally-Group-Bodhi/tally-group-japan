@@ -1,5 +1,7 @@
-import { ButtonLink } from "@/components/ui/button";
+"use client";
+
 import { Badge } from "@/components/ui/badge";
+import { MarketingContactLink } from "@/components/marketing/marketing-contact-link";
 
 interface ProductHeroProps {
   title: string;
@@ -19,9 +21,9 @@ export function ProductHero({ title, subtitle, features }: ProductHeroProps) {
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-tally-gray">{subtitle}</p>
             <div className="mt-8">
-              <ButtonLink href="/contact" size="lg" className="bg-tally-green hover:bg-tally-green-dark text-white px-8">
+              <MarketingContactLink size="lg" className="bg-tally-green hover:bg-tally-green-dark text-white px-8">
                 Request a demo
-              </ButtonLink>
+              </MarketingContactLink>
             </div>
           </div>
           <div>
