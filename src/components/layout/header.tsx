@@ -5,11 +5,11 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 const regions = [
-  { id: "au", label: "Australia", flag: "🇦🇺" },
-  { id: "nz", label: "New Zealand", flag: "🇳🇿" },
-  { id: "jp", label: "Japan", flag: "🇯🇵" },
-  { id: "us", label: "United States", flag: "🇺🇸" },
-  { id: "ae", label: "UAE", flag: "🇦🇪" },
+  { id: "au", label: "Australia", abbr: "AU", flag: "🇦🇺" },
+  { id: "nz", label: "New Zealand", abbr: "NZ", flag: "🇳🇿" },
+  { id: "jp", label: "Japan", abbr: "JP", flag: "🇯🇵" },
+  { id: "us", label: "United States", abbr: "US", flag: "🇺🇸" },
+  { id: "ae", label: "UAE", abbr: "UAE", flag: "🇦🇪" },
 ];
 
 type NavChild = { href: string; label: string };
@@ -73,7 +73,7 @@ export function Header() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4">
-      <header className="max-w-[1600px] mx-auto bg-white/60 backdrop-blur-xl backdrop-saturate-[180%] border border-white/40 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.04)]">
+      <header className="max-w-[1280px] mx-auto bg-white/60 backdrop-blur-xl backdrop-saturate-[180%] border border-white/40 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.04)]">
         <div className="px-6 sm:px-8 flex items-center h-14">
           <Link href="/" className="shrink-0" onClick={closeMobile}>
             <Image src="/logos/TallyPlus.svg" alt="Tally+" width={130} height={25} className="h-[25px] w-auto" />
@@ -148,13 +148,12 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="inline-flex items-center gap-1.5 px-3 py-[7px] rounded-full text-[12px] font-medium text-fg1 border border-stroke1 hover:bg-bg3 transition-all leading-none"
-                aria-label="Change region"
+                className="inline-flex items-center gap-1.5 px-5 py-[9px] rounded-full text-[13px] font-medium text-fg1 bg-white hover:bg-bg3 transition-all leading-none"
+                aria-label={`Change region: ${region.label}`}
                 aria-expanded={open}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: "20px" }}>location_on</span>
-                {region.label}
-                <span className="material-symbols-outlined text-[12px] opacity-50">expand_more</span>
+                <span>{region.abbr}</span>
+                <span className="material-symbols-outlined text-[13px] opacity-50">expand_more</span>
               </button>
 
               {open && (

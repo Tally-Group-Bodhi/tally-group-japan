@@ -13,10 +13,10 @@ const aboutLinks = [
 ];
 
 const regions = [
-  { key: "au-nz", label: "Australia & New Zealand", shortLabel: "Australia" },
-  { key: "us", label: "United States", shortLabel: "United States" },
-  { key: "jp", label: "Japan", shortLabel: "Japan" },
-  { key: "uae", label: "United Arab Emirates", shortLabel: "UAE" },
+  { key: "au-nz", label: "Australia & New Zealand", shortLabel: "Australia", abbr: "AU" },
+  { key: "us", label: "United States", shortLabel: "United States", abbr: "US" },
+  { key: "jp", label: "Japan", shortLabel: "Japan", abbr: "JP" },
+  { key: "uae", label: "United Arab Emirates", shortLabel: "UAE", abbr: "UAE" },
 ];
 
 export function CorporateHeader() {
@@ -51,7 +51,7 @@ export function CorporateHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md backdrop-saturate-[180%] border-b border-stroke1">
-      <div className="max-w-[1240px] mx-auto px-8 flex items-center h-16">
+      <div className="max-w-[1280px] mx-auto px-8 flex items-center h-16">
         <Link href="/corporate" className="shrink-0">
           <Image
             src="/logos/TallyOfficialLogo.svg"
@@ -115,14 +115,13 @@ export function CorporateHeader() {
                 e.stopPropagation();
                 setLocationOpen(!locationOpen);
               }}
-              className="inline-flex items-center gap-[6px] h-[36px] pl-[10px] pr-[12px] rounded-full border border-stroke1 bg-white text-sm font-medium text-fg1 cursor-pointer transition-all hover:border-navy/30 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full border border-stroke1 bg-white text-sm font-medium text-fg1 cursor-pointer transition-all hover:border-navy/30 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
               aria-expanded={locationOpen}
               aria-haspopup="listbox"
               aria-label={`Location: ${activeRegion.shortLabel}. Click to change.`}
             >
-              <span className="material-symbols-outlined text-[18px] text-fg2">location_on</span>
-              <span className="hidden sm:inline">{activeRegion.shortLabel}</span>
-              <span className="material-symbols-outlined text-[14px] text-fg3 -ml-0.5">expand_more</span>
+              <span>{activeRegion.abbr}</span>
+              <span className="material-symbols-outlined text-[14px] text-fg3">expand_more</span>
             </button>
 
             {locationOpen && (
@@ -171,7 +170,7 @@ export function CorporateHeader() {
 
           <Link
             href="/corporate/contact"
-            className="hidden lg:inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all"
+            className="hidden lg:inline-flex items-center gap-2 px-7 py-[12px] rounded-full text-[14px] font-semibold leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
           >
             Get in touch
           </Link>

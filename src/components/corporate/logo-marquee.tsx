@@ -60,9 +60,16 @@ function LogoTrack({ ariaHidden = false }: { ariaHidden?: boolean }) {
   );
 }
 
-export function CorporateLogoMarquee() {
+export function CorporateLogoMarquee({ title }: { title?: string }) {
   return (
-    <section className="bg-white border-b border-stroke1 py-[24px] overflow-hidden">
+    <section className="bg-white border-b border-stroke1 py-[64px] lg:py-[80px] overflow-hidden">
+      {title ? (
+        <div className="max-w-[1600px] mx-auto px-8 mb-[48px] lg:mb-[64px]">
+          <h2 className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy">
+            {title}
+          </h2>
+        </div>
+      ) : null}
       <div
         className="max-w-full mx-auto px-5 overflow-hidden"
         style={{

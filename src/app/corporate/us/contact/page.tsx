@@ -82,7 +82,7 @@ export default function USContactPage() {
 
       {/* Contact Cards */}
       <section className="py-[96px] border-b border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[24px]">
             <article className="bg-white border border-stroke1 rounded-xl p-[28px]">
               <div className="w-[40px] h-[40px] rounded-lg bg-turquoise/10 flex items-center justify-center mb-[16px]">
@@ -135,7 +135,7 @@ export default function USContactPage() {
         className="py-[96px]"
         style={{ background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)" }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[14px] inline-flex items-center gap-2">
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Global offices

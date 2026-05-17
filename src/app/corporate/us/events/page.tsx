@@ -51,7 +51,7 @@ export default function EventsPage() {
           background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)",
         }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[14px] inline-flex items-center gap-2">
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Upcoming
@@ -95,7 +95,7 @@ export default function EventsPage() {
       </section>
 
       <section className="py-[96px] border-t border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8 text-center">
+        <div className="max-w-[1600px] mx-auto px-8 text-center">
           <h2 className="text-[24px] font-bold leading-[1.1] tracking-[-0.02em] text-navy mb-[12px]">
             Meet us
           </h2>

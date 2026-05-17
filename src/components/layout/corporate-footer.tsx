@@ -9,7 +9,7 @@ const legalLinks = ["Privacy policy", "Terms of service"];
 export function CorporateFooter() {
   return (
     <footer className="bg-navy-dark text-white pt-[72px] pb-6">
-      <div className="max-w-[1240px] mx-auto px-8">
+      <div className="max-w-[1600px] mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-[48px] pb-[48px] border-b border-white/10">
           <div>
             <Image src="/logos/TallyOfficialLogo.svg" alt="Tally Group" width={140} height={27} className="h-[27px] w-auto brightness-0 invert" />

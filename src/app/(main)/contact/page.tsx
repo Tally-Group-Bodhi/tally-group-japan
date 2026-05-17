@@ -57,12 +57,7 @@ export default function ContactPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <span className="inline-flex items-center gap-2 px-3 py-[5px] bg-white border border-stroke1 rounded-full text-xs font-medium text-fg2 uppercase tracking-[0.08em]">
-            <span className="w-[6px] h-[6px] rounded-full bg-turquoise" />
-            Contact
-          </span>
-
-          <h1 className="mt-[24px] text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
+          <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
             Get in touch.
           </h1>
 

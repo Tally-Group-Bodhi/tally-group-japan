@@ -94,7 +94,7 @@ export default function ContactPage() {
 
       {/* Company toggle */}
       <section className="border-b border-stroke1 px-8 py-[24px]" style={{ background: "#F9F9FB" }}>
-        <div className="max-w-[1240px] mx-auto flex flex-wrap items-center gap-[16px]">
+        <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-[16px]">
           <p className="m-0 text-sm font-semibold text-navy">Choose a company of interest</p>
           <div className="flex flex-wrap gap-[8px]">
             <button
@@ -130,7 +130,7 @@ export default function ContactPage() {
         className="py-[96px]"
         style={{ background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)" }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           {activePanel === "tally" && (
             <div className="max-w-[800px]">
               <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[14px] inline-flex items-center gap-2">

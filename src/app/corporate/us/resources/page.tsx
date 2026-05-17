@@ -82,7 +82,7 @@ export default function ResourcesPage() {
       />
 
       <section className="border-b border-stroke1 px-8 py-[24px]" style={{ background: "#F9F9FB" }}>
-        <div className="max-w-[1240px] mx-auto flex flex-wrap items-center gap-[16px]">
+        <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-[16px]">
           <p className="m-0 text-sm font-semibold text-navy">Browse by type</p>
           <div className="flex flex-wrap gap-[8px]">
             <button
@@ -117,7 +117,7 @@ export default function ResourcesPage() {
         className="py-[96px]"
         style={{ background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)" }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <p className="text-xs text-fg3 italic mb-[32px]">
             Placeholder content: Titles, descriptions, and links below are samples.
           </p>

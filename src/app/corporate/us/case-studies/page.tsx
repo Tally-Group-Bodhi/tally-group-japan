@@ -135,7 +135,7 @@ export default function CaseStudiesPage() {
           background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)",
         }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="flex flex-wrap items-end gap-3 mb-[48px] p-[20px] bg-white border border-stroke1 rounded-xl">
             <div className="flex-1 min-w-[160px]">
               <label className="block text-xs font-medium text-fg3 mb-[6px]">Region</label>

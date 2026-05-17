@@ -15,7 +15,7 @@ export default function USLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <USHeader />
-      <div className="flex-1">{children}</div>
+      <main className="flex-1">{children}</main>
       <USFooter />
     </>
   );

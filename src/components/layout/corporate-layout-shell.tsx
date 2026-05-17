@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { CorporateHeader } from "./corporate-header";
-import { CorporateFooter } from "./corporate-footer";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 export function CorporateLayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,9 +12,9 @@ export function CorporateLayoutShell({ children }: { children: React.ReactNode }
 
   return (
     <>
-      <CorporateHeader />
-      <div className="flex-1">{children}</div>
-      <CorporateFooter />
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
     </>
   );
 }

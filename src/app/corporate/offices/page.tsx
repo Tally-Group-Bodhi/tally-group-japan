@@ -154,7 +154,7 @@ export default function OfficesPage() {
 
       {/* Filter bar */}
       <section className="border-b border-stroke1 px-8 py-[20px]" style={{ background: "#F9F9FB" }}>
-        <div className="max-w-[1240px] mx-auto flex flex-wrap items-center gap-[20px]">
+        <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-[20px]">
           <p className="m-0 text-sm font-semibold text-navy">Region</p>
           <div className="flex flex-wrap gap-[8px]" role="group">
             {filterButtons.map((btn) => (
@@ -181,7 +181,7 @@ export default function OfficesPage() {
         className="py-[96px]"
         style={{ background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)" }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           {regions
             .filter((r) => r.macroRegion === activeFilter)
             .map((region) => (

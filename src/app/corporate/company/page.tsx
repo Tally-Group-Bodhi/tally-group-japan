@@ -53,7 +53,7 @@ export default function CompanyPage() {
       />
 
       <section className="py-[96px] border-b border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="max-w-[720px]">
             <div className="space-y-[16px]">
               <p className="text-lg leading-[1.55] text-fg2">
@@ -75,7 +75,7 @@ export default function CompanyPage() {
         className="py-[96px]"
         style={{ background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)" }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[14px] inline-flex items-center gap-2">
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Our story

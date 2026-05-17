@@ -45,10 +45,10 @@ const newsLinks = [
 ];
 
 const regions = [
-  { key: "us", label: "United States", shortLabel: "United States" },
-  { key: "au-nz", label: "Australia & New Zealand", shortLabel: "Australia" },
-  { key: "jp", label: "Japan", shortLabel: "Japan" },
-  { key: "uae", label: "United Arab Emirates", shortLabel: "UAE" },
+  { key: "us", label: "United States", shortLabel: "United States", abbr: "US" },
+  { key: "au-nz", label: "Australia & New Zealand", shortLabel: "Australia", abbr: "AU" },
+  { key: "jp", label: "Japan", shortLabel: "Japan", abbr: "JP" },
+  { key: "uae", label: "United Arab Emirates", shortLabel: "UAE", abbr: "UAE" },
 ];
 
 export function USHeader() {
@@ -91,8 +91,9 @@ export function USHeader() {
   const isNewsPage = newsLinks.some((l) => pathname === l.href) || pathname.startsWith("/corporate/us/press-releases");
 
   return (
-    <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md backdrop-saturate-[180%] border-b border-stroke1">
-      <div className="max-w-[1240px] mx-auto px-8 flex items-center h-16">
+    <div className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4">
+      <header className="max-w-[1280px] mx-auto bg-white/60 backdrop-blur-xl backdrop-saturate-[180%] border border-white/40 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.04)]">
+        <div className="px-6 sm:px-8 flex items-center h-14">
         <Link href="/corporate/us" className="shrink-0">
           <Image
             src="/us/tally-plus.svg"
@@ -261,14 +262,13 @@ export function USHeader() {
                 e.stopPropagation();
                 setLocationOpen(!locationOpen);
               }}
-              className="inline-flex items-center gap-[6px] h-[36px] pl-[10px] pr-[12px] rounded-full border border-stroke1 bg-white text-sm font-medium text-fg1 cursor-pointer transition-all hover:border-navy/30 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full border border-stroke1 bg-white text-sm font-medium text-fg1 cursor-pointer transition-all hover:border-navy/30 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
               aria-expanded={locationOpen}
               aria-haspopup="listbox"
               aria-label="Location: United States. Click to change."
             >
-              <span className="material-symbols-outlined text-[18px] text-fg2">location_on</span>
-              <span className="hidden sm:inline">United States</span>
-              <span className="material-symbols-outlined text-[14px] text-fg3 -ml-0.5">expand_more</span>
+              <span>{regions[0].abbr}</span>
+              <span className="material-symbols-outlined text-[14px] text-fg3">expand_more</span>
             </button>
 
             {locationOpen && (
@@ -316,7 +316,7 @@ export function USHeader() {
 
           <Link
             href="/corporate/us/contact"
-            className="hidden lg:inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all"
+            className="hidden lg:inline-flex items-center gap-2 px-5 py-[9px] rounded-full text-[13px] font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
           >
             Get in touch
           </Link>
@@ -334,12 +334,12 @@ export function USHeader() {
             <span className={`block w-5 h-[2px] bg-navy rounded-full transition-transform ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
           </button>
         </div>
-      </div>
+        </div>
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="lg:hidden bg-white border-t border-stroke1 max-h-[80vh] overflow-y-auto" aria-label="Mobile navigation">
-          <div className="max-w-[1240px] mx-auto px-8 py-4 flex flex-col gap-1">
+        <nav className="lg:hidden border-t border-white/50 max-h-[calc(100vh-6rem)] overflow-y-auto" aria-label="Mobile navigation">
+          <div className="px-6 py-4 flex flex-col gap-1">
             <MobileAccordion
               label="Solutions"
               open={mobileDropdown === "solutions"}
@@ -415,7 +415,7 @@ export function USHeader() {
             <Link
               href="/corporate/us/contact"
               onClick={closeAll}
-              className="mt-3 inline-flex items-center justify-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-navy text-white hover:bg-navy-dark transition-all"
+              className="mt-3 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-[14px] font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
             >
               Get in touch
             </Link>
@@ -423,6 +423,7 @@ export function USHeader() {
         </nav>
       )}
     </header>
+    </div>
   );
 }
 

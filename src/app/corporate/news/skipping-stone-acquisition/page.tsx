@@ -17,7 +17,7 @@ export default function SkippingStoneAcquisitionPage() {
             "radial-gradient(ellipse 900px 500px at 15% 0%, rgba(0,210,162,0.06), transparent 60%), linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)",
         }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <p className="text-xs text-fg2 mb-[10px]">
             <Link href="/corporate" className="text-fg2 no-underline hover:text-navy transition-colors">Home</Link>
             <span className="mx-1 text-fg3">/</span>

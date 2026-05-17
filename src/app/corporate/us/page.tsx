@@ -18,13 +18,13 @@ export default function USHomePage() {
     <>
       {/* Hero */}
       <section
-        className="relative overflow-hidden border-b border-stroke1 pt-[64px] pb-[48px] lg:pt-[96px] lg:pb-[64px]"
+        className="relative overflow-hidden border-b border-stroke1 pt-[120px] pb-[48px] lg:pt-[160px] lg:pb-[64px]"
         style={{
           background:
             "radial-gradient(ellipse 900px 500px at 15% 0%, rgba(0,210,162,0.06), transparent 60%), linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)",
         }}
       >
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <h1 className="text-[30px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy max-w-[52rem]">
             We are a{" "}
             <span className="text-turquoise">global customer engagement and management solutions</span>{" "}
@@ -55,7 +55,7 @@ export default function USHomePage() {
 
       {/* Product Intro: Tally Glass & Tally+ */}
       <section className="py-[96px] border-b border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8">
+        <div className="max-w-[1600px] mx-auto px-8">
           <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[14px] inline-flex items-center gap-2">
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
             Our platform
@@ -102,7 +102,7 @@ export default function USHomePage() {
 
       {/* How It Works */}
       <section className="py-[96px] border-b border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8 text-center">
+        <div className="max-w-[1600px] mx-auto px-8 text-center">
           <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy mb-[20px]">
             How It Works
           </h2>
@@ -131,7 +131,7 @@ export default function USHomePage() {
 
       {/* Stats */}
       <section className="py-[96px] border-b border-stroke1">
-        <div className="max-w-[1240px] mx-auto px-8 flex flex-wrap items-center justify-center gap-[64px]">
+        <div className="max-w-[1600px] mx-auto px-8 flex flex-wrap items-center justify-center gap-[64px]">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center min-w-[11rem]">
               <span className="block text-[64px] font-bold tracking-[-0.04em] text-navy leading-none">
@@ -151,7 +151,7 @@ export default function USHomePage() {
 
       {/* CTA */}
       <section className="py-[96px] bg-navy text-white">
-        <div className="max-w-[1240px] mx-auto px-8 text-center">
+        <div className="max-w-[1600px] mx-auto px-8 text-center">
           <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em]">
             Ready to see the platform?
           </h2>
