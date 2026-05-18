@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/sections/contact-form";
+import { OfficeAddressBlock } from "@/components/sections/office-address-block";
+import { OurLocationsSection } from "@/components/sections/our-locations-section";
+import { officeRegions } from "@/data/office-regions";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -9,13 +12,8 @@ export const metadata: Metadata = {
     "Get in touch with the Tally Group team. Book a demo, ask a question, or explore a partnership.",
 };
 
-const offices = [
-  {
-    city: "Houston",
-    address: "1450 Lake Robbins Drive, Suite 160, The Woodlands TX 77380",
-    icon: "location_on",
-  },
-];
+const northAmericaOffices =
+  officeRegions.find((region) => region.id === "north-america")?.offices ?? [];
 
 const contactMethods = [
   {
@@ -105,16 +103,16 @@ export default function ContactPage() {
               {/* Offices */}
               <div className="mt-[48px]">
                 <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
-                <div className="flex flex-col gap-[16px]">
-                  {offices.map((office) => (
-                    <div key={office.city} className="flex items-start gap-[12px]">
-                      <div className="w-9 h-9 shrink-0 rounded-[8px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
-                        <span className="material-symbols-outlined text-[18px]">{office.icon}</span>
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-fg1">{office.city}</div>
-                        <div className="text-sm text-fg2">{office.address}</div>
-                      </div>
+                <div className="flex flex-col gap-[28px]">
+                  {northAmericaOffices.map((office) => (
+                    <div key={office.city}>
+                      <OfficeAddressBlock office={office} />
+                      <a
+                        href={`mailto:${office.email}`}
+                        className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
+                      >
+                        {office.email}
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -129,6 +127,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <OurLocationsSection defaultRegionId="north-america" />
 
       {/* CTA */}
       <section className="relative overflow-hidden py-[96px] bg-navy text-white">
