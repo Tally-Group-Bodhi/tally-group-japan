@@ -47,7 +47,6 @@ function buildNavLinks(href: (path: string) => string): NavLink[] {
     { href: href("/careers"), label: "Careers" },
     { href: href("/blog"), label: "Insights" },
     { href: href("/contact"), label: "Contact" },
-    { href: href("/corporate"), label: "Corporate" },
   ];
 }
 
