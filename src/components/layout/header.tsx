@@ -6,6 +6,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   regionalPathForSwitch,
+  JP_MARKETING_BASE,
   US_MARKETING_BASE,
   useMarketingHref,
   useMarketingBasePath,
@@ -20,13 +21,13 @@ const regions = [
 ];
 
 type NavChild = { href: string; label: string };
-type NavMegaSection = { title: string; items: NavChild[] };
+type NavChildSection = { title: string; items: NavChild[] };
 type NavLink = {
   href?: string;
   label: string;
   hasMenu?: boolean;
   children?: NavChild[];
-  megaSections?: NavMegaSection[];
+  childSections?: NavChildSection[];
 };
 
 function buildNavLinks(href: (path: string) => string): NavLink[] {
@@ -55,7 +56,7 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
     {
       label: "Solutions",
       hasMenu: true,
-      megaSections: [
+      childSections: [
         {
           title: "Overviews",
           items: [
@@ -113,6 +114,75 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
   ];
 }
 
+function buildJPNavLinks(href: (path: string) => string): NavLink[] {
+  return [
+    {
+      label: "ソリューション",
+      hasMenu: true,
+      childSections: [
+        {
+          title: "プラットフォーム",
+          items: [
+            { href: "#", label: "Tally+ 顧客管理" },
+            { href: "#", label: "Tally Glass(AI)" },
+          ],
+        },
+        {
+          title: "分野別",
+          items: [
+            { href: "#", label: "電力" },
+            { href: "#", label: "ガス" },
+            { href: "#", label: "再生可能エネルギー" },
+            { href: "#", label: "EV" },
+            { href: "#", label: "BESS" },
+            { href: "#", label: "DER" },
+          ],
+        },
+      ],
+    },
+    { href: href("/services"), label: "サービス" },
+    {
+      label: "テクノロジー",
+      hasMenu: true,
+      children: [
+        { href: href("/technology/architecture"), label: "アーキテクチャ" },
+        { href: href("/technology/security"), label: "セキュリティ" },
+        { href: href("/technology/audit"), label: "監査" },
+        { href: href("/technology/api-library"), label: "APIライブラリ" },
+      ],
+    },
+    {
+      label: "インサイト",
+      hasMenu: true,
+      children: [
+        { href: "#", label: "導入事例" },
+        { href: "#", label: "資料" },
+      ],
+    },
+    {
+      label: "ニュース",
+      hasMenu: true,
+      children: [
+        { href: "#", label: "プレスリリース" },
+        { href: "#", label: "イベント" },
+      ],
+    },
+    {
+      href: href("/about"),
+      label: "会社情報",
+      hasMenu: true,
+      children: [
+        { href: href("/about"), label: "会社情報" },
+        { href: href("/about#company-overview"), label: "会社概要" },
+        { href: href("/about#japan-leadership"), label: "日本チーム" },
+        { href: href("/about#global-leadership"), label: "グローバルチーム" },
+        { href: href("/about#mission-values"), label: "企業理念" },
+      ],
+    },
+    { href: href("/contact"), label: "お問い合わせ" },
+  ];
+}
+
 function navLinkClassName(isActive: boolean) {
   return `text-[15px] font-normal leading-none inline-flex items-center gap-[3px] transition-colors ${
     isActive ? "text-turquoise" : "text-[#2A2E3A] hover:text-navy"
@@ -125,9 +195,18 @@ export function Header() {
   const href = useMarketingHref();
   const basePath = useMarketingBasePath();
   const isUS = basePath === US_MARKETING_BASE;
-  const navLinks = useMemo(() => (isUS ? buildUSNavLinks(href) : buildNavLinks(href)), [href, isUS]);
+  const isJP = basePath === JP_MARKETING_BASE;
+  const navLinks = useMemo(
+    () =>
+      isUS
+        ? buildUSNavLinks(href)
+        : isJP
+        ? buildJPNavLinks(href)
+        : buildNavLinks(href),
+    [href, isUS, isJP],
+  );
 
-  const activeRegionId = isUS ? "us" : "au";
+  const activeRegionId = isUS ? "us" : isJP ? "jp" : "au";
   const region = regions.find((r) => r.id === activeRegionId) ?? regions[0];
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -175,6 +254,11 @@ export function Header() {
       return;
     }
 
+    if (regionId === "jp") {
+      router.push(regionalPathForSwitch(JP_MARKETING_BASE, pathname, basePath));
+      return;
+    }
+
     if (regionId === "au") {
       router.push(regionalPathForSwitch("", pathname, basePath));
     }
@@ -193,66 +277,8 @@ export function Header() {
               const isOpen = openMenu === link.label;
               const isActive = Boolean(link.href && pathname === link.href);
 
-              if (link.megaSections) {
-                return (
-                  <div
-                    key={link.label}
-                    className="relative"
-                    onMouseEnter={() => setOpenMenu(link.label)}
-                    onMouseLeave={() => setOpenMenu(null)}
-                  >
-                    <button
-                      type="button"
-                      className={`${navLinkClassName(false)} py-[18px] bg-transparent border-0 cursor-pointer`}
-                      aria-haspopup="true"
-                      aria-expanded={isOpen}
-                    >
-                      {link.label}
-                      <span
-                        className={`material-symbols-outlined text-[15px] opacity-60 transition-transform ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
-                      >
-                        expand_more
-                      </span>
-                    </button>
-                    {isOpen && (
-                      <div className="absolute top-full left-0 pt-2 z-50">
-                        <div
-                          className="w-[420px] bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-6"
-                          role="menu"
-                        >
-                          <div className="grid grid-cols-2 gap-6">
-                            {link.megaSections.map((section) => (
-                              <div key={section.title}>
-                                <h4 className="text-xs uppercase tracking-[0.1em] text-turquoise font-semibold mb-3">
-                                  {section.title}
-                                </h4>
-                                <ul className="flex flex-col gap-1 list-none m-0 p-0">
-                                  {section.items.map((item) => (
-                                    <li key={item.label}>
-                                      <Link
-                                        href={item.href}
-                                        role="menuitem"
-                                        onClick={() => setOpenMenu(null)}
-                                        className="block px-3 py-2 text-[14px] text-fg1 font-medium hover:bg-bg2 hover:text-navy rounded-lg transition-colors"
-                                      >
-                                        {item.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
 
-              if (link.children) {
+              if (link.children || link.childSections) {
                 const triggerClass = `${navLinkClassName(isActive)} py-[18px]`;
                 return (
                   <div
@@ -297,20 +323,16 @@ export function Header() {
                     {isOpen && (
                       <div className="absolute top-full left-0 pt-2 z-50">
                         <div
-                          className="w-[240px] bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] py-1.5"
+                          className={`bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] ${
+                            link.childSections ? "w-[420px] p-4" : "w-[240px] py-1.5"
+                          }`}
                           role="menu"
                         >
-                          {link.children.map((child) => (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              role="menuitem"
-                              onClick={() => setOpenMenu(null)}
-                              className="block px-4 py-2.5 text-[14px] text-fg1 hover:bg-bg2 hover:text-navy transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                          <NavDropdownItems
+                            children={link.children}
+                            childSections={link.childSections}
+                            onNavigate={() => setOpenMenu(null)}
+                          />
                         </div>
                       </div>
                     )}
@@ -369,7 +391,7 @@ export function Header() {
               )}
             </div>
             <Link href={href("/contact")} className="inline-flex items-center gap-2 px-5 py-[9px] rounded-full text-[13px] font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm">
-              Book a demo
+              {isJP ? "デモのご相談" : "Book a demo"}
             </Link>
           </div>
 
@@ -396,7 +418,7 @@ export function Header() {
             <div className="flex flex-col">
               {navLinks.map((link) => {
                 const isActive = Boolean(link.href && pathname === link.href);
-                const hasSubnav = Boolean(link.megaSections || link.children);
+                const hasSubnav = Boolean(link.children?.length || link.childSections?.length);
 
                 if (hasSubnav) {
                   return (
@@ -408,33 +430,12 @@ export function Header() {
                         setMobileDropdown((prev) => (prev === link.label ? null : link.label))
                       }
                     >
-                      {link.megaSections?.map((section) => (
-                        <div key={section.title}>
-                          <p className="text-[11px] uppercase tracking-[0.1em] text-turquoise font-semibold mb-2 mt-2 first:mt-0">
-                            {section.title}
-                          </p>
-                          {section.items.map((item) => (
-                            <Link
-                              key={item.label}
-                              href={item.href}
-                              onClick={closeMobile}
-                              className="block py-2 text-[13px] font-normal text-fg2 hover:text-navy transition-colors"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      ))}
-                      {link.children?.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          onClick={closeMobile}
-                          className="block py-2 text-[13px] font-normal text-fg2 hover:text-navy transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                      <NavDropdownItems
+                        children={link.children}
+                        childSections={link.childSections}
+                        onNavigate={closeMobile}
+                        variant="mobile"
+                      />
                     </MobileNavAccordion>
                   );
                 }
@@ -481,7 +482,7 @@ export function Header() {
                 onClick={closeMobile}
                 className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-[14px] font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
               >
-                Book a demo
+                {isJP ? "デモのご相談" : "Book a demo"}
               </Link>
             </div>
           </nav>
@@ -489,6 +490,89 @@ export function Header() {
       </header>
     </div>
   );
+}
+
+function NavDropdownItems({
+  children,
+  childSections,
+  onNavigate,
+  variant = "desktop",
+}: {
+  children?: NavChild[];
+  childSections?: NavChildSection[];
+  onNavigate: () => void;
+  variant?: "desktop" | "mobile";
+}) {
+  const linkClassName =
+    variant === "mobile"
+      ? "block py-2 text-[13px] font-normal text-fg2 hover:text-navy transition-colors"
+      : "block px-4 py-2.5 text-[14px] text-fg1 hover:bg-bg2 hover:text-navy transition-colors";
+
+  const sectionTitleClassName =
+    variant === "mobile"
+      ? "text-[11px] uppercase tracking-[0.1em] text-turquoise font-semibold mb-2 mt-2 first:mt-0"
+      : "px-4 pt-2.5 pb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-fg2";
+
+  if (childSections) {
+    if (variant === "desktop") {
+      return (
+        <div className="grid grid-cols-2 gap-6">
+          {childSections.map((section) => (
+            <div key={section.title}>
+              <p className={sectionTitleClassName}>{section.title}</p>
+              {section.items.map((child) => (
+                <Link
+                  key={child.label}
+                  href={child.href}
+                  role="menuitem"
+                  onClick={onNavigate}
+                  className={linkClassName}
+                >
+                  {child.label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <>
+        {childSections.map((section, index) => (
+          <div key={section.title}>
+            {index > 0 && (
+              <div className="mx-3 my-1 border-t border-stroke1" role="separator" />
+            )}
+            <p className={sectionTitleClassName}>{section.title}</p>
+            {section.items.map((child) => (
+              <Link
+                key={child.label}
+                href={child.href}
+                role="menuitem"
+                onClick={onNavigate}
+                className={linkClassName}
+              >
+                {child.label}
+              </Link>
+            ))}
+          </div>
+        ))}
+      </>
+    );
+  }
+
+  return (children ?? []).map((child) => (
+    <Link
+      key={child.label}
+      href={child.href}
+      role="menuitem"
+      onClick={onNavigate}
+      className={linkClassName}
+    >
+      {child.label}
+    </Link>
+  ));
 }
 
 function MobileNavAccordion({

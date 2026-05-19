@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type TimelineEntry = {
+export type TimelineEntry = {
   year: string;
-  title: string;
+  title?: string;
   description: string;
 };
 
-const timeline: TimelineEntry[] = [
+const defaultTimeline: TimelineEntry[] = [
   {
     year: "2018",
     title: "Tally IT founded",
@@ -47,7 +47,30 @@ const timeline: TimelineEntry[] = [
   },
 ];
 
-export function HistoryTimeline() {
+const defaultContent = {
+  eyebrow: "Our history",
+  heading: "A journey of innovation and growth.",
+  lead: "Tally Group formed in 2021 following the merger of cloud-based billing provider Agility CIS and energy retail SaaS provider Tally. In 2026, we acquired Skipping Stone, an energy consulting firm, marking a key step in our global growth across the U.S. and Japan.",
+};
+
+type HistoryTimelineProps = {
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  entries?: TimelineEntry[];
+  scrollLeftLabel?: string;
+  scrollRightLabel?: string;
+};
+
+export function HistoryTimeline({
+  eyebrow = defaultContent.eyebrow,
+  heading = defaultContent.heading,
+  lead = defaultContent.lead,
+  entries = defaultTimeline,
+  scrollLeftLabel = "Scroll timeline left",
+  scrollRightLabel = "Scroll timeline right",
+}: HistoryTimelineProps = {}) {
+  const timeline = entries;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -96,17 +119,13 @@ export function HistoryTimeline() {
           <div className="max-w-[720px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              Our history
+              {eyebrow}
             </div>
-            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              A journey of innovation and growth.
+            <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.15] tracking-[-0.02em] text-navy">
+              {heading}
             </h2>
-            <p className="mt-[20px] text-[17px] leading-[1.55] text-fg2">
-              Tally Group formed in 2021 following the merger of cloud-based
-              billing provider Agility CIS and energy retail SaaS provider
-              Tally. In 2026, we acquired Skipping Stone, an energy consulting
-              firm, marking a key step in our global growth across the U.S. and
-              Japan.
+            <p className="mt-[20px] text-[17px] leading-[1.7] text-fg2">
+              {lead}
             </p>
           </div>
 
@@ -114,7 +133,7 @@ export function HistoryTimeline() {
             <button
               type="button"
               onClick={() => scrollBy("left")}
-              aria-label="Scroll timeline left"
+              aria-label={scrollLeftLabel}
               disabled={!canScrollLeft}
               className="w-11 h-11 rounded-full border border-stroke1 bg-white text-navy grid place-items-center transition-all hover:bg-bg2 hover:border-navy/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-stroke1"
             >
@@ -125,7 +144,7 @@ export function HistoryTimeline() {
             <button
               type="button"
               onClick={() => scrollBy("right")}
-              aria-label="Scroll timeline right"
+              aria-label={scrollRightLabel}
               disabled={!canScrollRight}
               className="w-11 h-11 rounded-full border border-stroke1 bg-white text-navy grid place-items-center transition-all hover:bg-bg2 hover:border-navy/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-stroke1"
             >
@@ -180,9 +199,11 @@ export function HistoryTimeline() {
                 <div className="text-[40px] lg:text-[44px] font-light leading-none tracking-[-0.02em] text-turquoise mb-[14px]">
                   {item.year}
                 </div>
-                <h3 className="text-[17px] font-semibold text-navy mb-[10px] tracking-tight leading-snug">
-                  {item.title}
-                </h3>
+                {item.title && (
+                  <h3 className="text-[17px] font-semibold text-navy mb-[10px] tracking-tight leading-snug">
+                    {item.title}
+                  </h3>
+                )}
                 <p className="text-sm leading-[1.55] text-fg2 m-0">
                   {item.description}
                 </p>
