@@ -14,19 +14,19 @@ const rotatingWords = ["Billing", "Sales", "Operations", "Compliance"];
 
 const stats = [
   {
-    label: "Retailers and partners across the NEM & WEM",
-    value: "110",
-    suffix: "+",
+    label: "Average customer tenure",
+    value: "10+",
+    suffix: "years",
   },
   {
-    label: "Call-centre agents using Tally every shift",
-    value: "450",
-    suffix: "+",
+    label: "Meter points served globally",
+    value: "5M+",
+    suffix: "",
   },
   {
-    label: "Energy accounts served through the platform annually",
-    value: "4",
-    suffix: "m+",
+    label: "Annual billing",
+    value: "$15B+",
+    suffix: "",
   },
 ];
 
@@ -146,9 +146,13 @@ export function HeroSection() {
                 <p className="text-[14px] leading-[1.5] text-fg2 mb-[20px]">
                   {stat.label}
                 </p>
-                <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none text-navy tabular-nums">
-                  {stat.value}
-                  <span className="text-navy font-normal">{stat.suffix}</span>
+                <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none text-navy tabular-nums flex items-baseline gap-2 flex-wrap">
+                  <span>{stat.value}</span>
+                  {stat.suffix && (
+                    <span className="text-[22px] lg:text-[26px] font-normal text-fg2 tracking-normal">
+                      {stat.suffix}
+                    </span>
+                  )}
                 </div>
               </motion.div>
             ))}

@@ -2,40 +2,29 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useMarketingHref } from "@/contexts/marketing-region";
-
-const rotatingWords = ["請求", "営業", "運営", "コンプライアンス"];
 
 const stats = [
   {
-    label: "NEMおよびWEM全域の小売事業者・パートナー",
-    value: "110",
-    suffix: "+",
+    label: "平均契約年数",
+    value: "10+",
+    suffix: "年",
   },
   {
-    label: "毎シフトでTallyを使用するコンタクトセンターのエージェント",
-    value: "450",
-    suffix: "+",
+    label: "グローバルで提供するメーターポイント数",
+    value: "5M+",
+    suffix: "",
   },
   {
-    label: "プラットフォームで年間処理されるエネルギーアカウント数",
-    value: "4",
-    suffix: "m+",
+    label: "年間請求額",
+    value: "$15B+",
+    suffix: "",
   },
 ];
 
 export function HeroSectionJP() {
   const href = useMarketingHref();
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <>
@@ -59,37 +48,17 @@ export function HeroSectionJP() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="text-[40px] sm:text-[52px] lg:text-[68px] font-light leading-[1.25] tracking-[-0.02em] text-white">
-              <span className="inline-flex items-baseline justify-center gap-[0.15em] flex-wrap">
-                <span>エネルギー小売の</span>
-                <motion.span
-                  layout
-                  className="relative inline-flex h-[1.25em] overflow-hidden -mb-[0.1em] align-baseline"
-                  transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
-                >
-                  <AnimatePresence mode="popLayout">
-                    <motion.span
-                      key={rotatingWords[wordIndex]}
-                      className="block text-turquoise leading-[1.25] whitespace-nowrap"
-                      initial={{ opacity: 0, y: "100%" }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: "-100%" }}
-                      transition={{
-                        y: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-                        opacity: { duration: 0.28, ease: [0.4, 0, 0.2, 1] },
-                      }}
-                    >
-                      {rotatingWords[wordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </motion.span>
+              エネルギー業界の
+              <span className="text-turquoise">
+                顧客エンゲージメントと
+                <br />
+                顧客管理
               </span>
-              <br />
-              プラットフォーム
+              を支えるグローバルソリューション
             </h1>
 
-            <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.7] text-white/80 max-w-[40ch] mx-auto">
-              1つのプラットフォーム、8つのプロダクト —
-              エネルギー小売事業者を支える、小売・営業・運営のソフトウェア
+            <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.7] text-white/80 max-w-[50ch] mx-auto">
+              ― 小売事業者・ユーティリティなど、幅広いエネルギー企業に対応
             </p>
 
             <div className="flex flex-wrap gap-3 mt-[36px] justify-center">
@@ -97,13 +66,13 @@ export function HeroSectionJP() {
                 href={href("/contact")}
                 className="inline-flex items-center gap-2 px-7 py-[14px] rounded-full text-[15px] font-semibold bg-white text-navy hover:bg-white/90 transition-all shadow-lg"
               >
-                デモを予約
+                デモのご相談
               </Link>
               <Link
                 href="#contact"
                 className="inline-flex items-center gap-2 px-7 py-[14px] rounded-full text-[15px] font-semibold text-white border border-white/40 hover:bg-white/10 transition-all backdrop-blur-sm"
               >
-                お問い合わせ
+                概要資料をダウンロード
               </Link>
             </div>
           </motion.div>
@@ -129,9 +98,13 @@ export function HeroSectionJP() {
                 <p className="text-[14px] leading-[1.6] text-fg2 mb-[20px]">
                   {stat.label}
                 </p>
-                <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none text-navy tabular-nums">
-                  {stat.value}
-                  <span className="text-navy font-normal">{stat.suffix}</span>
+                <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none text-navy tabular-nums flex items-baseline gap-2 flex-wrap">
+                  <span>{stat.value}</span>
+                  {stat.suffix && (
+                    <span className="text-[22px] lg:text-[26px] font-normal text-fg2 tracking-normal">
+                      {stat.suffix}
+                    </span>
+                  )}
                 </div>
               </motion.div>
             ))}
