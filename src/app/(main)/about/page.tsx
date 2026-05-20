@@ -110,37 +110,37 @@ const leaders = [
   {
     name: "Andrew Duncan",
     role: "Chief Executive Officer",
-    bio: "Founder and Chairman of Tally. Appointed CEO in 2022 after merger of Tally Group. 20+ years experience in the Australian energy market. Andrew founded and sold Serviceworks to Computershare in 2011 (first bureau provider to Australian deregulated energy market). Leading Founder and Investor in Australian Energy market.",
+    bio: "Andrew is the Founder and Chairman of Tally and was appointed CEO in 2022 following the merger that formed Tally Group. With more than 30 years\u2019 experience in the Australian energy market, he has played a key role in driving technology-led transformation across retail energy. Andrew founded Serviceworks and led its successful sale to Computershare in 2011, establishing the first bureau provider for Australia\u2019s deregulated energy market. A recognised founder and investor, he brings deep industry insight and a pragmatic, execution-focused approach, driven by a founder\u2019s mindset and a focus on simplifying operations and improving customer outcomes.",
     photo: "Andrew.jpg",
   },
   {
     name: "Travis Lehman",
-    role: "Chief Operational Officer",
-    bio: "Joined Agility as Transformation Director in 2019 to lead the M&A and Value Creation Programme. Previous Chief Commercial Officer with 8+ years at Deloitte Consulting\u2019s M&A practice in San Francisco. Holds Stanford MBA.",
+    role: "Chief Operating Officer",
+    bio: "Travis joined Agility CIS in 2019 as Transformation Director, leading the Value Creation Programme including M&A through a pivotal period of growth and integration. With experience spanning strategy, transactions and execution, he specialises in scaling technology businesses in complex global markets. Prior to Tally, Travis spent about a decade with Deloitte Consulting in the M&A practice in San Francisco and holds an MBA from Stanford Graduate School of Business. He brings a calm, solutions-focused approach, translating strategy into disciplined execution to drive sustainable growth.",
     photo: "Travis Lehman.jpg",
   },
   {
     name: "Janet Le",
     role: "Chief Commercial Officer",
-    bio: "Joined as Chief Commercial Officer in 2025. Experienced leader with 14+ years in commercial roles across the tech sector, including Compass Education and SEEK Limited, leading global expansion, M&A, and portfolio management. Began career at PwC in Audit, with a focus on growth, transformation, and value creation.",
+    bio: "Bringing more than 14 years\u2019 experience leading commercial strategy, growth and value creation across the technology sector, Janet joined Tally\u2019s Executive team in 2025. She has held senior roles at Compass Education and SEEK Limited, where she led global expansion, portfolio management and M&A activity across complex, multi-market environments. Janet began her career at PwC in Audit and brings a strong commercial lens and collaborative, people-first leadership style. She focuses on building scalable commercial capability to support global growth and deliver lasting value for clients.",
     photo: "Janet Le.jpg",
   },
   {
     name: "Eric Yilmaz",
     role: "Chief Technology Officer",
-    bio: "Joined as Chief Technology Officer in 2023. Previous CTO of Sorted and EY Innovation. 20+ years of experience across strategy, digital, infrastructure, operations and product development.",
+    bio: "Eric joined Tally in 2023, bringing more than 20 years\u2019 experience across technology strategy, digital platforms, infrastructure, operations and product development. Prior to Tally, he was CTO at Sorted and held senior innovation and technology roles at EY, working at the intersection of emerging technology and enterprise scale. He leads Tally\u2019s global technology function with a focus on modern engineering, cloud architecture and applied AI, driving quality, security and speed to value. Eric is deeply focused on building high-performing teams and future-ready platforms.",
     photo: "Eric Yilmaz.jpg",
   },
   {
     name: "Roger Barnes",
-    role: "Global Chief Product Officer",
-    bio: "President for AU/NZ at Tally Group before being appointed Global Chief Product Officer. 15+ years of experience in Energy and Utilities markets leading digital and product innovation, including CEO of Billcap and Programme Manager at Red Energy, Lumo Energy & BT Group.",
+    role: "Chief Product Officer",
+    bio: "With more than 15 years\u2019 experience across the energy and utilities sector, Roger is Tally\u2019s Global CPO. Having previously served as President for Australia and New Zealand, Roger led strong regional growth and product evolution and now specialises in driving innovation at the intersection of technology, product and market change. Roger has held several executive roles, including CEO of Billcap and Managing Director of TallyIT and SleevesUp, as well as a variety of senior delivery and product roles across Energy, Telecommunications, and Cyber. He shapes Tally\u2019s global product vision and roadmap to deliver smarter operations and improved customer outcomes.",
     photo: "Roger Barnes.jpg",
   },
   {
-    name: "Tim Szakacs",
-    role: "EGM & President \u2013 AU/NZ",
-    bio: "Joined as Global Chief Product Officer in 2021 before being appointed Executive General Manager and President, AU/NZ. An experienced Executive and Company Director with significant exposure to international Energy Markets.",
+    name: "Timothy Szakacs",
+    role: "Executive General Manager and President, ANZ",
+    bio: "Tim joined Tally as Global Chief Product Officer in 2021 before being appointed Executive General Manager and President for Australia and New Zealand. An experienced executive and Company Director, he brings deep expertise across product leadership, operations and market development, with strong exposure to international energy markets. He leads performance and growth across ANZ with a steady, pragmatic approach, ensuring Tally\u2019s solutions meet the complex regulatory and operational demands of utilities in rapidly evolving markets.",
     photo: "Tim Szakacs.jpg",
   },
 ];
@@ -235,13 +235,13 @@ export default function AboutPage() {
         background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
-          <div className="mb-[48px] max-w-[720px]">
+          <div id="global-leadership" className="scroll-mt-[88px] mb-[48px] max-w-[720px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              Meet the team
+              Global Leadership
             </div>
             <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              Meet our management team.
+              Tally Group leadership.
             </h2>
           </div>
 
