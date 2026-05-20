@@ -4,6 +4,8 @@ import { createContext, useContext, useMemo } from "react";
 
 export const US_MARKETING_BASE = "/us";
 export const JP_MARKETING_BASE = "/jp";
+export const AE_MARKETING_BASE = "/ae";
+export const AE_EN_MARKETING_BASE = "/ae/en";
 
 function resolveMarketingHref(basePath: string, path: string): string {
   if (path.startsWith("/corporate")) {

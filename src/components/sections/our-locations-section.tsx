@@ -9,7 +9,7 @@ type OurLocationsSectionProps = {
   eyebrow?: string;
   title?: string;
   description?: string | null;
-  language?: "en" | "ja";
+  language?: "en" | "ja" | "ar";
 };
 
 export function OurLocationsSection({
@@ -51,7 +51,12 @@ export function OurLocationsSection({
         >
           {officeRegions.map((region) => {
             const isActive = region.id === activeRegionId;
-            const regionLabel = language === "ja" && region.nameJa ? region.nameJa : region.name;
+            const regionLabel =
+              language === "ar" && region.nameAr
+                ? region.nameAr
+                : language === "ja" && region.nameJa
+                ? region.nameJa
+                : region.name;
             return (
               <button
                 key={region.id}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  AE_MARKETING_BASE,
   JP_MARKETING_BASE,
   US_MARKETING_BASE,
   useMarketingHref,
@@ -113,6 +114,22 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
   ];
 }
 
+function buildAENavLinks(): NavLink[] {
+  return [
+    { href: "/ae", label: "الرئيسية" },
+    { href: "/ae/about", label: "عن الشركة" },
+    { href: "/ae/contact", label: "تواصل معنا" },
+  ];
+}
+
+function buildAEEnNavLinks(): NavLink[] {
+  return [
+    { href: "/ae/en", label: "Home" },
+    { href: "/ae/en/about", label: "About" },
+    { href: "/ae/en/contact", label: "Contact" },
+  ];
+}
+
 function buildJPNavLinks(href: (path: string) => string): NavLink[] {
   return [
     {
@@ -195,17 +212,27 @@ export function Header() {
   const basePath = useMarketingBasePath();
   const isUS = basePath === US_MARKETING_BASE;
   const isJP = basePath === JP_MARKETING_BASE;
+  // The Header is rendered by the outer /ae layout, so basePath is always
+  // "/ae" on UAE routes — we read pathname to tell AR vs EN.
+  const isAE = basePath === AE_MARKETING_BASE || pathname.startsWith("/ae");
+  const isAEEn = isAE && (pathname === "/ae/en" || pathname.startsWith("/ae/en/"));
   const navLinks = useMemo(
     () =>
       isUS
         ? buildUSNavLinks(href)
         : isJP
         ? buildJPNavLinks(href)
+        : isAEEn
+        ? buildAEEnNavLinks()
+        : isAE
+        ? buildAENavLinks()
         : buildNavLinks(href),
-    [href, isUS, isJP],
+    [href, isUS, isJP, isAE, isAEEn],
   );
 
-  const activeRegionId = isUS ? "us" : isJP ? "jp" : "au";
+  const activeRegionId = isUS ? "us" : isJP ? "jp" : isAE ? "ae" : "au";
+  const aeHomeHref = isAEEn ? "/ae/en" : "/ae";
+  const aeContactHref = isAEEn ? "/ae/en/contact" : "/ae/contact";
   const region = regions.find((r) => r.id === activeRegionId) ?? regions[0];
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -258,6 +285,11 @@ export function Header() {
       return;
     }
 
+    if (regionId === "ae") {
+      router.push(AE_MARKETING_BASE);
+      return;
+    }
+
     if (regionId === "au") {
       router.push("/");
     }
@@ -267,7 +299,12 @@ export function Header() {
     <div className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4">
       <header className="max-w-[1280px] mx-auto bg-white/60 backdrop-blur-xl backdrop-saturate-[180%] border border-white/40 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.04)]">
         <div className="px-6 sm:px-8 flex items-center h-14">
-          <Link href={href("/")} className="shrink-0" onClick={closeMobile}>
+          <Link
+            href={isAE ? aeHomeHref : href("/")}
+            className="shrink-0"
+            onClick={closeMobile}
+            aria-label="Tally+"
+          >
             <Image src="/logos/TallyPlus.svg" alt="Tally+" width={130} height={25} className="h-[25px] w-auto" />
           </Link>
 
@@ -354,6 +391,38 @@ export function Header() {
           </nav>
 
           <div className="ml-auto hidden lg:flex items-center gap-3">
+            {isAE && (
+              <div
+                className="inline-flex items-center text-[12px] font-semibold leading-none"
+                role="group"
+                aria-label="Language"
+                dir="ltr"
+              >
+                <Link
+                  href="/ae"
+                  aria-current={!isAEEn ? "true" : undefined}
+                  className={`px-2 py-1 transition-colors ${
+                    !isAEEn
+                      ? "text-navy"
+                      : "text-fg2 hover:text-navy"
+                  }`}
+                >
+                  AR
+                </Link>
+                <span aria-hidden className="text-fg2/40">|</span>
+                <Link
+                  href="/ae/en"
+                  aria-current={isAEEn ? "true" : undefined}
+                  className={`px-2 py-1 transition-colors ${
+                    isAEEn
+                      ? "text-navy"
+                      : "text-fg2 hover:text-navy"
+                  }`}
+                >
+                  EN
+                </Link>
+              </div>
+            )}
             <div className="relative" ref={ref}>
               <button
                 type="button"
@@ -389,8 +458,15 @@ export function Header() {
                 </div>
               )}
             </div>
-            <Link href={href("/contact")} className="inline-flex items-center gap-2 px-5 py-[9px] rounded-full text-[13px] font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm">
-              {isJP ? "デモのご相談" : "Book a demo"}
+            <Link
+              href={isAE ? aeContactHref : href("/contact")}
+              className="inline-flex items-center gap-2 px-5 py-[9px] rounded-full text-[13px] font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
+            >
+              {isJP
+                ? "デモのご相談"
+                : isAE && !isAEEn
+                ? "احجز عرضًا تجريبيًا"
+                : "Book a demo"}
             </Link>
           </div>
 
@@ -455,6 +531,35 @@ export function Header() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-white/50 flex flex-col gap-3">
+              {isAE && (
+                <div dir="ltr">
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-fg2 font-semibold mb-2">
+                    Language
+                  </p>
+                  <div className="inline-flex items-center text-[13px] font-semibold leading-none border border-stroke1 rounded-full overflow-hidden bg-white/70">
+                    <Link
+                      href="/ae"
+                      onClick={closeMobile}
+                      aria-current={!isAEEn ? "true" : undefined}
+                      className={`px-4 py-1.5 transition-colors ${
+                        !isAEEn ? "bg-navy text-white" : "text-fg1 hover:bg-bg3"
+                      }`}
+                    >
+                      AR
+                    </Link>
+                    <Link
+                      href="/ae/en"
+                      onClick={closeMobile}
+                      aria-current={isAEEn ? "true" : undefined}
+                      className={`px-4 py-1.5 transition-colors ${
+                        isAEEn ? "bg-navy text-white" : "text-fg1 hover:bg-bg3"
+                      }`}
+                    >
+                      EN
+                    </Link>
+                  </div>
+                </div>
+              )}
               <div>
                 <p className="text-[11px] uppercase tracking-[0.1em] text-fg2 font-semibold mb-2">Region</p>
                 <div className="flex flex-wrap gap-1.5">
@@ -477,11 +582,15 @@ export function Header() {
               </div>
 
               <Link
-                href={href("/contact")}
+                href={isAE ? aeContactHref : href("/contact")}
                 onClick={closeMobile}
                 className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-[14px] font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
               >
-                {isJP ? "デモのご相談" : "Book a demo"}
+                {isJP
+                  ? "デモのご相談"
+                  : isAE && !isAEEn
+                  ? "احجز عرضًا تجريبيًا"
+                  : "Book a demo"}
               </Link>
             </div>
           </nav>

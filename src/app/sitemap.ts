@@ -17,7 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/acquire/uconx",
   ];
 
-  const staticPages = [...auPages, ...auPages.map((path) => (path === "" ? "/us" : `/us${path}`))];
+  const aePages = ["", "/about", "/contact"];
+
+  const staticPages = [
+    ...auPages,
+    ...auPages.map((path) => (path === "" ? "/us" : `/us${path}`)),
+    ...aePages.map((path) => (path === "" ? "/ae" : `/ae${path}`)),
+    ...aePages.map((path) => (path === "" ? "/ae/en" : `/ae/en${path}`)),
+  ];
 
   return staticPages.map((path) => ({
     url: `${BASE_URL}${path}`,
