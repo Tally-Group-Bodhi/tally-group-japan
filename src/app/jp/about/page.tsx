@@ -80,6 +80,7 @@ const japanLeaders = [
     name: "山口 元久",
     role: "Sales Manager",
     bio: "タリー日本市場における事業開発およびGo-to-Market戦略を担当。ClickSoftware／Salesforce、IFS、Kraken Technologiesなどにおいて、20年以上にわたり電力・ガス業界および製造業向けエンタープライズソリューションの提案・新規事業開発に従事。フィールドサービス、アフターサービス、エネルギー業務DXに関する豊富な知見を有し、日本の電力小売市場におけるRetail 3.0への移行支援と、タリーの日本市場での成長を推進している。",
+    photo: "Motohisa Yamaguchi.jpg",
   },
   {
     name: "TBD",
