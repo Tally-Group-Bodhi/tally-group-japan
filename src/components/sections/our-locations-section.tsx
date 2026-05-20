@@ -6,9 +6,19 @@ import { OfficeAddressBlock } from "@/components/sections/office-address-block";
 
 type OurLocationsSectionProps = {
   defaultRegionId?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string | null;
+  language?: "en" | "ja";
 };
 
-export function OurLocationsSection({ defaultRegionId }: OurLocationsSectionProps = {}) {
+export function OurLocationsSection({
+  defaultRegionId,
+  eyebrow = "Global presence",
+  title = "Our locations",
+  description = "Tally Group operates across six regions. Select a region to view our local offices and contact details.",
+  language = "en",
+}: OurLocationsSectionProps = {}) {
   const initialRegionId =
     officeRegions.find((region) => region.id === defaultRegionId)?.id ?? officeRegions[0].id;
   const [activeRegionId, setActiveRegionId] = useState(initialRegionId);
@@ -24,14 +34,14 @@ export function OurLocationsSection({ defaultRegionId }: OurLocationsSectionProp
         <div className="max-w-[640px] mb-[40px]">
           <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
             <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-            Global presence
+            {eyebrow}
           </div>
           <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-            Our locations
+            {title}
           </h2>
-          <p className="mt-[16px] text-[17px] leading-[1.55] text-fg2">
-            Tally Group operates across six regions. Select a region to view our local offices and contact details.
-          </p>
+          {description ? (
+            <p className="mt-[16px] text-[17px] leading-[1.55] text-fg2">{description}</p>
+          ) : null}
         </div>
 
         <div
@@ -41,6 +51,7 @@ export function OurLocationsSection({ defaultRegionId }: OurLocationsSectionProp
         >
           {officeRegions.map((region) => {
             const isActive = region.id === activeRegionId;
+            const regionLabel = language === "ja" && region.nameJa ? region.nameJa : region.name;
             return (
               <button
                 key={region.id}
@@ -56,7 +67,7 @@ export function OurLocationsSection({ defaultRegionId }: OurLocationsSectionProp
                     : "bg-white text-fg2 border-stroke1 hover:bg-bg3"
                 }`}
               >
-                {region.name}
+                {regionLabel}
               </button>
             );
           })}
@@ -74,7 +85,7 @@ export function OurLocationsSection({ defaultRegionId }: OurLocationsSectionProp
               className="bg-white border border-stroke1 rounded-xl p-[24px]"
             >
               <div>
-                <OfficeAddressBlock office={office} />
+                <OfficeAddressBlock office={office} language={language} />
                 <a
                   href={`mailto:${office.email}`}
                   className="mt-4 block text-sm font-medium text-navy hover:text-turquoise transition-colors"

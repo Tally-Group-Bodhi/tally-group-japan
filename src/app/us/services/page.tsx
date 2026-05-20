@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
 
-/** Export service screenshots at exactly this size (4:3). Format: PNG or WebP. */
-export const SERVICE_IMAGE_WIDTH = 1200;
-export const SERVICE_IMAGE_HEIGHT = 900;
-
 export const metadata: Metadata = {
   title: "Services",
   description:
@@ -23,13 +19,14 @@ function SectionEyebrow({ children }: { children: string }) {
 
 function ServiceImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-stroke1 bg-bg2">
+    <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-stroke1 bg-bg2">
       <Image
         src={src}
         alt={alt}
         fill
-        className="object-cover object-center"
+        quality={95}
         sizes="(max-width: 768px) 100vw, 560px"
+        className="object-cover object-center"
       />
     </div>
   );
@@ -108,7 +105,7 @@ const services: ServiceBlock[] = [
     title: "Implementation",
     description:
       "We collaborate closely with your IT team and cross-functional stakeholders to develop a clear project plan\u2014and deliver results on time and within budget.",
-    image: "/us/Implementation.PNG",
+    image: "/us/Implementation.jpg",
     imageAlt: "Implementation services",
     imageFirst: false,
     capabilities: [
@@ -129,7 +126,7 @@ const services: ServiceBlock[] = [
     title: "Integration",
     description:
       "Use your system integrator or ours\u2014we work with you to ensure Tally solutions fit seamlessly into your other core systems.",
-    image: "/us/Integration.PNG",
+    image: "/us/Integration.jpg",
     imageAlt: "Integration services",
     imageFirst: true,
     altBg: true,
@@ -148,7 +145,7 @@ const services: ServiceBlock[] = [
     title: "Market expansion planning",
     description:
       "Skipping Stone partners with you to research and assess opportunities and develop strong strategies supported by business cases\u2014in Japan or abroad. We have been engaged in the Japan energy markets for over ten years.",
-    image: "/us/Market Expansion.PNG",
+    image: "/us/Market-Expansion.jpg",
     imageAlt: "Market expansion planning",
     imageFirst: false,
     regionCards: [
@@ -185,7 +182,7 @@ const services: ServiceBlock[] = [
     title: "Product & service design",
     description:
       "Skipping Stone assists with the full lifecycle of product and service design\u2014from strategy through launch.",
-    image: "/us/Products Services.PNG",
+    image: "/us/Products-Services.jpg",
     imageAlt: "Product and service design",
     imageFirst: true,
     altBg: true,
@@ -205,7 +202,7 @@ const services: ServiceBlock[] = [
     title: "Growth strategies",
     description:
       "Skipping Stone works with you to assess buy, build, or partner options\u2014and supports you through execution regardless of which path you choose.",
-    image: "/us/Growth.PNG",
+    image: "/us/Growth.jpg",
     imageAlt: "Growth strategies",
     imageFirst: false,
     growthColumns: [

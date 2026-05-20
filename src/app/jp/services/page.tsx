@@ -19,13 +19,14 @@ function SectionEyebrow({ children }: { children: string }) {
 
 function ServiceImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-stroke1 bg-bg2">
+    <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-stroke1 bg-bg2">
       <Image
         src={src}
         alt={alt}
         fill
-        className="object-cover object-center"
+        quality={95}
         sizes="(max-width: 768px) 100vw, 560px"
+        className="object-cover object-center"
       />
     </div>
   );
@@ -115,7 +116,7 @@ const services: ServiceBlock[] = [
     title: "導入",
     description:
       "ITチームおよびビジネス関係者と緊密に連携し、Tallyソリューションの成功的な展開と定着を支援します。",
-    image: "/us/Implementation.PNG",
+    image: "/us/Implementation.jpg",
     imageAlt: "導入支援サービス",
     imageFirst: false,
     capabilities: [
@@ -142,7 +143,7 @@ const services: ServiceBlock[] = [
     title: "統合",
     description:
       "Tallyソリューションとエンタープライズのテクノロジーエコシステム全体とのシームレスな統合を支援します。",
-    image: "/us/Integration.PNG",
+    image: "/us/Integration.jpg",
     imageAlt: "統合サービス",
     imageFirst: true,
     altBg: true,
@@ -169,7 +170,7 @@ const services: ServiceBlock[] = [
     title: "市場拡大計画",
     description:
       "Skipping Stoneは、市場機会の評価と、実践的な事業計画に基づく拡大戦略の策定を組織とともに進めます。",
-    image: "/us/Market Expansion.PNG",
+    image: "/us/Market-Expansion.jpg",
     imageAlt: "市場拡大計画",
     imageFirst: false,
     capabilities: [
@@ -220,7 +221,7 @@ const services: ServiceBlock[] = [
     title: "プロダクト／サービス設計",
     description:
       "顧客の期待、業務目標、市場機会に沿ったプロダクト・サービスの設計と改善を支援します。",
-    image: "/us/Products Services.PNG",
+    image: "/us/Products-Services.jpg",
     imageAlt: "プロダクト／サービス設計",
     imageFirst: true,
     altBg: true,
@@ -247,7 +248,7 @@ const services: ServiceBlock[] = [
     title: "戦略的成長支援",
     description:
       "変化するエネルギー市場に沿った、持続可能な成長戦略の評価と計画を組織が進められるよう支援します。",
-    image: "/us/Growth.PNG",
+    image: "/us/Growth.jpg",
     imageAlt: "戦略的成長支援",
     imageFirst: false,
     growthColumns: [

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  regionalPathForSwitch,
   JP_MARKETING_BASE,
   US_MARKETING_BASE,
   useMarketingHref,
@@ -250,17 +249,17 @@ export function Header() {
     closeMobile();
 
     if (regionId === "us") {
-      router.push(regionalPathForSwitch(US_MARKETING_BASE, pathname, basePath));
+      router.push(US_MARKETING_BASE);
       return;
     }
 
     if (regionId === "jp") {
-      router.push(regionalPathForSwitch(JP_MARKETING_BASE, pathname, basePath));
+      router.push(JP_MARKETING_BASE);
       return;
     }
 
     if (regionId === "au") {
-      router.push(regionalPathForSwitch("", pathname, basePath));
+      router.push("/");
     }
   }
 
