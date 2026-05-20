@@ -42,7 +42,7 @@ const BASE_MAX_W = 180;
 
 export function LogoCloudJP() {
   return (
-    <section className="py-[64px] lg:py-[80px] border-b border-stroke1">
+    <section className="py-[64px] lg:py-[80px]">
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.h2
           className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.3] tracking-[-0.02em] text-navy"
@@ -51,7 +51,7 @@ export function LogoCloudJP() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          110社以上の小売事業者がTallyプラットフォームを利用
+          世界50社以上のユーティリティに導入
         </motion.h2>
 
         <motion.div

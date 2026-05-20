@@ -2,6 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  US_MARKETING_BASE,
+  useMarketingBasePath,
+} from "@/contexts/marketing-region";
 
 type Partner = {
   src: string;
@@ -42,8 +46,12 @@ const BASE_MAX_H = 64;
 const BASE_MAX_W = 180;
 
 export function LogoCloud() {
+  const isUS = useMarketingBasePath() === US_MARKETING_BASE;
+
   return (
-    <section className="py-[64px] lg:py-[80px] border-b border-stroke1">
+    <section
+      className={`py-[64px] lg:py-[80px]${isUS ? "" : " border-b border-stroke1"}`}
+    >
       <div className="max-w-[1600px] mx-auto px-8">
         <motion.h2
           className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy"
@@ -52,7 +60,9 @@ export function LogoCloud() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          110+ retailers use the Tally platform
+          {isUS
+            ? "50+ utility clients worldwide"
+            : "110+ retailers use the Tally platform"}
         </motion.h2>
 
         <motion.div

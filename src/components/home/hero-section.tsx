@@ -67,46 +67,97 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[40px] sm:text-[52px] lg:text-[68px] font-light leading-[1.15] tracking-[-0.03em] text-white">
-              <span className="inline-flex items-baseline justify-center gap-[0.25em] flex-wrap">
-                <span>The</span>
-                <motion.span
-                  layout
-                  className="relative inline-flex h-[1.15em] overflow-hidden -mb-[0.1em] align-baseline"
-                  transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
-                >
-                  <AnimatePresence mode="popLayout">
-                    <motion.span
-                      key={rotatingWords[wordIndex]}
-                      className="block text-turquoise leading-[1.15] whitespace-nowrap"
-                      initial={{ opacity: 0, y: "100%" }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: "-100%" }}
-                      transition={{
-                        y: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-                        opacity: { duration: 0.28, ease: [0.4, 0, 0.2, 1] },
-                      }}
-                    >
-                      {rotatingWords[wordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </motion.span>
-                <motion.span
-                  layout
-                  transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
-                >
-                  platform
-                </motion.span>
-              </span>
-              <br />
-              for {isUS ? "energy retailers" : "Australian energy retailers"}
-            </h1>
+            {isUS ? (
+              <>
+                <p className="text-[18px] sm:text-[22px] lg:text-[24px] font-medium leading-[1.2] tracking-[0.08em] text-white uppercase">
+                  Move faster. Serve smarter.
+                </p>
 
-            <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.6] text-white/80 max-w-[56ch] mx-auto">
-              One platform, eight products &mdash; running the retail, sales and
-              operations software behind{" "}
-              {isUS ? "energy retailers" : "Australia's energy retailers"}
-            </p>
+                <h1 className="mt-[20px] text-[40px] sm:text-[52px] lg:text-[68px] font-light leading-[1.15] tracking-[-0.03em] text-white">
+                  <span className="inline-flex items-baseline justify-center gap-[0.25em] flex-wrap">
+                    <span>The</span>
+                    <motion.span
+                      layout
+                      className="relative inline-flex h-[1.15em] overflow-hidden -mb-[0.1em] align-baseline"
+                      transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
+                    >
+                      <AnimatePresence mode="popLayout">
+                        <motion.span
+                          key={rotatingWords[wordIndex]}
+                          className="block text-turquoise leading-[1.15] whitespace-nowrap"
+                          initial={{ opacity: 0, y: "100%" }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: "-100%" }}
+                          transition={{
+                            y: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                            opacity: { duration: 0.28, ease: [0.4, 0, 0.2, 1] },
+                          }}
+                        >
+                          {rotatingWords[wordIndex]}
+                        </motion.span>
+                      </AnimatePresence>
+                    </motion.span>
+                    <motion.span
+                      layout
+                      transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
+                    >
+                      platform
+                    </motion.span>
+                  </span>
+                  <br />
+                  for leading American utilities
+                </h1>
+
+                <p className="mt-[20px] text-[15px] sm:text-[17px] lg:text-[18px] leading-[1.6] text-white/80 max-w-[62ch] mx-auto">
+                  Cut costs, capture opportunity, and empower your people. The
+                  Tally+ operations platform delivers AI-powered end-to-end
+                  utility retail solutions in one modular ecosystem.
+                </p>
+              </>
+            ) : (
+              <>
+                <h1 className="text-[40px] sm:text-[52px] lg:text-[68px] font-light leading-[1.15] tracking-[-0.03em] text-white">
+                  <span className="inline-flex items-baseline justify-center gap-[0.25em] flex-wrap">
+                    <span>The</span>
+                    <motion.span
+                      layout
+                      className="relative inline-flex h-[1.15em] overflow-hidden -mb-[0.1em] align-baseline"
+                      transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
+                    >
+                      <AnimatePresence mode="popLayout">
+                        <motion.span
+                          key={rotatingWords[wordIndex]}
+                          className="block text-turquoise leading-[1.15] whitespace-nowrap"
+                          initial={{ opacity: 0, y: "100%" }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: "-100%" }}
+                          transition={{
+                            y: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                            opacity: { duration: 0.28, ease: [0.4, 0, 0.2, 1] },
+                          }}
+                        >
+                          {rotatingWords[wordIndex]}
+                        </motion.span>
+                      </AnimatePresence>
+                    </motion.span>
+                    <motion.span
+                      layout
+                      transition={{ layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
+                    >
+                      platform
+                    </motion.span>
+                  </span>
+                  <br />
+                  for Australian energy retailers
+                </h1>
+
+                <p className="mt-[16px] text-[17px] sm:text-[19px] lg:text-[20px] leading-[1.6] text-white/80 max-w-[56ch] mx-auto">
+                  One platform, eight products &mdash; running the retail, sales
+                  and operations software behind Australia&apos;s energy
+                  retailers
+                </p>
+              </>
+            )}
 
             <div className="flex flex-wrap gap-3 mt-[36px] justify-center">
               <Link
@@ -129,11 +180,22 @@ export function HeroSection() {
       {/* Stats bar — sits below hero */}
       <section className="py-[48px] lg:py-[64px]">
         <div className="max-w-[1600px] mx-auto px-8">
+          {isUS && (
+            <motion.h2
+              className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-navy mb-[48px] lg:mb-[64px]"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+            >
+              One platform, eight products, endless possibility.
+            </motion.h2>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
-                className="bg-bg2 rounded-2xl px-[28px] py-[32px] lg:py-[40px]"
+                className="bg-bg2 rounded-2xl px-[28px] py-[48px] lg:py-[72px]"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

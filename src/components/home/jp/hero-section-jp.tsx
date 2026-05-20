@@ -81,11 +81,20 @@ export function HeroSectionJP() {
 
       <section className="py-[48px] lg:py-[64px]">
         <div className="max-w-[1600px] mx-auto px-8">
+          <motion.h2
+            className="text-center text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.3] tracking-[-0.02em] text-navy mb-[48px] lg:mb-[64px]"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            ひとつのプラットフォーム、8つのプロダクト、無限の可能性。
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
-                className="bg-bg2 rounded-2xl px-[28px] py-[32px] lg:py-[40px]"
+                className="bg-bg2 rounded-2xl px-[28px] py-[48px] lg:py-[72px]"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
