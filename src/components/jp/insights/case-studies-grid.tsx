@@ -259,9 +259,6 @@ export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
           <h2 id="cs-stories-heading" className="sr-only">
             主な事例
           </h2>
-          <p className="text-[15px] leading-[1.75] text-fg2 m-0 max-w-[60ch] mb-[40px]">
-            各カードは、お客様の状況と代表的な成果を組み合わせて示しています。承認済みの社名・数値・画像は、導入事例の準備が整い次第、差し替えてください。
-          </p>
 
           {visible === 0 ? (
             <div

@@ -172,15 +172,15 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
       hasMenu: true,
       children: [
         { href: href("/insights/case-studies"), label: "導入事例" },
-        { href: "#", label: "資料" },
+        { href: href("/insights/resources"), label: "資料" },
       ],
     },
     {
       label: "ニュース",
       hasMenu: true,
       children: [
-        { href: "#", label: "プレスリリース" },
-        { href: "#", label: "イベント" },
+        { href: href("/news/press-releases"), label: "プレスリリース" },
+        { href: href("/news/events"), label: "イベント" },
       ],
     },
     {

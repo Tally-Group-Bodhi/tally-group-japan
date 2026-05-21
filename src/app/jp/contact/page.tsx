@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ContactForm } from "@/components/sections/contact-form";
+import { DemoContactForm } from "@/components/jp/contact/demo-contact-form";
 import { OfficeAddressBlock } from "@/components/sections/office-address-block";
 import { OurLocationsSection } from "@/components/sections/our-locations-section";
 import { officeRegions } from "@/data/office-regions";
@@ -45,74 +45,90 @@ export default function ContactPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
-            お問い合わせ
-          </h1>
+          <div className="flex flex-col gap-[24px] lg:flex-row lg:items-start lg:justify-between lg:gap-[48px]">
+            <div className="min-w-0 lg:flex-1">
+              <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
+                お問い合わせ
+              </h1>
 
-          <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
-            お気軽にお問い合わせください。各チームへのご連絡や、世界各地の拠点情報はこちらからご覧いただけます。
-          </p>
+              <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
+                お気軽にお問い合わせください。各チームへのご連絡や、世界各地の拠点情報はこちらからご覧いただけます。
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-[12px] sm:flex-row lg:flex-col lg:w-[300px] lg:shrink-0 lg:pt-[12px]">
+              {contactMethods.map((method) => (
+                <a
+                  key={method.title}
+                  href={method.href}
+                  {...("external" in method && method.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="group flex items-center gap-[14px] rounded-xl border border-stroke1 bg-white px-[16px] py-[14px] transition-all hover:border-navy/30 hover:shadow-sm sm:flex-1 lg:flex-initial"
+                >
+                  {method.icon === "linkedin" ? (
+                    <div className="w-10 h-10 shrink-0 grid place-items-center">
+                      <Image
+                        src="/logos/linkedin.png"
+                        alt="LinkedIn"
+                        width={36}
+                        height={36}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 shrink-0 rounded-[10px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
+                      <span className="material-symbols-outlined text-[20px]">
+                        {method.icon}
+                      </span>
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-[13px] font-semibold text-fg1">
+                      {method.title}
+                    </p>
+                    <p className="text-[13px] font-medium text-navy truncate group-hover:text-turquoise transition-colors">
+                      {method.detail}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Form + Contact Info */}
+      {/* Form + Offices */}
       <section className="py-[96px] border-b border-stroke1">
         <div className="max-w-[1240px] mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-[48px] lg:gap-[72px]">
-            {/* Left - Contact Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-[48px] lg:gap-[64px]">
+            {/* Left - Offices */}
             <div>
-              <div className="flex flex-col gap-[24px]">
-                {contactMethods.map((method) => (
-                  <div key={method.title} className="bg-bg2 rounded-xl p-[24px] flex gap-[16px]">
-                    {method.icon === "linkedin" ? (
-                      <div className="w-10 h-10 shrink-0 grid place-items-center">
-                        <Image src="/logos/linkedin.png" alt="LinkedIn" width={36} height={36} />
-                      </div>
-                    ) : (
-                      <div className="w-10 h-10 shrink-0 rounded-[10px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
-                        <span className="material-symbols-outlined text-[20px]">{method.icon}</span>
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="text-[15px] font-semibold text-fg1">{method.title}</h3>
-                      <p className="text-sm text-fg2 mt-[4px]">{method.description}</p>
-                      <a
-                        href={method.href}
-                        className="text-sm font-semibold text-navy hover:text-turquoise transition-colors mt-[8px] inline-block"
-                        {...("external" in method && method.external
-                          ? { target: "_blank", rel: "noopener noreferrer" }
-                          : {})}
-                      >
-                        {method.detail}
-                      </a>
-                    </div>
+              <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
+              <div className="flex flex-col gap-[28px]">
+                {japanOffices.map((office) => (
+                  <div key={office.city}>
+                    <OfficeAddressBlock office={office} language="ja" />
+                    <a
+                      href={`mailto:${office.email}`}
+                      className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
+                    >
+                      {office.email}
+                    </a>
                   </div>
                 ))}
-              </div>
-
-              {/* Offices */}
-              <div className="mt-[48px]">
-                <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
-                <div className="flex flex-col gap-[28px]">
-                  {japanOffices.map((office) => (
-                    <div key={office.city}>
-                      <OfficeAddressBlock office={office} language="ja" />
-                      <a
-                        href={`mailto:${office.email}`}
-                        className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
-                      >
-                        {office.email}
-                      </a>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
             {/* Right - Form */}
             <div className="bg-white border border-stroke1 rounded-xl p-[32px] lg:p-[40px] h-fit">
-              <h3 className="text-xl font-semibold text-navy mb-[24px]">Send us a message</h3>
-              <ContactForm />
+              <h3 className="text-xl font-semibold text-navy mb-[8px]">
+                Contact Us / Request a Demo
+              </h3>
+              <p className="text-sm text-fg2 mb-[24px] leading-[1.55]">
+                Fill out your contact information, a member of our team will
+                contact you within 1–2 business days.
+              </p>
+              <DemoContactForm />
             </div>
           </div>
         </div>

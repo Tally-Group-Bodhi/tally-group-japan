@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useMarketingHref } from "@/contexts/marketing-region";
+import { useMarketingBasePath, useMarketingHref } from "@/contexts/marketing-region";
 
 const productLinks = ["Tally+", "Tally Glass", "Tally CRM", "Sales & Acquisition", "Tally Digital", "Orion & Acquire"];
 const companyLinks = ["About", "Careers", "Insights", "Press kit", "Contact"];
@@ -18,6 +18,8 @@ const linkPaths: Record<string, string> = {
 
 export function Footer() {
   const href = useMarketingHref();
+  const basePath = useMarketingBasePath();
+  const isAustralia = basePath === "";
 
   return (
     <footer className="bg-navy-dark text-white pt-[72px] pb-6">
@@ -26,7 +28,7 @@ export function Footer() {
             <div>
               <Image src="/logos/TallyOfficialLogo.svg" alt="Tally Group" width={140} height={27} className="h-[27px] w-auto brightness-0 invert" />
               <p className="mt-[16px] text-sm text-white/60 leading-relaxed max-w-[30ch]">
-                The platform for Australian energy retailers. Built in Sydney, trusted across the NEM.
+                The platform for global energy retailers. Proudly built in Australia.
               </p>
             </div>
             <FooterCol title="Products" links={productLinks} href={href} />
@@ -37,15 +39,12 @@ export function Footer() {
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-[28px] text-[13px] text-white/50 gap-4">
             <div>&copy; 2026 Tally Group Pty Ltd &middot; ABN 41 629 117 804</div>
-            <div className="flex gap-6">
-              <Link href="#" className="text-white/50 hover:text-white transition-colors">Sydney</Link>
-              <Link href="#" className="text-white/50 hover:text-white transition-colors">Melbourne</Link>
-              <Link href="#" className="text-white/50 hover:text-white transition-colors">Auckland</Link>
-            </div>
           </div>
-        <p className="mt-[18px] text-xs text-white/55 leading-relaxed max-w-[60ch]">
-          Tally Group acknowledges the Traditional Custodians of the lands on which we work, the Gadigal people of the Eora Nation, and pays respect to Elders past and present.
-        </p>
+        {isAustralia && (
+          <p className="mt-[18px] text-xs text-white/55 leading-relaxed max-w-[60ch]">
+            Tally Group acknowledges the Traditional Custodians of the lands on which we work. We pay our respect to their Elders past, present and emerging.
+          </p>
+        )}
       </div>
     </footer>
   );

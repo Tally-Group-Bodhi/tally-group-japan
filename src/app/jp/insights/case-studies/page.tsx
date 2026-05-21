@@ -154,9 +154,6 @@ export default function JPCaseStudiesPage() {
             ))}
           </ul>
 
-          <p className="mt-[28px] text-[13px] leading-[1.6] text-fg2 max-w-[60ch] m-0 italic">
-            ※ 詳細な導入事例は現在制作中です。本ページは、成果・対象範囲・関与するTally+の機能を示す際のフォーマット例です。
-          </p>
         </div>
       </section>
 
