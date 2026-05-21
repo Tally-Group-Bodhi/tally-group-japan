@@ -103,30 +103,42 @@ const fadeUp = {
 };
 
 export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
-  const [region, setRegion] = useState<Region | "">("");
-  const [topic, setTopic] = useState<Topic | "">("");
-  const [focus, setFocus] = useState<Focus | "">("");
+  const [regions, setRegions] = useState<Region[]>([]);
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [focuses, setFocuses] = useState<Focus[]>([]);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return studies.filter((s) => {
-      if (region && s.region !== region) return false;
-      if (topic && s.topic !== topic) return false;
-      if (focus && s.focus !== focus) return false;
+      if (regions.length > 0 && !regions.includes(s.region)) return false;
+      if (topics.length > 0 && !topics.includes(s.topic)) return false;
+      if (focuses.length > 0 && !focuses.includes(s.focus)) return false;
       return true;
     });
-  }, [studies, region, topic, focus]);
+  }, [studies, regions, topics, focuses]);
 
   const total = studies.length;
   const visible = filtered.length;
-  const activeCount = [region, topic, focus].filter(Boolean).length;
+  const activeCount = regions.length + topics.length + focuses.length;
   const isFiltered = activeCount > 0;
   const filtersPanelId = "case-studies-filters-panel";
 
   function handleReset() {
-    setRegion("");
-    setTopic("");
-    setFocus("");
+    setRegions([]);
+    setTopics([]);
+    setFocuses([]);
+  }
+
+  function toggleValue<T extends string>(
+    current: T[],
+    setter: (next: T[]) => void,
+    value: T,
+  ) {
+    setter(
+      current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value],
+    );
   }
 
   return (
@@ -210,8 +222,11 @@ export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
                 <div className="pt-[24px] mt-[24px] border-t border-stroke1 flex flex-col gap-[20px]">
                   <FilterPillGroup
                     label="地域"
-                    value={region}
-                    onChange={(v) => setRegion(v as Region | "")}
+                    values={regions}
+                    onToggle={(v) =>
+                      toggleValue(regions, setRegions, v as Region)
+                    }
+                    onClear={() => setRegions([])}
                     allLabel="すべての地域"
                     options={Object.entries(REGION_LABELS).map(
                       ([value, label]) => ({
@@ -222,9 +237,10 @@ export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
                   />
                   <FilterPillGroup
                     label="トピック"
-                    value={topic}
-                    onChange={(v) => setTopic(v as Topic | "")}
-                    allLabel="すべて"
+                    values={topics}
+                    onToggle={(v) => toggleValue(topics, setTopics, v as Topic)}
+                    onClear={() => setTopics([])}
+                    allLabel="すべてのトピック"
                     options={Object.entries(TOPIC_LABELS).map(
                       ([value, label]) => ({
                         value,
@@ -234,9 +250,12 @@ export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
                   />
                   <FilterPillGroup
                     label="分野"
-                    value={focus}
-                    onChange={(v) => setFocus(v as Focus | "")}
-                    allLabel="すべて"
+                    values={focuses}
+                    onToggle={(v) =>
+                      toggleValue(focuses, setFocuses, v as Focus)
+                    }
+                    onClear={() => setFocuses([])}
+                    allLabel="すべての分野"
                     options={Object.entries(FOCUS_LABELS).map(
                       ([value, label]) => ({
                         value,
@@ -303,19 +322,21 @@ export function CaseStudiesGrid({ studies }: { studies: CaseStudy[] }) {
 
 function FilterPillGroup({
   label,
-  value,
-  onChange,
+  values,
+  onToggle,
+  onClear,
   allLabel,
   options,
 }: {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  values: string[];
+  onToggle: (value: string) => void;
+  onClear: () => void;
   allLabel: string;
   options: { value: string; label: string }[];
 }) {
   const groupLabelId = `filter-group-${label}`;
-  const allOptions = [{ value: "", label: allLabel }, ...options];
+  const noneSelected = values.length === 0;
 
   return (
     <div className="flex flex-col gap-[10px] sm:flex-row sm:items-center sm:gap-[16px]">
@@ -326,19 +347,31 @@ function FilterPillGroup({
         {label}
       </p>
       <div
-        role="radiogroup"
+        role="group"
         aria-labelledby={groupLabelId}
         className="flex flex-wrap gap-[8px]"
       >
-        {allOptions.map((o) => {
-          const isActive = value === o.value;
+        <button
+          key="__all"
+          type="button"
+          aria-pressed={noneSelected}
+          onClick={onClear}
+          className={`inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium leading-none border transition-all ${
+            noneSelected
+              ? "bg-navy text-white border-navy shadow-[0_2px_8px_rgba(44,54,93,0.18)]"
+              : "bg-white text-fg2 border-stroke1 hover:border-navy/40 hover:text-navy"
+          }`}
+        >
+          {allLabel}
+        </button>
+        {options.map((o) => {
+          const isActive = values.includes(o.value);
           return (
             <button
-              key={o.value || "__all"}
+              key={o.value}
               type="button"
-              role="radio"
-              aria-checked={isActive}
-              onClick={() => onChange(o.value)}
+              aria-pressed={isActive}
+              onClick={() => onToggle(o.value)}
               className={`inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium leading-none border transition-all ${
                 isActive
                   ? "bg-navy text-white border-navy shadow-[0_2px_8px_rgba(44,54,93,0.18)]"
