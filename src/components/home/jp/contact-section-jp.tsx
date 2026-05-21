@@ -25,8 +25,8 @@ export function ContactSectionJP() {
 
   return (
     <>
-      <section className="relative px-4 sm:px-6 py-[32px] sm:py-[48px]">
-        <div className="absolute inset-x-4 inset-y-[32px] sm:inset-x-6 sm:inset-y-[48px] rounded-[20px] overflow-hidden">
+      <section className="relative px-4 sm:px-6 pt-[32px] sm:pt-[48px] pb-[12px] sm:pb-[16px]">
+        <div className="absolute inset-x-4 top-[32px] bottom-[12px] sm:inset-x-6 sm:top-[48px] sm:bottom-[16px] rounded-[20px] overflow-hidden">
           <Image
             src="/home/jp/tokyo-skyline.jpg"
             alt=""
@@ -158,48 +158,48 @@ export function ContactSectionJP() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="relative overflow-hidden py-[96px] lg:py-[120px] bg-navy text-white"
-      >
-        <div
-          className="absolute -right-[300px] -top-[300px] w-[1000px] h-[1000px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,210,162,0.2), transparent 60%)",
-          }}
-        />
+      <section id="contact" className="px-4 sm:px-6 pt-[12px] sm:pt-[16px] pb-[48px] sm:pb-[64px]">
+        <div className="relative overflow-hidden mx-auto max-w-[1680px] rounded-3xl bg-navy-dark text-white px-[24px] py-[64px] sm:px-[48px] sm:py-[80px] lg:px-[96px] lg:py-[112px]">
+          <div
+            aria-hidden
+            className="absolute -right-[300px] -top-[300px] w-[1000px] h-[1000px] rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,210,162,0.2), transparent 60%)",
+            }}
+          />
 
-        <div className="relative max-w-[1600px] mx-auto px-8 text-center">
-          <motion.div
-            className="max-w-[640px] mx-auto"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.3] tracking-[-0.02em] text-white">
-              準備はできましたか?
-            </h2>
-            <p className="mt-[16px] text-[17px] lg:text-[19px] leading-[1.7] text-white/75 max-w-[40ch] mx-auto">
-              デモのご予約、ご質問、ご挨拶など、お気軽にお問い合わせください。1営業日以内にご返信いたします。
-            </p>
+          <div className="relative max-w-[1240px] mx-auto text-center">
+            <motion.div
+              className="max-w-[640px] mx-auto"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.3] tracking-[-0.02em] text-white">
+                準備はできましたか?
+              </h2>
+              <p className="mt-[16px] text-[17px] lg:text-[19px] leading-[1.7] text-white/75 max-w-[40ch] mx-auto">
+                デモのご予約、ご質問、ご挨拶など、お気軽にお問い合わせください。1営業日以内にご返信いたします。
+              </p>
 
-            <div className="flex flex-wrap gap-3 mt-[32px] justify-center">
-              <Link
-                href={href("/contact")}
-                className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
-              >
-                デモを予約
-              </Link>
-              <Link
-                href={href("/contact")}
-                className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold text-white border border-white/25 hover:bg-white/10 transition-all"
-              >
-                お問い合わせ
-              </Link>
-            </div>
-          </motion.div>
+              <div className="flex flex-wrap gap-3 mt-[32px] justify-center">
+                <Link
+                  href={href("/contact")}
+                  className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
+                >
+                  デモを予約
+                </Link>
+                <Link
+                  href={href("/contact")}
+                  className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold text-white border border-white/25 hover:bg-white/10 transition-all"
+                >
+                  お問い合わせ
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

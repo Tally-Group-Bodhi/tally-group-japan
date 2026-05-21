@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import { JPCtaSection } from "@/components/jp/cta-section";
 
 export const metadata: Metadata = {
   title: "サービス",
@@ -570,37 +571,7 @@ export default function JPServicesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden py-[96px] bg-navy text-white">
-        <div
-          className="absolute -left-[100px] -bottom-[100px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)",
-          }}
-        />
-        <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[56px] font-light leading-[1.25] tracking-[-0.02em] text-white">
-            詳しくお知りになりたいですか？
-          </h2>
-          <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.7]">
-            ビジネス目標、プラットフォーム導入計画、市場イニシアチブについて、お気軽にご相談ください。
-          </p>
-          <div className="mt-[32px] flex flex-wrap items-center justify-center gap-3">
-            <MarketingLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
-            >
-              デモのご相談
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </MarketingLink>
-            <MarketingLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold text-white border border-white/40 hover:bg-white/10 transition-all"
-            >
-              お問い合わせ
-            </MarketingLink>
-          </div>
-        </div>
-      </section>
+      <JPCtaSection />
     </>
   );
 }
