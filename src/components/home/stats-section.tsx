@@ -91,7 +91,7 @@ export function StatsSection() {
   return (
     <section className="px-4 sm:px-6 pt-2 pb-0">
       <div
-        className="relative overflow-hidden rounded-[28px] border border-stroke1 text-white py-[96px] lg:py-[120px]"
+        className="relative overflow-hidden rounded-[28px] border border-stroke1 text-white py-[56px] lg:py-[72px]"
         style={{
           background:
             "linear-gradient(180deg, #1E2840 0%, #141B30 55%, #0A1020 100%)",
@@ -114,7 +114,7 @@ export function StatsSection() {
 
         <div className="relative mx-auto px-6 sm:px-8">
           <motion.div
-            className="max-w-[720px] mx-auto text-center mb-[48px]"
+            className="max-w-[720px] mx-auto text-center mb-[32px]"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -188,7 +188,7 @@ export function StatsSection() {
 
               <div className="relative rounded-[24px] p-[2px] adora-glow-border">
                 <div
-                  className="relative rounded-[22px] px-5 sm:px-6 pt-5 sm:pt-6 pb-3 sm:pb-3 text-[14.5px] sm:text-[15.5px] leading-[1.7] text-white/85 min-h-[180px] whitespace-pre-line"
+                  className="relative rounded-[22px] px-5 sm:px-6 pt-5 sm:pt-6 pb-3 sm:pb-3 text-[14.5px] sm:text-[15.5px] leading-[1.7] text-white/85 whitespace-pre-line"
                   style={{
                     background:
                       "linear-gradient(180deg, rgba(14,20,38,0.96) 0%, rgba(10,16,32,0.96) 100%)",
@@ -265,7 +265,7 @@ export function StatsSection() {
             </div>
           </motion.div>
 
-          <div className="relative z-20 flex justify-center mt-[32px]">
+          <div className="relative z-20 flex justify-center mt-[24px]">
             <Link
               href="#"
               className="inline-flex items-center justify-center bg-white text-navy rounded-full px-7 h-[40px] text-[14px] font-medium shadow-[0_8px_24px_-4px_rgba(0,0,0,0.25)] hover:bg-white/95 transition-colors"
