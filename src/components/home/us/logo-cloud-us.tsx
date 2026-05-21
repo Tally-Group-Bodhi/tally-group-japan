@@ -21,7 +21,7 @@ const partners: Partner[] = [
   { src: "enel.jpeg", alt: "Enel" },
   { src: "energyaustralia.png", alt: "EnergyAustralia" },
   { src: "energylocals.png", alt: "Energy Locals" },
-  { src: "engie.png", alt: "Engie", scale: 1.25 },
+  { src: "engie.png", alt: "Engie", scale: 0.85 },
   { src: "frontier.png", alt: "Frontier Utilities" },
   { src: "gexaenergy.jpeg", alt: "Gexa Energy", scale: 1.2 },
   { src: "iberdrola.jpeg", alt: "Iberdrola" },

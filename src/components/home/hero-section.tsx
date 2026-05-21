@@ -61,7 +61,7 @@ export function HeroSection() {
         </div>
 
         {/* Content anchored to bottom */}
-        <div className="relative z-10 max-w-[1600px] mx-auto px-8 text-center mt-auto pb-[48px] sm:pb-[64px]">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-8 text-center mt-auto pt-[32px] pb-[48px] sm:pb-[64px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

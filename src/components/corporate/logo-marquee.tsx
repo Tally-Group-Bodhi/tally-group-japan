@@ -2,9 +2,19 @@
 
 import Image from "next/image";
 
-const logos = [
+type Logo = {
+  src: string;
+  alt: string;
+  /** Multiplier on the base size cap; default 1 */
+  scale?: number;
+};
+
+const LOGO_MAX_H = 44;
+const LOGO_MAX_W = 140;
+
+const logos: Logo[] = [
   { src: "frontier.png", alt: "Frontier" },
-  { src: "engie.png", alt: "Engie" },
+  { src: "engie.png", alt: "Engie", scale: 0.68 },
   { src: "1stenergy.png", alt: "1st Energy" },
   { src: "active.png", alt: "Active" },
   { src: "dodo.png", alt: "Dodo" },
@@ -41,21 +51,28 @@ function LogoTrack({ ariaHidden = false }: { ariaHidden?: boolean }) {
       className="flex items-center gap-[clamp(2rem,5vw,3.5rem)] shrink-0 w-max pr-[clamp(2rem,5vw,3.5rem)] bg-white"
       aria-hidden={ariaHidden}
     >
-      {logos.map((logo) => (
-        <div
-          key={logo.alt}
-          className="flex-none flex items-center justify-center min-w-[4.5rem] h-12 bg-white"
-        >
-          <Image
-            src={`/corporate/${logo.src}`}
-            alt={logo.alt}
-            width={140}
-            height={44}
-            className="max-h-[44px] max-w-[140px] w-auto h-auto object-contain"
-            loading="lazy"
-          />
-        </div>
-      ))}
+      {logos.map((logo) => {
+        const scale = logo.scale ?? 1;
+        return (
+          <div
+            key={logo.alt}
+            className="flex-none flex items-center justify-center min-w-[4.5rem] h-12 bg-white"
+          >
+            <Image
+              src={`/corporate/${logo.src}`}
+              alt={logo.alt}
+              width={140}
+              height={44}
+              className="w-auto h-auto object-contain"
+              style={{
+                maxHeight: `${LOGO_MAX_H * scale}px`,
+                maxWidth: `${LOGO_MAX_W * scale}px`,
+              }}
+              loading="lazy"
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
