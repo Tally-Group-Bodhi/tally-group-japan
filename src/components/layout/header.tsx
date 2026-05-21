@@ -171,7 +171,7 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
       label: "インサイト",
       hasMenu: true,
       children: [
-        { href: "#", label: "導入事例" },
+        { href: href("/insights/case-studies"), label: "導入事例" },
         { href: "#", label: "資料" },
       ],
     },
