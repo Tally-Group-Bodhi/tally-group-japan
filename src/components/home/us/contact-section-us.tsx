@@ -6,7 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMarketingHref } from "@/contexts/marketing-region";
 
-export function ContactSectionJP() {
+export function ContactSectionUS() {
   const href = useMarketingHref();
   const [form, setForm] = useState({
     firstName: "",
@@ -28,7 +28,7 @@ export function ContactSectionJP() {
       <section className="relative px-4 sm:px-6 pt-[32px] sm:pt-[48px] pb-[12px] sm:pb-[16px]">
         <div className="absolute inset-x-4 top-[32px] bottom-[12px] sm:inset-x-6 sm:top-[48px] sm:bottom-[16px] rounded-[20px] overflow-hidden">
           <Image
-            src="/home/jp/newsletter-bg.jpg"
+            src="/home/us/newsletter-bg.jpg"
             alt=""
             fill
             sizes="100vw"
@@ -46,11 +46,11 @@ export function ContactSectionJP() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-[22px] sm:text-[28px] font-bold text-white tracking-[-0.02em] leading-[1.4]">
-              ニュースレターを購読する
+            <h3 className="text-[22px] sm:text-[28px] font-bold text-white tracking-[-0.02em] leading-[1.2]">
+              Subscribe to our newsletter
             </h3>
-            <p className="mt-[12px] text-[15px] leading-[1.7] text-white/80">
-              エネルギー小売テクノロジーの最新動向、製品アップデート、Tallyチームからのインサイダー情報をお届けします。
+            <p className="mt-[12px] text-[15px] leading-[1.6] text-white/80">
+              The latest in energy retail technology, product updates, and insider intel from the Tally team — straight to your inbox.
             </p>
 
             <form
@@ -66,7 +66,7 @@ export function ContactSectionJP() {
                     htmlFor="newsletter-firstName"
                     className="block text-[13px] font-medium text-white/90 mb-[6px]"
                   >
-                    名<span className="text-turquoise">*</span>
+                    First name<span className="text-turquoise">*</span>
                   </label>
                   <input
                     id="newsletter-firstName"
@@ -74,7 +74,7 @@ export function ContactSectionJP() {
                     type="text"
                     value={form.firstName}
                     onChange={handleChange}
-                    placeholder="名"
+                    placeholder="First name"
                     required
                     autoComplete="given-name"
                     className={inputClass}
@@ -85,7 +85,7 @@ export function ContactSectionJP() {
                     htmlFor="newsletter-lastName"
                     className="block text-[13px] font-medium text-white/90 mb-[6px]"
                   >
-                    姓<span className="text-turquoise">*</span>
+                    Last name<span className="text-turquoise">*</span>
                   </label>
                   <input
                     id="newsletter-lastName"
@@ -93,7 +93,7 @@ export function ContactSectionJP() {
                     type="text"
                     value={form.lastName}
                     onChange={handleChange}
-                    placeholder="姓"
+                    placeholder="Last name"
                     required
                     autoComplete="family-name"
                     className={inputClass}
@@ -106,7 +106,7 @@ export function ContactSectionJP() {
                   htmlFor="newsletter-businessEmail"
                   className="block text-[13px] font-medium text-white/90 mb-[6px]"
                 >
-                  会社メールアドレス<span className="text-turquoise">*</span>
+                  Business email<span className="text-turquoise">*</span>
                 </label>
                 <input
                   id="newsletter-businessEmail"
@@ -114,7 +114,7 @@ export function ContactSectionJP() {
                   type="email"
                   value={form.businessEmail}
                   onChange={handleChange}
-                  placeholder="会社メールアドレスを入力"
+                  placeholder="Enter your work email"
                   required
                   autoComplete="email"
                   className={inputClass}
@@ -126,7 +126,7 @@ export function ContactSectionJP() {
                   htmlFor="newsletter-companyName"
                   className="block text-[13px] font-medium text-white/90 mb-[6px]"
                 >
-                  会社名<span className="text-turquoise">*</span>
+                  Company name<span className="text-turquoise">*</span>
                 </label>
                 <input
                   id="newsletter-companyName"
@@ -134,7 +134,7 @@ export function ContactSectionJP() {
                   type="text"
                   value={form.companyName}
                   onChange={handleChange}
-                  placeholder="会社名を入力"
+                  placeholder="Enter your company name"
                   required
                   autoComplete="organization"
                   className={inputClass}
@@ -146,7 +146,7 @@ export function ContactSectionJP() {
                 disabled={subscribed}
                 className="mt-[8px] w-full sm:w-auto sm:self-start inline-flex items-center justify-center gap-2 px-7 py-[12px] rounded-lg text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all disabled:opacity-60 shadow-sm"
               >
-                {subscribed ? "購読済み" : "購読する"}
+                {subscribed ? "Subscribed" : "Subscribe"}
                 {!subscribed && (
                   <span className="material-symbols-outlined text-[16px]">
                     arrow_forward
@@ -177,11 +177,11 @@ export function ContactSectionJP() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.3] tracking-[-0.02em] text-white">
-                準備はできましたか?
+              <h2 className="text-[28px] sm:text-[36px] lg:text-[60px] font-light leading-[1.15] tracking-[-0.02em] text-white">
+                Ready to discuss your roadmap?
               </h2>
-              <p className="mt-[16px] text-[17px] lg:text-[19px] leading-[1.7] text-white/75 max-w-[40ch] mx-auto">
-                デモのご予約、ご質問、ご挨拶など、お気軽にお問い合わせください。1営業日以内にご返信いたします。
+              <p className="mt-[16px] text-[17px] lg:text-[19px] leading-[1.6] text-white/75 max-w-[50ch] mx-auto">
+                Whether you&apos;re entering a new market or optimizing operations, our team can help you define the right path forward.
               </p>
 
               <div className="flex flex-wrap gap-3 mt-[32px] justify-center">
@@ -189,13 +189,13 @@ export function ContactSectionJP() {
                   href={href("/contact")}
                   className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
                 >
-                  デモを予約
+                  Book a demo
                 </Link>
                 <Link
                   href={href("/contact")}
                   className="inline-flex items-center gap-2 px-7 py-[13px] rounded-full text-[15px] font-semibold text-white border border-white/25 hover:bg-white/10 transition-all"
                 >
-                  お問い合わせ
+                  Contact us
                 </Link>
               </div>
             </motion.div>

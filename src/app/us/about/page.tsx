@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { MarketingLink } from "@/components/marketing/marketing-link";
 import { HistoryTimeline } from "@/components/about/history-timeline";
+import { USCtaSection } from "@/components/us/cta-section";
 
 export const metadata: Metadata = {
   title: "About",
@@ -436,24 +436,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden py-[96px] bg-navy text-white">
-        <div className="absolute -left-[100px] -bottom-[100px] w-[500px] h-[500px] rounded-full" style={{
-          background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)"
-        }} />
-        <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-white">
-            Find out how Tally Group can help your business.
-          </h2>
-          <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.55]">
-            Book a demo, ask a question, or just say hello.
-          </p>
-          <div className="mt-[32px]">
-            <MarketingLink href="/contact" className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm">
-              Request a demo <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </MarketingLink>
-          </div>
-        </div>
-      </section>
+      <USCtaSection />
     </>
   );
 }

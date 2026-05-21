@@ -1,19 +1,17 @@
 import { HeroSection } from "@/components/home/hero-section";
-import { LogoCloud } from "@/components/home/logo-cloud";
-import { ValuePillarsSection } from "@/components/home/value-pillars-section";
-import { TestimonialsSection } from "@/components/home/testimonials-section";
-import { InsightsSection } from "@/components/home/insights-section";
-import { ContactSection } from "@/components/home/contact-section";
+import { LogoCloudUS } from "@/components/home/us/logo-cloud-us";
+import { ValuePillarsSectionUS } from "@/components/home/us/value-pillars-section-us";
+import { TestimonialsSectionUS } from "@/components/home/us/testimonials-section-us";
+import { ContactSectionUS } from "@/components/home/us/contact-section-us";
 
-export default function Home() {
+export default function USHome() {
   return (
     <>
       <HeroSection />
-      <LogoCloud />
-      <ValuePillarsSection />
-      <TestimonialsSection />
-      <InsightsSection />
-      <ContactSection />
+      <LogoCloudUS />
+      <ValuePillarsSectionUS />
+      <TestimonialsSectionUS />
+      <ContactSectionUS />
     </>
   );
 }

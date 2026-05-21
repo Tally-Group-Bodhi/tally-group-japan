@@ -58,10 +58,10 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
       hasMenu: true,
       childSections: [
         {
-          title: "Overviews",
+          title: "Platform",
           items: [
-            { href: href("/products/customer"), label: "Tally+ Customer Mgmt" },
-            { href: "#", label: "Tally Glass AI" },
+            { href: "#", label: "Tally+ Customer Mgmt" },
+            { href: "#", label: "Tally Glass (AI)" },
           ],
         },
         {
@@ -72,7 +72,7 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
             { href: "#", label: "Renewables" },
             { href: "#", label: "EV" },
             { href: "#", label: "BESS" },
-            { href: "#", label: "Demand Response" },
+            { href: "#", label: "DER" },
           ],
         },
       ],
@@ -82,10 +82,26 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
       label: "Technology",
       hasMenu: true,
       children: [
-        { href: "#", label: "Architecture" },
-        { href: "#", label: "Security" },
-        { href: "#", label: "Audit" },
-        { href: "#", label: "API Library" },
+        { href: href("/technology/architecture"), label: "Architecture" },
+        { href: href("/technology/security"), label: "Security" },
+        { href: href("/technology/audit"), label: "Audit" },
+        { href: href("/technology/api-library"), label: "API Library" },
+      ],
+    },
+    {
+      label: "Insights",
+      hasMenu: true,
+      children: [
+        { href: href("/insights/case-studies"), label: "Case Studies" },
+        { href: href("/insights/resources"), label: "Resources" },
+      ],
+    },
+    {
+      label: "News",
+      hasMenu: true,
+      children: [
+        { href: href("/news/press-releases"), label: "Press Releases" },
+        { href: href("/news/events"), label: "Events" },
       ],
     },
     {
@@ -100,16 +116,6 @@ function buildUSNavLinks(href: (path: string) => string): NavLink[] {
         { href: href("/about#mission-values"), label: "Mission and values" },
       ],
     },
-    { href: href("/careers"), label: "Careers" },
-    {
-      label: "Insights",
-      hasMenu: true,
-      children: [
-        { href: "#", label: "Case Studies" },
-        { href: "#", label: "Resources" },
-      ],
-    },
-    { href: href("/blog"), label: "News" },
     { href: href("/contact"), label: "Contact" },
   ];
 }

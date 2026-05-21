@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ContactForm } from "@/components/sections/contact-form";
+import { DemoContactForm } from "@/components/us/contact/demo-contact-form";
 import { OfficeAddressBlock } from "@/components/sections/office-address-block";
 import { OurLocationsSection } from "@/components/sections/our-locations-section";
 import { officeRegions } from "@/data/office-regions";
@@ -25,9 +24,9 @@ const contactMethods = [
   },
   {
     icon: "linkedin",
-    title: "LinkedIn",
-    description: "Follow us for the latest news and updates.",
-    detail: "Tally Group",
+    title: "Follow us on LinkedIn",
+    description: "The latest news and insights from our team.",
+    detail: "Visit LinkedIn",
     href: "https://www.linkedin.com/company/tally-group",
     external: true,
   },
@@ -45,117 +44,100 @@ export default function ContactPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
-            Get in touch.
-          </h1>
+          <div className="flex flex-col gap-[24px] lg:flex-row lg:items-start lg:justify-between lg:gap-[48px]">
+            <div className="min-w-0 lg:flex-1">
+              <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.04] tracking-[-0.025em] text-navy">
+                Get in touch.
+              </h1>
 
-          <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
-            Whether you&apos;re looking for a demo, have questions about our products, or want to explore a partnership, we&apos;re here to help.
-          </p>
+              <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
+                Reach out to the team — whether you&apos;d like to talk to us about a demo, get in touch with a specific team, or find our offices around the world.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-[12px] sm:flex-row lg:flex-col lg:w-[300px] lg:shrink-0 lg:pt-[12px]">
+              {contactMethods.map((method) => (
+                <a
+                  key={method.title}
+                  href={method.href}
+                  {...("external" in method && method.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="group flex items-center gap-[14px] rounded-xl border border-stroke1 bg-white px-[16px] py-[14px] transition-all hover:border-navy/30 hover:shadow-sm sm:flex-1 lg:flex-initial"
+                >
+                  {method.icon === "linkedin" ? (
+                    <div className="w-10 h-10 shrink-0 grid place-items-center">
+                      <Image
+                        src="/logos/linkedin.png"
+                        alt="LinkedIn"
+                        width={36}
+                        height={36}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 shrink-0 rounded-[10px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
+                      <span className="material-symbols-outlined text-[20px]">
+                        {method.icon}
+                      </span>
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-[13px] font-semibold text-fg1">
+                      {method.title}
+                    </p>
+                    <p className="text-[13px] font-medium text-navy truncate group-hover:text-turquoise transition-colors">
+                      {method.detail}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Form + Contact Info */}
+      {/* Form + Offices */}
       <section className="py-[96px] border-b border-stroke1">
         <div className="max-w-[1240px] mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-[48px] lg:gap-[72px]">
-            {/* Left - Contact Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-[48px] lg:gap-[64px]">
+            {/* Left - Offices */}
             <div>
-              <div className="mb-[48px]">
-                <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
-                  <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-                  Reach out
-                </div>
-                <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-                  Our friendly team would love to hear from you.
-                </h2>
-              </div>
-
-              <div className="flex flex-col gap-[24px]">
-                {contactMethods.map((method) => (
-                  <div key={method.title} className="bg-bg2 rounded-xl p-[24px] flex gap-[16px]">
-                    {method.icon === "linkedin" ? (
-                      <div className="w-10 h-10 shrink-0 grid place-items-center">
-                        <Image src="/logos/linkedin.png" alt="LinkedIn" width={36} height={36} />
-                      </div>
-                    ) : (
-                      <div className="w-10 h-10 shrink-0 rounded-[10px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
-                        <span className="material-symbols-outlined text-[20px]">{method.icon}</span>
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="text-[15px] font-semibold text-fg1">{method.title}</h3>
-                      <p className="text-sm text-fg2 mt-[4px]">{method.description}</p>
-                      <a
-                        href={method.href}
-                        className="text-sm font-semibold text-navy hover:text-turquoise transition-colors mt-[8px] inline-block"
-                        {...("external" in method && method.external
-                          ? { target: "_blank", rel: "noopener noreferrer" }
-                          : {})}
-                      >
-                        {method.detail}
-                      </a>
-                    </div>
+              <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
+              <div className="flex flex-col gap-[28px]">
+                {northAmericaOffices.map((office) => (
+                  <div key={office.city}>
+                    <OfficeAddressBlock office={office} />
+                    <a
+                      href={`mailto:${office.email}`}
+                      className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
+                    >
+                      {office.email}
+                    </a>
                   </div>
                 ))}
-              </div>
-
-              {/* Offices */}
-              <div className="mt-[48px]">
-                <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
-                <div className="flex flex-col gap-[28px]">
-                  {northAmericaOffices.map((office) => (
-                    <div key={office.city}>
-                      <OfficeAddressBlock office={office} />
-                      <a
-                        href={`mailto:${office.email}`}
-                        className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
-                      >
-                        {office.email}
-                      </a>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
             {/* Right - Form */}
             <div className="bg-white border border-stroke1 rounded-xl p-[32px] lg:p-[40px] h-fit">
-              <h3 className="text-xl font-semibold text-navy mb-[24px]">Send us a message</h3>
-              <ContactForm />
+              <h3 className="text-xl font-semibold text-navy mb-[8px]">
+                Contact us / Request a demo
+              </h3>
+              <p className="text-sm text-fg2 mb-[24px] leading-[1.55]">
+                Share your contact details and one of our team members will reach out within 1–2 business days.
+              </p>
+              <DemoContactForm />
             </div>
           </div>
         </div>
       </section>
 
-      <OurLocationsSection defaultRegionId="north-america" />
-
-      {/* CTA */}
-      <section className="relative overflow-hidden py-[96px] bg-navy text-white">
-        <div
-          className="absolute -left-[100px] -bottom-[100px] w-[500px] h-[500px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)",
-          }}
-        />
-        <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-white">
-            Prefer to book a demo directly?
-          </h2>
-          <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.55]">
-            Schedule a personalised walkthrough with one of our product specialists.
-          </p>
-          <div className="mt-[32px]">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
-            >
-              Book a demo{" "}
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <OurLocationsSection
+        defaultRegionId="north-america"
+        eyebrow="Global network"
+        title="Offices around the world"
+        description={null}
+      />
     </>
   );
 }

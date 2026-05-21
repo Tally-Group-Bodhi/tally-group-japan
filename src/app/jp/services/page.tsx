@@ -293,7 +293,6 @@ const services: ServiceBlock[] = [
 function ServiceContent({ service }: { service: ServiceBlock }) {
   return (
     <div>
-      <SectionEyebrow>{service.label}</SectionEyebrow>
       <h2
         id={service.id}
         className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"

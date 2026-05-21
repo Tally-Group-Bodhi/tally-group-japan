@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import { USCtaSection } from "@/components/us/cta-section";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -244,7 +245,6 @@ const services: ServiceBlock[] = [
 function ServiceContent({ service }: { service: ServiceBlock }) {
   return (
     <div>
-      <SectionEyebrow>{service.label}</SectionEyebrow>
       <h2
         id={service.id}
         className="text-[30px] lg:text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-navy m-0"
@@ -264,7 +264,6 @@ function ServiceContent({ service }: { service: ServiceBlock }) {
   );
 }
 
-
 function ServiceSection({ service }: { service: ServiceBlock }) {
   return (
     <section
@@ -272,10 +271,10 @@ function ServiceSection({ service }: { service: ServiceBlock }) {
       aria-labelledby={service.id}
     >
       <div className="max-w-[1240px] mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] lg:gap-[72px] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px] lg:gap-[72px] items-start">
           {service.imageFirst ? (
             <>
-              <div className="order-first lg:order-none">
+              <div className="order-first lg:order-none lg:sticky lg:top-[120px]">
                 <ServiceImage src={service.image} alt={service.imageAlt} />
               </div>
               <ServiceContent service={service} />
@@ -283,7 +282,7 @@ function ServiceSection({ service }: { service: ServiceBlock }) {
           ) : (
             <>
               <ServiceContent service={service} />
-              <div className="order-first lg:order-none">
+              <div className="order-first lg:order-none lg:sticky lg:top-[120px]">
                 <ServiceImage src={service.image} alt={service.imageAlt} />
               </div>
             </>
@@ -353,38 +352,7 @@ export default function USServicesPage() {
         <ServiceSection key={service.id} service={service} />
       ))}
 
-      <section className="relative overflow-hidden py-[96px] bg-navy text-white">
-        <div
-          className="absolute -left-[100px] -bottom-[100px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(0,210,162,0.18), transparent 60%)",
-          }}
-        />
-        <div className="relative max-w-[1240px] mx-auto px-8 text-center">
-          <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-white">
-            Ready to discuss your roadmap?
-          </h2>
-          <p className="mt-[16px] text-lg text-white/75 max-w-[50ch] mx-auto leading-[1.55]">
-            Whether you&apos;re entering a new market or optimizing operations, our team can help you
-            define the right path forward.
-          </p>
-          <div className="mt-[32px] flex flex-wrap items-center justify-center gap-3">
-            <MarketingLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all shadow-sm"
-            >
-              Book a demo
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </MarketingLink>
-            <MarketingLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold text-white border border-white/40 hover:bg-white/10 transition-all"
-            >
-              Get in touch
-            </MarketingLink>
-          </div>
-        </div>
-      </section>
+      <USCtaSection />
     </>
   );
 }
