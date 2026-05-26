@@ -60,6 +60,7 @@ type HistoryTimelineProps = {
   entries?: TimelineEntry[];
   scrollLeftLabel?: string;
   scrollRightLabel?: string;
+  showDivider?: boolean;
 };
 
 export function HistoryTimeline({
@@ -69,6 +70,7 @@ export function HistoryTimeline({
   entries = defaultTimeline,
   scrollLeftLabel = "Scroll timeline left",
   scrollRightLabel = "Scroll timeline right",
+  showDivider = true,
 }: HistoryTimelineProps = {}) {
   const timeline = entries;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -108,7 +110,7 @@ export function HistoryTimeline({
   return (
     <section
       id="history"
-      className="scroll-mt-[88px] py-[96px] border-b border-stroke1"
+      className={`scroll-mt-[88px] py-[96px]${showDivider ? " border-b border-stroke1" : ""}`}
       style={{
         background:
           "linear-gradient(to bottom, #FFFFFF 0%, #F9F9FB 100%)",

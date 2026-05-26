@@ -12,67 +12,74 @@ export const metadata: Metadata = {
 const storyCards = [
   {
     icon: "rocket_launch",
-    title: "Revolutionizing Energy Solutions",
+    title: "Revolutionising Utility Technology",
     description:
-      "At Tally Group, we put our energy into building world-leading utility technology. We're transforming how people power their homes and businesses by reinventing how energy retailers operate.",
+      "We put our energy into building industry-changing utility technology, transforming how people power their homes and businesses by reinventing how utilities operate.",
   },
   {
     icon: "cloud",
-    title: "Cloud-Native SaaS Provider",
+    title: "Providers of Cloud-Native, AI-powered SaaS",
     description:
-      "As a cloud-native SaaS provider with extensive experience and clients worldwide, we're well-placed to help businesses thrive in a rapidly changing market.",
+      "Built for a cloud era, our AI-powered solutions are designed to reduce complexity, accelerate change and deliver smarter operations, providing the backbone architecture to enable rapid innovation in a changing market.",
   },
   {
-    icon: "public",
-    title: "Empowering Customers Globally",
+    icon: "eco",
+    title: "Innovation in Decarbonisation",
     description:
-      "We offer a comprehensive suite of innovative billing, digital and analytics solutions designed to meet globally diverse market and regulatory requirements, empower customers and reduce cost-to-serve.",
+      "We help utilities unlock new revenue opportunities and keep pace with changing landscapes amidst climate change, grid transformation and new technologies, moving beyond legacy constraints.",
   },
   {
-    icon: "lightbulb",
-    title: "Innovation in Changing Landscapes",
+    icon: "group",
+    title: "Built for People and Performance",
     description:
-      "We're committed to innovating in a competitive landscape amidst climate change, grid transformation, and new technologies despite constraints from legacy tech and lackluster service.",
+      "Our solutions empower consumers and operators alike, driving operational efficiency through automated processes and intuitive self-service tooling, and equipping operators with real-time insights to resolve issues faster.",
   },
   {
     icon: "handshake",
     title: "Uniting Energy Solutions Worldwide",
     description:
-      "Tally Group formed in 2021, following the merger of leading cloud-based billing solutions provider Agility CIS and fast-growing energy retail SaaS software provider Tally.",
+      "Formed in 2021, Tally Group brings together the strengths and expertise of multiple leading companies under one vision to deliver end-to-end utility technology and services across six diverse markets.",
   },
   {
     icon: "language",
-    title: "Global Reach and Impact",
+    title: "Global Reach, Local Focus",
     description:
-      "We combine global outlook with local focus, and our team operates from locations in Australia, New Zealand, Japan, India, Dubai and the United States.",
+      "With origins in one of the world\u2019s most complex energy markets, we combine global capability with deep local knowledge to meet unique regulatory, market and customer requirements across every region.",
   },
 ];
 
-const utilityCommitments = [
-  { icon: "bar_chart", text: "Accurate, scalable billing" },
-  { icon: "trending_down", text: "Reduced cost to serve" },
-  { icon: "lightbulb", text: "Fast, cost-effective innovation" },
-  { icon: "verified_user", text: "Trusted implementation partner" },
-  { icon: "group", text: "Reduced churn, better engagement" },
-  { icon: "lock", text: "Best practice in data and tech" },
+const aboutStats = [
+  { num: "50", unit: "+", label: "Clients globally" },
+  { num: "300", unit: "+", label: "Global staff" },
+  { num: "5", unit: "M+", label: "Meter points" },
+  { num: "$15", unit: "B+", label: "Annual billing" },
+];
+
+const clientCommitments = [
+  { icon: "tune", text: "Robust and configurable solutions" },
+  { icon: "auto_awesome", text: "Leading-edge technology and AI that matters" },
+  { icon: "schedule", text: "On time, on budget implementations" },
+  { icon: "support_agent", text: "Responsive, proactive, high-impact support" },
+  { icon: "alt_route", text: "Client-driven development pipelines" },
+  { icon: "handshake", text: "Enduring partnerships built on shared success" },
+];
+
+const customerCommitments = [
+  { icon: "stars", text: "An exceptional end-to-end customer experience" },
+  { icon: "smart_toy", text: "Personalised, AI-powered self-service automation" },
+  { icon: "rocket_launch", text: "Access to the latest in future-ready technology" },
+  { icon: "receipt_long", text: "Accurate billing with payment options" },
+  { icon: "psychology", text: "Knowledge-enabled customer service reps" },
+  { icon: "chat", text: "Clear and useful communications" },
 ];
 
 const peopleCommitments = [
   { icon: "bolt", text: "Work at the forefront of utility tech" },
-  { icon: "public", text: "Global locations" },
-  { icon: "workspace_premium", text: "Proven career pathways" },
-  { icon: "menu_book", text: "Tailored learning and development" },
-  { icon: "work", text: "Flexible working" },
-  { icon: "payments", text: "Competitive salaries" },
-];
-
-const consumerCommitments = [
-  { icon: "favorite", text: "Personalised experience" },
-  { icon: "chat", text: "Straightforward communications" },
-  { icon: "smartphone", text: "Multi-channel support" },
-  { icon: "target", text: "Digital-first strategy" },
-  { icon: "apartment", text: "Simplify market participation" },
-  { icon: "location_on", text: "Build trust with utility providers" },
+  { icon: "public", text: "Global focus on real-world problems" },
+  { icon: "smart_toy", text: "Access to cutting-edge AI tools and training" },
+  { icon: "menu_book", text: "Tailored learning and proven career pathways" },
+  { icon: "work", text: "Flexible, hybrid working environments" },
+  { icon: "payments", text: "Competitive compensation and benefits" },
 ];
 
 const supportingTestimonials = [
@@ -127,19 +134,19 @@ const leaders = [
   {
     name: "Raine Figaro",
     role: "Delivery Lead",
-    bio: "Joined Tally as the U.S. Delivery Lead in 2023. 20+ years of experience in global program, project and portfolio management, consulting, and relationship management, including delivery lead roles at Amazon Web Services, Capital One, Microsoft and Verizon.",
+    bio: "Raine joined Tally as U.S. Delivery Lead in 2023, bringing more than 20 years\u2019 experience across global program, project and portfolio delivery. She has led large-scale technology and transformation initiatives at organisations including Amazon Web Services, Capital One, Microsoft and Verizon, with a strong focus on execution, stakeholder alignment and customer outcomes. Raine is known for building high-performing teams and fostering a collaborative, growth-focused culture, with a leadership style grounded in trust, mentorship and delivery excellence.",
     photoSrc: "/us/Raine Figaro.jpg",
   },
   {
     name: "Atsuyo Miller",
     role: "Director of Marketing",
-    bio: "Joined Tally as Director of Marketing in 2026, leading U.S. and Japan markets. Previously VP of Marketing at an energy consulting firm, with experience across Fortune Global 500 environments including Microsoft and Toshiba. Brings expertise across energy and technology sectors and experience leading cross-cultural, cross-functional teams.",
+    bio: "Atsuyo joined Tally in 2026 as Director of Marketing for the U.S. and Japan, bringing extensive experience across global energy and technology markets. She has held senior marketing roles in both consulting and enterprise environments, including leadership positions across Fortune Global 500 organisations such as Microsoft and Toshiba. She specialises in building cross-cultural, high-impact marketing strategies that support growth and market expansion.",
     photoSrc: "/us/Atsuyo Miller.jpg",
   },
   {
     name: "Chris Bates",
-    role: "Product Manager Orion | Product & Client",
-    bio: "Joined Tally as a Data Engineer in 2012, transitioned to Architect for US Energy Platforms with 14+ years of experience in designing enterprise-grade billing and regulatory solutions and driving architectural standards for the energy and utilities sector.",
+    role: "Product Manager | Product & Client",
+    bio: "Chris joined Tally in 2012 and brings more than 14 years\u2019 experience designing enterprise-scale billing and regulatory solutions for the energy sector. He has held roles across engineering and architecture, and now helps shape product direction and delivery for Tally\u2019s U.S. platforms. Chris combines deep technical expertise with a practical understanding of client needs, driving solutions that are robust, scalable and aligned to complex market requirements.",
     photoSrc: "/us/Chris Bates.jpg",
   },
   {
@@ -167,13 +174,13 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
-            A world-leading cloud-native software platform and ecosystem enabling decarbonisation, digitisation and decentralisation for energy retailers globally.
+            Tally Group designs and delivers cloud-native, AI-powered utility software that cuts cost, captures opportunity, and empowers your people.
           </p>
         </div>
       </section>
 
       {/* Who we are */}
-      <section id="who-we-are" className="scroll-mt-[88px] py-[96px] border-b border-stroke1">
+      <section id="who-we-are" className="scroll-mt-[88px] py-[96px]">
         <div className="max-w-[1240px] mx-auto px-8">
           <div className="mb-[48px] max-w-[720px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
@@ -181,7 +188,7 @@ export default function AboutPage() {
               Who we are
             </div>
             <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              Energizing innovation in utility technology and energy retail operations.
+              Proven transformation partners for leading utilities.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
@@ -199,10 +206,85 @@ export default function AboutPage() {
       </section>
 
       {/* History Timeline */}
-      <HistoryTimeline />
+      <HistoryTimeline
+        showDivider={false}
+        eyebrow="History"
+        heading="A journey of innovation and growth."
+        lead={"Defined by continuous transformation, Tally Group brings together leading platforms, deep industry expertise and global capability to support utilities through rapid change. From our origins in complex energy markets, we\u2019ve evolved into a trusted partner delivering the technology that underpins modern utility operations."}
+        entries={[
+          {
+            year: "2018",
+            title: "Tally founded",
+            description:
+              "Tally is founded by Australian market experts to challenge legacy providers, introducing a cloud-native, customer-centric billing and digital platform designed to reduce cost-to-serve and improve customer experience.",
+          },
+          {
+            year: "2020",
+            title: "Global expansion",
+            description:
+              "New Zealand-based Agility CIS acquires Znalytics and Webtools, establishing advanced analytics, digital and customer engagement capability while expanding into the U.S. and Japan.",
+          },
+          {
+            year: "2021",
+            title: "Tally Group is formed",
+            description:
+              "The merger of Agility and Tally forms Tally Group, combining leading cloud-native billing platforms with deep expertise in complex C&I and large-scale mass market implementations.",
+          },
+          {
+            year: "2023",
+            title: "Strategic investment",
+            description:
+              "Tally secures significant backing from IFM Investors and the Clean Energy Finance Corporation, unlocking capital to accelerate global growth, platform innovation and the transition to more sustainable energy systems. This backing accelerates Tally\u2019s long-term position in the utilities sector.",
+          },
+          {
+            year: "2024",
+            title: "Alinta CORE platform",
+            description:
+              "Tally acquires the CORE platform from top tier Australian energy retailer, Alinta Energy, significantly expanding mass market capability with a proven platform supporting 700k+ customers and C&I segments, cementing Tally\u2019s position as a leading global utility technology provider.",
+          },
+          {
+            year: "2026",
+            title: "Skipping Stone acquisition",
+            description:
+              "Tally Group acquires Skipping Stone, expanding advisory and consulting capability in energy transition, strategy and market advisory across the U.S. and Japan. Tally Group now supports over 5 million meters globally across 50+ utility clients, and growing.",
+          },
+        ]}
+      />
+
+      {/* Breadth of experience */}
+      <section className="py-[96px]">
+        <div className="max-w-[1240px] mx-auto px-8">
+          <div className="max-w-[820px]">
+            <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
+              <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
+              Unparalleled breadth of experience
+            </div>
+            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
+              Proven expertise in complex utility ecosystems.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[16px] mt-[56px]">
+            {aboutStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-bg2 rounded-2xl px-[28px] py-[40px] lg:py-[56px]"
+              >
+                <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none tabular-nums text-navy">
+                  {stat.num}
+                  <span className="text-turquoise">{stat.unit}</span>
+                </div>
+                <p className="mt-[20px] text-[14px] leading-[1.5] text-fg2 m-0">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Leadership */}
-      <section id="leadership" className="scroll-mt-[88px] py-[96px] border-b border-stroke1" style={{
+      <section id="leadership" className="scroll-mt-[88px] py-[96px]" style={{
         background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
@@ -232,7 +314,7 @@ export default function AboutPage() {
       </section>
 
       {/* Testimonial */}
-      <section className="py-[96px] border-b border-stroke1">
+      <section className="py-[96px]">
         <div className="max-w-[1240px] mx-auto px-8">
           <div className="max-w-[720px] mb-[48px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
@@ -298,11 +380,11 @@ export default function AboutPage() {
       </section>
 
       {/* Commitments */}
-      <section id="mission-values" className="scroll-mt-[88px] py-[96px] border-b border-stroke1" style={{
+      <section id="mission-values" className="scroll-mt-[88px] py-[96px]" style={{
         background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
-          <div className="mb-[48px] max-w-[720px]">
+          <div className="mb-[48px] max-w-[820px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               Our commitments
@@ -310,18 +392,28 @@ export default function AboutPage() {
             <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
               What we stand for.
             </h2>
+            <p className="mt-[20px] text-[17px] leading-[1.7] text-fg2 m-0 max-w-[68ch]">
+              Utilities play a critical role in the communities they serve, and better technology unlocks better outcomes for everyone.
+            </p>
+            <p className="mt-[16px] text-[17px] leading-[1.7] text-fg2 m-0 max-w-[68ch]">
+              We exist to design, build and operate world-leading utility software that automates billing, empowers customers and fast-tracks innovation, enabling future utility technologies that will change our world &ndash; for a cleaner, smarter, brighter tomorrow.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
-            <CommitmentColumn title="Our commitment to utilities" items={utilityCommitments} />
+            <CommitmentColumn title="Our commitment to clients" items={clientCommitments} />
+            <CommitmentColumn title={"Our commitment to clients\u2019 customers"} items={customerCommitments} />
             <CommitmentColumn title="Our commitment to our people" items={peopleCommitments} />
-            <CommitmentColumn title="Our commitment to consumers" items={consumerCommitments} />
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <USCtaSection />
+      <USCtaSection
+        title="Find out how Tally Group can help your business."
+        description="Book a demo, ask a question, or just say hello."
+        primaryLabel="Request a demo"
+      />
     </>
   );
 }
