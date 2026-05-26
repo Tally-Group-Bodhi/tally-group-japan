@@ -75,13 +75,6 @@ const consumerCommitments = [
   { icon: "location_on", text: "Build trust with utility providers" },
 ];
 
-const aboutStats = [
-  { num: "110", unit: "+", label: "Clients globally" },
-  { num: "450", unit: "+", label: "Global staff" },
-  { num: "4", unit: " mil +", label: "Meter points" },
-  { num: "200", unit: "+", label: "5-star reviews" },
-];
-
 const supportingTestimonials = [
   {
     name: "Anika Phan",
@@ -106,18 +99,48 @@ const supportingTestimonials = [
   },
 ];
 
-const usLeaders = [
+const leaders = [
   {
     name: "Peter Weigand",
     role: "Chief Growth Officer",
     bio: "As Tally\u2019s Chief Growth Officer, Peter leads Tally\u2019s expansion across the U.S. and Japan markets. He has been instrumental in growing energy companies globally for many years, serving as CEO of four energy companies prior to joining Tally, and having held board roles across a number of energy startups. In addition to his role as CGO, he is also CEO of Skipping Stone, Tally\u2019s wholly owned energy consulting business. He focuses on accelerating Tally\u2019s global growth by developing relationships that leverage both consulting services and Tally\u2019s market leading solutions.",
-    photo: "Peter Weigand.jpg",
+    photoSrc: "/us/Peter Weigand.jpg",
+  },
+  {
+    name: "Andrew Duncan",
+    role: "Chief Executive Officer",
+    bio: "Andrew is the Founder and Chairman of Tally and was appointed CEO in 2022 following the merger that formed Tally Group. With more than 30 years\u2019 experience in the Australian energy market, he has played a key role in driving technology-led transformation across retail energy. Andrew founded Serviceworks and led its successful sale to Computershare in 2011, establishing the first bureau provider for Australia\u2019s deregulated energy market. A recognised founder and investor, he brings deep industry insight and a pragmatic, execution-focused approach, driven by a founder\u2019s mindset and a focus on simplifying operations and improving customer outcomes.",
+    photoSrc: "/corporate/Andrew.jpg",
+  },
+  {
+    name: "Travis Lehman",
+    role: "Chief Operating Officer",
+    bio: "Travis joined Agility CIS in 2019 as Transformation Director, leading the Value Creation Programme including M&A through a pivotal period of growth and integration. With experience spanning strategy, transactions and execution, he specialises in scaling technology businesses in complex global markets. Prior to Tally, Travis spent about a decade with Deloitte Consulting in the M&A practice in San Francisco and holds an MBA from Stanford Graduate School of Business. He brings a calm, solutions-focused approach, translating strategy into disciplined execution to drive sustainable growth.",
+    photoSrc: "/corporate/Travis Lehman.jpg",
+  },
+  {
+    name: "Eric Yilmaz",
+    role: "Chief Technology Officer",
+    bio: "Eric joined Tally in 2023, bringing more than 20 years\u2019 experience across technology strategy, digital platforms, infrastructure, operations and product development. Prior to Tally, he was CTO at Sorted and held senior innovation and technology roles at EY, working at the intersection of emerging technology and enterprise scale. He leads Tally\u2019s global technology function with a focus on modern engineering, cloud architecture and applied AI, driving quality, security and speed to value. Eric is deeply focused on building high-performing teams and future-ready platforms.",
+    photoSrc: "/corporate/Eric Yilmaz.jpg",
   },
   {
     name: "Raine Figaro",
     role: "Delivery Lead",
     bio: "Joined Tally as the U.S. Delivery Lead in 2023. 20+ years of experience in global program, project and portfolio management, consulting, and relationship management, including delivery lead roles at Amazon Web Services, Capital One, Microsoft and Verizon.",
-    photo: "Raine Figaro.jpg",
+    photoSrc: "/us/Raine Figaro.jpg",
+  },
+  {
+    name: "Atsuyo Miller",
+    role: "Director of Marketing",
+    bio: "Joined Tally as Director of Marketing in 2026, leading U.S. and Japan markets. Previously VP of Marketing at an energy consulting firm, with experience across Fortune Global 500 environments including Microsoft and Toshiba. Brings expertise across energy and technology sectors and experience leading cross-cultural, cross-functional teams.",
+    photoSrc: "/us/Atsuyo Miller.jpg",
+  },
+  {
+    name: "Chris Bates",
+    role: "Product Manager Orion | Product & Client",
+    bio: "Joined Tally as a Data Engineer in 2012, transitioned to Architect for US Energy Platforms with 14+ years of experience in designing enterprise-grade billing and regulatory solutions and driving architectural standards for the energy and utilities sector.",
+    photoSrc: "/us/Chris Bates.jpg",
   },
   {
     name: "TBD",
@@ -125,60 +148,9 @@ const usLeaders = [
     bio: "Bio coming soon.",
   },
   {
-    name: "Atsuyo Miller",
-    role: "Director of Marketing",
-    bio: "Joined Tally as Director of Marketing in 2026, leading U.S. and Japan markets. Previously VP of Marketing at an energy consulting firm, with experience across Fortune Global 500 environments including Microsoft and Toshiba. Brings expertise across energy and technology sectors and experience leading cross-cultural, cross-functional teams.",
-    photo: "Atsuyo Miller.jpg",
-  },
-  {
-    name: "Chris Bates",
-    role: "Product Manager Orion | Product & Client",
-    bio: "Joined Tally as a Data Engineer in 2012, transitioned to Architect for US Energy Platforms with 14+ years of experience in designing enterprise-grade billing and regulatory solutions and driving architectural standards for the energy and utilities sector.",
-    photo: "Chris Bates.jpg",
-  },
-  {
     name: "TBD",
     role: "Sales & Marketing Coordinator",
     bio: "Bio coming soon.",
-  },
-];
-
-const leaders = [
-  {
-    name: "Andrew Duncan",
-    role: "Chief Executive Officer",
-    bio: "Andrew is the Founder and Chairman of Tally and was appointed CEO in 2022 following the merger that formed Tally Group. With more than 30 years\u2019 experience in the Australian energy market, he has played a key role in driving technology-led transformation across retail energy. Andrew founded Serviceworks and led its successful sale to Computershare in 2011, establishing the first bureau provider for Australia\u2019s deregulated energy market. A recognised founder and investor, he brings deep industry insight and a pragmatic, execution-focused approach, driven by a founder\u2019s mindset and a focus on simplifying operations and improving customer outcomes.",
-    photo: "Andrew.jpg",
-  },
-  {
-    name: "Travis Lehman",
-    role: "Chief Operating Officer",
-    bio: "Travis joined Agility CIS in 2019 as Transformation Director, leading the Value Creation Programme including M&A through a pivotal period of growth and integration. With experience spanning strategy, transactions and execution, he specialises in scaling technology businesses in complex global markets. Prior to Tally, Travis spent about a decade with Deloitte Consulting in the M&A practice in San Francisco and holds an MBA from Stanford Graduate School of Business. He brings a calm, solutions-focused approach, translating strategy into disciplined execution to drive sustainable growth.",
-    photo: "Travis Lehman.jpg",
-  },
-  {
-    name: "Janet Le",
-    role: "Chief Commercial Officer",
-    bio: "Bringing more than 14 years\u2019 experience leading commercial strategy, growth and value creation across the technology sector, Janet joined Tally\u2019s Executive team in 2025. She has held senior roles at Compass Education and SEEK Limited, where she led global expansion, portfolio management and M&A activity across complex, multi-market environments. Janet began her career at PwC in Audit and brings a strong commercial lens and collaborative, people-first leadership style. She focuses on building scalable commercial capability to support global growth and deliver lasting value for clients.",
-    photo: "Janet Le.jpg",
-  },
-  {
-    name: "Eric Yilmaz",
-    role: "Chief Technology Officer",
-    bio: "Eric joined Tally in 2023, bringing more than 20 years\u2019 experience across technology strategy, digital platforms, infrastructure, operations and product development. Prior to Tally, he was CTO at Sorted and held senior innovation and technology roles at EY, working at the intersection of emerging technology and enterprise scale. He leads Tally\u2019s global technology function with a focus on modern engineering, cloud architecture and applied AI, driving quality, security and speed to value. Eric is deeply focused on building high-performing teams and future-ready platforms.",
-    photo: "Eric Yilmaz.jpg",
-  },
-  {
-    name: "Roger Barnes",
-    role: "Chief Product Officer",
-    bio: "With more than 15 years\u2019 experience across the energy and utilities sector, Roger is Tally\u2019s Global CPO. Having previously served as President for Australia and New Zealand, Roger led strong regional growth and product evolution and now specialises in driving innovation at the intersection of technology, product and market change. Roger has held several executive roles, including CEO of Billcap and Managing Director of TallyIT and SleevesUp, as well as a variety of senior delivery and product roles across Energy, Telecommunications, and Cyber. He shapes Tally\u2019s global product vision and roadmap to deliver smarter operations and improved customer outcomes.",
-    photo: "Roger Barnes.jpg",
-  },
-  {
-    name: "Timothy Szakacs",
-    role: "Executive General Manager and President, ANZ",
-    bio: "Tim joined Tally as Global Chief Product Officer in 2021 before being appointed Executive General Manager and President for Australia and New Zealand. An experienced executive and Company Director, he brings deep expertise across product leadership, operations and market development, with strong exposure to international energy markets. He leads performance and growth across ANZ with a steady, pragmatic approach, ensuring Tally\u2019s solutions meet the complex regulatory and operational demands of utilities in rapidly evolving markets.",
-    photo: "Tim Szakacs.jpg",
   },
 ];
 
@@ -229,119 +201,32 @@ export default function AboutPage() {
       {/* History Timeline */}
       <HistoryTimeline />
 
-      {/* Metrics */}
-      <section className="py-[96px] border-b border-stroke1 bg-bg2">
-        <div className="max-w-[1240px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-[48px] lg:gap-[72px] items-center">
-          <div>
-            <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
-              <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              Unparalleled breadth of experience
-            </div>
-            <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              More new energy expertise than any other provider in Australia.
-            </h2>
-
-            <div className="grid grid-cols-2 gap-x-[48px] gap-y-[40px] mt-[56px]">
-              {aboutStats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-[48px] lg:text-[56px] font-normal tracking-[-0.03em] leading-none tabular-nums text-navy">
-                    {stat.num}
-                    <span className="text-turquoise">{stat.unit}</span>
-                  </div>
-                  <div className="mt-[14px] text-[14px] leading-[1.5] text-fg2">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative aspect-[640/520] rounded-2xl overflow-hidden">
-            <Image
-              src="/about-metrics.png"
-              alt="Energy infrastructure"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Leadership */}
       <section id="leadership" className="scroll-mt-[88px] py-[96px] border-b border-stroke1" style={{
         background: "linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
-          <div id="us-leadership" className="scroll-mt-[88px]">
-            <div className="mb-[40px] max-w-[720px]">
-              <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
-                <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-                U.S. leadership
-              </div>
-              <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-                Leaders shaping growth and delivery across the United States.
-              </h2>
-              <p className="mt-[16px] text-sm leading-[1.55] text-fg2 m-0 max-w-[52ch]">
-                Meet the U.S. leadership team. Additional roles and bios may be added as the team grows.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
-              {usLeaders.map((leader) => (
-                <LeaderCard
-                  key={`${leader.name}-${leader.role}`}
-                  leader={leader}
-                  photoSrc={leader.photo ? `/us/${leader.photo}` : undefined}
-                />
-              ))}
-            </div>
-          </div>
-          <div
-            id="global-leadership"
-            className="scroll-mt-[88px] mt-[80px] pt-[80px] border-t border-stroke1"
-          >
           <div className="mb-[48px] max-w-[720px]">
             <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              Global Leadership
+              Tally Group Leadership
             </div>
             <h2 className="text-[30px] lg:text-[60px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
-              Tally Group leadership.
+              Experienced leaders in utility transformation.
             </h2>
+            <p className="mt-[16px] text-sm leading-[1.55] text-fg2 m-0 max-w-[60ch]">
+              Driving the transition to smarter utilities backed by deep expertise, global scale and proven execution.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
             {leaders.map((leader) => (
-              <article
-                key={leader.name}
-                className="bg-white border border-stroke1 rounded-xl p-[24px] flex flex-col gap-[16px] transition-all hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-              >
-                <div className="flex items-center gap-[14px]">
-                  <div className="w-[88px] h-[88px] rounded-full overflow-hidden shrink-0 border border-stroke1 bg-bg2">
-                    <Image
-                      src={`/corporate/${leader.photo}`}
-                      alt={`Portrait of ${leader.name}`}
-                      width={88}
-                      height={88}
-                      className="w-full h-full object-cover object-[center_top]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="m-0 mb-[2px] text-base font-semibold text-navy tracking-tight leading-tight">
-                      {leader.name}
-                    </h3>
-                    <p className="m-0 text-sm text-fg2">
-                      {leader.role}
-                    </p>
-                  </div>
-                </div>
-                <p className="m-0 text-sm leading-[1.55] text-fg2">
-                  {leader.bio}
-                </p>
-              </article>
+              <LeaderCard
+                key={`${leader.name}-${leader.role}`}
+                leader={leader}
+                photoSrc={leader.photoSrc}
+              />
             ))}
-          </div>
           </div>
         </div>
       </section>

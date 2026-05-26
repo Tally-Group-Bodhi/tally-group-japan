@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { MarketingLink } from "@/components/marketing/marketing-link";
 import {
+  TechBodyParagraph,
   TechBulletList,
   TechCardGrid,
   TechHero,
@@ -9,68 +9,45 @@ import {
 } from "@/components/jp/tech/tech-page";
 
 export const metadata: Metadata = {
-  title: "Security",
+  title: "セキュリティ",
   description:
-    "Hosting and security span the Tally+ topology—protecting metering, billing, market, and customer data while supporting compliance and operational resilience for regulated retail.",
+    "Tally+は、安全性・可用性・コンプライアンスを備え、顧客・メーター・請求・市場・業務データを安全に保護することで、エネルギー小売業務の安定運用とガバナンス対応を支援します。",
 };
 
-const complianceItems = [
+const principleCards = [
   {
-    strong: "Market & product compliance",
-    text: "support for complex products and pass‑through constructs described in Tally capability materials (indexed and time‑of‑use structures, pass‑through charges, new energy scenarios, and related invoicing).",
+    icon: "shield",
+    title: "設計段階から組み込まれたセキュリティ",
+    body: "セキュリティ対策は、プラットフォーム、ホスティング環境、外部連携、運用プロセス全体にわたって適用されています。",
   },
   {
-    strong: "Operational controls",
-    text: "separation between roles that configure pricing, approve campaigns, and operate settlement‑critical batch processes—aligned to enterprise IAM when integrated with your IdP.",
+    icon: "encrypted",
+    title: "データ保護と整合性",
+    body: "顧客データ、メーターデータ、請求データ、市場データなどの重要情報は、役割に応じたアクセス制御、暗号化、操作履歴の記録などの仕組みにより、安全に保護されています。",
   },
   {
-    strong: "Evidence for buyers",
-    text: "framework mappings, control narratives, and third‑party attestations are shared under NDA during procurement; ask your Tally contact for the current matrix for your region.",
-  },
-];
-
-const dataItems = [
-  {
-    strong: "Classification & handling",
-    text: "metering, billing, payment, and customer identity data are handled with least‑privilege access, encryption in transit, and encryption at rest appropriate to cloud deployment patterns.",
-  },
-  {
-    strong: "Retention & auditability",
-    text: "configurable retention aligned to regulatory and commercial needs; access logging for privileged operations.",
-  },
-  {
-    strong: "Incident response",
-    text: "coordinated customer notification and remediation playbooks consistent with enterprise vendor expectations (details provided during onboarding).",
+    icon: "monitor_heart",
+    title: "安定運用と障害対応",
+    body: "クラウドホスティング、バックアップ、監視、インシデント対応を含む運用体制により、安定した小売業務の継続性を支援します。",
   },
 ];
 
-const certCards = [
+const dataProtectionItems = [
   {
-    icon: "verified",
-    title: "Security & privacy attestations",
-    body: "Upon request: summaries of ISO management system certifications (where held for the services in scope) and mapped controls—with validity dates and registration boundaries.",
+    strong: "アクセス制御",
+    text: "役割に応じたアクセス制御により、ユーザーごとに必要な機能・データへのアクセスを制限しています。",
   },
   {
-    icon: "fact_check",
-    title: "Independent audits",
-    body: "SOC‑style or equivalent third‑party examination reports, where available, for the hosting and service boundary relevant to your deployment.",
+    strong: "暗号化",
+    text: "データは、通信時および保存時の双方で暗号化され、ホスティング環境に応じた適切な方式が適用されます。",
   },
   {
-    icon: "hub",
-    title: "Architecture linkage",
-    body: (
-      <>
-        The <strong>Hosting &amp; security</strong> layer in the{" "}
-        <MarketingLink
-          href="/technology/architecture"
-          className="text-navy underline underline-offset-2 hover:text-turquoise"
-        >
-          Tally+ topology
-        </MarketingLink>{" "}
-        sits alongside operational intelligence—reflecting defence‑in‑depth across channels,
-        integrations, and batch operations.
-      </>
-    ),
+    strong: "操作履歴の記録",
+    text: "管理者操作や業務操作は記録され、調査、ガバナンス、業務レビューに活用できます。",
+  },
+  {
+    strong: "データ保護と整合性",
+    text: "自動検証、照合処理、適切な運用管理を通じて、請求・市場・顧客業務におけるデータの正確性を維持します。",
   },
 ];
 
@@ -79,57 +56,81 @@ export default function JPSecurityPage() {
     <>
       <TechHero
         eyebrow="テクノロジー / セキュリティ"
-        title="Security"
-        lede="Hosting and security span the Tally+ topology—protecting metering, billing, market, and customer data while supporting compliance and operational resilience for regulated retail."
+        title="セキュリティ"
+        lede="Tally+は、安全性・可用性・コンプライアンスを備え、顧客・メーター・請求・市場・業務データを安全に保護することで、エネルギー小売業務の安定運用とガバナンス対応を支援します。"
       />
 
       <TechIntroBand
         eyebrow="信頼性"
-        heading="Confidence to deploy"
+        heading="安心して導入いただくために"
         paragraphs={[
-          <>
-            The Tally+ programme emphasises <strong>compliance &amp; regulatory</strong> capability
-            together with <strong>operational excellence</strong>—lifting automation (including
-            AI/ML) to reduce cost‑to‑serve while preserving controls retailers need for procurement
-            and risk reviews.
-          </>,
+          "Tally+には、セキュリティ、プライバシー保護、安定した業務運用を支えるための仕組みが組み込まれています。",
+          "エンタープライズ企業に求められる調達・リスク評価・コンプライアンス審査にも対応し、複雑かつ変化の多いエネルギー市場における安全で安定した運用を支援します。",
         ]}
-        pills={["Compliance & regulatory fit", "Operational resilience", "Data integrity"]}
+        pills={["コンプライアンス規制対応", "データ保護・整合性", "安定運用・障害対応"]}
       />
+
+      <TechSection
+        id="sec-principles-heading"
+        eyebrow="基本方針"
+        heading="3 つの基本方針"
+        lede="Tally は、以下の 3 つの基本方針に基づいてサービスを提供しています。"
+      >
+        <TechCardGrid items={principleCards} columns={3} />
+      </TechSection>
 
       <TechSection
         id="sec-compliance-heading"
         eyebrow="コンプライアンス"
-        heading="Compliance & regulatory alignment"
-        lede="Retail platforms must stay aligned with market rules, tariff constructs, and correspondence obligations as jurisdictions evolve. Tally+ is positioned to maintain demonstrable billing and product‑development capabilities alongside governance suited to energy retail—including deployments integrated with the Japanese energy market where applicable."
-      >
-        <TechBulletList items={complianceItems} />
-      </TechSection>
+        heading="コンプライアンスおよび規制対応"
+        altBg
+        lede={
+          <>
+            <p className="m-0">
+              エネルギー小売事業では、市場ルールや料金体系、顧客対応など、変化する制度や業務への柔軟な対応が求められます。Tally+は、こうした規制対応を前提に設計されており、日本のエネルギー市場における運用に対応しています。
+            </p>
+            <p className="m-0 mt-[16px]">
+              本プラットフォームは、多様な料金プラン、料金設計、使用量・請求業務、市場連携業務をサポートします。さらに、設定変更や承認、実行プロセスに適切な管理・統制を組み込むことで、精算・請求業務の安定運用を支援します。
+            </p>
+          </>
+        }
+      />
 
       <TechSection
         id="sec-data-heading"
         eyebrow="データ保護"
-        heading="Data protection & integrity"
-        altBg
-        lede="Automated Data Management (ADM) automates and validates transaction data—usage, billing, and metering—reducing manual workload through smart normalisation and reconciliation so downstream billing and compliance workflows rest on accurate inputs."
+        heading="データ保護と整合性"
+        lede="Tally+では、機密性の高い顧客データや業務データを安全に保護するため、各種セキュリティ対策および運用管理を実施しています。"
       >
-        <TechBulletList items={dataItems} />
+        <TechBulletList items={dataProtectionItems} columns={2} />
       </TechSection>
 
       <TechSection
-        id="sec-cert-heading"
-        eyebrow="認証・監査"
-        heading="Assurance & certifications"
+        id="sec-hosting-heading"
+        eyebrow="ホスティング"
+        heading="ホスティングと安定運用"
+        altBg
         lede={
-          <p className="m-0">
-            Japanese and global procurement teams typically request named certifications (for
-            example ISO/IEC 27001), independent audit reports, and renewal cadence.{" "}
-            <strong>Official artefacts are supplied under NDA</strong> with scope statements
-            matched to the services you consume.
-          </p>
+          <>
+            <p className="m-0">
+              Tally+は、可用性、安全性、安定したサービス提供を支える最新のクラウド基盤と運用体制のもとで提供されています。
+            </p>
+            <p className="m-0 mt-[16px]">
+              運用体制には、監視、バックアップ・復旧、変更管理、インシデント対応、リリース管理などが含まれます。これらは、規制対応が求められるSaaSとして、適切な社内管理体制および運用手順に基づいて運営されています。
+            </p>
+          </>
         }
+      />
+
+      <TechSection
+        id="sec-assurance-heading"
+        eyebrow="認証・監査"
+        heading="アシュアランス・認証情報"
+        lede="タリーでは、NDA締結のもと、調達プロセスやセキュリティ審査に必要な各種資料を提供しています。"
       >
-        <TechCardGrid items={certCards} columns={3} />
+        <TechBodyParagraph>
+          提供内容には、製品やホスティング構成、サービス範囲に応じて、セキュリティ対策の概要、認証情報、監査レポート、第三者評価資料などが含まれます。
+        </TechBodyParagraph>
       </TechSection>
     </>
   );

@@ -108,18 +108,6 @@ export const officeRegions: OfficeRegion[] = [
         statePostcodeAr: "تكساس 77380",
         email: "retailenergy@tally-group.com",
       },
-      {
-        city: "Atlanta",
-        cityJa: "アトランタ",
-        cityAr: "أتلانتا",
-        street: "5815 Windward Pkwy, Suite 302",
-        streetAr: "5815 ويندوارد باركواي، جناح 302",
-        suburb: "Alpharetta",
-        suburbAr: "ألفاريتا",
-        statePostcode: "GA 30005",
-        statePostcodeAr: "جورجيا 30005",
-        email: "retailenergy@tally-group.com",
-      },
     ],
   },
   {

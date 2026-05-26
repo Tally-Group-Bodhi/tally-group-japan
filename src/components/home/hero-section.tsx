@@ -105,7 +105,7 @@ export function HeroSection() {
                     </motion.span>
                   </span>
                   <br />
-                  for leading American utilities
+                  for leading retail energy providers
                 </h1>
 
                 <p className="mt-[20px] text-[15px] sm:text-[17px] lg:text-[18px] leading-[1.6] text-white/80 max-w-[62ch] mx-auto">

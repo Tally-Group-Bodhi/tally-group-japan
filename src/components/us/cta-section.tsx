@@ -9,6 +9,7 @@ type USCtaSectionProps = {
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  className?: string;
 };
 
 export function USCtaSection({
@@ -19,9 +20,10 @@ export function USCtaSection({
   primaryLabel = "Book a demo",
   secondaryHref = "/contact",
   secondaryLabel = "Get in touch",
+  className = "px-4 sm:px-6 py-[24px] sm:py-[32px]",
 }: USCtaSectionProps = {}) {
   return (
-    <section className="px-4 sm:px-6 py-[24px] sm:py-[32px]">
+    <section className={className}>
       <div className="relative overflow-hidden mx-auto max-w-[1680px] rounded-3xl bg-navy-dark text-white px-[24px] py-[64px] sm:px-[48px] sm:py-[80px] lg:px-[96px] lg:py-[112px]">
         <div
           aria-hidden

@@ -153,3 +153,97 @@
     animation: none !important;
   }
 }
+
+.bamboohr-embed .BambooHR-ATS-board {
+  font-family: var(--font-sans) !important;
+  color: var(--color-fg1);
+  text-align: left;
+}
+
+.bamboohr-embed .BambooHR-ATS-board > h2 {
+  display: none;
+}
+
+.bamboohr-embed .BambooHR-ATS-Department-List {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.bamboohr-embed .BambooHR-ATS-Department-Item + .BambooHR-ATS-Department-Item {
+  margin-top: 12px !important;
+}
+
+.bamboohr-embed .BambooHR-ATS-Department-Header {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-fg2);
+  padding: 0 0 8px 0;
+}
+
+.bamboohr-embed .BambooHR-ATS-Department-Header:empty {
+  display: none;
+}
+
+.bamboohr-embed .BambooHR-ATS-Jobs-List {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 16px 0 !important;
+  border-bottom: 1px solid var(--color-stroke1) !important;
+  padding-bottom: 12px !important;
+}
+
+.bamboohr-embed .BambooHR-ATS-Department-Item:last-child .BambooHR-ATS-Jobs-List {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.bamboohr-embed .BambooHR-ATS-Jobs-Item {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 12px 0 !important;
+  border-top: 1px solid var(--color-stroke1);
+}
+
+.bamboohr-embed .BambooHR-ATS-Jobs-Item:first-child {
+  border-top: none;
+}
+
+.bamboohr-embed .BambooHR-ATS-board a {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-navy);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.bamboohr-embed .BambooHR-ATS-board a:hover {
+  color: var(--color-turquoise);
+  text-decoration: none;
+}
+
+.bamboohr-embed .BambooHR-ATS-Location {
+  font-size: 13px;
+  color: var(--color-fg2);
+  margin-top: 4px;
+}
+
+.bamboohr-embed .BambooHR-ATS-blankState {
+  color: var(--color-fg2);
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.bamboohr-embed .BambooHR-ATS-blankState strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-fg1);
+}
+
+.bamboohr-embed #BambooHR-Footer {
+  display: none;
+}
