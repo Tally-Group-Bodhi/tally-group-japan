@@ -633,7 +633,7 @@ function NavDropdownItems({
   const sectionTitleClassName =
     variant === "mobile"
       ? "text-[11px] uppercase tracking-[0.1em] text-turquoise font-semibold mb-2 mt-2 first:mt-0"
-      : "px-4 pt-2.5 pb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-fg2";
+      : "px-4 pt-2.5 pb-1 text-[11px] font-normal uppercase tracking-[0.1em] text-fg2/55";
 
   if (childSections) {
     if (variant === "desktop") {
