@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMarketingHref } from "@/contexts/marketing-region";
+import { subscribeToMailchimp } from "@/lib/mailchimp";
+
+type SubmitStatus = "idle" | "loading" | "success" | "already" | "error";
 
 export function ContactSection() {
   const href = useMarketingHref();
@@ -13,15 +16,55 @@ export function ContactSection() {
     lastName: "",
     businessEmail: "",
     companyName: "",
+    honeypot: "",
   });
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "loading") return;
+    setStatus("loading");
+    setErrorMessage("");
+
+    const result = await subscribeToMailchimp({
+      email: form.businessEmail,
+      firstName: form.firstName,
+      lastName: form.lastName,
+      company: form.companyName,
+      region: "AU",
+      honeypot: form.honeypot,
+    });
+
+    if (result.ok && result.alreadySubscribed) {
+      setStatus("already");
+    } else if (result.ok) {
+      setStatus("success");
+    } else {
+      setStatus("error");
+      setErrorMessage(
+        result.rawMessage.replace(/^0\s*-\s*/, "") ||
+          "Something went wrong. Please try again.",
+      );
+    }
+  };
+
   const inputClass =
     "w-full border border-white/20 rounded-lg px-[14px] py-[11px] text-[15px] text-white bg-white/10 placeholder:text-white/50 transition-all focus:outline-none focus:border-turquoise focus:ring-[3px] focus:ring-turquoise/20";
+
+  const isSubmitted = status === "success" || status === "already";
+  const buttonLabel =
+    status === "loading"
+      ? "Subscribing…"
+      : status === "success"
+        ? "Check your inbox"
+        : status === "already"
+          ? "Already subscribed"
+          : "Subscribe";
 
   return (
     <>
@@ -55,10 +98,8 @@ export function ContactSection() {
 
             <form
               className="mt-[24px] flex flex-col gap-[16px]"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubscribed(true);
-              }}
+              onSubmit={handleSubmit}
+              noValidate
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px]">
                 <div>
@@ -141,18 +182,58 @@ export function ContactSection() {
                 />
               </div>
 
+              <div aria-hidden="true" className="sr-only">
+                <label htmlFor="newsletter-honeypot">
+                  Leave this field empty
+                </label>
+                <input
+                  id="newsletter-honeypot"
+                  type="text"
+                  name="honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.honeypot}
+                  onChange={handleChange}
+                />
+              </div>
+
               <button
                 type="submit"
-                disabled={subscribed}
+                disabled={status === "loading" || isSubmitted}
                 className="mt-[8px] w-full sm:w-auto sm:self-start inline-flex items-center justify-center gap-2 px-7 py-[12px] rounded-lg text-[15px] font-semibold bg-turquoise text-navy border border-turquoise hover:bg-turquoise-hover hover:border-turquoise-hover transition-all disabled:opacity-60 shadow-sm"
               >
-                {subscribed ? "Subscribed" : "Subscribe"}
-                {!subscribed && (
+                {buttonLabel}
+                {status === "idle" && (
                   <span className="material-symbols-outlined text-[16px]">
                     arrow_forward
                   </span>
                 )}
               </button>
+
+              {status === "success" && (
+                <p
+                  role="status"
+                  className="text-[14px] leading-[1.5] text-turquoise"
+                >
+                  Almost there — check your inbox to confirm your subscription.
+                </p>
+              )}
+              {status === "already" && (
+                <p
+                  role="status"
+                  className="text-[14px] leading-[1.5] text-white/80"
+                >
+                  You&apos;re already on the list. Thanks for sticking with us!
+                </p>
+              )}
+              {status === "error" && (
+                <p
+                  role="alert"
+                  className="text-[14px] leading-[1.5] text-red-300"
+                >
+                  {errorMessage}
+                </p>
+              )}
             </form>
           </motion.div>
         </div>

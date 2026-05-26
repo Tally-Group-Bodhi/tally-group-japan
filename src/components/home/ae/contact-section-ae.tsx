@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMarketingHref } from "@/contexts/marketing-region";
+import { subscribeToMailchimp } from "@/lib/mailchimp";
+
+type SubmitStatus = "idle" | "loading" | "success" | "already" | "error";
 
 export function ContactSectionAE() {
   const href = useMarketingHref();
@@ -12,15 +15,55 @@ export function ContactSectionAE() {
     lastName: "",
     businessEmail: "",
     companyName: "",
+    honeypot: "",
   });
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "loading") return;
+    setStatus("loading");
+    setErrorMessage("");
+
+    const result = await subscribeToMailchimp({
+      email: form.businessEmail,
+      firstName: form.firstName,
+      lastName: form.lastName,
+      company: form.companyName,
+      region: "AE",
+      honeypot: form.honeypot,
+    });
+
+    if (result.ok && result.alreadySubscribed) {
+      setStatus("already");
+    } else if (result.ok) {
+      setStatus("success");
+    } else {
+      setStatus("error");
+      setErrorMessage(
+        result.rawMessage.replace(/^0\s*-\s*/, "") ||
+          "حدث خطأ. يرجى المحاولة مرة أخرى.",
+      );
+    }
+  };
+
   const inputClass =
     "w-full border border-stroke1 rounded-lg px-[14px] py-[11px] text-[15px] text-fg1 bg-white placeholder:text-fg2/60 transition-all focus:outline-none focus:border-navy focus:ring-[3px] focus:ring-navy/10";
+
+  const isSubmitted = status === "success" || status === "already";
+  const buttonLabel =
+    status === "loading"
+      ? "جارٍ الاشتراك…"
+      : status === "success"
+        ? "تحقق من بريدك"
+        : status === "already"
+          ? "مشترك بالفعل"
+          : "اشترك";
 
   return (
     <>
@@ -42,10 +85,8 @@ export function ContactSectionAE() {
 
             <form
               className="mt-[24px] flex flex-col gap-[16px]"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubscribed(true);
-              }}
+              onSubmit={handleSubmit}
+              noValidate
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px]">
                 <div>
@@ -128,18 +169,58 @@ export function ContactSectionAE() {
                 />
               </div>
 
+              <div aria-hidden="true" className="sr-only">
+                <label htmlFor="newsletter-honeypot">
+                  اترك هذا الحقل فارغًا
+                </label>
+                <input
+                  id="newsletter-honeypot"
+                  type="text"
+                  name="honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.honeypot}
+                  onChange={handleChange}
+                />
+              </div>
+
               <button
                 type="submit"
-                disabled={subscribed}
+                disabled={status === "loading" || isSubmitted}
                 className="mt-[8px] w-full sm:w-auto sm:self-start inline-flex items-center justify-center gap-2 px-7 py-[12px] rounded-lg text-[15px] font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all disabled:opacity-60 shadow-sm"
               >
-                {subscribed ? "تم الاشتراك" : "اشترك"}
-                {!subscribed && (
+                {buttonLabel}
+                {status === "idle" && (
                   <span className="material-symbols-outlined text-[16px]">
                     arrow_forward
                   </span>
                 )}
               </button>
+
+              {status === "success" && (
+                <p
+                  role="status"
+                  className="text-[14px] leading-[1.8] text-navy"
+                >
+                  تحقق من بريدك الإلكتروني لتأكيد اشتراكك.
+                </p>
+              )}
+              {status === "already" && (
+                <p
+                  role="status"
+                  className="text-[14px] leading-[1.8] text-fg2"
+                >
+                  أنت مشترك بالفعل في قائمتنا. شكرًا لك!
+                </p>
+              )}
+              {status === "error" && (
+                <p
+                  role="alert"
+                  className="text-[14px] leading-[1.8] text-red-600"
+                >
+                  {errorMessage}
+                </p>
+              )}
             </form>
           </motion.div>
         </div>
