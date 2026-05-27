@@ -78,7 +78,7 @@ export function EventsList({ events }: { events: EventItem[] }) {
         </div>
         <h2
           id="events-upcoming-heading"
-          className="text-[24px] lg:text-[32px] font-light leading-[1.2] tracking-[-0.02em] text-navy m-0 mb-[28px] lg:mb-[36px]"
+          className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0 mb-[28px] lg:mb-[36px]"
         >
           開催予定のイベント
         </h2>
@@ -231,11 +231,11 @@ export function MeetInPersonSection({
             </div>
             <h2
               id="meet-in-person-heading"
-              className="text-[22px] lg:text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-navy max-w-[28ch] m-0"
+              className="text-[22px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy max-w-[28ch] m-0"
             >
               現地でのお打ち合わせ
             </h2>
-            <p className="mt-[14px] text-[15.5px] leading-[1.7] text-fg2 max-w-[44ch] m-0">
+            <p className="mt-[14px] text-[20px] leading-[1.7] text-fg2 max-w-[44ch] m-0">
               現地でお会いできることを楽しみにしております。お打ち合わせのご予約はお問い合わせよりご連絡ください。
             </p>
           </div>

@@ -12,6 +12,10 @@ function resolveMarketingHref(basePath: string, path: string): string {
     return path;
   }
 
+  if (path.startsWith("#")) {
+    return path;
+  }
+
   const hashIndex = path.indexOf("#");
   if (hashIndex !== -1) {
     const pathname = path.slice(0, hashIndex) || "/";

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { JPCtaSection } from "@/components/jp/cta-section";
 import {
   EventsList,
   MeetInPersonSection,
@@ -54,7 +53,7 @@ export default function JPEventsPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[36px] lg:text-[56px] font-light leading-[1.2] tracking-[-0.025em] text-navy max-w-[26ch] m-0">
+          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[26ch] m-0">
             イベント
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch] m-0">
@@ -68,13 +67,6 @@ export default function JPEventsPage() {
 
       {/* Meet in person prompt */}
       <MeetInPersonSection href="/contact" />
-
-      {/* Final CTA */}
-      <JPCtaSection
-        eyebrow="次のステップ"
-        title="お客様の事業に Tally+ がどのように貢献できるか、ご相談ください。"
-        description="業務課題、市場戦略、プラットフォーム導入計画について、お気軽にご相談ください。"
-      />
     </>
   );
 }

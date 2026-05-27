@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MarketingLink } from "@/components/marketing/marketing-link";
-import { JPCtaSection } from "@/components/jp/cta-section";
 
 export const metadata: Metadata = {
   title: "VoltEdge Retail（北米） | 導入事例",
@@ -46,7 +45,7 @@ function ArticleHeading({
   return (
     <h2
       id={id}
-      className="mt-[56px] mb-[20px] text-[24px] lg:text-[28px] font-semibold leading-[1.35] tracking-[-0.01em] text-navy first:mt-0"
+      className="mt-[56px] mb-[20px] text-[22px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy first:mt-0"
     >
       {children}
     </h2>
@@ -99,7 +98,7 @@ export default function VoltedgeRetailCaseStudyPage() {
             ))}
           </ul>
 
-          <h1 className="text-[34px] lg:text-[52px] font-light leading-[1.25] tracking-[-0.025em] text-navy max-w-[24ch] m-0">
+          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[24ch] m-0">
             複雑な商品ラインを拡大しつつ、バックオフィス人員の増員を抑える
           </h1>
 
@@ -180,20 +179,20 @@ export default function VoltedgeRetailCaseStudyPage() {
           <div className="mt-[56px]">
             <ArticleHeading id="challenge">課題</ArticleHeading>
             <div className="flex flex-col gap-[16px]">
-              <p className="text-[16px] leading-[1.85] text-fg1 m-0">
+              <p className="text-[20px] leading-[1.7] text-fg1 m-0">
                 VoltEdgeは、競争の激しい市場で時間帯別（TOU）料金体系や任意のグリーン商品によって差別化する必要がありましたが、請求オペレーションの膨張や、例外がコールセンターに流れることは避けたかったのです。
               </p>
-              <p className="text-[16px] leading-[1.85] text-fg1 m-0">
+              <p className="text-[20px] leading-[1.7] text-fg1 m-0">
                 レガシーの表計算や場当たり的な回避策ではマーケティングのペースに追いつけず、新しいライダーが加わるたびに請求例外のリスクとお客様の不満が増えていました。
               </p>
             </div>
 
             <ArticleHeading id="solution">ソリューション</ArticleHeading>
             <div className="flex flex-col gap-[16px]">
-              <p className="text-[16px] leading-[1.85] text-fg1 m-0">
+              <p className="text-[20px] leading-[1.7] text-fg1 m-0">
                 Tally+は料金組み立てと商品ルールを自動化し、新しいオファーを小売の厳しいスケジュールに合わせて設定・リリースできるようにしました。カスタマーサービスとバックオフィスは、加入・ライダー・料金について一貫した単一の画面で業務を行います。
               </p>
-              <p className="text-[16px] leading-[1.85] text-fg1 m-0">
+              <p className="text-[20px] leading-[1.7] text-fg1 m-0">
                 実装では、都度のカスタム開発ではなく、運用がガバナンスのもとで日々の変更を自ら担えるよう、繰り返し使える設定パターンに焦点を置きました。
               </p>
             </div>
@@ -202,7 +201,7 @@ export default function VoltedgeRetailCaseStudyPage() {
               {solutionBullets.map((item) => (
                 <li
                   key={item}
-                  className="pl-[28px] relative text-[15.5px] leading-[1.7] text-fg2 before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:w-[10px] before:h-[10px] before:rounded-full before:border-[2px] before:border-turquoise before:bg-turquoise/30"
+                  className="pl-[28px] relative text-[20px] leading-[1.7] text-fg2 before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-[10px] before:h-[10px] before:rounded-full before:border-[2px] before:border-turquoise before:bg-turquoise/30"
                 >
                   {item}
                 </li>
@@ -210,7 +209,7 @@ export default function VoltedgeRetailCaseStudyPage() {
             </ul>
 
             <ArticleHeading id="results">定量的な成果</ArticleHeading>
-            <p className="text-[16px] leading-[1.85] text-fg1 m-0">
+            <p className="text-[20px] leading-[1.7] text-fg1 m-0">
               VoltEdgeは、請求担当者を増やさずに複数の付加サービスを投入し、商品構成が拡大してもコール量の上昇を抑えました。ロールアウト時も請求に関する苦情の急増はなく、精度は高水準を維持しました。
             </p>
 
@@ -280,13 +279,6 @@ export default function VoltedgeRetailCaseStudyPage() {
           </div>
         </div>
       </article>
-
-      {/* Final CTA */}
-      <JPCtaSection
-        eyebrow="次のステップ"
-        title="お客様の事業に Tally+ がどのように貢献できるか、ご相談ください。"
-        description="業務課題、市場戦略、プラットフォーム導入計画について、お気軽にご相談ください。"
-      />
     </>
   );
 }

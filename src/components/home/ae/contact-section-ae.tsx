@@ -60,7 +60,7 @@ export function ContactSectionAE() {
     status === "loading"
       ? "جارٍ الاشتراك…"
       : status === "success"
-        ? "تحقق من بريدك"
+        ? "تم الاشتراك"
         : status === "already"
           ? "مشترك بالفعل"
           : "اشترك";
@@ -202,7 +202,7 @@ export function ContactSectionAE() {
                   role="status"
                   className="text-[14px] leading-[1.8] text-navy"
                 >
-                  تحقق من بريدك الإلكتروني لتأكيد اشتراكك.
+                  شكرًا — تم اشتراكك في نشرتنا الإخبارية.
                 </p>
               )}
               {status === "already" && (

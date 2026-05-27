@@ -146,30 +146,32 @@ function buildAEEnNavLinks(): NavLink[] {
 
 function buildJPNavLinks(href: (path: string) => string): NavLink[] {
   return [
-    {
-      label: "ソリューション",
-      hasMenu: true,
-      childSections: [
-        {
-          title: "プラットフォーム",
-          items: [
-            { href: "#", label: "Tally+ 顧客管理" },
-            { href: "#", label: "Tally Glass(AI)" },
-          ],
-        },
-        {
-          title: "分野別",
-          items: [
-            { href: "#", label: "電力" },
-            { href: "#", label: "ガス" },
-            { href: "#", label: "再生可能エネルギー" },
-            { href: "#", label: "EV" },
-            { href: "#", label: "BESS" },
-            { href: "#", label: "DER" },
-          ],
-        },
-      ],
-    },
+    // TODO: Restore the "ソリューション" (Solutions) menu once Japan-specific
+    // content is ready. Hidden for now.
+    // {
+    //   label: "ソリューション",
+    //   hasMenu: true,
+    //   childSections: [
+    //     {
+    //       title: "プラットフォーム",
+    //       items: [
+    //         { href: "#", label: "Tally+ 顧客管理" },
+    //         { href: "#", label: "Tally Glass(AI)" },
+    //       ],
+    //     },
+    //     {
+    //       title: "分野別",
+    //       items: [
+    //         { href: "#", label: "電力" },
+    //         { href: "#", label: "ガス" },
+    //         { href: "#", label: "再生可能エネルギー" },
+    //         { href: "#", label: "EV" },
+    //         { href: "#", label: "BESS" },
+    //         { href: "#", label: "DER" },
+    //       ],
+    //     },
+    //   ],
+    // },
     { href: href("/services"), label: "サービス" },
     {
       label: "テクノロジー",

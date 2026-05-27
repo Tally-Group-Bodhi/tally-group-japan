@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { JPCtaSection } from "@/components/jp/cta-section";
 import {
   PressReleasesList,
   type PressRelease,
@@ -20,7 +19,7 @@ const pressReleases: PressRelease[] = [
     excerpt:
       "Tally Groupは、エネルギー分野の戦略コンサルティングおよび導入支援サービスをグローバルに提供するスキッピングストーンの買収を発表しました。スキッピングストーンは完全子会社として、従来のブランドを維持しながら事業運営を継続します。",
     href: "/news/press-releases/skipping-stone-acquisition",
-    image: "/corporate/SS Acquisition PR Image.png",
+    image: "/corporate/SS Acquisition PR Image JP.png",
     imageAlt: "Tally Group のスキッピングストーン買収に関する発表",
   },
 ];
@@ -37,7 +36,7 @@ export default function JPPressReleasesPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[36px] lg:text-[56px] font-light leading-[1.2] tracking-[-0.025em] text-navy max-w-[26ch] m-0">
+          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[26ch] m-0">
             プレスリリース
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch] m-0">
@@ -48,13 +47,6 @@ export default function JPPressReleasesPage() {
 
       {/* List */}
       <PressReleasesList releases={pressReleases} />
-
-      {/* Final CTA */}
-      <JPCtaSection
-        eyebrow="次のステップ"
-        title="お客様の事業に Tally+ がどのように貢献できるか、ご相談ください。"
-        description="業務課題、市場戦略、プラットフォーム導入計画について、お気軽にご相談ください。"
-      />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   TechBodyParagraph,
-  TechBulletList,
   TechCardGrid,
   TechHero,
   TechIntroBand,
@@ -63,27 +62,33 @@ export default function JPSecurityPage() {
       <TechIntroBand
         eyebrow="信頼性"
         heading="安心して導入いただくために"
+        large
         paragraphs={[
           "Tally+には、セキュリティ、プライバシー保護、安定した業務運用を支えるための仕組みが組み込まれています。",
           "エンタープライズ企業に求められる調達・リスク評価・コンプライアンス審査にも対応し、複雑かつ変化の多いエネルギー市場における安全で安定した運用を支援します。",
         ]}
-        pills={["コンプライアンス規制対応", "データ保護・整合性", "安定運用・障害対応"]}
+        pills={[
+          { label: "コンプライアンス規制対応", href: "#sec-compliance-heading" },
+          { label: "データ保護・整合性", href: "#sec-data-heading" },
+          { label: "安定運用・障害対応", href: "#sec-hosting-heading" },
+        ]}
       />
 
       <TechSection
         id="sec-principles-heading"
         eyebrow="基本方針"
-        heading="3 つの基本方針"
         lede="Tally は、以下の 3 つの基本方針に基づいてサービスを提供しています。"
+        large
       >
         <TechCardGrid items={principleCards} columns={3} />
       </TechSection>
 
       <TechSection
         id="sec-compliance-heading"
-        eyebrow="コンプライアンス"
+        eyebrow="コンプライアンス規制対応"
         heading="コンプライアンスおよび規制対応"
-        altBg
+        large
+        noBorder
         lede={
           <>
             <p className="m-0">
@@ -98,18 +103,30 @@ export default function JPSecurityPage() {
 
       <TechSection
         id="sec-data-heading"
-        eyebrow="データ保護"
+        eyebrow="データ保護・整合性"
         heading="データ保護と整合性"
+        large
         lede="Tally+では、機密性の高い顧客データや業務データを安全に保護するため、各種セキュリティ対策および運用管理を実施しています。"
       >
-        <TechBulletList items={dataProtectionItems} columns={2} />
+        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-[48px] gap-y-[36px] m-0 p-0">
+          {dataProtectionItems.map((item) => (
+            <div key={item.strong} className="flex flex-col gap-[10px]">
+              <span className="w-[28px] h-[2px] bg-turquoise" aria-hidden />
+              <dt className="text-[22px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy m-0">
+                {item.strong}
+              </dt>
+              <dd className="text-[20px] leading-[1.7] text-fg2 m-0">{item.text}</dd>
+            </div>
+          ))}
+        </dl>
       </TechSection>
 
       <TechSection
         id="sec-hosting-heading"
-        eyebrow="ホスティング"
+        eyebrow="安定運用・障害対応"
         heading="ホスティングと安定運用"
         altBg
+        large
         lede={
           <>
             <p className="m-0">
@@ -125,10 +142,11 @@ export default function JPSecurityPage() {
       <TechSection
         id="sec-assurance-heading"
         eyebrow="認証・監査"
-        heading="アシュアランス・認証情報"
+        heading="アシュアランスと認証情報"
+        large
         lede="タリーでは、NDA締結のもと、調達プロセスやセキュリティ審査に必要な各種資料を提供しています。"
       >
-        <TechBodyParagraph>
+        <TechBodyParagraph large>
           提供内容には、製品やホスティング構成、サービス範囲に応じて、セキュリティ対策の概要、認証情報、監査レポート、第三者評価資料などが含まれます。
         </TechBodyParagraph>
       </TechSection>

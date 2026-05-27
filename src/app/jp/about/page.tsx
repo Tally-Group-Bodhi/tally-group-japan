@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { HistoryTimeline, type TimelineEntry } from "@/components/about/history-timeline";
-import { JPCtaSection } from "@/components/jp/cta-section";
 
 export const metadata: Metadata = {
   title: "About",
@@ -142,11 +141,11 @@ export default function JPAboutPage() {
         background: "radial-gradient(ellipse 900px 500px at 15% 0%, rgba(0,210,162,0.06), transparent 60%), linear-gradient(to bottom, #F9F9FB 0%, #FFFFFF 100%)"
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[44px] lg:text-[64px] font-light leading-[1.15] tracking-[-0.025em] text-navy">
+          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[36ch] m-0">
             世界水準の顧客体験と顧客管理ソリューションを提供します
           </h1>
 
-          <div className="mt-[20px] text-[19px] leading-[1.7] text-fg2 max-w-[60ch] flex flex-col gap-[16px]">
+          <div className="mt-[20px] text-[20px] leading-[1.7] text-fg2 max-w-[60ch] flex flex-col gap-[16px]">
             <p className="m-0">
               Tally Groupは、世界各地で実績のあるソリューションにより、ユーティリティ、エネルギー小売事業者、エネルギー転換サービス企業に対し、エンドツーエンドの顧客体験および顧客管理ソリューションを提供します。
             </p>
@@ -185,16 +184,16 @@ export default function JPAboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               会社情報
             </div>
-            <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.15] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
               会社概要
             </h2>
-            <p className="mt-[16px] text-[17px] leading-[1.7] text-fg2 m-0">
+            <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0">
               日本法人の登記情報および基本情報の概要です。
             </p>
           </div>
 
           <div className="max-w-[820px]">
-            <p className="text-[15px] leading-[1.75] text-fg2 m-0 mb-[24px]">
+            <p className="text-[20px] leading-[1.7] text-fg2 m-0 mb-[24px]">
               グループ全体の紹介や沿革については会社情報をご覧ください。本ページでは日本における法人の概要をまとめています。
             </p>
 
@@ -240,7 +239,7 @@ export default function JPAboutPage() {
                 <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
                 日本リーダーシップ
               </div>
-              <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
+              <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
                 日本市場における事業成長とお客様支援を担う、日本チームのリーダーをご紹介します。
               </h2>
             </div>
@@ -264,10 +263,10 @@ export default function JPAboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               グローバルリーダーシップ
             </div>
-            <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
               長期的な価値創出にコミットするグローバル経営陣です。
             </h2>
-            <p className="mt-[16px] text-sm leading-[1.55] text-fg2 m-0 max-w-[52ch]">
+            <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
               Tally Groupの経営リーダーをご紹介します。
             </p>
           </div>
@@ -298,7 +297,7 @@ export default function JPAboutPage() {
                     </p>
                   </div>
                 </div>
-                <p className="m-0 text-sm leading-[1.55] text-fg2">
+                <p className="m-0 text-sm leading-[1.7] text-fg2">
                   {leader.bio}
                 </p>
               </article>
@@ -318,7 +317,7 @@ export default function JPAboutPage() {
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               企業理念
             </div>
-            <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.1] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
               お客様、お客様のエンドユーザー、そして従業員へのコミットメントを大切にしています。
             </h2>
           </div>
@@ -343,8 +342,6 @@ export default function JPAboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <JPCtaSection />
     </>
   );
 }
@@ -392,7 +389,7 @@ function LeaderCard({
           <p className="m-0 text-sm text-fg2">{leader.role}</p>
         </div>
       </div>
-      <p className="m-0 text-sm leading-[1.55] text-fg2">{leader.bio}</p>
+      <p className="m-0 text-sm leading-[1.7] text-fg2">{leader.bio}</p>
     </article>
   );
 }
@@ -432,7 +429,7 @@ function CommitmentColumn({
             <div className="w-9 h-9 shrink-0 rounded-[8px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
               <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
             </div>
-            <span className="text-sm text-fg2 leading-[1.55] pt-[6px]">{item.text}</span>
+            <span className="text-sm text-fg2 leading-[1.7] pt-[6px]">{item.text}</span>
           </li>
         ))}
       </ul>

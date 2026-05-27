@@ -60,7 +60,7 @@ export function ContactSectionAEEn() {
     status === "loading"
       ? "Subscribing…"
       : status === "success"
-        ? "Check your inbox"
+        ? "Subscribed"
         : status === "already"
           ? "Already subscribed"
           : "Subscribe";
@@ -203,7 +203,7 @@ export function ContactSectionAEEn() {
                   role="status"
                   className="text-[14px] leading-[1.5] text-navy"
                 >
-                  Almost there — check your inbox to confirm your subscription.
+                  Thanks — you&apos;re subscribed to our newsletter.
                 </p>
               )}
               {status === "already" && (

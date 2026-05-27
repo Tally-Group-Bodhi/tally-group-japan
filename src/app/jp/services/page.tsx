@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
-import { JPCtaSection } from "@/components/jp/cta-section";
 
 export const metadata: Metadata = {
   title: "サービス",
@@ -57,7 +56,7 @@ function BulletList({
       {items.map((item) => (
         <li
           key={item}
-          className="text-sm leading-[1.7] text-fg2 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:w-[6px] before:h-[6px] before:rounded-full before:bg-turquoise"
+          className="text-[20px] leading-[1.7] text-fg2 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:w-[6px] before:h-[6px] before:rounded-full before:bg-turquoise"
         >
           {item}
         </li>
@@ -295,11 +294,11 @@ function ServiceContent({ service }: { service: ServiceBlock }) {
     <div>
       <h2
         id={service.id}
-        className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+        className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
       >
         {service.title}
       </h2>
-      <p className="mt-[16px] text-[15px] leading-[1.75] text-fg2 m-0 max-w-[52ch]">
+      <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
         {service.description}
       </p>
       {service.capabilities && (
@@ -459,11 +458,11 @@ export default function JPServicesPage() {
             <SectionEyebrow>プロセス</SectionEyebrow>
             <h2
               id="framework-heading"
-              className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+              className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
             >
               お客様へのサポート体制
             </h2>
-            <p className="mt-[16px] text-[15px] leading-[1.75] text-fg2 m-0 max-w-[52ch]">
+            <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
               当社のサービスは、プラットフォーム導入から事業成長まで、組織のライフサイクル全体を支援するよう設計されています。
             </p>
           </div>
@@ -509,7 +508,7 @@ export default function JPServicesPage() {
             <SectionEyebrow>EXPERIENCE</SectionEyebrow>
             <h2
               id="experience-heading"
-              className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+              className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
             >
               実績と専門性
             </h2>
@@ -541,7 +540,7 @@ export default function JPServicesPage() {
             <SectionEyebrow>FAQ</SectionEyebrow>
             <h2
               id="faq-heading"
-              className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+              className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
             >
               よくあるご質問
             </h2>
@@ -553,7 +552,7 @@ export default function JPServicesPage() {
                 key={faq.q}
                 className="group px-[24px] py-[20px] [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex items-start justify-between gap-[16px] cursor-pointer list-none text-[15px] font-semibold text-navy leading-[1.6]">
+                <summary className="flex items-start justify-between gap-[16px] cursor-pointer list-none text-[20px] font-semibold text-navy leading-[1.5]">
                   <span>{faq.q}</span>
                   <span
                     className="material-symbols-outlined text-[22px] text-turquoise shrink-0 transition-transform group-open:rotate-45"
@@ -562,15 +561,13 @@ export default function JPServicesPage() {
                     add
                   </span>
                 </summary>
-                <div className="mt-[12px] text-sm leading-[1.75] text-fg2">{faq.a}</div>
+                <div className="mt-[12px] text-[20px] leading-[1.7] text-fg2">{faq.a}</div>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <JPCtaSection />
     </>
   );
 }

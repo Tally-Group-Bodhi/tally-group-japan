@@ -2,6 +2,8 @@ import { MarketingLink } from "@/components/marketing/marketing-link";
 
 export type BulletItem = { strong?: string; text: React.ReactNode };
 
+export type TechIntroPill = string | { label: string; href: string };
+
 export function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
@@ -47,39 +49,64 @@ export function TechIntroBand({
   paragraphs,
   pills,
   keywords,
+  large = false,
 }: {
   eyebrow?: string;
   heading: string;
   paragraphs: React.ReactNode[];
-  pills?: string[];
+  pills?: TechIntroPill[];
   keywords?: string[];
+  large?: boolean;
 }) {
+  const pillClassName =
+    "inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium bg-white text-navy border border-stroke1";
+  const pillLinkClassName = `${pillClassName} hover:border-navy/25 transition-colors`;
+
+  const headingClass = large
+    ? "text-[30px] font-light leading-[1.3] tracking-[-0.01em] text-navy m-0"
+    : "text-[22px] lg:text-[26px] font-light leading-[1.3] tracking-[-0.01em] text-navy m-0";
+  const paragraphClass = large
+    ? "text-[20px] leading-[1.7] text-fg2 m-0"
+    : "text-[15px] leading-[1.75] text-fg2 m-0";
+
   return (
     <section className="bg-bg2 py-[48px] lg:py-[56px] border-b border-stroke1">
       <div className="max-w-[1240px] mx-auto px-8">
         <div className="max-w-[760px]">
           {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
-          <h2 className="text-[22px] lg:text-[26px] font-light leading-[1.3] tracking-[-0.01em] text-navy m-0">
-            {heading}
-          </h2>
+          <h2 className={headingClass}>{heading}</h2>
           <div className="mt-[16px] flex flex-col gap-3">
             {paragraphs.map((p, i) => (
-              <p key={i} className="text-[15px] leading-[1.75] text-fg2 m-0">
+              <p key={i} className={paragraphClass}>
                 {p}
               </p>
             ))}
           </div>
           {pills && pills.length > 0 && (
             <div role="list" className="flex flex-wrap gap-2 mt-[24px]">
-              {pills.map((pill) => (
-                <span
-                  key={pill}
-                  role="listitem"
-                  className="inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium bg-white text-navy border border-stroke1"
-                >
-                  {pill}
-                </span>
-              ))}
+              {pills.map((pill) => {
+                const label = typeof pill === "string" ? pill : pill.label;
+                const href = typeof pill === "string" ? undefined : pill.href;
+
+                if (href) {
+                  return (
+                    <MarketingLink
+                      key={label}
+                      href={href}
+                      role="listitem"
+                      className={pillLinkClassName}
+                    >
+                      {label}
+                    </MarketingLink>
+                  );
+                }
+
+                return (
+                  <span key={label} role="listitem" className={pillClassName}>
+                    {label}
+                  </span>
+                );
+              })}
             </div>
           )}
           {keywords && keywords.length > 0 && (
@@ -107,6 +134,8 @@ export function TechSection({
   heading,
   lede,
   altBg = false,
+  large = false,
+  noBorder = false,
   children,
 }: {
   id?: string;
@@ -114,11 +143,19 @@ export function TechSection({
   heading?: string;
   lede?: React.ReactNode;
   altBg?: boolean;
+  large?: boolean;
+  noBorder?: boolean;
   children?: React.ReactNode;
 }) {
+  const headingSizeClass = large ? "text-[30px]" : "text-[30px] lg:text-[40px]";
+  const ledeWrapperClass = large
+    ? "mt-[16px] text-[20px] leading-[1.7] text-fg2 max-w-[60ch]"
+    : "mt-[16px] text-[15px] leading-[1.75] text-fg2 max-w-[60ch]";
+  const borderClass = noBorder ? "" : "border-b border-stroke1";
+
   return (
     <section
-      className={`py-[80px] lg:py-[96px] border-b border-stroke1 ${altBg ? "bg-bg2" : "bg-white"}`}
+      className={`py-[80px] lg:py-[96px] ${borderClass} ${altBg ? "bg-bg2" : "bg-white"}`}
       aria-labelledby={id}
     >
       <div className="max-w-[1240px] mx-auto px-8">
@@ -128,13 +165,13 @@ export function TechSection({
             {heading && (
               <h2
                 id={id}
-                className="text-[30px] lg:text-[40px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+                className={`${headingSizeClass} font-light leading-[1.25] tracking-[-0.02em] text-navy m-0${id ? " scroll-mt-[88px]" : ""}`}
               >
                 {heading}
               </h2>
             )}
             {lede && (
-              <div className="mt-[16px] text-[15px] leading-[1.75] text-fg2 max-w-[60ch]">
+              <div className={ledeWrapperClass}>
                 {typeof lede === "string" ? <p className="m-0">{lede}</p> : lede}
               </div>
             )}
@@ -157,21 +194,29 @@ export function TechSubheading({ children, id }: { children: React.ReactNode; id
   );
 }
 
-export function TechBodyParagraph({ children }: { children: React.ReactNode }) {
+export function TechBodyParagraph({
+  children,
+  large = false,
+}: {
+  children: React.ReactNode;
+  large?: boolean;
+}) {
+  const sizeClass = large ? "text-[20px] leading-[1.7]" : "text-[15px] leading-[1.75]";
   return (
-    <p className="text-[15px] leading-[1.75] text-fg2 max-w-[60ch] m-0 mt-[16px] first:mt-0">
-      {children}
-    </p>
+    <p className={`${sizeClass} text-fg2 max-w-[60ch] m-0 mt-[16px] first:mt-0`}>{children}</p>
   );
 }
 
 export function TechBulletList({
   items,
   columns = 1,
+  large = false,
 }: {
   items: BulletItem[];
   columns?: 1 | 2;
+  large?: boolean;
 }) {
+  const itemSizeClass = large ? "text-[20px] leading-[1.7]" : "text-[15px] leading-[1.75]";
   return (
     <ul
       className={`grid gap-x-6 gap-y-3 list-none m-0 p-0 ${
@@ -181,7 +226,7 @@ export function TechBulletList({
       {items.map((item, i) => (
         <li
           key={i}
-          className="text-[15px] leading-[1.75] text-fg2 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-[6px] before:h-[6px] before:rounded-full before:bg-turquoise"
+          className={`${itemSizeClass} text-fg2 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-[6px] before:h-[6px] before:rounded-full before:bg-turquoise`}
         >
           {item.strong ? (
             <>
@@ -228,7 +273,7 @@ export function TechCardGrid({
               <span className="material-symbols-outlined text-[22px]">{item.icon}</span>
             </div>
           )}
-          <h3 className="text-[19px] font-semibold leading-[1.4] tracking-[-0.01em] text-fg1 m-0">
+          <h3 className="text-[17px] font-semibold leading-[1.4] tracking-[-0.01em] text-fg1 m-0 text-balance">
             {item.title}
           </h3>
           <p className="text-[14px] leading-[1.7] text-fg2 m-0">{item.body}</p>
