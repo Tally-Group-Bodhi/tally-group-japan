@@ -77,7 +77,7 @@ function buildJPColumns(href: (path: string) => string): FooterColumn[] {
     {
       title: "Technology",
       links: [
-        { label: "Services", href: href("/services") },
+        { label: "Services", href: href("/services-beta") },
         { label: "Architecture", href: href("/technology/architecture") },
         { label: "Security", href: href("/technology/security") },
         { label: "Audit", href: href("/technology/audit") },

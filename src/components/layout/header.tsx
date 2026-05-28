@@ -172,7 +172,7 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
     //     },
     //   ],
     // },
-    { href: href("/services"), label: "サービス" },
+    { href: href("/services-beta"), label: "サービス" },
     {
       label: "テクノロジー",
       hasMenu: true,
