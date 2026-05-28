@@ -8,7 +8,7 @@ type JPCtaSectionProps = {
   primaryHref?: string;
   primaryLabel?: string;
   secondaryHref?: string;
-  secondaryLabel?: string;
+  secondaryLabel?: string | null;
 };
 
 export function JPCtaSection({
@@ -62,12 +62,14 @@ export function JPCtaSection({
                 arrow_forward
               </span>
             </MarketingLink>
-            <MarketingLink
-              href={secondaryHref}
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold text-white border border-white/40 hover:bg-white/10 transition-all"
-            >
-              {secondaryLabel}
-            </MarketingLink>
+            {secondaryLabel ? (
+              <MarketingLink
+                href={secondaryHref}
+                className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold text-white border border-white/40 hover:bg-white/10 transition-all"
+              >
+                {secondaryLabel}
+              </MarketingLink>
+            ) : null}
           </div>
         </div>
       </div>
