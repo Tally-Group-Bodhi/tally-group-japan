@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HomeBetaQuadGrid } from "@/components/home/jp/home-beta-quad-grid";
+import { StatsSection } from "@/components/home/stats-section";
 
 export const metadata: Metadata = {
   title: "ホーム (Beta)",
@@ -8,5 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default function JPHomeBetaPage() {
-  return <HomeBetaQuadGrid />;
+  return (
+    <>
+      <HomeBetaQuadGrid />
+      <div className="pb-16 sm:pb-20 lg:pb-24">
+        <StatsSection />
+      </div>
+    </>
+  );
 }
