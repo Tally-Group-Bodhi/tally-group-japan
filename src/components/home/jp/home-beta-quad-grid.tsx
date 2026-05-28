@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   Bot,
@@ -113,33 +113,16 @@ const isRightCorner = (corner: Corner) => corner === "tr" || corner === "br";
 
 export function HomeBetaQuadGrid() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const auraX = useSpring(mouseX, { stiffness: 70, damping: 22, mass: 0.6 });
-  const auraY = useSpring(mouseY, { stiffness: 70, damping: 22, mass: 0.6 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
 
   return (
     <section className="relative h-[100dvh] flex flex-col bg-white pt-[84px] px-4 sm:px-6 pb-4 sm:pb-6">
       <div className="px-2 py-4 sm:py-5 lg:py-6 text-center">
-        <h1 className="text-[20px] sm:text-[26px] lg:text-[34px] font-light leading-[1.2] tracking-[-0.01em] text-navy">
+        <h1 className="text-[28px] sm:text-[40px] lg:text-[56px] font-light leading-[1.15] tracking-[-0.015em] text-navy">
           Tally+ Your Ai Enabled Retail Energy Platform
         </h1>
       </div>
 
-      <div
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        className="relative flex-1 min-h-0 rounded-[20px] overflow-hidden"
-      >
+      <div className="relative flex-1 min-h-0 rounded-[20px] overflow-hidden">
         <Image
           src="/hero-bg.jpg"
           alt=""
@@ -153,54 +136,12 @@ export function HomeBetaQuadGrid() {
           className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/60"
         />
 
-        <motion.div
+        <div
           aria-hidden
-          className="absolute -top-[20%] -left-[10%] h-[55vmin] w-[55vmin] rounded-full blur-3xl mix-blend-screen pointer-events-none"
+          className="absolute top-[30%] left-[40%] h-[55vmin] w-[55vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl pointer-events-none opacity-60"
           style={{
             background:
-              "radial-gradient(circle, rgba(0, 210, 162, 0.35) 0%, transparent 65%)",
-          }}
-          animate={{
-            x: ["0%", "30%", "10%", "0%"],
-            y: ["0%", "20%", "40%", "0%"],
-          }}
-          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden
-          className="absolute -bottom-[15%] -right-[10%] h-[60vmin] w-[60vmin] rounded-full blur-3xl mix-blend-screen pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(74, 111, 176, 0.45) 0%, transparent 65%)",
-          }}
-          animate={{
-            x: ["0%", "-25%", "-10%", "0%"],
-            y: ["0%", "-15%", "-30%", "0%"],
-          }}
-          transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden
-          className="absolute top-[30%] left-[40%] h-[40vmin] w-[40vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl mix-blend-screen pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0, 184, 144, 0.30) 0%, transparent 65%)",
-          }}
-          animate={{
-            x: ["-10%", "20%", "-15%", "-10%"],
-            y: ["-10%", "10%", "20%", "-10%"],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <motion.div
-          aria-hidden
-          className="absolute h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl mix-blend-screen pointer-events-none"
-          style={{
-            left: auraX,
-            top: auraY,
-            background:
-              "radial-gradient(circle, rgba(0, 210, 162, 0.32) 0%, rgba(255, 255, 255, 0.06) 35%, transparent 70%)",
+              "radial-gradient(circle, rgba(0, 184, 144, 0.35) 0%, transparent 65%)",
           }}
         />
 
@@ -218,7 +159,7 @@ export function HomeBetaQuadGrid() {
                 onTapStart={() => setHoveredId(q.id)}
                 animate={{ opacity: isDimmed ? 0.55 : 1 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative cursor-pointer overflow-hidden rounded-[28px] border border-white/25 backdrop-blur-[40px] backdrop-saturate-150 shadow-[0_24px_60px_rgba(0,0,0,0.4)]"
+                className="relative cursor-pointer overflow-hidden rounded-[14px] border border-white/25 backdrop-blur-md shadow-[0_24px_60px_rgba(0,0,0,0.4)]"
                 style={{ backgroundColor: q.tint }}
               >
                 <motion.div
@@ -233,22 +174,22 @@ export function HomeBetaQuadGrid() {
 
                 <div
                   aria-hidden
-                  className="absolute inset-x-0 top-0 h-1/2 rounded-t-[28px] bg-gradient-to-b from-white/15 to-transparent pointer-events-none"
+                  className="absolute inset-x-0 top-0 h-1/2 rounded-t-[14px] bg-gradient-to-b from-white/15 to-transparent pointer-events-none"
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 pointer-events-none rounded-[28px] ring-1 ring-inset ring-white/20"
+                  className="absolute inset-0 pointer-events-none rounded-[14px] ring-1 ring-inset ring-white/20"
                 />
 
                 <div
-                  className={`relative h-full w-full p-8 sm:p-12 lg:p-16 flex flex-col ${cornerAnchor[q.corner]}`}
+                  className={`relative h-full w-full p-5 sm:p-7 lg:p-9 flex flex-col ${cornerAnchor[q.corner]}`}
                 >
                   <motion.div
                     animate={{ y: isHovered ? -6 : 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   >
                     <h2
-                      className={`text-[30px] sm:text-[44px] lg:text-[64px] font-light leading-[1.1] tracking-[-0.02em] text-white max-w-[16ch] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] ${q.singleLine ? "lg:text-[56px] lg:max-w-none lg:whitespace-nowrap" : ""}`}
+                      className={`text-[18px] sm:text-[24px] lg:text-[34px] font-light leading-[1.15] tracking-[-0.02em] text-white max-w-[16ch] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] ${q.singleLine ? "lg:text-[30px] lg:max-w-none lg:whitespace-nowrap" : ""}`}
                     >
                       {q.title}
                     </h2>
@@ -256,15 +197,15 @@ export function HomeBetaQuadGrid() {
                     {q.subItems ? (
                       <>
                         <ul
-                          className={`lg:hidden mt-5 sm:mt-6 flex flex-col gap-1.5 sm:gap-2 ${reverse ? "items-end" : "items-start"}`}
+                          className={`lg:hidden mt-4 sm:mt-5 flex flex-col gap-1 sm:gap-1.5 ${reverse ? "items-end" : "items-start"}`}
                         >
                           {q.subItems.map(({ label, icon: Icon }) => (
                             <li
                               key={label}
-                              className={`flex items-center gap-2.5 sm:gap-3 text-[15px] sm:text-[17px] font-medium text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] ${reverse ? "flex-row-reverse" : ""}`}
+                              className={`flex items-center gap-2 sm:gap-2.5 text-[13px] sm:text-[15px] font-medium text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] ${reverse ? "flex-row-reverse" : ""}`}
                             >
                               <Icon
-                                className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] shrink-0 text-white/75"
+                                className="h-[14px] w-[14px] sm:h-[16px] sm:w-[16px] shrink-0 text-white/75"
                                 strokeWidth={1.75}
                                 aria-hidden
                               />
@@ -288,7 +229,7 @@ export function HomeBetaQuadGrid() {
                                 }}
                               >
                                 <motion.ul
-                                  className="mt-8 flex flex-col gap-2.5"
+                                  className="mt-6 flex flex-col gap-2"
                                   initial="hide"
                                   animate="show"
                                   exit="hide"
@@ -315,10 +256,10 @@ export function HomeBetaQuadGrid() {
                                         hide: { opacity: 0, y: 6 },
                                       }}
                                       transition={{ duration: 0.28, ease: "easeOut" }}
-                                      className={`flex items-center gap-3 text-[22px] font-medium text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] ${reverse ? "flex-row-reverse" : ""}`}
+                                      className={`flex items-center gap-2.5 text-[16px] font-medium text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] ${reverse ? "flex-row-reverse" : ""}`}
                                     >
                                       <Icon
-                                        className="h-[22px] w-[22px] shrink-0 text-white/75"
+                                        className="h-[17px] w-[17px] shrink-0 text-white/75"
                                         strokeWidth={1.75}
                                         aria-hidden
                                       />
@@ -361,16 +302,42 @@ export function HomeBetaQuadGrid() {
 
         <div className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center">
           <motion.div
-            animate={{ scale: hoveredId ? 1.06 : 1 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="relative"
+            animate={{
+              scale: hoveredId ? 1.06 : 1,
+              y: hoveredId ? -8 : 0,
+            }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
+            <motion.div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[180%] rounded-full blur-3xl pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(0,210,162,0.42) 0%, rgba(0,210,162,0.18) 35%, transparent 70%)",
+              }}
+              animate={{ opacity: hoveredId ? 1 : 0.7 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+
+            <motion.div
+              aria-hidden
+              className="absolute left-1/2 bottom-[-14%] -translate-x-1/2 w-[85%] h-[18%] rounded-[50%] blur-2xl pointer-events-none"
+              style={{ background: "rgba(0,0,0,0.55)" }}
+              animate={{
+                opacity: hoveredId ? 0.85 : 0.6,
+                scaleX: hoveredId ? 1.05 : 1,
+              }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+
             <Image
               src="/brand/AdoraAiCompact.svg"
               alt="Adora AI"
               width={176}
               height={87}
               priority
-              className="w-[200px] sm:w-[260px] lg:w-[320px] h-auto drop-shadow-[0_16px_40px_rgba(0,0,0,0.55)]"
+              className="relative w-[150px] sm:w-[190px] lg:w-[230px] h-auto drop-shadow-[0_16px_36px_rgba(0,0,0,0.55)]"
             />
           </motion.div>
         </div>

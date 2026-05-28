@@ -23,19 +23,21 @@ type Props = {
 };
 
 export function PixelWave({
-  spacing = 26,
+  spacing = 44,
   radius = 170,
   pushStrength = 14,
   spring = 0.06,
   damping = 0.86,
-  dotRadius = 1.1,
-  baseAlpha = 0.10,
+  dotRadius = 1.2,
+  baseAlpha = 0.12,
   color = "255, 255, 255",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const mouseRef = useRef({ x: -10000, y: -10000 });
   const rafRef = useRef<number>(0);
+  const runningRef = useRef(false);
+  const visibleRef = useRef(true);
   const lastSizeRef = useRef({ w: 0, h: 0 });
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export function PixelWave({
     if (!ctx) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = 1;
 
     const setup = () => {
       const rect = parent.getBoundingClientRect();
@@ -81,7 +83,20 @@ export function PixelWave({
     const ro = new ResizeObserver(() => setup());
     ro.observe(parent);
 
+    const start = () => {
+      if (runningRef.current) return;
+      runningRef.current = true;
+      rafRef.current = requestAnimationFrame(draw);
+    };
+
+    const stop = () => {
+      if (!runningRef.current) return;
+      runningRef.current = false;
+      cancelAnimationFrame(rafRef.current);
+    };
+
     const draw = () => {
+      if (!runningRef.current) return;
       const { width, height } = parent.getBoundingClientRect();
       ctx.clearRect(0, 0, width, height);
 
@@ -126,7 +141,7 @@ export function PixelWave({
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    rafRef.current = requestAnimationFrame(draw);
+    start();
 
     const onMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -138,13 +153,37 @@ export function PixelWave({
       mouseRef.current.y = -10000;
     };
 
-    window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("mouseout", onLeave);
+    const onVisibility = () => {
+      if (document.hidden) {
+        stop();
+      } else if (visibleRef.current) {
+        start();
+      }
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting && !document.hidden) {
+          start();
+        } else {
+          stop();
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(parent);
+
+    parent.addEventListener("mousemove", onMove, { passive: true });
+    parent.addEventListener("mouseleave", onLeave);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseout", onLeave);
+      stop();
+      parent.removeEventListener("mousemove", onMove);
+      parent.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
+      io.disconnect();
       ro.disconnect();
     };
   }, [spacing, radius, pushStrength, spring, damping, dotRadius, baseAlpha, color]);
@@ -153,7 +192,7 @@ export function PixelWave({
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="absolute inset-0 h-full w-full pointer-events-none mix-blend-screen"
+      className="absolute inset-0 h-full w-full pointer-events-none"
     />
   );
 }
