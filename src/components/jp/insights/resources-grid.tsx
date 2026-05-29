@@ -12,15 +12,8 @@ export type Whitepaper = {
 
 export type Webinar = {
   kind: "webinar";
-  title: string;
-  description: string;
-  href: string;
-  date: string;
-  dateISO: string;
-  duration: string;
-  speaker: string;
-  role: string;
-  tone: 1 | 2 | 3 | 4;
+  videoId: string;
+  thumbnail: string;
 };
 
 export type Resource = Whitepaper | Webinar;
@@ -30,40 +23,6 @@ type KindFilter = "" | "whitepaper" | "webinar";
 const KIND_LABELS: Record<Exclude<KindFilter, "">, string> = {
   whitepaper: "ホワイトペーパー",
   webinar: "ウェビナー",
-};
-
-const MEDIA_TONES: Record<
-  1 | 2 | 3 | 4,
-  { gradient: string; pattern: string; iconColor: string }
-> = {
-  1: {
-    gradient:
-      "linear-gradient(135deg, #1E2840 0%, #2C365D 55%, #0B7A66 100%)",
-    pattern:
-      "radial-gradient(circle at 85% 20%, rgba(0,210,162,0.35), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
-  2: {
-    gradient:
-      "linear-gradient(135deg, #0B5468 0%, #1A88A0 55%, #00D2A2 100%)",
-    pattern:
-      "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
-  3: {
-    gradient:
-      "linear-gradient(135deg, #2C365D 0%, #3F4F8F 55%, #5A7BBF 100%)",
-    pattern:
-      "radial-gradient(circle at 75% 75%, rgba(0,210,162,0.28), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
-  4: {
-    gradient:
-      "linear-gradient(135deg, #2C365D 0%, #5B3F7A 50%, #C77B4A 100%)",
-    pattern:
-      "radial-gradient(circle at 30% 80%, rgba(255,210,140,0.28), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
 };
 
 const WHITEPAPER_TILE = {
@@ -183,7 +142,11 @@ export function ResourcesGrid({ resources }: { resources: Resource[] }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
               {filtered.map((resource, i) => (
                 <motion.div
-                  key={`${resource.kind}-${resource.title}`}
+                  key={
+                    resource.kind === "webinar"
+                      ? `webinar-${resource.videoId}`
+                      : `whitepaper-${resource.title}`
+                  }
                   custom={i}
                   initial="hidden"
                   whileInView="visible"
@@ -202,102 +165,109 @@ export function ResourcesGrid({ resources }: { resources: Resource[] }) {
 }
 
 function ResourceCard({ resource }: { resource: Resource }) {
-  const isWebinar = resource.kind === "webinar";
-  const tone = isWebinar ? MEDIA_TONES[resource.tone] : null;
-  const eyebrow = isWebinar
-    ? `ウェビナー · ${resource.duration}`
-    : "ホワイトペーパー";
-  const cta = isWebinar ? "視聴する" : "PDFを見る";
+  if (resource.kind === "webinar") {
+    return (
+      <WebinarCard videoId={resource.videoId} thumbnail={resource.thumbnail} />
+    );
+  }
 
   return (
     <article className="group relative h-full bg-white border border-stroke1 rounded-2xl overflow-hidden flex flex-col transition-all hover:border-navy/30 hover:shadow-[0_12px_36px_rgba(44,54,93,0.10)]">
       <a
         href={resource.href}
-        aria-label={`${resource.title}（${eyebrow}）`}
+        aria-label={`${resource.title}（ホワイトペーパー）`}
         className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
       >
-        <span className="sr-only">{cta}</span>
+        <span className="sr-only">PDFを見る</span>
       </a>
 
       <div
         className="relative aspect-[16/10] overflow-hidden"
         role="img"
-        aria-label={isWebinar ? "ウェビナー プレビュー" : "ホワイトペーパー プレビュー"}
-        style={{
-          background: tone ? tone.gradient : WHITEPAPER_TILE.gradient,
-        }}
+        aria-label="ホワイトペーパー プレビュー"
+        style={{ background: WHITEPAPER_TILE.gradient }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: tone ? tone.pattern : WHITEPAPER_TILE.pattern }}
+          style={{ background: WHITEPAPER_TILE.pattern }}
           aria-hidden
         />
         <div className="absolute inset-0 grid place-items-center">
-          {isWebinar ? (
-            <span className="grid place-items-center w-[72px] h-[72px] rounded-full bg-white/20 border-2 border-white/45 text-white transition-transform group-hover:scale-105">
-              <span
-                className="material-symbols-outlined text-[34px] translate-x-[2px]"
-                aria-hidden
-              >
-                play_arrow
-              </span>
-            </span>
-          ) : (
-            <span
-              className="material-symbols-outlined text-[88px]"
-              style={{ color: "rgba(11, 122, 102, 0.85)" }}
-              aria-hidden
-            >
-              description
-            </span>
-          )}
-        </div>
-        <span className="absolute top-[12px] right-[12px] inline-flex items-center gap-1 px-[10px] py-[5px] rounded-full bg-black/55 text-white text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-sm">
           <span
-            className="material-symbols-outlined text-[14px]"
+            className="material-symbols-outlined text-[88px]"
+            style={{ color: "rgba(11, 122, 102, 0.85)" }}
             aria-hidden
           >
-            {isWebinar ? "play_circle" : "picture_as_pdf"}
+            description
           </span>
-          {isWebinar ? "動画" : "PDF"}
+        </div>
+        <span className="absolute top-[12px] right-[12px] inline-flex items-center gap-1 px-[10px] py-[5px] rounded-full bg-black/55 text-white text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-sm">
+          <span className="material-symbols-outlined text-[14px]" aria-hidden>
+            picture_as_pdf
+          </span>
+          PDF
         </span>
       </div>
 
       <div className="p-[24px] flex flex-col flex-1">
         <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-fg2 m-0">
-          {eyebrow}
+          ホワイトペーパー
         </p>
         <h3 className="mt-[8px] text-[18px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy m-0">
           {resource.title}
         </h3>
 
-        {isWebinar && (
-          <p className="mt-[10px] text-[12.5px] font-semibold text-fg2 m-0">
-            <time dateTime={resource.dateISO}>{resource.date}</time>
-          </p>
-        )}
-
         <p className="mt-[14px] text-[14px] leading-[1.7] text-fg2 m-0 flex-1">
           {resource.description}
         </p>
 
-        {isWebinar && (
-          <p className="mt-[16px] text-[12.5px] leading-[1.5] text-fg2 m-0">
-            <strong className="font-semibold text-fg1">
-              {resource.speaker}
-            </strong>
-            、{resource.role}
-          </p>
-        )}
-
         <div className="mt-auto pt-[20px]">
           <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-navy group-hover:text-turquoise transition-colors">
-            {cta}
+            PDFを見る
+            <span className="material-symbols-outlined text-[18px]" aria-hidden>
+              arrow_forward
+            </span>
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function WebinarCard({
+  videoId,
+  thumbnail,
+}: {
+  videoId: string;
+  thumbnail: string;
+}) {
+  return (
+    <article className="group relative h-full bg-white border border-stroke1 rounded-2xl overflow-hidden flex flex-col transition-all hover:border-navy/30 hover:shadow-[0_12px_36px_rgba(44,54,93,0.10)]">
+      <a
+        href={`https://www.youtube.com/watch?v=${videoId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ウェビナーを視聴する"
+        className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
+      >
+        <span className="sr-only">視聴する</span>
+      </a>
+
+      <div className="relative aspect-video overflow-hidden bg-black">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={thumbnail}
+          alt="ウェビナー サムネイル"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 grid place-items-center">
+          <span className="grid place-items-center w-[72px] h-[72px] rounded-full bg-black/45 border-2 border-white/70 text-white transition-transform group-hover:scale-105">
             <span
-              className="material-symbols-outlined text-[18px]"
+              className="material-symbols-outlined text-[34px] translate-x-[2px]"
               aria-hidden
             >
-              arrow_forward
+              play_arrow
             </span>
           </span>
         </div>

@@ -44,8 +44,8 @@ const quadrants: Quadrant[] = [
   {
     id: "order-to-cash",
     title: "Order to Cash",
-    tint: "rgba(14, 26, 54, 0.32)",
-    glow: "rgba(0, 210, 162, 0.28)",
+    tint: "rgba(185, 188, 203, 0.8)",
+    glow: "rgba(185, 188, 203, 0.6)",
     corner: "tl",
     subItems: [
       { label: "Billing", icon: Receipt },
@@ -57,8 +57,8 @@ const quadrants: Quadrant[] = [
   {
     id: "customer-engagement",
     title: "Customer Engagement",
-    tint: "rgba(30, 40, 64, 0.28)",
-    glow: "rgba(0, 210, 162, 0.26)",
+    tint: "rgba(215, 200, 244, 0.8)",
+    glow: "rgba(215, 200, 244, 0.6)",
     corner: "tr",
     singleLine: true,
     subItems: [
@@ -71,8 +71,8 @@ const quadrants: Quadrant[] = [
   {
     id: "transition-products",
     title: "Transition Products",
-    tint: "rgba(44, 54, 93, 0.28)",
-    glow: "rgba(0, 210, 162, 0.24)",
+    tint: "rgba(174, 215, 204, 0.8)",
+    glow: "rgba(174, 215, 204, 0.6)",
     corner: "bl",
     subItems: [
       { label: "Demand Response", icon: Zap },
@@ -84,8 +84,8 @@ const quadrants: Quadrant[] = [
   {
     id: "sales-management",
     title: "Sales Management",
-    tint: "rgba(74, 111, 176, 0.24)",
-    glow: "rgba(255, 255, 255, 0.26)",
+    tint: "rgba(188, 218, 251, 0.8)",
+    glow: "rgba(188, 218, 251, 0.6)",
     corner: "br",
     subItems: [
       { label: "Price Plans", icon: Tag },

@@ -13,42 +13,23 @@ export const metadata: Metadata = {
 const resources: Resource[] = [
   {
     kind: "webinar",
-    title: "2026年の小売電気：商品スピードとリスク",
-    date: "2026年3月18日",
-    dateISO: "2026-03-18",
-    duration: "45分",
-    description:
-      "オファーを迅速に投入しつつ、価格設定、与信、規制への整合を維持するパネルディスカッション。",
-    speaker: "Jordan Ellis",
-    role: "小売ソリューション担当副社長",
-    tone: 1,
-    href: "#",
+    videoId: "1fTWH0KWaxU",
+    thumbnail: "/jp/webinars/Video 1.png",
   },
   {
     kind: "webinar",
-    title: "AMIから実務に活かせるインサイトへ",
-    date: "2026年2月4日",
-    dateISO: "2026-02-04",
-    duration: "38分",
-    description:
-      "ユーティリティが間隔データを、お客様が実際に申し込み、継続して参加するプログラムに変える方法。",
-    speaker: "Dr. Priya Nandakumar",
-    role: "グリッド解析担当ディレクター",
-    tone: 2,
-    href: "#",
+    videoId: "7j99_-kPvvg",
+    thumbnail: "/jp/webinars/Video 2.png",
   },
   {
     kind: "webinar",
-    title: "BESSと小売：市場をつなぐ",
-    date: "2026年1月22日",
-    dateISO: "2026-01-22",
-    duration: "52分",
-    description:
-      "蓄電と小売ポートフォリオが交差する際の契約構造、テレメトリ、精算上の考慮事項。",
-    speaker: "Marcus Chen",
-    role: "エネルギー市場 プリンシパル",
-    tone: 3,
-    href: "#",
+    videoId: "0qLOICi1z3c",
+    thumbnail: "/jp/webinars/Video 3.png",
+  },
+  {
+    kind: "webinar",
+    videoId: "Xj8sL4L2qDg",
+    thumbnail: "/jp/webinars/Video 4.png",
   },
   {
     kind: "whitepaper",

@@ -9,19 +9,21 @@ export const metadata: Metadata = {
 };
 
 const clientCommitments = [
-  { icon: "tune", text: "堅牢で柔軟に構成できるソリューション" },
-  { icon: "auto_awesome", text: "実務で効くAI機能" },
-  { icon: "task_alt", text: "納期・予算どおりの導入" },
-  { icon: "verified_user", text: "世界水準のサポート" },
-  { icon: "route", text: "お客様のニーズを軸にした開発ロードマップ" },
+  { icon: "tune", text: "柔軟性と信頼性を兼ね備えたソリューションを提供" },
+  { icon: "auto_awesome", text: "実務に役立つ最先端テクノロジーとAIを活用" },
+  { icon: "task_alt", text: "納期・予算を意識した着実な導入支援" },
+  { icon: "verified_user", text: "迅速かつ先を見据えたサポートを提供" },
+  { icon: "route", text: "お客様の声をもとに継続的に改善" },
+  { icon: "handshake", text: "長期的な信頼関係に基づくパートナーシップを構築" },
 ];
 
 const endUserCommitments = [
-  { icon: "favorite", text: "卓越した顧客体験" },
-  { icon: "how_to_reg", text: "契約・利用開始がしやすいこと" },
-  { icon: "receipt_long", text: "正確な請求と多様な支払いオプション" },
-  { icon: "support_agent", text: "知識に裏打ちされたカスタマーサポート" },
-  { icon: "forum", text: "明確で有用なコミュニケーション" },
+  { icon: "favorite", text: "シームレスで一貫性のある顧客体験を提供" },
+  { icon: "auto_awesome", text: "AIがユーザーごとに最適なセルフサービス環境を提供" },
+  { icon: "update", text: "将来の変化に対応できるテクノロジーを活用できる環境" },
+  { icon: "receipt_long", text: "正確な請求処理と柔軟な支払いオプションを提供" },
+  { icon: "support_agent", text: "知識を活用した質の高い顧客対応を提供" },
+  { icon: "forum", text: "分かりやすいコミュニケーションを提供" },
 ];
 
 const staffCommitments = [
@@ -77,14 +79,15 @@ const japanLeaders = [
   },
   {
     name: "山口 元久",
-    role: "Sales Manager",
+    role: "カントリーセールスマネージャー",
     bio: "タリー日本市場における事業開発およびGo-to-Market戦略を担当。ClickSoftware／Salesforce、IFS、Kraken Technologiesなどにおいて、20年以上にわたり電力・ガス業界および製造業向けエンタープライズソリューションの提案・新規事業開発に従事。フィールドサービス、アフターサービス、エネルギー業務DXに関する豊富な知見を有し、日本の電力小売市場におけるRetail 3.0への移行支援と、タリーの日本市場での成長を推進している。",
     photo: "Motohisa Yamaguchi.jpg",
   },
   {
-    name: "TBD",
-    role: "Presales & Product Manager",
+    name: "坂本 泉",
+    role: "プリセールス・製品戦略担当",
     bio: "タリーグループ日本市場におけるプリセールスおよび製品戦略を担当。10年以上にわたり、電力・ガス自由化、法的分離、発送電分離関連ソリューション領域において、ビジネス開発からサービス提供まで幅広く従事。大手ソフトウェアベンダーで培った、多岐にわたるソリューションに関する豊富な知見を有する。直近では、大手小売事業者向けプロジェクトにおいて、オーストラリアおよびインドのチームと連携し、プロジェクトの立て直しから運用定着化までを推進。これまでの顧客支援経験を活かし、日本市場での展開を推進している。",
+    photo: "Izumi Sakamoto.png",
   },
   {
     name: "ミラーあつよ",
