@@ -5,8 +5,8 @@ import {
 } from "@/components/jp/news/press-releases-list";
 
 export const metadata: Metadata = {
-  title: "プレスリリース",
-  description: "Tally Group からのプレスリリースおよびお知らせです。",
+  title: "ニュース",
+  description: "タリーからのプレスリリースおよびお知らせをご覧いただけます。",
 };
 
 const pressReleases: PressRelease[] = [
@@ -37,10 +37,10 @@ export default function JPPressReleasesPage() {
       >
         <div className="max-w-[1240px] mx-auto px-8">
           <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[26ch] m-0">
-            プレスリリース
+            ニュース
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch] m-0">
-            Tally Group からのプレスリリースおよびお知らせです。
+            タリーからのプレスリリースおよびお知らせをご覧いただけます。
           </p>
         </div>
       </section>

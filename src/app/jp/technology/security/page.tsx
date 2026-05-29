@@ -77,7 +77,7 @@ export default function JPSecurityPage() {
       <TechSection
         id="sec-principles-heading"
         eyebrow="基本方針"
-        lede="Tally は、以下の 3 つの基本方針に基づいてサービスを提供しています。"
+        lede="当社は、以下の 3 つの基本方針に基づいてサービスを提供しています。"
         large
       >
         <TechCardGrid items={principleCards} columns={3} />

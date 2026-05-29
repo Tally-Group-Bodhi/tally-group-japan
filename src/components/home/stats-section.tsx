@@ -33,12 +33,43 @@ const summarySegments: Segment[] = [
 
 const TOTAL_CHARS = summarySegments.reduce((acc, s) => acc + s.text.length, 0);
 
-function renderTypedSegments(segments: Segment[], typedCount: number) {
-  let remaining = typedCount;
+function renderProgressiveText(
+  segments: Segment[],
+  typedCount: number,
+  showCursor: boolean,
+) {
+  let consumed = 0;
+  let cursorPlaced = false;
+
   return segments.map((seg, i) => {
-    if (remaining <= 0) return null;
-    const portion = seg.text.slice(0, remaining);
-    remaining -= seg.text.length;
+    const segStart = consumed;
+    const segEnd = consumed + seg.text.length;
+    consumed = segEnd;
+
+    const visibleLen = Math.max(0, Math.min(seg.text.length, typedCount - segStart));
+    const visible = seg.text.slice(0, visibleLen);
+    const hidden = seg.text.slice(visibleLen);
+
+    const placeCursor =
+      showCursor && !cursorPlaced && typedCount >= segStart && typedCount <= segEnd;
+    if (placeCursor) cursorPlaced = true;
+
+    const cursorEl = placeCursor ? (
+      <span
+        key="cursor"
+        className="ml-[2px] inline-block w-[8px] h-[1.05em] -mb-[3px] align-middle bg-[#FE5E01] rounded-[1px]"
+        style={{ animation: "adora-caret-blink 0.9s steps(1) infinite" }}
+        aria-hidden="true"
+      />
+    ) : null;
+
+    const visibleNode = visible ? visible : null;
+    const hiddenNode = hidden ? (
+      <span aria-hidden="true" className="opacity-0">
+        {hidden}
+      </span>
+    ) : null;
+
     if (seg.link) {
       return (
         <a
@@ -46,18 +77,28 @@ function renderTypedSegments(segments: Segment[], typedCount: number) {
           href={seg.href || "#"}
           className="font-medium text-[#FE5E01] hover:text-[#FFB07A] underline decoration-[#FE5E01]/40 hover:decoration-[#FE5E01] underline-offset-[3px] transition-colors"
         >
-          {portion}
+          {visibleNode}
+          {cursorEl}
+          {hiddenNode}
         </a>
       );
     }
     if (seg.bold) {
       return (
         <strong key={i} className="font-semibold text-white">
-          {portion}
+          {visibleNode}
+          {cursorEl}
+          {hiddenNode}
         </strong>
       );
     }
-    return <span key={i}>{portion}</span>;
+    return (
+      <span key={i}>
+        {visibleNode}
+        {cursorEl}
+        {hiddenNode}
+      </span>
+    );
   });
 }
 
@@ -195,16 +236,7 @@ export function StatsSection() {
                   }}
                   aria-live="polite"
                 >
-                {renderTypedSegments(summarySegments, typedCount)}
-                {showCursor && (
-                  <span
-                    className="ml-[2px] inline-block w-[8px] h-[1.05em] -mb-[3px] align-middle bg-[#FE5E01] rounded-[1px]"
-                    style={{
-                      animation: "adora-caret-blink 0.9s steps(1) infinite",
-                    }}
-                    aria-hidden="true"
-                  />
-                )}
+                {renderProgressiveText(summarySegments, typedCount, showCursor)}
 
                 <div className="mt-4 pt-3 border-t border-white/8 flex items-center justify-between">
                   <div className="flex items-center gap-1">

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { MarketingLink } from "@/components/marketing/marketing-link";
 
 type ExpandableDetails = {
   intro: string;
@@ -23,6 +24,19 @@ type Props = {
   compact?: boolean;
   details: ExpandableDetails;
 };
+
+function ServiceContactLink({ variant }: { variant: "text" | "pill" }) {
+  const className =
+    variant === "text"
+      ? "inline-flex items-center text-[20px] leading-[1.4] text-navy underline decoration-navy/30 underline-offset-2 hover:text-navy-dark hover:decoration-navy transition-colors"
+      : "inline-flex items-center px-6 py-[11px] rounded-full text-sm font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all";
+
+  return (
+    <MarketingLink href="/contact" className={className}>
+      {"\u304a\u554f\u3044\u5408\u308f\u305b"}
+    </MarketingLink>
+  );
+}
 
 function PlainBulletList({ items }: { items: string[] }) {
   return (
@@ -80,22 +94,25 @@ export function ExpandableServiceSection({
               {description}
             </p>
 
-            <button
-              type="button"
-              onClick={() => setExpanded((prev) => !prev)}
-              className="mt-[24px] inline-flex items-center gap-1 text-[20px] leading-[1.4] text-navy cursor-pointer hover:text-navy-dark transition-colors"
-              aria-expanded={expanded}
-              aria-controls={`${id}-expanded`}
-            >
-              <span>{expanded ? "\u9589\u3058\u308b" : "\u8a73\u7d30\u3092\u898b\u308b"}</span>
-              <span
-                className={`material-symbols-outlined text-[20px] transition-transform ${
-                  expanded ? "rotate-180" : ""
-                }`}
+            <div className="mt-[24px] flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setExpanded((prev) => !prev)}
+                className="inline-flex items-center gap-1 text-[20px] leading-[1.4] text-navy cursor-pointer hover:text-navy-dark transition-colors"
+                aria-expanded={expanded}
+                aria-controls={`${id}-expanded`}
               >
-                expand_more
-              </span>
-            </button>
+                <span>{expanded ? "\u9589\u3058\u308b" : "\u8a73\u7d30\u3092\u898b\u308b"}</span>
+                <span
+                  className={`material-symbols-outlined text-[20px] transition-transform ${
+                    expanded ? "rotate-180" : ""
+                  }`}
+                >
+                  expand_more
+                </span>
+              </button>
+              <ServiceContactLink variant="text" />
+            </div>
           </div>
 
           <div className={`order-first ${imageFirst ? "lg:order-1" : "lg:order-2"}`}>
@@ -124,14 +141,14 @@ export function ExpandableServiceSection({
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px] mt-[24px]">
               <div>
-                <h4 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0 lg:whitespace-nowrap">
+                <h4 className="text-[20px] font-semibold leading-[1.7] text-navy m-0 lg:whitespace-nowrap">
                   {details.capabilitiesHeading}
                 </h4>
                 <PlainBulletList items={details.capabilities} />
               </div>
 
               <div>
-                <h4 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0 lg:whitespace-nowrap">
+                <h4 className="text-[20px] font-semibold leading-[1.7] text-navy m-0 lg:whitespace-nowrap">
                   {details.outcomesHeading}
                 </h4>
                 <PlainBulletList items={details.outcomes} />
@@ -146,7 +163,7 @@ export function ExpandableServiceSection({
               >
                 {details.secondaryGroups.map((group) => (
                   <div key={group.heading}>
-                    <h4 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0">
+                    <h4 className="text-[20px] font-semibold leading-[1.7] text-navy m-0">
                       {group.heading}
                     </h4>
                     <PlainBulletList items={group.items} />
@@ -154,6 +171,10 @@ export function ExpandableServiceSection({
                 ))}
               </div>
             )}
+
+            <div className="mt-[32px]">
+              <ServiceContactLink variant="pill" />
+            </div>
           </div>
         )}
       </div>

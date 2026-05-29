@@ -116,7 +116,7 @@ const serviceSections: ServiceBlock[] = [
     expandableDetails: {
       title: "\u30b7\u30b9\u30c6\u30e0\u9023\u643a\u30b5\u30fc\u30d3\u30b9",
       intro:
-        "Tally+\u30bd\u30ea\u30e5\u30fc\u30b7\u30e7\u30f3\u3068\u65e2\u5b58\u30b7\u30b9\u30c6\u30e0\u30fb\u5916\u90e8\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u306e\u9023\u643a\u3092\u5186\u6ed1\u306b\u30b5\u30dd\u30fc\u30c8\u3057\u307e\u3059\u3002",
+        "Tally+\u30bd\u30ea\u30e5\u30fc\u30b7\u30e7\u30f3\u3068\u65e2\u5b58\u30b7\u30b9\u30c6\u30e0\u30fb\u5916\u90e8\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u3068\u306e\u30c7\u30fc\u30bf\u9023\u643a\u30fb\u696d\u52d9\u9023\u643a\u3092\u652f\u63f4\u3057\u307e\u3059\u3002",
       capabilitiesHeading: "\u4e3b\u306a\u652f\u63f4\u5185\u5bb9",
       capabilities: [
         "\u30b7\u30b9\u30c6\u30e0\u9593\u306e\u6a5f\u80fd\u6574\u7406\u30fb\u8981\u4ef6\u5b9a\u7fa9",
@@ -396,7 +396,7 @@ export default function JPServicesBetaPage() {
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch]">
             {
-              "\u5c0e\u5165\u30fb\u7d71\u5408\u652f\u63f4\u304b\u3089\u5e02\u5834\u62e1\u5927\u3001\u6226\u7565\u30a2\u30c9\u30d0\u30a4\u30b6\u30ea\u30fc\u307e\u3067\u3002\u30bf\u30ea\u30fc\u306f\u3001\u5909\u5316\u3059\u308b\u30a8\u30cd\u30eb\u30ae\u30fc\u5e02\u5834\u306b\u5bfe\u5fdc\u3059\u308b\u305f\u3081\u306e\u4e8b\u696d\u6210\u9577\u3068\u696d\u52d9\u6539\u9769\u3092\u652f\u63f4\u3057\u307e\u3059\u3002"
+              "\u5c0e\u5165\u30fb\u7d71\u5408\u652f\u63f4\u304b\u3089\u5e02\u5834\u62e1\u5927\u3001\u6226\u7565\u30a2\u30c9\u30d0\u30a4\u30b6\u30ea\u30fc\u307e\u3067\u3002\u30bf\u30ea\u30fc\u306f\u3001\u5909\u5316\u3059\u308b\u30a8\u30cd\u30eb\u30ae\u30fc\u5e02\u5834\u306b\u5bfe\u5fdc\u3059\u308b\u305f\u3081\u306e\u4e8b\u696d\u6210\u9577\u3068\u696d\u52d9\u5909\u9769\u3092\u652f\u63f4\u3057\u307e\u3059\u3002"
             }
           </p>
 
@@ -430,7 +430,7 @@ export default function JPServicesBetaPage() {
             </h2>
             <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
               {
-                "\u30bf\u30ea\u30fc\u306f\u3001\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u5c0e\u5165\u304b\u3089\u904b\u7528\u6539\u5584\u3001\u4e8b\u696d\u62e1\u5927\u307e\u3067\u3001\u304a\u5ba2\u69d8\u306e\u53d6\u308a\u7d44\u307f\u3092\u5e45\u5e83\u304f\u652f\u63f4\u3057\u307e\u3059\u3002"
+                "\u5f53\u793e\u306f\u3001\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u5c0e\u5165\u304b\u3089\u904b\u7528\u6539\u5584\u3001\u4e8b\u696d\u62e1\u5927\u307e\u3067\u3001\u304a\u5ba2\u69d8\u306e\u53d6\u308a\u7d44\u307f\u3092\u5e45\u5e83\u304f\u652f\u63f4\u3057\u307e\u3059\u3002"
               }
             </p>
           </div>
@@ -461,10 +461,6 @@ export default function JPServicesBetaPage() {
               </li>
             ))}
           </ol>
-
-          <p className="mt-[28px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
-            Our services are designed to support organizations throughout the full lifecycle of platform adoption and business growth.
-          </p>
         </div>
       </section>
 
@@ -473,7 +469,7 @@ export default function JPServicesBetaPage() {
           <div className="max-w-[980px]">
             <h2
               id="section-2-heading"
-              className="text-[48px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+              className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
             >
               {"\u30b5\u30fc\u30d3\u30b9"}
             </h2>
