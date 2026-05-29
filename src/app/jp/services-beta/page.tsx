@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
 import { ExpandableServiceSection } from "@/components/services/expandable-service-section";
-import { JPCtaSection } from "@/components/jp/cta-section";
 
 export const metadata: Metadata = {
   title: "\u30b5\u30fc\u30d3\u30b9",
@@ -561,16 +560,6 @@ export default function JPServicesBetaPage() {
           </div>
         </div>
       </section>
-
-      <JPCtaSection
-        title={"\u3054\u8cea\u554f\u30fb\u3054\u76f8\u8ac7\u306f\u3053\u3061\u3089\u304b\u3089\u304a\u554f\u3044\u5408\u308f\u305b\u304f\u3060\u3055\u3044"}
-        description={
-          "\u4e8b\u696d\u6226\u7565\u30fb\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u5c0e\u5165\u30fb\u5e02\u5834\u5c55\u958b\u306a\u3069\u3001\u304a\u6c17\u8efd\u306b\u3054\u76f8\u8ac7\u304f\u3060\u3055\u3044\u3002"
-        }
-        primaryHref="/contact"
-        primaryLabel={"\u304a\u554f\u3044\u5408\u308f\u305b"}
-        secondaryLabel={null}
-      />
     </>
   );
 }

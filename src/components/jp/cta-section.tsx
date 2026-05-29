@@ -13,12 +13,13 @@ type JPCtaSectionProps = {
 
 export function JPCtaSection({
   eyebrow,
-  title = "詳しくお知りになりたいですか？",
-  description = "ビジネス目標、プラットフォーム導入計画、市場イニシアチブについて、お気軽にご相談ください。",
+  title = "変化する市場に対応できるソリューションをお探しですか？",
+  description =
+    "バックオフィスシステムをご利用中の場合でも、グローバル基準の最新プラットフォームをご覧ください。その可能性をご確認いただけます。",
   primaryHref = "/contact",
-  primaryLabel = "デモのご相談",
+  primaryLabel = "お問い合わせ",
   secondaryHref = "/contact",
-  secondaryLabel = "お問い合わせ",
+  secondaryLabel = null,
 }: JPCtaSectionProps = {}) {
   return (
     <section className="px-4 sm:px-6 py-[24px] sm:py-[32px]">
