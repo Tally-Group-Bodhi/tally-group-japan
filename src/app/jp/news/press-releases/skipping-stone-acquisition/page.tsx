@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import { jpCtaPrimaryOnLightCompactClass } from "@/components/jp/cta-button-classes";
 
 export const metadata: Metadata = {
   title: "Tally Group、スキッピングストーンを買収しグローバル展開を拡大",
@@ -115,7 +116,7 @@ export default function JPSkippingStoneAcquisitionPage() {
             </MarketingLink>
             <MarketingLink
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
+              className={jpCtaPrimaryOnLightCompactClass}
             >
               デモのご相談
               <span

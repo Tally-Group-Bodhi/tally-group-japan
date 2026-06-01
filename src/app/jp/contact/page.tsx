@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { DemoContactForm } from "@/components/jp/contact/demo-contact-form";
-import { OfficeAddressBlock } from "@/components/sections/office-address-block";
 import { OurLocationsSection } from "@/components/sections/our-locations-section";
 import { officeRegions } from "@/data/office-regions";
 
@@ -51,7 +50,7 @@ export default function ContactPage() {
               </h1>
 
               <p className="mt-[20px] text-[19px] leading-[1.55] text-fg2 max-w-[60ch]">
-                お気軽にお問い合わせください。各チームへのご連絡や、世界各地の拠点情報はこちらからご覧いただけます。
+                Tally+や各サービスに関するご質問・ご相談、デモのご希望がございましたら、お問い合わせフォームよりお気軽にお問い合わせください。
               </p>
             </div>
 
@@ -102,30 +101,35 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-[48px] lg:gap-[64px]">
             {/* Left - Offices */}
             <div>
-              <h3 className="text-lg font-semibold text-navy mb-[20px]">Our offices</h3>
               <div className="flex flex-col gap-[28px]">
-                {japanOffices.map((office) => (
-                  <div key={office.city}>
-                    <OfficeAddressBlock office={office} language="ja" />
-                    <a
-                      href={`mailto:${office.email}`}
-                      className="mt-3 block text-sm font-medium text-navy hover:text-turquoise transition-colors"
-                    >
-                      {office.email}
-                    </a>
-                  </div>
-                ))}
+                <div>
+                  <p className="text-[26px] font-semibold text-navy leading-[1.4] m-0">
+                    タリーグループ東京オフィス
+                  </p>
+                  <p className="mt-3 text-[18px] leading-[1.7] text-fg1 m-0">〒105-0003</p>
+                  <p className="text-[18px] leading-[1.7] text-fg1 m-0">
+                    東京都港区西新橋 2-20-1-4F
+                  </p>
+                  <p className="text-[18px] leading-[1.7] text-fg1 m-0">The Energy Center</p>
+                </div>
+                {japanOffices[0]?.email && (
+                  <a
+                    href={`mailto:${japanOffices[0].email}`}
+                    className="block text-sm font-medium text-navy hover:text-turquoise transition-colors"
+                  >
+                    {japanOffices[0].email}
+                  </a>
+                )}
               </div>
             </div>
 
             {/* Right - Form */}
             <div className="bg-white border border-stroke1 rounded-xl p-[32px] lg:p-[40px] h-fit">
               <h3 className="text-xl font-semibold text-navy mb-[8px]">
-                Contact Us / Request a Demo
+                お問い合わせ・デモのご相談
               </h3>
               <p className="text-sm text-fg2 mb-[24px] leading-[1.55]">
-                Fill out your contact information, a member of our team will
-                contact you within 1–2 business days.
+                下記フォームに必要事項をご入力の上、「送信」ボタンをクリックしてください。追って、担当者よりご連絡いたします。
               </p>
               <DemoContactForm />
             </div>

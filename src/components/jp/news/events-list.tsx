@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import { jpCtaPrimaryOnLightClass } from "@/components/jp/cta-button-classes";
 
 export type EventItem = {
   slug: string;
@@ -242,7 +243,7 @@ export function MeetInPersonSection({
           <div className="relative shrink-0">
             <MarketingLink
               href={href}
-              className="inline-flex items-center gap-2 px-6 py-[12px] rounded-lg text-sm font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
+              className={jpCtaPrimaryOnLightClass}
             >
               お問い合わせ
               <span

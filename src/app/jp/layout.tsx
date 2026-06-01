@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { JPCtaSection } from "@/components/jp/cta-section";
+import { JPLayoutCta } from "@/components/jp/jp-layout-cta";
 import { JP_MARKETING_BASE, MarketingRegionProvider } from "@/contexts/marketing-region";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function JPMainLayout({ children }: { children: React.ReactNode }
       <div lang="ja" className="font-jp contents">
         <Header />
         <main className="flex-1">{children}</main>
-        <JPCtaSection />
+        <JPLayoutCta />
         <Footer />
       </div>
     </MarketingRegionProvider>

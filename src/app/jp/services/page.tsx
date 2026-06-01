@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import {
+  jpCtaPrimaryOnLightCompactClass,
+  jpCtaSecondaryOnLightCompactClass,
+} from "@/components/jp/cta-button-classes";
 
 export const metadata: Metadata = {
   title: "サービス",
@@ -436,14 +440,14 @@ export default function JPServicesPage() {
           <div className="flex flex-wrap gap-3 mt-[32px]">
             <MarketingLink
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all"
+              className={jpCtaPrimaryOnLightCompactClass}
             >
               デモのご相談
               <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </MarketingLink>
             <MarketingLink
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-transparent text-navy border border-stroke1 hover:bg-bg3 transition-all"
+              className={jpCtaSecondaryOnLightCompactClass}
             >
               お問い合わせ
             </MarketingLink>

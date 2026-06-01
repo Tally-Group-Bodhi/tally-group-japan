@@ -4,158 +4,79 @@ import {
   TechBulletList,
   TechCTARow,
   TechHero,
-  TechIntegGrid,
   TechPrincipleGrid,
   TechSection,
   TechSubheading,
 } from "@/components/jp/tech/tech-page";
 
 export const metadata: Metadata = {
-  title: "Architecture",
+  title: "アーキテクチャ",
   description:
-    "How we design the Tally+ platform: architecture principles and a reference target architecture for modular services, integrations, and channels.",
+    "Tally+ のモジュール型サービス、システム連携、複数チャネルを支えるアーキテクチャ原則と参照アーキテクチャの概要。",
 };
 
 const principles = [
   {
     icon: "architecture",
-    title: "Well-architected",
+    title: "設計原則",
     items: [
-      "As a foundation for all design adhere to well-architected principles (reliability, security, cost optimization, operational excellence, performance efficiency).",
-    ],
-  },
-  {
-    icon: "integration_instructions",
-    title: "Integration enabled",
-    items: [
-      "Follow industry standard enterprise integration patterns for both internal integrations between modules and external integrations.",
-      "Enable functionality through APIs for internal and potentially external use.",
-      "Use events to notify components of changes and potentially expose them externally through webhooks.",
-    ],
-  },
-  {
-    icon: "verified_user",
-    title: "Compliant",
-    items: ["Any solution must be compliant for the domain in which it operates."],
-  },
-  {
-    icon: "trending_up",
-    title: "Incremental evolution",
-    items: [
-      "Prioritise incremental evolution to big-bang cutovers.",
-      "Apply standard migration patterns when enhancing software (for example strangler fig, branch by abstraction, and parallel run).",
-      "Deliver value early.",
-      "Minimise risk.",
+      "信頼性、セキュリティ、コスト最適化、運用性、パフォーマンス効率をすべての設計基盤として適用。",
     ],
   },
   {
     icon: "view_module",
-    title: "Modular",
+    title: "モジュール化",
     items: [
-      "Build toward modular components.",
-      "Low coupling and strong cohesion results in stable platforms.",
-      "Reusable within the platform, and potentially across platforms.",
-      "Increase flexibility within a module.",
-      "Increase flexibility between modules.",
+      "モジュール型コンポーネントを前提とした設計。",
+      "疎結合・高凝集により、安定したプラットフォーム構造を実現。",
+      "プラットフォーム内で再利用可能とし、必要に応じて他環境への展開も可能。",
+      "モジュール内の柔軟性を確保。",
+      "モジュール間の拡張性・柔軟性を確保。",
     ],
   },
   {
-    icon: "stars",
-    title: "Value-driven priorities",
+    icon: "verified_user",
+    title: "コンプライアンス遵守",
     items: [
-      "Key-value streams (for example billing, payments, market).",
-      "Areas of competitive advantage.",
-      "Innovation and growth.",
-      "Compliance.",
-      "Security.",
+      "すべてのソリューションは、対象領域における規制および業界要件に準拠。",
+    ],
+  },
+  {
+    icon: "integration_instructions",
+    title: "統合対応",
+    items: [
+      "モジュール間および外部連携において、業界標準のエンタープライズ統合パターンに準拠。",
+      "APIにより社内外のシステム連携を実現。",
+      "変更イベントに基づきコンポーネント間の状態変化を検知し、必要に応じて外部システムへリアルタイムに連携。",
     ],
   },
   {
     icon: "group_work",
-    title: "Consolidated",
-    items: ["Consolidate common functionality in modules.", "Reduce compliance risks."],
-  },
-];
-
-const foundationCore = [
-  {
-    title: "Common data layer",
-    body: "Shared representation of customers, sites, products, and metering used consistently across operational domains.",
+    title: "統合設計",
+    items: [
+      "共通機能はモジュールとして統合・集約。",
+      "コンプライアンスリスクの低減を実現。",
+    ],
   },
   {
-    title: "Billing",
-    body: "Market‑leading breadth of invoiced products—including complex and new energy constructs suited to global retailers (including Japan‑relevant scenarios described in capability materials).",
+    icon: "stars",
+    title: "価値に基づく優先順位",
+    items: [
+      "請求・決済・市場取引などの重要な業務領域を最優先。",
+      "競争優位性の源泉となる領域を強化。",
+      "イノベーションおよび成長領域への投資を推進。",
+      "コンプライアンスおよびセキュリティを最優先事項として確保。",
+    ],
   },
   {
-    title: "Meter data management",
-    body: "Ingestion, validation, and orchestration of interval and register data for billing and analytics.",
+    icon: "trending_up",
+    title: "段階的進化",
+    items: [
+      "ビッグバン型の一括移行ではなく、段階的な進化を優先。",
+      "機能拡張時には、標準的な移行パターン（Strangler Fig、抽象化分離、並行稼働など）を適用。",
+      "早期に価値を提供しながら、リスクを最小化。",
+    ],
   },
-  {
-    title: "Market gateway",
-    body: "Interfaces for market messages and workflows aligned to each jurisdiction's market operator.",
-  },
-  {
-    title: "Docs & correspondence",
-    body: "Automated management of customer and regulatory correspondence tied to lifecycle events.",
-  },
-];
-
-const channelsAcquisition = [
-  {
-    title: "Sales & acquisition",
-    body: "Agency and broker tooling, onboarding, and enrolment aligned with retailer acquisition journeys.",
-  },
-  {
-    title: "Digital tools",
-    body: "Customer and business portals, apps, and digitised journeys supporting acquisition and service.",
-  },
-];
-
-const crossCutting = [
-  {
-    title: "Hosting & security",
-    body: "Operational resilience and security posture appropriate to regulated retail and sensitive metering/billing data.",
-  },
-  {
-    title: "Operational intelligence (AI / ML)",
-    body: "Forecasting, insights, automation, and GenAI‑assisted operational tooling layered across retail processes.",
-  },
-];
-
-const japanIntegrations = [
-  {
-    title: "Market / OCCTO",
-    body: "Electricity market clearing and coordination flows aligned with OCCTO‑related operational expectations.",
-  },
-  {
-    title: "Acquisition & switching",
-    body: "Retail onboarding and switching workflows consistent with Japan retail‑market practice.",
-  },
-  {
-    title: "Payments",
-    body: "Payment gateway and settlement‑agent integration for invoicing and collections.",
-  },
-  {
-    title: "Metering & delivery",
-    body: "Confirmed usage (interval/register) acquisition paths feeding billing and MDM.",
-  },
-];
-
-const auIntegrations = [
-  { title: "Market", body: "AEMO, Software AG" },
-  {
-    title: "Concession validation",
-    body: "Centrelink; Queensland Government; Government of South Australia; Victoria State Government",
-  },
-  {
-    title: "Payments",
-    body: "ANZ, Stripe, Westpac, Commonwealth Bank, NAB, Post Billpay, Centrepay",
-  },
-  { title: "Mail, comms and notifications", body: "Fuji Xerox, Twilio, SendGrid, Whispir" },
-  { title: "Debt collection", body: "Probe, Milton Graham, RCL, ARMA" },
-  { title: "CDR portal", body: "BIZA" },
-  { title: "New connections", body: "CONNECT DEVELOP" },
-  { title: "Contact centre", body: "Genesys, Google Cloud (CES), Amazon Connect" },
 ];
 
 export default function JPArchitecturePage() {
@@ -163,161 +84,63 @@ export default function JPArchitecturePage() {
     <>
       <TechHero
         eyebrow="テクノロジー / アーキテクチャ"
-        title="Tally+ ecosystem architecture"
-        lede="How we design the Tally+ platform: architecture principles and a reference target architecture for modular services, integrations, and channels."
+        title="Tally+ アーキテクチャ概要"
+        lede="Tally+プラットフォームでは、モジュール型サービスとシステム連携、複数チャネルを前提としたアーキテクチャ原則および参照アーキテクチャを定義しています。"
       />
 
       <TechSection
         id="principles-heading"
         eyebrow="アーキテクチャ原則"
-        heading="Tally+ ecosystem — architecture principles"
+        heading="アーキテクチャ原則"
       >
         <TechPrincipleGrid cards={principles} />
       </TechSection>
 
       <TechSection
-        id="ecosystem-heading"
-        eyebrow="エコシステム"
-        heading="Tally+ ecosystem"
-        altBg
-        lede={
-          <p className="m-0">
-            Tally&rsquo;s energy retail ecosystem comprises a suite of standalone products that
-            integrate natively to provide a comprehensive platform for retailers&mdash;from Retail OS
-            (EOS), pricing and quoting, and revenue assurance through digital customer experience,
-            new energy services, sales &amp; acquisition, and operational intelligence (AI/ML).
-            Deployments can be packaged end‑to‑end or consumed as individual capabilities.
-          </p>
-        }
-      />
-
-      <TechSection
-        id="topology-heading"
-        eyebrow="トポロジー"
-        heading="Tally+ topology"
-        lede={
-          <p className="m-0">
-            The reference topology below reflects how capabilities cluster around a common data
-            layer and core retail services&mdash;including billing, meter data management, market
-            gateway interfaces, documentation &amp; correspondence, acquisition channels, and
-            digital tools&mdash;with <strong>hosting and security</strong> and{" "}
-            <strong>operational intelligence (AI/ML)</strong> spanning the stack. Capability
-            clusters such as pricing &amp; quoting, the broader service library (for example load
-            disaggregation, DER analytics, demand management, carbon reporting, tariff
-            optimisation), customer management, workflows, simulation, and payment gateway
-            interoperate through modular integration patterns.
-          </p>
-        }
-      >
-        <TechSubheading>Foundation &amp; core services</TechSubheading>
-        <TechIntegGrid items={foundationCore} columns={3} />
-
-        <TechSubheading>Channels &amp; acquisition</TechSubheading>
-        <TechIntegGrid items={channelsAcquisition} columns={2} />
-
-        <TechSubheading>Cross‑cutting layers</TechSubheading>
-        <TechIntegGrid items={crossCutting} columns={2} />
-
-        <TechSubheading>Capability clusters (service library)</TechSubheading>
-        <TechBodyParagraph>
-          Representative capabilities often positioned alongside core retail—deployable as full
-          packages or selectively:
-        </TechBodyParagraph>
-        <div className="mt-[16px]">
-          <TechBulletList
-            items={[
-              { text: "Pricing & quoting; goal setting and scenario testing" },
-              {
-                text: "Service library components—for example load disaggregation, demand management, carbon reporting, insight and analytics, tariff optimisation, progressive purchasing",
-              },
-              { text: "Customer management; user workflows; simulation" },
-              { text: "Payment gateway integration" },
-            ]}
-          />
-        </div>
-      </TechSection>
-
-      <TechSection
         id="target-heading"
-        eyebrow="ターゲットアーキテクチャ"
-        heading="Tally+ ecosystem — target architecture"
+        eyebrow="参照アーキテクチャ"
+        heading="参照アーキテクチャ"
         altBg
         lede={
           <p className="m-0">
-            Tally+ is modular‑by‑design and integrates with an energy retailer&rsquo;s enterprise
-            ecosystem, providing native integrations for strategic platforms (for example SAP IS‑U,
-            Salesforce) while exposing modular APIs and events for internal and partner
-            integrations.
+            Tally+はモジュール型設計を前提としたプラットフォームです。エネルギー小売事業者のエンタープライズ環境と連携し、各種システムとの統合を実現します。
           </p>
         }
       >
-        <figure
-          aria-label="Reference architecture diagram"
-          className="max-w-[1000px] rounded-xl overflow-hidden border border-stroke1 bg-navy aspect-[16/9] grid place-items-center text-white/60 text-sm text-center px-8"
-        >
-          <span>
-            Tally+ EOS reference architecture diagram: retailers, portals, core operating functions,
-            OCCTO and market interfaces, and payment agency flows.
-          </span>
-        </figure>
-        <p className="mt-3 max-w-[60ch] text-[13px] text-fg2/70 leading-[1.6]">
-          Reference diagram — illustrative partners and systems; regional deployments vary.
-        </p>
-
-        <TechSubheading>Inside the Tally+ core</TechSubheading>
+        <TechSubheading>コアプラットフォーム内構成</TechSubheading>
         <TechBodyParagraph>
-          Access and experience layers sit above the modular service stack; integration and events
-          support connectivity.
+          統合されたアクセス層および顧客体験層がモジュール型サービス層の上位に位置します。統合機能とイベント処理により、各システム間の連携を実現します。
         </TechBodyParagraph>
         <div className="mt-[16px]">
           <TechBulletList
             items={[
-              { strong: "Unauthenticated", text: "website, social, sales portal." },
-              { strong: "Authenticated", text: "B2B portal, B2C portal, B2C native app." },
               {
-                text: "Integration (generic and custom) and events for module-to-module and enterprise connectivity.",
+                strong: "非認証領域",
+                text: "Webサイト、SNS、営業支援ポータル",
               },
               {
-                strong: "Services",
-                text: "sales and acquisitions; small market; large market; services.",
+                strong: "認証領域",
+                text: "顧客ポータル、顧客アプリ、法人向けポータル、代理店ポータル",
+              },
+              {
+                text: "統合レイヤー（汎用・個別連携）およびイベント基盤によるモジュール間・企業システム連携",
               },
             ]}
           />
         </div>
 
-        <TechSubheading>Enterprise context (reference)</TechSubheading>
-        <TechBodyParagraph>Typical client-side systems that connect into Tally+:</TechBodyParagraph>
+        <TechSubheading>エンタープライズ連携（参考）</TechSubheading>
+        <TechBodyParagraph>クライアント側における代表的なシステム連携です。</TechBodyParagraph>
         <div className="mt-[16px]">
           <TechBulletList
             columns={2}
             items={[
-              { text: "Enterprise data platform" },
-              { text: "Client ecosystem" },
-              { text: "Customer IDAM (identity and access management)" },
-              { text: "Marketing; ERP for people and finance" },
+              { text: "エンタープライズデータプラットフォーム" },
+              { text: "顧客ID管理・認証基盤（IDAM）" },
+              { text: "マーケティング基盤：人事・財務ERP" },
+              { text: "顧客既存の業務支援システム群" },
             ]}
           />
-        </div>
-
-        <TechSubheading>Native integrations — Japan (reference)</TechSubheading>
-        <TechBodyParagraph>
-          Tally&rsquo;s Retail Operating System is described as integrated with the Japanese energy
-          market for appropriate deployments—with OCCTO‑aligned clearing/market flows, interfaces
-          between retailer operations and broader industry actors (including transmission &amp;
-          distribution where applicable), and payment‑gateway / settlement patterns suited to local
-          schemes. Exact adapters depend on your brands and operating model; partner names are
-          indicative.
-        </TechBodyParagraph>
-        <div className="mt-[24px]">
-          <TechIntegGrid items={japanIntegrations} columns={4} />
-        </div>
-
-        <TechSubheading>Native integrations — Australia (reference examples)</TechSubheading>
-        <TechBodyParagraph>
-          Illustrative categories from Australian deployments—substitute for your market footprint.
-        </TechBodyParagraph>
-        <div className="mt-[24px]">
-          <TechIntegGrid items={auIntegrations} columns={4} />
         </div>
       </TechSection>
 

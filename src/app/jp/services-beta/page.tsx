@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import { jpCtaPrimaryOnLightCompactClass } from "@/components/jp/cta-button-classes";
 import { ExpandableServiceSection } from "@/components/services/expandable-service-section";
 
 export const metadata: Metadata = {
@@ -402,16 +403,10 @@ export default function JPServicesBetaPage() {
           <div className="flex flex-wrap gap-3 mt-[32px]">
             <MarketingLink
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all"
-            >
-              {"\u30c7\u30e2\u306e\u3054\u76f8\u8ac7"}
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </MarketingLink>
-            <MarketingLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-transparent text-navy border border-stroke1 hover:bg-bg3 transition-all"
+              className={jpCtaPrimaryOnLightCompactClass}
             >
               {"\u304a\u554f\u3044\u5408\u308f\u305b"}
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </MarketingLink>
           </div>
         </div>

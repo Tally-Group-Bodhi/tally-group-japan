@@ -179,17 +179,12 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
       children: [
         { href: href("/technology/architecture"), label: "アーキテクチャ" },
         { href: href("/technology/security"), label: "セキュリティ" },
-        { href: href("/technology/audit"), label: "監査" },
-        { href: href("/technology/api-library"), label: "APIライブラリ" },
       ],
     },
     {
       label: "インサイト",
       hasMenu: true,
-      children: [
-        { href: href("/insights/case-studies"), label: "導入事例" },
-        { href: href("/insights/resources"), label: "資料" },
-      ],
+      children: [{ href: href("/insights/resources"), label: "資料" }],
     },
     {
       label: "ニュース",
@@ -207,7 +202,6 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
         { href: href("/about"), label: "会社情報" },
         { href: href("/about#company-overview"), label: "会社概要" },
         { href: href("/about#japan-leadership"), label: "日本チーム" },
-        { href: href("/about#global-leadership"), label: "グローバルチーム" },
         { href: href("/about#mission-values"), label: "企業理念" },
       ],
     },

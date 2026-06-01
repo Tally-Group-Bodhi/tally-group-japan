@@ -1,4 +1,8 @@
 import { MarketingLink } from "@/components/marketing/marketing-link";
+import {
+  jpCtaPrimaryOnLightCompactClass,
+  jpCtaSecondaryOnLightCompactClass,
+} from "@/components/jp/cta-button-classes";
 
 export type BulletItem = { strong?: string; text: React.ReactNode };
 
@@ -386,8 +390,8 @@ export function TechCTARow({
           href={b.href}
           className={
             b.variant === "secondary"
-              ? "inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-transparent text-navy border border-stroke1 hover:bg-bg3 transition-all"
-              : "inline-flex items-center gap-2 px-5 py-[11px] rounded-lg text-sm font-medium bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all"
+              ? jpCtaSecondaryOnLightCompactClass
+              : jpCtaPrimaryOnLightCompactClass
           }
         >
           {b.label}

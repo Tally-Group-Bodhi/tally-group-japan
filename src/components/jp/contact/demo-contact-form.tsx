@@ -4,74 +4,49 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { jpCtaSubmitClass } from "@/components/jp/cta-button-classes";
 
-const inquiryTypes = ["demo", "sales", "general", "partner", "support"] as const;
-const companySizes = ["", "1-49", "50-249", "250-999", "1000+"] as const;
-const timelines = ["", "immediate", "3months", "exploring"] as const;
+const inquiryTypes = ["demo", "sales", "general", "partner"] as const;
 
 const schema = z
   .object({
     inquiryType: z.enum(inquiryTypes),
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
-    companyName: z.string().min(1, "Company name is required"),
-    workEmail: z.string().email("Please enter a valid email"),
-    phone: z.string().optional(),
+    lastName: z.string().min(1, "姓を入力してください"),
+    firstName: z.string().min(1, "名を入力してください"),
+    companyName: z.string().min(1, "会社名を入力してください"),
+    workEmail: z.string().email("有効なメールアドレスを入力してください"),
+    phone: z.string().min(1, "電話番号を入力してください"),
     jobTitle: z.string().optional(),
-    companySize: z.enum(companySizes).optional(),
-    solutionTallyPlus: z.boolean().optional(),
-    solutionTallyGlass: z.boolean().optional(),
+    solutionO2C: z.boolean().optional(),
+    solutionCustomerEngagement: z.boolean().optional(),
+    solutionDecarbon: z.boolean().optional(),
+    solutionSalesManagement: z.boolean().optional(),
     solutionOther: z.boolean().optional(),
     solutionOtherText: z.string().optional(),
-    timeline: z.enum(timelines).optional(),
-    productInUse: z.string().optional(),
-    issueDescription: z.string().optional(),
     message: z.string().optional(),
-    consent: z.literal(true, {
-      error: () => "Please agree to the Privacy Policy",
-    }),
   })
   .superRefine((data, ctx) => {
     const needsSolutions =
       data.inquiryType === "demo" || data.inquiryType === "sales";
     if (needsSolutions) {
       const any =
-        data.solutionTallyPlus || data.solutionTallyGlass || data.solutionOther;
+        data.solutionO2C ||
+        data.solutionCustomerEngagement ||
+        data.solutionDecarbon ||
+        data.solutionSalesManagement ||
+        data.solutionOther;
       if (!any) {
         ctx.addIssue({
           code: "custom",
-          path: ["solutionTallyPlus"],
-          message: "Please select at least one solution.",
+          path: ["solutionO2C"],
+          message: "ご関心のあるソリューション・領域を1つ以上選択してください。",
         });
       }
       if (data.solutionOther && !data.solutionOtherText?.trim()) {
         ctx.addIssue({
           code: "custom",
           path: ["solutionOtherText"],
-          message: "Please describe your solution or area.",
-        });
-      }
-      if (!data.timeline) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["timeline"],
-          message: "Please select a timeline.",
-        });
-      }
-    }
-    if (data.inquiryType === "support") {
-      if (!data.productInUse?.trim()) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["productInUse"],
-          message: "Please tell us which product you're using.",
-        });
-      }
-      if (!data.issueDescription?.trim()) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["issueDescription"],
-          message: "Please describe the issue.",
+          message: "「その他」を選択した場合は、詳細をご記入ください。",
         });
       }
     }
@@ -102,30 +77,26 @@ export function DemoContactForm() {
     resolver: zodResolver(schema),
     defaultValues: {
       inquiryType: "demo",
-      firstName: "",
       lastName: "",
+      firstName: "",
       companyName: "",
       workEmail: "",
       phone: "",
       jobTitle: "",
-      companySize: "",
-      solutionTallyPlus: false,
-      solutionTallyGlass: false,
+      solutionO2C: false,
+      solutionCustomerEngagement: false,
+      solutionDecarbon: false,
+      solutionSalesManagement: false,
       solutionOther: false,
       solutionOtherText: "",
-      timeline: "",
-      productInUse: "",
-      issueDescription: "",
       message: "",
-      consent: undefined as unknown as true,
     },
   });
 
   const inquiryType = watch("inquiryType");
   const otherChecked = watch("solutionOther");
 
-  const showSalesDemo = inquiryType === "demo" || inquiryType === "sales";
-  const showSupport = inquiryType === "support";
+  const showSolutions = inquiryType === "demo" || inquiryType === "sales";
 
   useEffect(() => {
     if (!otherChecked) {
@@ -149,52 +120,33 @@ export function DemoContactForm() {
           role="status"
           className="rounded-xl border border-turquoise/40 bg-turquoise/10 px-[20px] py-[16px] text-sm font-semibold text-navy"
         >
-          Thank you. Your message has been recorded for this prototype (no data
-          was sent).
+          送信が完了しました（プロトタイプのため、データは送信されていません）。
         </div>
       )}
 
       <div>
         <label htmlFor="inquiry-type" className={labelClass}>
-          Inquiry type{reqMark}
+          お問い合わせ種別{reqMark}
         </label>
         <select
           id="inquiry-type"
           {...register("inquiryType")}
           className={selectClass}
         >
-          <option value="demo">Request a Demo</option>
-          <option value="sales">Contact Sales</option>
-          <option value="general">General Inquiry</option>
-          <option value="partner">Partner Inquiry</option>
-          <option value="support">Support</option>
+          <option value="demo">デモのご依頼</option>
+          <option value="sales">営業へのお問い合わせ</option>
+          <option value="general">一般的なお問い合わせ</option>
+          <option value="partner">パートナーに関するお問い合わせ</option>
         </select>
-        <p className="mt-1 text-xs text-fg2">
-          Choose the option that best describes your inquiry.
-        </p>
+        <p className="mt-1 text-xs text-fg2">該当する内容を１つ選択してください</p>
       </div>
 
-      <h4 className={sectionTitleClass}>Your information</h4>
+      <h4 className={sectionTitleClass}>お客様情報</h4>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
         <div>
-          <label htmlFor="first-name" className={labelClass}>
-            First name{reqMark}
-          </label>
-          <input
-            id="first-name"
-            type="text"
-            autoComplete="given-name"
-            {...register("firstName")}
-            className={inputClass}
-          />
-          {errors.firstName && (
-            <p className={errorClass}>{errors.firstName.message}</p>
-          )}
-        </div>
-        <div>
           <label htmlFor="last-name" className={labelClass}>
-            Last name{reqMark}
+            姓{reqMark}
           </label>
           <input
             id="last-name"
@@ -207,12 +159,27 @@ export function DemoContactForm() {
             <p className={errorClass}>{errors.lastName.message}</p>
           )}
         </div>
+        <div>
+          <label htmlFor="first-name" className={labelClass}>
+            名{reqMark}
+          </label>
+          <input
+            id="first-name"
+            type="text"
+            autoComplete="given-name"
+            {...register("firstName")}
+            className={inputClass}
+          />
+          {errors.firstName && (
+            <p className={errorClass}>{errors.firstName.message}</p>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
         <div>
           <label htmlFor="company-name" className={labelClass}>
-            Company name{reqMark}
+            会社名{reqMark}
           </label>
           <input
             id="company-name"
@@ -227,7 +194,7 @@ export function DemoContactForm() {
         </div>
         <div>
           <label htmlFor="work-email" className={labelClass}>
-            Work email{reqMark}
+            メールアドレス（勤務先）{reqMark}
           </label>
           <input
             id="work-email"
@@ -235,6 +202,7 @@ export function DemoContactForm() {
             autoComplete="email"
             {...register("workEmail")}
             className={inputClass}
+            dir="ltr"
           />
           {errors.workEmail && (
             <p className={errorClass}>{errors.workEmail.message}</p>
@@ -245,7 +213,7 @@ export function DemoContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
         <div>
           <label htmlFor="phone" className={labelClass}>
-            Phone number
+            電話番号{reqMark}
           </label>
           <input
             id="phone"
@@ -255,10 +223,11 @@ export function DemoContactForm() {
             className={inputClass}
             dir="ltr"
           />
+          {errors.phone && <p className={errorClass}>{errors.phone.message}</p>}
         </div>
         <div>
           <label htmlFor="job-title" className={labelClass}>
-            Job title
+            役職
           </label>
           <input
             id="job-title"
@@ -270,158 +239,92 @@ export function DemoContactForm() {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="company-size" className={labelClass}>
-          Company size
-        </label>
-        <select
-          id="company-size"
-          {...register("companySize")}
-          className={selectClass}
-        >
-          <option value="">Select…</option>
-          <option value="1-49">1–49</option>
-          <option value="50-249">50–249</option>
-          <option value="250-999">250–999</option>
-          <option value="1000+">1,000+</option>
-        </select>
-      </div>
-
-      {showSalesDemo && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] items-start">
-          <fieldset className="min-w-0">
-            <legend className={labelClass}>
-              Solution(s)/Area(s) of Interest{reqMark}
-            </legend>
-            <div className="flex flex-col gap-[10px]">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    {...register("solutionTallyPlus")}
-                    className="h-[18px] w-[18px] accent-navy"
+      {showSolutions && (
+        <fieldset className="min-w-0">
+          <legend className={labelClass}>
+            ご関心のあるソリューション・領域{reqMark}
+          </legend>
+          <div className="flex flex-col gap-[10px]">
+            <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
+              <input
+                type="checkbox"
+                {...register("solutionO2C")}
+                className="h-[18px] w-[18px] accent-navy"
+              />
+              <span>契約・請求・回収管理（O2C）</span>
+            </label>
+            <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
+              <input
+                type="checkbox"
+                {...register("solutionCustomerEngagement")}
+                className="h-[18px] w-[18px] accent-navy"
+              />
+              <span>顧客対応・顧客接点</span>
+            </label>
+            <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
+              <input
+                type="checkbox"
+                {...register("solutionDecarbon")}
+                className="h-[18px] w-[18px] accent-navy"
+              />
+              <span>脱炭素ソリューション</span>
+            </label>
+            <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
+              <input
+                type="checkbox"
+                {...register("solutionSalesManagement")}
+                className="h-[18px] w-[18px] accent-navy"
+              />
+              <span>販売管理</span>
+            </label>
+            <div className="flex flex-wrap items-start gap-x-3 gap-y-2 w-full">
+              <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer pt-[6px]">
+                <input
+                  type="checkbox"
+                  {...register("solutionOther")}
+                  className="h-[18px] w-[18px] accent-navy"
+                />
+                <span>その他</span>
+              </label>
+              {otherChecked && (
+                <div className="flex-1 min-w-[12rem]">
+                  <label htmlFor="solution-other-text" className="sr-only">
+                    その他の詳細
+                  </label>
+                  <textarea
+                    id="solution-other-text"
+                    rows={2}
+                    placeholder="詳細をご記入ください"
+                    {...register("solutionOtherText")}
+                    className={`${inputClass} resize-y min-h-[44px]`}
                   />
-                  <span>Tally+</span>
-                </label>
-                <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    {...register("solutionTallyGlass")}
-                    className="h-[18px] w-[18px] accent-navy"
-                  />
-                  <span>Tally Glass</span>
-                </label>
-              </div>
-              <div className="flex flex-wrap items-start gap-x-3 gap-y-2 w-full">
-                <label className="inline-flex items-center gap-2 text-sm text-fg1 cursor-pointer pt-[6px]">
-                  <input
-                    type="checkbox"
-                    {...register("solutionOther")}
-                    className="h-[18px] w-[18px] accent-navy"
-                  />
-                  <span>Other</span>
-                </label>
-                {otherChecked && (
-                  <div className="flex-1 min-w-[12rem]">
-                    <label
-                      htmlFor="solution-other-text"
-                      className="sr-only"
-                    >
-                      Other — describe your solution or area
-                    </label>
-                    <textarea
-                      id="solution-other-text"
-                      rows={2}
-                      placeholder="Describe your solution or area…"
-                      {...register("solutionOtherText")}
-                      className={`${inputClass} resize-y min-h-[44px]`}
-                    />
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-            <p className="mt-2 text-xs text-fg2">
-              Select all that apply. If you choose Other, add a comment in the
-              field beside it (required when Other is checked).
-            </p>
-            {errors.solutionTallyPlus && (
-              <p className={errorClass} role="alert">
-                {errors.solutionTallyPlus.message}
-              </p>
-            )}
-            {errors.solutionOtherText && (
-              <p className={errorClass} role="alert">
-                {errors.solutionOtherText.message}
-              </p>
-            )}
-          </fieldset>
-
-          <div>
-            <label htmlFor="timeline" className={labelClass}>
-              Implementation timeline{reqMark}
-            </label>
-            <select
-              id="timeline"
-              {...register("timeline")}
-              className={selectClass}
-              aria-describedby="timeline-hint"
-            >
-              <option value="">Select…</option>
-              <option value="immediate">Immediately</option>
-              <option value="3months">Within 3 months</option>
-              <option value="exploring">
-                Exploring / information gathering
-              </option>
-            </select>
-            <p id="timeline-hint" className="mt-1 text-xs text-fg2">
-              Helps us prioritize follow-up.
-            </p>
-            {errors.timeline && (
-              <p className={errorClass}>{errors.timeline.message}</p>
-            )}
           </div>
-        </div>
+          <p className="mt-2 text-xs text-fg2">複数選択可</p>
+          <p className="mt-1 text-xs text-fg2">
+            「その他」を選択した場合は、詳細をご記入ください（必須）。
+          </p>
+          {errors.solutionO2C && (
+            <p className={errorClass} role="alert">
+              {errors.solutionO2C.message}
+            </p>
+          )}
+          {errors.solutionOtherText && (
+            <p className={errorClass} role="alert">
+              {errors.solutionOtherText.message}
+            </p>
+          )}
+        </fieldset>
       )}
 
-      {showSupport && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
-          <div>
-            <label htmlFor="product-in-use" className={labelClass}>
-              Product in use{reqMark}
-            </label>
-            <input
-              id="product-in-use"
-              type="text"
-              {...register("productInUse")}
-              className={inputClass}
-            />
-            {errors.productInUse && (
-              <p className={errorClass}>{errors.productInUse.message}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="issue-description" className={labelClass}>
-              Description of issue{reqMark}
-            </label>
-            <textarea
-              id="issue-description"
-              rows={3}
-              {...register("issueDescription")}
-              className={`${inputClass} resize-y min-h-[68px]`}
-            />
-            {errors.issueDescription && (
-              <p className={errorClass}>{errors.issueDescription.message}</p>
-            )}
-          </div>
-        </div>
-      )}
-
-      <h4 className={sectionTitleClass}>Message</h4>
+      <h4 className={sectionTitleClass}>お問い合わせ内容</h4>
 
       <div>
         <label htmlFor="message" className={labelClass}>
-          Please provide details about your request{" "}
-          <span className="font-normal text-fg2">(Optional)</span>
+          ご依頼内容の詳細をご記入ください{" "}
+          <span className="font-normal text-fg2">（任意）</span>
         </label>
         <textarea
           id="message"
@@ -432,39 +335,15 @@ export function DemoContactForm() {
       </div>
 
       <p className="text-xs text-fg2 leading-[1.55]">
-        <strong className="text-navy">Privacy notice:</strong> The information
-        you provide will be used to respond to your inquiry and improve our
-        services. Please review our{" "}
-        <a
-          href="/privacy"
-          className="text-navy underline hover:text-turquoise"
-        >
-          Privacy Policy
-        </a>{" "}
-        for more details.
+        お預かりした個人情報は、個人情報保護方針に基づき適切に取り扱います。
       </p>
-
-      <div className="flex items-start gap-2">
-        <input
-          id="consent"
-          type="checkbox"
-          {...register("consent")}
-          className="mt-[3px] h-[18px] w-[18px] accent-navy"
-        />
-        <label htmlFor="consent" className="text-sm text-fg1">
-          I agree to the Privacy Policy{reqMark}
-        </label>
-      </div>
-      {errors.consent && (
-        <p className={errorClass}>{errors.consent.message}</p>
-      )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full inline-flex items-center justify-center gap-2 px-5 py-[12px] rounded-lg text-sm font-semibold bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className={`w-full ${jpCtaSubmitClass}`}
       >
-        {isSubmitting ? "Submitting…" : "Submit"}
+        {isSubmitting ? "送信中…" : "送信"}
         <span className="material-symbols-outlined text-[16px]">
           arrow_forward
         </span>

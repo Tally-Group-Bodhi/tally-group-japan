@@ -22,6 +22,11 @@ import {
   Zap,
 } from "lucide-react";
 import { PixelWave } from "@/components/home/jp/pixel-wave";
+import {
+  JP_HOME_HEADLINE,
+  JP_HOME_QUADRANTS,
+  JP_HOME_SUBHEAD,
+} from "@/components/home/jp/home-beta-quad-grid-copy";
 
 type Corner = "tl" | "tr" | "bl" | "br";
 
@@ -40,60 +45,52 @@ type Quadrant = {
   singleLine?: boolean;
 };
 
-const quadrants: Quadrant[] = [
-  {
-    id: "order-to-cash",
-    title: "Order to Cash",
+const quadrantMeta: Record<
+  (typeof JP_HOME_QUADRANTS)[number]["id"],
+  Pick<Quadrant, "tint" | "glow" | "corner"> & {
+    icons: LucideIcon[];
+  }
+> = {
+  "order-to-cash": {
     tint: "rgba(185, 188, 203, 0.8)",
     glow: "rgba(185, 188, 203, 0.6)",
     corner: "tl",
-    subItems: [
-      { label: "Billing", icon: Receipt },
-      { label: "Operations", icon: Settings2 },
-      { label: "Credit and Collections", icon: CreditCard },
-      { label: "Workflow", icon: Workflow },
-    ],
+    icons: [Receipt, Settings2, CreditCard, Workflow],
   },
-  {
-    id: "customer-engagement",
-    title: "Customer Engagement",
+  "customer-engagement": {
     tint: "rgba(215, 200, 244, 0.8)",
     glow: "rgba(215, 200, 244, 0.6)",
     corner: "tr",
-    singleLine: true,
-    subItems: [
-      { label: "CSR AI Companion", icon: Bot },
-      { label: "Screen Consolidator", icon: LayoutDashboard },
-      { label: "Customer Portal", icon: UserCircle },
-      { label: "Experience Optimization", icon: Sparkles },
-    ],
+    icons: [Bot, LayoutDashboard, UserCircle, Sparkles],
   },
-  {
-    id: "transition-products",
-    title: "Transition Products",
+  "transition-products": {
     tint: "rgba(174, 215, 204, 0.8)",
     glow: "rgba(174, 215, 204, 0.6)",
     corner: "bl",
-    subItems: [
-      { label: "Demand Response", icon: Zap },
-      { label: "Solar / EV & Batteries", icon: Sun },
-      { label: "Distributed Energy", icon: Network },
-      { label: "Carbon Reporting", icon: Leaf },
-    ],
+    icons: [Zap, Sun, Network, Leaf],
   },
-  {
-    id: "sales-management",
-    title: "Sales Management",
+  "sales-management": {
     tint: "rgba(188, 218, 251, 0.8)",
     glow: "rgba(188, 218, 251, 0.6)",
     corner: "br",
-    subItems: [
-      { label: "Price Plans", icon: Tag },
-      { label: "Sales Portal", icon: Briefcase },
-      { label: "Auto Sign-Up and Enrollment", icon: UserPlus },
-    ],
+    icons: [Tag, Briefcase, UserPlus],
   },
-];
+};
+
+const quadrants: Quadrant[] = JP_HOME_QUADRANTS.map((q) => {
+  const meta = quadrantMeta[q.id];
+  return {
+    id: q.id,
+    title: q.title,
+    tint: meta.tint,
+    glow: meta.glow,
+    corner: meta.corner,
+    subItems: q.subItems.map((label, i) => ({
+      label,
+      icon: meta.icons[i]!,
+    })),
+  };
+});
 
 const cornerAnchor: Record<Corner, string> = {
   tl: "items-start justify-start text-left",
@@ -117,8 +114,16 @@ export function HomeBetaQuadGrid() {
   return (
     <section className="relative h-[100dvh] flex flex-col bg-white pt-[84px] px-4 sm:px-6 pb-4 sm:pb-6">
       <div className="px-2 py-4 sm:py-5 lg:py-6 text-center">
-        <h1 className="text-[28px] sm:text-[40px] lg:text-[56px] font-light leading-[1.15] tracking-[-0.015em] text-navy">
-          Tally+ Your Ai Enabled Retail Energy Platform
+        <h1 className="flex flex-wrap items-end justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-[24px] sm:text-[36px] lg:text-[52px] font-light leading-none tracking-[-0.015em] text-navy">
+          <Image
+            src="/logos/TallyPlus.svg"
+            alt="Tally+"
+            width={205}
+            height={75}
+            priority
+            className="h-[1em] w-auto shrink-0"
+          />
+          <span>{JP_HOME_HEADLINE}</span>
         </h1>
       </div>
 
@@ -189,7 +194,7 @@ export function HomeBetaQuadGrid() {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   >
                     <h2
-                      className={`text-[18px] sm:text-[24px] lg:text-[34px] font-light leading-[1.15] tracking-[-0.02em] text-white max-w-[16ch] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] ${q.singleLine ? "lg:text-[30px] lg:max-w-none lg:whitespace-nowrap" : ""}`}
+                      className={`text-[16px] sm:text-[22px] lg:text-[30px] font-light leading-[1.2] tracking-[-0.02em] text-white max-w-[14em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] ${q.singleLine ? "lg:max-w-none lg:whitespace-nowrap" : ""}`}
                     >
                       {q.title}
                     </h2>
@@ -344,8 +349,8 @@ export function HomeBetaQuadGrid() {
       </div>
 
       <div className="px-2 py-4 sm:py-5 lg:py-6 text-center">
-        <p className="text-[20px] sm:text-[26px] lg:text-[34px] font-light leading-[1.2] tracking-[-0.01em] text-fg2">
-          Modules Can Be Mixed &amp; Matched to Fit Your Requirements
+        <p className="text-[18px] sm:text-[24px] lg:text-[32px] font-light leading-[1.35] tracking-[-0.01em] text-fg2">
+          {JP_HOME_SUBHEAD}
         </p>
       </div>
     </section>

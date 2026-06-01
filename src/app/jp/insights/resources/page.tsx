@@ -7,7 +7,7 @@ import {
 export const metadata: Metadata = {
   title: "資料",
   description:
-    "エネルギー関連事業向けソリューションを理解するための、調査レポートや専門家によるセッションなどをご用意しています。",
+    "エネルギー業界の最新動向やソリューション理解に役立つ、コラムや動画コンテンツをご紹介しています。",
 };
 
 const resources: Resource[] = [
@@ -31,48 +31,6 @@ const resources: Resource[] = [
     videoId: "Xj8sL4L2qDg",
     thumbnail: "/jp/webinars/Video 4.png",
   },
-  {
-    kind: "whitepaper",
-    title: "小売電気プラットフォームの将来像",
-    description:
-      "複雑な料金・商品・市場ルールに対応しながら、請求・顧客システムをどのようにスケールさせるか。",
-    href: "#",
-  },
-  {
-    kind: "whitepaper",
-    title: "AIとユーティリティの技術スタック",
-    description:
-      "セキュリティや監査可能性を損なわずに、AIアシスタントをオペレーションに接続する実践的なパターン。",
-    href: "#",
-  },
-  {
-    kind: "whitepaper",
-    title: "産業向け小売事業者のネットゼロロードマップ",
-    description:
-      "サステナビリティ目標を、商品ポートフォリオ、報告、顧客向けプログラムに落とし込む方法。",
-    href: "#",
-  },
-  {
-    kind: "whitepaper",
-    title: "デマンドレスポンス：技術入門",
-    description:
-      "DRプログラムを大規模に安定運用するための信号、精算、顧客接点。",
-    href: "#",
-  },
-  {
-    kind: "whitepaper",
-    title: "規制市場における顧客体験",
-    description:
-      "チャネル横断で、コンプライアンス、コミュニケーション、デジタルセルフサービスを両立する。",
-    href: "#",
-  },
-  {
-    kind: "whitepaper",
-    title: "クラウド請求におけるデータセキュリティ",
-    description:
-      "クラウドネイティブCISパートナーに求めるべき統制、監視、ベンダー実践。",
-    href: "#",
-  },
 ];
 
 export default function JPResourcesPage() {
@@ -91,12 +49,11 @@ export default function JPResourcesPage() {
             資料
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch] m-0">
-            エネルギー関連事業向けソリューションを理解するための、調査レポートや専門家によるセッションなどをご用意しています。
+            エネルギー業界の最新動向やソリューション理解に役立つ、コラムや動画コンテンツをご紹介しています。
           </p>
         </div>
       </section>
 
-      {/* Filterable grid */}
       <ResourcesGrid resources={resources} />
     </>
   );

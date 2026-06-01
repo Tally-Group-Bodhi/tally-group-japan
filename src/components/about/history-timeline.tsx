@@ -1,11 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 export type TimelineEntry = {
   year: string;
   title?: string;
-  description: string;
+  description?: string;
 };
 
 const defaultTimeline: TimelineEntry[] = [
@@ -56,7 +56,7 @@ const defaultContent = {
 type HistoryTimelineProps = {
   eyebrow?: string;
   heading?: string;
-  lead?: string;
+  lead?: ReactNode;
   entries?: TimelineEntry[];
   scrollLeftLabel?: string;
   scrollRightLabel?: string;
@@ -206,9 +206,11 @@ export function HistoryTimeline({
                     {item.title}
                   </h3>
                 )}
-                <p className="text-sm leading-[1.55] text-fg2 m-0">
-                  {item.description}
-                </p>
+                {item.description && (
+                  <p className="text-sm leading-[1.55] text-fg2 m-0">
+                    {item.description}
+                  </p>
+                )}
               </article>
             ))}
           </div>

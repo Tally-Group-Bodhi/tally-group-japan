@@ -37,38 +37,56 @@ const staffCommitments = [
 const jpHistoryTimeline: TimelineEntry[] = [
   {
     year: "2018",
-    description:
-      "オーストラリアの市場専門家によりTally ITが創設され、小売事業者がレガシープロバイダーに抱える課題に応える、顧客中心の請求およびデジタルソリューションのニーズに応えました。",
+    title: "タリー創設",
   },
   {
     year: "2020",
-    description:
-      "AgilityはZnalyticsおよびWebtools Energyを取得。Tallyの主導により、買収と統合が強みとなり、日本および米国での収益成長加速を牽引しています。",
+    title: "Agility が Znalytics および Webtools Energy を買収",
   },
   {
     year: "2021",
-    description:
-      "AgilityとTallyの合併によりTally Groupが誕生。主要なエンタープライズ向けマス市場プラットフォーム移行の実績と市場専門性を示しています。",
+    title: "Agility とタリーの合併によりタリーグループが誕生",
   },
   {
     year: "2023",
-    description:
-      "Tally GroupはオーストラリアにおいてIFM Investorsおよびクリーンエネルギー金融公社（CEFC）から大規模な出資を受けました。",
+    title: "タリーグループが大規模出資を調達",
   },
   {
     year: "2024",
-    description:
-      "TallyはAlinta Energyの請求プラットフォーム「CORE」を取得しました。一般家庭向けマス市場および産業向け（C&I）顧客を支援します。",
+    title: "タリーグループが Alinta CORE を買収",
   },
   {
     year: "2026",
-    description:
-      "Tally Groupはスキッピングストーンを買収し、米国および日本を中心にアドバイザリー・コンサルティング機能を拡充しました。",
+    title: "タリーグループがスキッピングストーンを買収",
   },
 ];
 
-const jpHistoryLead =
-  "Tally Groupは2021年、クラウド請求ソリューションのリーディングプロバイダーであるAgility CISと、成長著しいエネルギー小売向けSaaSプロバイダーであるTallyの合併により誕生しました。グループには、いずれも2020年にAgility CISが買収したZnalytics（米国・日本）およびWebtools Energy（オーストラリア・ニュージーランド）が含まれます。2022年5月、当社はグローバルブランドとしてTally Groupへ刷新しました。2026年、当社はエネルギーコンサルティング会社スキッピングストーンを買収し、グローバル成長における重要な一歩としました。";
+const skippingStoneLinkClassName =
+  "text-navy font-medium hover:text-turquoise transition-colors underline decoration-stroke1 underline-offset-2";
+
+const jpHistoryLead = (
+  <>
+    タリーグループは2021年、クラウド請求ソリューションのリーディングプロバイダーであるAgility CISと、成長著しいエネルギー小売向けSaaSプロバイダーであるタリーの合併により誕生しました。2026年にはエネルギーコンサルティング会社
+    <a
+      href="https://japan2.skippingstone.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={skippingStoneLinkClassName}
+    >
+      スキッピングストーン
+    </a>
+    を買収し、当社グループのテクノロジーと
+    <a
+      href="https://japan2.skippingstone.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={skippingStoneLinkClassName}
+    >
+      スキッピングストーン
+    </a>
+    の業界知見を組み合わせることで、企画から実行までを一貫して支援する体制を強化しています。これにより、日本および米国での事業基盤を拡大し、変化するエネルギー市場においてお客様の変革と価値創造を支援しています。
+  </>
+);
 
 const japanLeaders = [
   {
@@ -107,7 +125,7 @@ const leaders = [
   {
     name: "トラヴィス・リーマン",
     role: "最高執行責任者（COO）",
-    bio: "2019年にAgility CISへトランスフォーメーション・ディレクターとして参画し、M&Aを含むバリュー・クリエーション・プログラムをリード。事業の成長と統合が進む中で、成長戦略の推進に貢献する。戦略立案、M&A、事業推進にわたる幅広い経験を持ち、複数のグローバル市場でテクノロジー企業の成長支援に携わる。Tally参画以前には、デロイト コンサルティング（サンフランシスコ）のM&A部門で約10年間従事。スタンフォード大学経営大学院にてMBAを取得。戦略を着実な実行につなげ、持続的な成長を支える、冷静かつ課題解決志向のリーダーシップを強みとしている。",
+    bio: "2019年にAgility CISへトランスフォーメーション・ディレクターとして参画し、M&Aを含むバリュー・クリエーション・プログラムをリード。事業の成長と統合が進む中で、成長戦略の推進に貢献する。戦略立案、M&A、事業推進にわたる幅広い経験を持ち、複数のグローバル市場でテクノロジー企業の成長支援に携わる。タリー参画以前には、デロイトコンサルティング（サンフランシスコ）のM&A部門で約10年間従事。スタンフォード大学経営大学院にてMBAを取得。戦略を着実な実行につなげ、持続的な成長を支える、冷静かつ課題解決志向のリーダーシップを強みとしている。",
     photo: "Travis Lehman.jpg",
   },
   {
@@ -117,9 +135,9 @@ const leaders = [
     photo: "Janet Le.jpg",
   },
   {
-    name: "Eric Yilmaz",
+    name: "エリック・エルマズ",
     role: "最高技術責任者（CTO）",
-    bio: "2023年に最高技術責任者として参画。SortedおよびEY Innovationの元CTO。戦略、デジタル、インフラ、オペレーション、プロダクト開発にわたり20年以上の経験を有する。",
+    bio: "2023年にタリーに参画。20年以上にわたり、テクノロジー戦略、デジタルプラットフォーム、インフラ、オペレーション、製品開発領域に携わる。以前はソーテッドの最高技術責任者を務めたほか、EYにおいてイノベーションおよびテクノロジー領域の要職を歴任。現在は、クラウドアーキテクチャやAI活用を軸に、タリーグループのグローバル技術戦略を統括し、高品質かつ将来を見据えたプラットフォーム構築と、強い組織づくりを推進している。",
     photo: "Eric Yilmaz.jpg",
   },
   {
@@ -136,6 +154,21 @@ const leaders = [
   },
 ];
 
+const leadershipCardOrder = [
+  "アンドリュー・ダンカン",
+  "トラヴィス・リーマン",
+  "ピーター ウェイガンド",
+  "エリック・エルマズ",
+  "坂本 泉",
+  "山口 元久",
+];
+
+const allLeaders = [...leaders, ...japanLeaders];
+const japanLeaderNames = new Set(japanLeaders.map((leader) => leader.name));
+const mergedLeaders = leadershipCardOrder
+  .map((name) => allLeaders.find((leader) => leader.name === name))
+  .filter((leader): leader is (typeof allLeaders)[number] => Boolean(leader));
+
 export default function JPAboutPage() {
   return (
     <>
@@ -145,18 +178,15 @@ export default function JPAboutPage() {
       }}>
         <div className="max-w-[1240px] mx-auto px-8">
           <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[36ch] m-0">
-            世界水準の顧客体験と顧客管理ソリューションを提供します
+            エネルギー事業者の成長を支える顧客体験・顧客管理ソリューションを提供しています
           </h1>
 
           <div className="mt-[20px] text-[20px] leading-[1.7] text-fg2 max-w-[60ch] flex flex-col gap-[16px]">
             <p className="m-0">
-              Tally Groupは、世界各地で実績のあるソリューションにより、ユーティリティ、エネルギー小売事業者、エネルギー転換サービス企業に対し、エンドツーエンドの顧客体験および顧客管理ソリューションを提供します。
+              タリーグループは、ユーティリティ、エネルギー小売事業者、エネルギー転換関連事業者など、さまざまなエネルギー関連企業向けにソリューションを提供しています。
             </p>
             <p className="m-0">
-              Tally+のポッドおよびモジュールは、お客様の要件に合わせて構成できます。標準のパッケージ製品としてもご利用いただけます。
-            </p>
-            <p className="m-0">
-              さらに、当社のAIツールであるTally Glassは、ポッドおよびモジュールと連携し、Tally+の最適化とユーザーの生産性向上を支援します。
+              AI を活用した Tally+ は、幅広い業務領域をカバーするモジュールを備え、お客様の要件に応じて柔軟に組み合わせることができます。単一プラットフォームで業務全体の効率化を実現し、生産性向上やコスト削減を支援します。
             </p>
           </div>
         </div>
@@ -190,23 +220,32 @@ export default function JPAboutPage() {
             <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
               会社概要
             </h2>
-            <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0">
-              日本法人の登記情報および基本情報の概要です。
-            </p>
           </div>
 
           <div className="max-w-[820px]">
-            <p className="text-[20px] leading-[1.7] text-fg2 m-0 mb-[24px]">
-              グループ全体の紹介や沿革については会社情報をご覧ください。本ページでは日本における法人の概要をまとめています。
-            </p>
-
             <div className="bg-white border border-stroke1 rounded-2xl overflow-hidden">
               <dl className="divide-y divide-stroke1 m-0">
                 {[
-                  { label: "商号", value: "（準備中）" },
-                  { label: "所在地", value: "（準備中）" },
-                  { label: "代表者", value: "（準備中）" },
-                  { label: "設立", value: "（準備中）" },
+                  { label: "会社名", value: "タリーグループ合同会社" },
+                  { label: "設立", value: "2020年4月" },
+                  {
+                    label: "代表者",
+                    value: "最高執行責任者 COO トラヴィス・リーマン",
+                  },
+                  { label: "所在地", value: "東京都港区西新橋 2-20-1-4F" },
+                  { label: "資本金", value: "1億円" },
+                  { label: "従業員数", value: "27名" },
+                  {
+                    label: "Email",
+                    value: (
+                      <a
+                        href="mailto:contact_jp@tally-group.com"
+                        className="text-navy font-medium hover:text-turquoise transition-colors"
+                      >
+                        contact_jp@tally-group.com
+                      </a>
+                    ),
+                  },
                   {
                     label: "事業内容",
                     value:
@@ -240,72 +279,29 @@ export default function JPAboutPage() {
             <div className="mb-[40px] max-w-[720px]">
               <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
                 <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-                日本リーダーシップ
+                日本チーム
               </div>
               <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
-                日本市場における事業成長とお客様支援を担う、日本チームのリーダーをご紹介します。
+                リーダーシップ
               </h2>
+              <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0">
+                日本市場の事業成長とお客さま支援をリードする日本チームのリーダーをご紹介します。
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
-              {japanLeaders.map((leader) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+              {mergedLeaders.map((leader) => (
                 <LeaderCard
                   key={`${leader.name}-${leader.role}`}
                   leader={leader}
-                  photoSrc={leader.photo ? `/us/${leader.photo}` : undefined}
+                  photoSrc={
+                    leader.photo
+                      ? `${japanLeaderNames.has(leader.name) ? "/us" : "/corporate"}/${leader.photo}`
+                      : undefined
+                  }
                 />
               ))}
             </div>
-          </div>
-          <div
-            id="global-leadership"
-            className="scroll-mt-[88px] mt-[80px] pt-[80px] border-t border-stroke1"
-          >
-          <div className="mb-[48px] max-w-[720px]">
-            <div className="text-xs font-medium text-fg2 uppercase tracking-[0.1em] mb-[12px] inline-flex items-center gap-2">
-              <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
-              グローバルリーダーシップ
-            </div>
-            <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
-              長期的な価値創出にコミットするグローバル経営陣です。
-            </h2>
-            <p className="mt-[16px] text-[20px] leading-[1.7] text-fg2 m-0 max-w-[52ch]">
-              Tally Groupの経営リーダーをご紹介します。
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
-            {leaders.map((leader) => (
-              <article
-                key={leader.name}
-                className="bg-white border border-stroke1 rounded-xl p-[24px] flex flex-col gap-[16px] transition-all hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-              >
-                <div className="flex items-center gap-[14px]">
-                  <div className="w-[88px] h-[88px] rounded-full overflow-hidden shrink-0 border border-stroke1 bg-bg2">
-                    <Image
-                      src={`/corporate/${leader.photo}`}
-                      alt={`Portrait of ${leader.name}`}
-                      width={88}
-                      height={88}
-                      className="w-full h-full object-cover object-[center_top]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="m-0 mb-[2px] text-base font-semibold text-navy tracking-tight leading-tight">
-                      {leader.name}
-                    </h3>
-                    <p className="m-0 text-sm text-fg2">
-                      {leader.role}
-                    </p>
-                  </div>
-                </div>
-                <p className="m-0 text-sm leading-[1.7] text-fg2">
-                  {leader.bio}
-                </p>
-              </article>
-            ))}
-          </div>
           </div>
         </div>
       </section>
@@ -332,8 +328,8 @@ export default function JPAboutPage() {
               items={clientCommitments}
             />
             <CommitmentColumn
-              title="お客様のエンドユーザーへのコミットメント"
-              accent="お客様のエンドユーザー"
+              title="お客様の顧客へのコミットメント"
+              accent="お客様の顧客"
               items={endUserCommitments}
             />
             <CommitmentColumn

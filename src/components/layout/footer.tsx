@@ -35,6 +35,8 @@ const defaultLegalLinks = [
   "Modern slavery",
 ];
 
+const jpLegalLinks = defaultLegalLinks.filter((label) => label !== "Modern slavery");
+
 const defaultLinkPaths: Record<string, string> = {
   Insights: "/blog",
   Contact: "/contact",
@@ -80,14 +82,11 @@ function buildJPColumns(href: (path: string) => string): FooterColumn[] {
         { label: "Services", href: href("/services-beta") },
         { label: "Architecture", href: href("/technology/architecture") },
         { label: "Security", href: href("/technology/security") },
-        { label: "Audit", href: href("/technology/audit") },
-        { label: "API Library", href: href("/technology/api-library") },
       ],
     },
     {
       title: "Resources",
       links: [
-        { label: "Case Studies", href: href("/insights/case-studies") },
         { label: "Resources", href: href("/insights/resources") },
         { label: "Press Releases", href: href("/news/press-releases") },
         { label: "Events", href: href("/news/events") },
@@ -99,7 +98,6 @@ function buildJPColumns(href: (path: string) => string): FooterColumn[] {
         { label: "About", href: href("/about") },
         { label: "Company Overview", href: href("/about#company-overview") },
         { label: "Japan Leadership", href: href("/about#japan-leadership") },
-        { label: "Global Leadership", href: href("/about#global-leadership") },
         { label: "Mission & Values", href: href("/about#mission-values") },
         { label: "Contact", href: href("/contact") },
       ],
@@ -143,7 +141,7 @@ export function Footer() {
           <div>&copy; 2026 Tally Group Pty Ltd &middot; ABN 41 629 117 804</div>
           {isJP && (
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
-              {defaultLegalLinks.map((label) => (
+              {jpLegalLinks.map((label) => (
                 <li key={label}>
                   <Link
                     href="#"
