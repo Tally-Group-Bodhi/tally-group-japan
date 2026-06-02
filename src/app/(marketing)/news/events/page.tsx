@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "イベント",
   description:
     "開催予定のカンファレンス、ウェビナー、コミュニティイベントなどにぜひご参加ください。",
+  alternates: { canonical: "/news/events" },
 };
 
 const events: EventItem[] = [

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Tally Group、スキッピングストーンを買収しグローバル展開を拡大",
   description:
     "Tally Groupは、エネルギー分野の戦略コンサルティングおよび導入支援サービスをグローバルに提供するスキッピングストーンの買収を発表しました。",
+  alternates: { canonical: "/news/press-releases/skipping-stone-acquisition" },
 };
 
 export default function JPSkippingStoneAcquisitionPage() {

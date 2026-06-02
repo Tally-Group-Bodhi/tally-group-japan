@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "アーキテクチャ",
   description:
     "Tally+ のモジュール型サービス、システム連携、複数チャネルを支えるアーキテクチャ原則と参照アーキテクチャの概要。",
+  alternates: { canonical: "/technology/architecture" },
 };
 
 const principles = [

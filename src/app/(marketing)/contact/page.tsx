@@ -4,9 +4,10 @@ import { DemoContactForm } from "@/components/jp/contact/demo-contact-form";
 import { OurLocationsSection } from "@/components/sections/our-locations-section";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "お問い合わせ",
   description:
-    "Get in touch with the Tally Group team. Book a demo, ask a question, or explore a partnership.",
+    "Tally Groupへのお問い合わせはこちら。製品デモのご予約、ご質問、パートナーシップのご相談を承ります。エネルギー小売プラットフォームについてお気軽にご連絡ください。",
+  alternates: { canonical: "/contact" },
 };
 
 const contactMethods = [

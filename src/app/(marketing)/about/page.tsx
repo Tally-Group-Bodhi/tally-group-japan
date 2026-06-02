@@ -3,9 +3,10 @@ import Image from "next/image";
 import { HistoryTimeline, type TimelineEntry } from "@/components/about/history-timeline";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "会社情報",
   description:
-    "Tally is a world-leading cloud-native software platform and ecosystem enabling decarbonisation, digitisation and decentralisation for energy retailers globally.",
+    "Tally Groupは、世界のエネルギー小売事業者の脱炭素化・デジタル化・分散化を支えるクラウドネイティブなソフトウェアプラットフォームです。日本チームと会社概要、企業理念をご紹介します。",
+  alternates: { canonical: "/about" },
 };
 
 const clientCommitments = [

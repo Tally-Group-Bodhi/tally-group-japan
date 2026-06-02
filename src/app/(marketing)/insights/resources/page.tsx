@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "資料",
   description:
     "エネルギー業界の最新動向やソリューション理解に役立つ、コラムや動画コンテンツをご紹介しています。",
+  alternates: { canonical: "/insights/resources" },
 };
 
 const resources: Resource[] = [

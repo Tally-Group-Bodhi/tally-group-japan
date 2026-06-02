@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         source: "/services",
         destination: "/services-beta",
-        permanent: false,
+        permanent: true,
       },
       {
         source: "/jp",

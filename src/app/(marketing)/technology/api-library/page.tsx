@@ -9,9 +9,10 @@ import {
 } from "@/components/jp/tech/tech-page";
 
 export const metadata: Metadata = {
-  title: "API Library",
+  title: "APIライブラリ",
   description:
-    "APIs, events, and webhooks that integrate Tally+ modules with your enterprise stack—consistent with the integration‑enabled architecture used across Retail OS, MDM, billing, market gateway, digital channels, and the broader service library.",
+    "Tally+ の各モジュールを企業システムと連携するためのAPI・イベント・Webhookを提供。Retail OS、MDM、請求、マーケットゲートウェイ、デジタルチャネルなど、連携を前提としたアーキテクチャで柔軟な統合を実現します。",
+  alternates: { canonical: "/technology/api-library" },
 };
 
 const docItems = [

@@ -7,6 +7,7 @@ import {
 export const metadata: Metadata = {
   title: "ニュース",
   description: "タリーからのプレスリリースおよびお知らせをご覧いただけます。",
+  alternates: { canonical: "/news/press-releases" },
 };
 
 const pressReleases: PressRelease[] = [

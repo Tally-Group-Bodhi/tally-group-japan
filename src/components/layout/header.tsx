@@ -25,12 +25,17 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
       children: [
         { href: href("/technology/architecture"), label: "アーキテクチャ" },
         { href: href("/technology/security"), label: "セキュリティ" },
+        { href: href("/technology/audit"), label: "監査" },
+        { href: href("/technology/api-library"), label: "APIライブラリ" },
       ],
     },
     {
       label: "インサイト",
       hasMenu: true,
-      children: [{ href: href("/insights/resources"), label: "資料" }],
+      children: [
+        { href: href("/insights/resources"), label: "資料" },
+        { href: href("/insights/case-studies"), label: "導入事例" },
+      ],
     },
     {
       label: "ニュース",

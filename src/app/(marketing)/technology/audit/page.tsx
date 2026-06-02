@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "監査",
   description:
     "売上保全、照合済みメーターデータ・請求データ、オペレーションインテリジェンスにより、オーダー・ツー・キャッシュ（O2C）全体のトレーサビリティを確保。内部監査・第三者監査への対応を支援します。",
+  alternates: { canonical: "/technology/audit" },
 };
 
 export default function JPAuditPage() {

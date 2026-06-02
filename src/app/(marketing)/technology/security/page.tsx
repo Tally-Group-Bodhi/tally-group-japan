@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "セキュリティ",
   description:
     "Tally+は、安全性・可用性・コンプライアンスを備え、顧客・メーター・請求・市場・業務データを安全に保護することで、エネルギー小売業務の安定運用とガバナンス対応を支援します。",
+  alternates: { canonical: "/technology/security" },
 };
 
 const principleCards = [

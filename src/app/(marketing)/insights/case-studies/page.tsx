@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "導入事例",
   description:
     "世界各地の組織が、Tallyのソリューションによってどのように測定可能な成果を実現しているかをご紹介します。地域・トピック・分野で事例を絞り込めます。",
+  alternates: { canonical: "/insights/case-studies" },
 };
 
 const heroMetrics: { value: string; suffix?: string; label: string }[] = [

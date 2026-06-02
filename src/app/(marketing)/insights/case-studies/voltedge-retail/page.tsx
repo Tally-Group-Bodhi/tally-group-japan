@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "VoltEdge Retail（北米） | 導入事例",
   description:
     "競争の激しい北米の電力小売において、時間帯別料金やグリーン付加サービスを投入しつつ、請求の正確性を維持し、サポート件数の増加を抑えた取り組みです。",
+  alternates: { canonical: "/insights/case-studies/voltedge-retail" },
 };
 
 const pills = ["北米", "小売電気", "電力"];
