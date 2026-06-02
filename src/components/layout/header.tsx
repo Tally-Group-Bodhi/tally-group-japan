@@ -29,14 +29,7 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
         { href: href("/technology/api-library"), label: "APIライブラリ" },
       ],
     },
-    {
-      label: "インサイト",
-      hasMenu: true,
-      children: [
-        { href: href("/insights/resources"), label: "資料" },
-        { href: href("/insights/case-studies"), label: "導入事例" },
-      ],
-    },
+    { href: href("/insights/resources"), label: "インサイト" },
     {
       label: "ニュース",
       hasMenu: true,

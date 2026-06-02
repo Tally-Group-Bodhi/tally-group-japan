@@ -25,10 +25,7 @@ function buildJPColumns(href: (path: string) => string): FooterColumn[] {
     },
     {
       title: "インサイト",
-      links: [
-        { label: "資料", href: href("/insights/resources") },
-        { label: "導入事例", href: href("/insights/case-studies") },
-      ],
+      links: [{ label: "資料", href: href("/insights/resources") }],
     },
     {
       title: "ニュース",

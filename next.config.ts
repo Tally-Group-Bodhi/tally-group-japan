@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/insights/case-studies",
+        destination: "/insights/resources",
+        permanent: true,
+      },
+      {
+        source: "/insights/case-studies/:path*",
+        destination: "/insights/resources",
+        permanent: true,
+      },
+      {
         source: "/jp",
         destination: "/",
         permanent: true,
