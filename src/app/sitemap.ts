@@ -1,35 +1,29 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tally.co";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tally.co.jp";
+
+const marketingPages = [
+  "",
+  "/about",
+  "/contact",
+  "/services-beta",
+  "/technology/architecture",
+  "/technology/security",
+  "/technology/audit",
+  "/technology/api-library",
+  "/insights/resources",
+  "/insights/case-studies",
+  "/insights/case-studies/voltedge-retail",
+  "/news/press-releases",
+  "/news/press-releases/skipping-stone-acquisition",
+  "/news/events",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const auPages = [
-    "",
-    "/about",
-    "/careers",
-    "/contact",
-    "/blog",
-    "/products/billing",
-    "/products/digital",
-    "/products/dss",
-    "/products/customer",
-    "/products/acquire",
-    "/products/acquire/uconx",
-  ];
-
-  const aePages = ["", "/about", "/contact"];
-
-  const staticPages = [
-    ...auPages,
-    ...auPages.map((path) => (path === "" ? "/us" : `/us${path}`)),
-    ...aePages.map((path) => (path === "" ? "/ae" : `/ae${path}`)),
-    ...aePages.map((path) => (path === "" ? "/ae/en" : `/ae/en${path}`)),
-  ];
-
-  return staticPages.map((path) => ({
+  return marketingPages.map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
-    changeFrequency: path === "/blog" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path.startsWith("/products") ? 0.8 : 0.7,
+    changeFrequency: "monthly" as const,
+    priority: path === "" ? 1 : path.startsWith("/news") ? 0.6 : 0.7,
   }));
 }

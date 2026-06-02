@@ -6,7 +6,7 @@ import { JPCtaSection } from "@/components/jp/cta-section";
 export function JPLayoutCta() {
   const pathname = usePathname();
 
-  if (pathname === "/jp/contact") {
+  if (pathname === "/contact") {
     return null;
   }
 

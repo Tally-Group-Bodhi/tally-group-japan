@@ -3,7 +3,8 @@
 import { createContext, useContext, useMemo } from "react";
 
 export const US_MARKETING_BASE = "/us";
-export const JP_MARKETING_BASE = "/jp";
+/** Japan-only site: marketing routes live at the root (no /jp prefix). */
+export const JP_MARKETING_BASE = "";
 export const AE_MARKETING_BASE = "/ae";
 export const AE_EN_MARKETING_BASE = "/ae/en";
 

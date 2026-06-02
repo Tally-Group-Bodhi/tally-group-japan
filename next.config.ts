@@ -4,9 +4,19 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/jp/services",
-        destination: "/jp/services-beta",
+        source: "/services",
+        destination: "/services-beta",
         permanent: false,
+      },
+      {
+        source: "/jp",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/jp/:path*",
+        destination: "/:path*",
+        permanent: true,
       },
     ];
   },
