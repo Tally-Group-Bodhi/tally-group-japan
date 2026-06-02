@@ -14,22 +14,22 @@ const resources: Resource[] = [
   {
     kind: "webinar",
     videoId: "1fTWH0KWaxU",
-    thumbnail: "/jp/webinars/Video 1.png",
+    thumbnail: "/webinars/video-1.png",
   },
   {
     kind: "webinar",
     videoId: "7j99_-kPvvg",
-    thumbnail: "/jp/webinars/Video 2.png",
+    thumbnail: "/webinars/video-2.png",
   },
   {
     kind: "webinar",
     videoId: "0qLOICi1z3c",
-    thumbnail: "/jp/webinars/Video 3.png",
+    thumbnail: "/webinars/video-3.png",
   },
   {
     kind: "webinar",
     videoId: "Xj8sL4L2qDg",
-    thumbnail: "/jp/webinars/Video 4.png",
+    thumbnail: "/webinars/video-4.png",
   },
 ];
 
