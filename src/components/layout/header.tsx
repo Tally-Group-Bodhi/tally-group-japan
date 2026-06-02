@@ -25,8 +25,6 @@ function buildJPNavLinks(href: (path: string) => string): NavLink[] {
       children: [
         { href: href("/technology/architecture"), label: "アーキテクチャ" },
         { href: href("/technology/security"), label: "セキュリティ" },
-        { href: href("/technology/audit"), label: "監査" },
-        { href: href("/technology/api-library"), label: "APIライブラリ" },
       ],
     },
     { href: href("/insights/resources"), label: "インサイト" },
