@@ -67,7 +67,9 @@ export function Footer() {
               className="h-[27px] w-auto brightness-0 invert"
             />
             <p className="mt-[16px] text-sm text-white/60 leading-relaxed max-w-[30ch]">
-              The platform for energy retailers in Japan. Proudly built in Australia.
+              エネルギー小売事業者向けプラットフォーム。
+              <br />
+              海外で培った確かな実績。
             </p>
           </div>
           {columns.map((column) => (
