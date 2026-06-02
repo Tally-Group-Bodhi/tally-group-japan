@@ -499,7 +499,7 @@ export default function JPServicesBetaPage() {
         <div className="max-w-[1240px] mx-auto px-8">
           <h2
             id="experience-heading"
-            className="text-[48px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+            className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
           >
             {"\u5b9f\u7e3e\u30fb\u5c02\u9580\u6027"}
           </h2>
@@ -513,7 +513,7 @@ export default function JPServicesBetaPage() {
                 <div className="w-10 h-10 rounded-[10px] bg-[#F0F9FF] border border-navy/[0.08] grid place-items-center text-navy">
                   <span className="material-symbols-outlined text-[22px]">{item.icon}</span>
                 </div>
-                <h3 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0">
+                <h3 className="text-[20px] font-bold leading-[1.4] text-navy m-0">
                   {item.title}
                 </h3>
                 <p className="text-[20px] leading-[1.7] text-fg2 m-0">{item.description}</p>
@@ -528,7 +528,7 @@ export default function JPServicesBetaPage() {
           <div className="mb-[40px]">
             <h2
               id="faq-heading"
-              className="text-[48px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
+              className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0"
             >
               {"\u3088\u304f\u3042\u308b\u3054\u8cea\u554f"}
             </h2>

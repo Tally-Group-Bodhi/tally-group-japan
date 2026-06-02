@@ -6,10 +6,13 @@ export type Office = {
   buildingAr?: string;
   street: string;
   streetAr?: string;
+  streetJa?: string;
   suburb: string;
   suburbAr?: string;
+  suburbJa?: string;
   statePostcode: string;
   statePostcodeAr?: string;
+  statePostcodeJa?: string;
   email: string;
 };
 
@@ -120,15 +123,13 @@ export const officeRegions: OfficeRegion[] = [
         city: "Tokyo",
         cityJa: "東京",
         cityAr: "طوكيو",
-        building: "Marunouchi Nijubashi Building, 2nd Floor",
-        buildingAr: "مبنى ماروناوتشي نيجوباشي، الطابق الثاني",
-        street: "3-2-2 Marunouchi, Chiyoda-ku",
-        streetAr: "3-2-2 ماروناوتشي، تشيودا-كو",
+        building: "The Energy Center",
+        street: "2-20-1 4F, Nishi-Shimbashi, Minato-ku",
+        streetJa: "東京都港区西新橋 2-20-1-4F",
         suburb: "Tokyo",
-        suburbAr: "طوكيو",
-        statePostcode: "100-0005",
-        statePostcodeAr: "100-0005",
-        email: "energy.zn@tally-group.com",
+        statePostcode: "105-0003",
+        statePostcodeJa: "〒105-0003",
+        email: "contact_jp@tally-group.com",
       },
     ],
   },

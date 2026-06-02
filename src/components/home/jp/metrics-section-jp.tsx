@@ -28,7 +28,7 @@ export function MetricsSectionJP() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          {"\u5358\u4e00\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u3067\u3001\u5e45\u5e83\u3044\u696d\u52d9\u8981\u4ef6\u30fb\u30b5\u30fc\u30d3\u30b9\u8a2d\u8a08\u306b\u5bfe\u5fdc"}
+          {"\u5358\u4e00\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u3067\u3001\u67d4\u8edf\u306a\u696d\u52d9\u8a2d\u8a08\u3092\u5b9f\u73fe"}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
           {metrics.map((metric, i) => (

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { DemoContactForm } from "@/components/jp/contact/demo-contact-form";
 import { OurLocationsSection } from "@/components/sections/our-locations-section";
-import { officeRegions } from "@/data/office-regions";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -10,17 +9,7 @@ export const metadata: Metadata = {
     "Get in touch with the Tally Group team. Book a demo, ask a question, or explore a partnership.",
 };
 
-const japanOffices =
-  officeRegions.find((region) => region.id === "japan")?.offices ?? [];
-
 const contactMethods = [
-  {
-    icon: "mail",
-    title: "Email us",
-    description: "Our team will get back to you within 24 hours.",
-    detail: "enquiries@tally-group.com",
-    href: "mailto:enquiries@tally-group.com",
-  },
   {
     icon: "linkedin",
     title: "LinkedInでフォロー",
@@ -104,7 +93,9 @@ export default function ContactPage() {
               <div className="flex flex-col gap-[28px]">
                 <div>
                   <p className="text-[26px] font-semibold text-navy leading-[1.4] m-0">
-                    タリーグループ東京オフィス
+                    タリーグループ
+                    <br />
+                    東京オフィス
                   </p>
                   <p className="mt-3 text-[18px] leading-[1.7] text-fg1 m-0">〒105-0003</p>
                   <p className="text-[18px] leading-[1.7] text-fg1 m-0">
@@ -112,14 +103,6 @@ export default function ContactPage() {
                   </p>
                   <p className="text-[18px] leading-[1.7] text-fg1 m-0">The Energy Center</p>
                 </div>
-                {japanOffices[0]?.email && (
-                  <a
-                    href={`mailto:${japanOffices[0].email}`}
-                    className="block text-sm font-medium text-navy hover:text-turquoise transition-colors"
-                  >
-                    {japanOffices[0].email}
-                  </a>
-                )}
               </div>
             </div>
 

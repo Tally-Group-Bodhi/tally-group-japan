@@ -317,7 +317,7 @@ export default function JPAboutPage() {
               企業理念
             </div>
             <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
-              お客様、お客様のエンドユーザー、そして従業員へのコミットメントを大切にしています。
+              お客様、お客様の顧客、そして従業員へのコミットメントを大切にしています。
             </h2>
           </div>
 

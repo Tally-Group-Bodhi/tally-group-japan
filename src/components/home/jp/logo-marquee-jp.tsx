@@ -9,45 +9,28 @@ type Partner = {
 };
 
 const partners: Partner[] = [
-  { src: "1stenergy.png", alt: "1st Energy", scale: 1.25 },
-  { src: "active.png", alt: "Active" },
-  { src: "amber.jpeg", alt: "Amber", scale: 1.1 },
-  { src: "ampolenergy.png", alt: "Ampol Energy" },
-  { src: "cleanco.png", alt: "CleanCo Queensland" },
-  { src: "contact.jpeg", alt: "Contact Energy", scale: 1.4 },
-  { src: "csenergy.jpeg", alt: "CS Energy", scale: 1.4 },
-  { src: "dodo.png", alt: "Dodo" },
-  { src: "enel.jpeg", alt: "Enel" },
-  { src: "energyaustralia.png", alt: "EnergyAustralia" },
-  { src: "energylocals.png", alt: "Energy Locals" },
-  { src: "engie.png", alt: "Engie", scale: 0.85 },
-  { src: "frontier.png", alt: "Frontier Utilities" },
-  { src: "gexaenergy.jpeg", alt: "Gexa Energy", scale: 1.2 },
-  { src: "iberdrola.jpeg", alt: "Iberdrola" },
-  { src: "jacana.png", alt: "Jacana Energy", scale: 1.4 },
-  { src: "meridian.jpeg", alt: "Meridian", scale: 1.5 },
-  { src: "momentum.png", alt: "Momentum Energy", scale: 1.2 },
-  { src: "nextbusinessenergy.png", alt: "Next Business Energy", scale: 1.4 },
-  { src: "nexteraenergy.png", alt: "NextEra Energy", scale: 1.4 },
-  { src: "pacificblue.png", alt: "Pacific Blue" },
-  { src: "rakuten.jpeg", alt: "Rakuten", scale: 1.3 },
-  { src: "santanna.jpeg", alt: "Santanna Energy Services", scale: 1.2 },
-  { src: "smartestenergy.png", alt: "Smartest Energy" },
-  { src: "snowyhydro.png", alt: "Snowy Hydro" },
+  { src: "1st-energy.svg", alt: "1st Energy", scale: 1.25 },
+  { src: "gexa-energy.svg", alt: "Gexa Energy", scale: 1.2 },
+  { src: "kiwi-energy.svg", alt: "Kiwi Energy" },
+  { src: "pogo-energy.svg", alt: "Pogo Energy" },
+  { src: "real-utilities.svg", alt: "Real Utilities" },
+  { src: "santanna-energy-services.svg", alt: "Santanna Energy Services", scale: 1.2 },
+  { src: "tonga-power-limited.svg", alt: "Tonga Power Limited" },
+  { src: "varsity-energy.svg", alt: "Varsity Energy" },
 ];
 
-const BASE_MAX_H = 48;
-const BASE_MAX_W = 140;
+const BASE_MAX_H = 96;
+const BASE_MAX_W = 280;
 
 function LogoItem({ p }: { p: Partner }) {
   const scale = p.scale ?? 1;
   return (
-    <div className="shrink-0 h-[96px] flex items-center justify-center px-[36px]">
+    <div className="shrink-0 h-[120px] flex items-center justify-center px-[72px]">
       <Image
         src={`/logos/clients/${p.src}`}
         alt={p.alt}
-        width={160}
-        height={64}
+        width={320}
+        height={128}
         className="w-auto h-auto object-contain"
         style={{
           maxHeight: `${BASE_MAX_H * scale}px`,
@@ -61,7 +44,7 @@ function LogoItem({ p }: { p: Partner }) {
 
 export function LogoMarqueeJP() {
   return (
-    <section className="py-[64px] lg:py-[80px] overflow-hidden">
+    <section className="py-[24px] lg:py-[32px] overflow-hidden">
       <div
         className="relative w-full overflow-hidden"
         style={{
@@ -92,7 +75,7 @@ export function LogoMarqueeJP() {
           }
         }
         .animate-jp-logo-marquee {
-          animation: jp-logo-marquee 60s linear infinite;
+          animation: jp-logo-marquee 35s linear infinite;
         }
         .animate-jp-logo-marquee:hover {
           animation-play-state: paused;

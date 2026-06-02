@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { jpCtaSubmitClass } from "@/components/jp/cta-button-classes";
+
+const WEB3FORMS_ACCESS_KEY = "e0687fb5-c504-4a5e-9e43-b6838233daa7";
 
 const inquiryTypes = ["demo", "sales", "general", "partner"] as const;
 
@@ -24,6 +26,7 @@ const schema = z
     solutionOther: z.boolean().optional(),
     solutionOtherText: z.string().optional(),
     message: z.string().optional(),
+    botcheck: z.boolean().optional(),
   })
   .superRefine((data, ctx) => {
     const needsSolutions =
@@ -93,6 +96,8 @@ export function DemoContactForm() {
     },
   });
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const inquiryType = watch("inquiryType");
   const otherChecked = watch("solutionOther");
 
@@ -105,7 +110,48 @@ export function DemoContactForm() {
   }, [otherChecked, setValue]);
 
   const onSubmit = async (data: FormData) => {
-    console.log("Demo contact form submitted:", data);
+    setSubmitError(null);
+    const inquiryLabels: Record<FormData["inquiryType"], string> = {
+      demo: "デモのご依頼",
+      sales: "営業へのお問い合わせ",
+      general: "一般的なお問い合わせ",
+      partner: "パートナーに関するお問い合わせ",
+    };
+    const solutions = [
+      data.solutionO2C && "契約・請求・回収管理（O2C）",
+      data.solutionCustomerEngagement && "顧客対応・顧客接点",
+      data.solutionDecarbon && "脱炭素ソリューション",
+      data.solutionSalesManagement && "販売管理",
+      data.solutionOther && `その他: ${data.solutionOtherText ?? ""}`,
+    ]
+      .filter(Boolean)
+      .join(" / ");
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `お問い合わせ: ${inquiryLabels[data.inquiryType]}`,
+        from_name: `${data.lastName} ${data.firstName}`,
+        botcheck: data.botcheck ?? false,
+        お問い合わせ種別: inquiryLabels[data.inquiryType],
+        会社名: data.companyName,
+        メールアドレス: data.workEmail,
+        電話番号: data.phone,
+        役職: data.jobTitle || "（未記入）",
+        ...(solutions ? { ご関心のあるソリューション: solutions } : {}),
+        ご依頼内容: data.message || "（未記入）",
+      }),
+    });
+    const json = await res.json();
+    if (!json.success) {
+      setSubmitError("送信に失敗しました。時間をおいて再度お試しください。");
+      throw new Error("Web3Forms submission failed");
+    }
     reset();
   };
 
@@ -115,12 +161,30 @@ export function DemoContactForm() {
       noValidate
       className="flex flex-col gap-[20px]"
     >
+      <input
+        type="checkbox"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        {...register("botcheck")}
+        className="hidden"
+      />
+
       {isSubmitSuccessful && (
         <div
           role="status"
           className="rounded-xl border border-turquoise/40 bg-turquoise/10 px-[20px] py-[16px] text-sm font-semibold text-navy"
         >
-          送信が完了しました（プロトタイプのため、データは送信されていません）。
+          送信が完了しました。担当者よりご連絡いたします。
+        </div>
+      )}
+
+      {submitError && (
+        <div
+          role="alert"
+          className="rounded-xl border border-red-300 bg-red-50 px-[20px] py-[16px] text-sm font-semibold text-red-700"
+        >
+          {submitError}
         </div>
       )}
 

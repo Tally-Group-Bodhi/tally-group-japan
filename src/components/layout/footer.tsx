@@ -35,7 +35,7 @@ const defaultLegalLinks = [
   "Modern slavery",
 ];
 
-const jpLegalLinks = defaultLegalLinks.filter((label) => label !== "Modern slavery");
+const jpLegalLinks = ["プライバシーポリシー"];
 
 const defaultLinkPaths: Record<string, string> = {
   Insights: "/blog",
@@ -64,42 +64,32 @@ function buildDefaultColumns(href: (path: string) => string): FooterColumn[] {
 function buildJPColumns(href: (path: string) => string): FooterColumn[] {
   return [
     {
-      title: "Solutions",
+      title: "テクノロジー",
       links: [
-        { label: "Tally+ Customer Mgmt", href: "#" },
-        { label: "Tally Glass AI", href: "#" },
-        { label: "Electricity", href: "#" },
-        { label: "Gas", href: "#" },
-        { label: "Renewables", href: "#" },
-        { label: "EV", href: "#" },
-        { label: "BESS", href: "#" },
-        { label: "DER", href: "#" },
+        { label: "サービス", href: href("/services-beta") },
+        { label: "アーキテクチャ", href: href("/technology/architecture") },
+        { label: "セキュリティ", href: href("/technology/security") },
       ],
     },
     {
-      title: "Technology",
+      title: "インサイト",
+      links: [{ label: "資料", href: href("/insights/resources") }],
+    },
+    {
+      title: "ニュース",
       links: [
-        { label: "Services", href: href("/services-beta") },
-        { label: "Architecture", href: href("/technology/architecture") },
-        { label: "Security", href: href("/technology/security") },
+        { label: "プレスリリース", href: href("/news/press-releases") },
+        { label: "イベント", href: href("/news/events") },
       ],
     },
     {
-      title: "Resources",
+      title: "会社情報",
       links: [
-        { label: "Resources", href: href("/insights/resources") },
-        { label: "Press Releases", href: href("/news/press-releases") },
-        { label: "Events", href: href("/news/events") },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { label: "About", href: href("/about") },
-        { label: "Company Overview", href: href("/about#company-overview") },
-        { label: "Japan Leadership", href: href("/about#japan-leadership") },
-        { label: "Mission & Values", href: href("/about#mission-values") },
-        { label: "Contact", href: href("/contact") },
+        { label: "会社情報", href: href("/about") },
+        { label: "会社概要", href: href("/about#company-overview") },
+        { label: "日本チーム", href: href("/about#japan-leadership") },
+        { label: "企業理念", href: href("/about#mission-values") },
+        { label: "お問い合わせ", href: href("/contact") },
       ],
     },
   ];
@@ -116,11 +106,15 @@ export function Footer() {
     ? "The platform for energy retailers in Japan. Proudly built in Australia."
     : "The platform for global energy retailers. Proudly built in Australia.";
 
+  const mainGridClass = isJP
+    ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-x-[32px] gap-y-[40px] lg:gap-[48px]"
+    : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-[48px]";
+
   return (
     <footer className="bg-navy-dark text-white pt-[72px] pb-6">
       <div className="max-w-[1600px] mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-[48px] pb-[48px] border-b border-white/10">
-          <div>
+        <div className={`${mainGridClass} pb-[48px] border-b border-white/10`}>
+          <div className="col-span-2 lg:col-span-1">
             <Image
               src="/logos/TallyOfficialLogo.svg"
               alt="Tally Group"
@@ -138,7 +132,11 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-[28px] text-[13px] text-white/50 gap-4">
-          <div>&copy; 2026 Tally Group Pty Ltd &middot; ABN 41 629 117 804</div>
+          <div>
+            {isJP
+              ? "\u00a9 2026 Tally Group Pty Ltd"
+              : "\u00a9 2026 Tally Group Pty Ltd \u00b7 ABN 41 629 117 804"}
+          </div>
           {isJP && (
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {jpLegalLinks.map((label) => (
