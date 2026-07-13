@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy
 
-Set `NEXT_PUBLIC_SITE_URL` to the Japan production domain (e.g. `https://www.tally.co.jp`), then `npm run build`.
+Set `NEXT_PUBLIC_SITE_URL` to the Japan production domain (e.g. `https://www.tally-plus.jp`), then `npm run build`.
 
 ## Sync from global repo
 

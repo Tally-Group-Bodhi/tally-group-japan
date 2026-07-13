@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tally.co.jp";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tally-plus.jp";
 
 export const metadata: Metadata = {
   title: {
