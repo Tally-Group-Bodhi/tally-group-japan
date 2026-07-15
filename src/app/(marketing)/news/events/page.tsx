@@ -8,7 +8,7 @@ import {
 export const metadata: Metadata = {
   title: "イベント",
   description:
-    "開催予定のカンファレンス、ウェビナー、コミュニティイベントなどにぜひご参加ください。",
+    "イベント、カンファレンス、ウェビナーの開催情報をご紹介します。",
   alternates: { canonical: "/news/events" },
 };
 
@@ -58,7 +58,7 @@ export default function JPEventsPage() {
             イベント
           </h1>
           <p className="mt-[20px] text-[17px] leading-[1.75] text-fg2 max-w-[60ch] m-0">
-            開催予定のカンファレンス、ウェビナー、コミュニティイベントなどにぜひご参加ください。
+            イベント、カンファレンス、ウェビナーの開催情報をご紹介します。
           </p>
         </div>
       </section>
