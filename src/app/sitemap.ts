@@ -10,6 +10,7 @@ type Entry = {
 
 const entries: Entry[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
+  { path: "/solutions/tally-plus", priority: 0.9, changeFrequency: "monthly" },
   { path: "/services-beta", priority: 0.9, changeFrequency: "monthly" },
   { path: "/about", priority: 0.8, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.8, changeFrequency: "yearly" },

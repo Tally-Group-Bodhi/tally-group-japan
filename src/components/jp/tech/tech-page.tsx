@@ -4,6 +4,12 @@ import {
   jpCtaSecondaryOnLightCompactClass,
 } from "@/components/jp/cta-button-classes";
 
+const introBandPillClassName =
+  "inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium bg-white text-navy border border-stroke1";
+
+const introBandPillButtonClassName =
+  "inline-flex items-center justify-center gap-2 px-5 py-[11px] rounded-full text-sm font-medium bg-white text-navy border border-stroke1 hover:bg-bg3 transition-all shadow-sm";
+
 export type BulletItem = { strong?: string; text: React.ReactNode };
 
 export type TechIntroPill = string | { label: string; href: string };
@@ -62,10 +68,6 @@ export function TechIntroBand({
   keywords?: string[];
   large?: boolean;
 }) {
-  const pillClassName =
-    "inline-flex items-center px-[14px] py-[7px] rounded-full text-[13px] font-medium bg-white text-navy border border-stroke1";
-  const pillLinkClassName = `${pillClassName} hover:border-navy/25 transition-colors`;
-
   const headingClass = large
     ? "text-[30px] font-light leading-[1.3] tracking-[-0.01em] text-navy m-0"
     : "text-[22px] lg:text-[26px] font-light leading-[1.3] tracking-[-0.01em] text-navy m-0";
@@ -86,33 +88,6 @@ export function TechIntroBand({
               </p>
             ))}
           </div>
-          {pills && pills.length > 0 && (
-            <div role="list" className="flex flex-wrap gap-2 mt-[24px]">
-              {pills.map((pill) => {
-                const label = typeof pill === "string" ? pill : pill.label;
-                const href = typeof pill === "string" ? undefined : pill.href;
-
-                if (href) {
-                  return (
-                    <MarketingLink
-                      key={label}
-                      href={href}
-                      role="listitem"
-                      className={pillLinkClassName}
-                    >
-                      {label}
-                    </MarketingLink>
-                  );
-                }
-
-                return (
-                  <span key={label} role="listitem" className={pillClassName}>
-                    {label}
-                  </span>
-                );
-              })}
-            </div>
-          )}
           {keywords && keywords.length > 0 && (
             <div role="list" className="flex flex-wrap gap-2 mt-[24px]">
               {keywords.map((kw) => (
@@ -127,6 +102,40 @@ export function TechIntroBand({
             </div>
           )}
         </div>
+        {pills && pills.length > 0 && (
+          <div
+            role="list"
+            className="mt-[28px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
+          >
+            {pills.map((pill) => {
+              const label = typeof pill === "string" ? pill : pill.label;
+              const href = typeof pill === "string" ? undefined : pill.href;
+
+              if (href) {
+                return (
+                  <MarketingLink
+                    key={label}
+                    href={href}
+                    role="listitem"
+                    className={`${introBandPillButtonClassName} w-full justify-center text-center`}
+                  >
+                    {label}
+                  </MarketingLink>
+                );
+              }
+
+              return (
+                <span
+                  key={label}
+                  role="listitem"
+                  className={`${introBandPillClassName} w-full justify-center text-center`}
+                >
+                  {label}
+                </span>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

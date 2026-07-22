@@ -18,6 +18,16 @@ type NavLink = {
 
 function buildJPNavLinks(href: (path: string) => string): NavLink[] {
   return [
+    {
+      label: "ソリューション",
+      hasMenu: true,
+      childSections: [
+        {
+          title: "プラットフォーム",
+          items: [{ href: href("/solutions/tally-plus"), label: "Tally+" }],
+        },
+      ],
+    },
     { href: href("/services-beta"), label: "サービス" },
     {
       label: "テクノロジー",
@@ -156,7 +166,11 @@ export function Header() {
                       <div className="absolute top-full left-0 pt-2 z-50">
                         <div
                           className={`bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] ${
-                            link.childSections ? "w-[420px] p-4" : "w-[240px] py-1.5"
+                            link.childSections
+                              ? link.childSections.length > 1
+                                ? "w-[420px] p-4"
+                                : "w-[240px] py-1.5"
+                              : "w-[240px] py-1.5"
                           }`}
                           role="menu"
                         >
@@ -294,8 +308,9 @@ function NavDropdownItems({
 
   if (childSections) {
     if (variant === "desktop") {
+      const multiColumn = childSections.length > 1;
       return (
-        <div className="grid grid-cols-2 gap-6">
+        <div className={multiColumn ? "grid grid-cols-2 gap-6" : undefined}>
           {childSections.map((section) => (
             <div key={section.title}>
               <p className={sectionTitleClassName}>{section.title}</p>
