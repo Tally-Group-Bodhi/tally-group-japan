@@ -42,23 +42,35 @@ const jpHistoryTimeline: TimelineEntry[] = [
   },
   {
     year: "2020",
-    title: "Agility が Znalytics および Webtools Energy を買収",
+    title: (
+      <>
+        Agility が Znalytics および
+        <br />
+        Webtools Energy を買収
+      </>
+    ),
   },
   {
     year: "2021",
-    title: "Agility とタリーの合併によりタリーグループが誕生",
+    title: (
+      <>
+        Agility とタリーの合併により
+        <br />
+        タリーグループが誕生
+      </>
+    ),
   },
   {
     year: "2023",
-    title: "タリーグループが大規模出資を調達",
+    title: "大規模出資を調達",
   },
   {
     year: "2024",
-    title: "タリーグループが Alinta CORE を買収",
+    title: "Alinta CORE を買収",
   },
   {
     year: "2026",
-    title: "タリーグループがスキッピングストーンを買収",
+    title: "スキッピングストーンを買収",
   },
 ];
 

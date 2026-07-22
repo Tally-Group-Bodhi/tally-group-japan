@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 
 export type TimelineEntry = {
   year: string;
-  title?: string;
+  title?: ReactNode;
   description?: string;
 };
 
@@ -100,7 +100,7 @@ export function HistoryTimeline({
   const scrollBy = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    const step = 344;
+    const step = 232;
     el.scrollBy({
       left: direction === "left" ? -step : step,
       behavior: "smooth",
@@ -177,7 +177,7 @@ export function HistoryTimeline({
           }}
         >
           <div
-            className="relative inline-flex gap-[24px] pr-8"
+            className="relative inline-flex gap-[12px] pr-8"
             style={{
               paddingLeft:
                 "max(2rem, calc((100vw - 1240px) / 2 + 2rem))",
@@ -186,13 +186,13 @@ export function HistoryTimeline({
             {timeline.map((item, index) => (
               <article
                 key={item.year}
-                className="relative min-w-[320px] max-w-[320px] snap-start"
+                className="relative min-w-[220px] max-w-[220px] snap-start"
               >
                 {index < timeline.length - 1 && (
                   <div
                     aria-hidden
                     className="absolute h-[2px] bg-stroke1 pointer-events-none"
-                    style={{ top: "11px", left: "6px", width: "344px" }}
+                    style={{ top: "11px", left: "6px", width: "232px" }}
                   />
                 )}
                 <div className="relative h-6 flex items-center mb-[20px]">

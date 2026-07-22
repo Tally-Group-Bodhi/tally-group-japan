@@ -9,6 +9,7 @@ export const JP_HOME_SUBHEAD =
 export const JP_HOME_QUADRANTS = [
   {
     id: "order-to-cash",
+    href: "/solutions/tally-plus#o2c",
     title: "\u5951\u7d04\u30fb\u8acb\u6c42\u30fb\u56de\u53ce\u7ba1\u7406\uff08O2C\uff09",
     subItems: [
       "\u8acb\u6c42\u7ba1\u7406",
@@ -18,32 +19,35 @@ export const JP_HOME_QUADRANTS = [
     ],
   },
   {
+    id: "sales-management",
+    href: "/solutions/tally-plus#sales",
+    title: "\u8ca9\u58f2\u30fb\u7533\u8fbc\u7ba1\u7406",
+    subItems: [
+      "\u6599\u91d1\u30e1\u30cb\u30e5\u30fc\u7ba1\u7406",
+      "\u55b6\u696d\u652f\u63f4\u30dd\u30fc\u30bf\u30eb",
+      "\u81ea\u52d5\u7533\u8fbc\u30fb\u5951\u7d04\u767b\u9332",
+    ],
+  },
+  {
     id: "customer-engagement",
+    href: "/solutions/tally-plus#customer-experience",
     title: "\u9867\u5ba2\u5bfe\u5fdc\u30fb\u9867\u5ba2\u63a5\u70b9",
     subItems: [
       "\u30ab\u30b9\u30bf\u30de\u30fc\u30b5\u30fc\u30d3\u30b9\u5411\u3051 AI \u30a2\u30b7\u30b9\u30bf\u30f3\u30c8",
-      "\u753b\u9762\u7d71\u5408\u6a5f\u80fd",
+      "\u7d71\u5408\u30aa\u30da\u30ec\u30fc\u30bf\u30fc\u753b\u9762",
       "\u9867\u5ba2\u30dd\u30fc\u30bf\u30eb",
       "\u9867\u5ba2\u4f53\u9a13\u6700\u9069\u5316",
     ],
   },
   {
     id: "transition-products",
+    href: "/solutions/tally-plus#decarbon",
     title: "\u8131\u70ad\u7d20\u30bd\u30ea\u30e5\u30fc\u30b7\u30e7\u30f3",
     subItems: [
       "\u30c7\u30de\u30f3\u30c9\u30ec\u30b9\u30dd\u30f3\u30b9",
       "\u592a\u967d\u5149\u30fbEV\u30fb\u84c4\u96fb\u6c60\u5bfe\u5fdc",
       "\u5206\u6563\u578b\u30a8\u30cd\u30eb\u30ae\u30fc\u7ba1\u7406",
       "\u70ad\u7d20\u6392\u51fa\u91cf\u30ec\u30dd\u30fc\u30c8",
-    ],
-  },
-  {
-    id: "sales-management",
-    title: "\u8ca9\u58f2\u7ba1\u7406",
-    subItems: [
-      "\u6599\u91d1\u30e1\u30cb\u30e5\u30fc\u7ba1\u7406",
-      "\u55b6\u696d\u652f\u63f4\u30dd\u30fc\u30bf\u30eb",
-      "\u81ea\u52d5\u7533\u8fbc\u30fb\u5951\u7d04\u767b\u9332",
     ],
   },
 ] as const;

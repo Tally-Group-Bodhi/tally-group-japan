@@ -22,6 +22,7 @@ import {
   Zap,
 } from "lucide-react";
 import { PixelWave } from "@/components/home/jp/pixel-wave";
+import { MarketingLink } from "@/components/marketing/marketing-link";
 import {
   JP_HOME_HEADLINE,
   JP_HOME_QUADRANTS,
@@ -37,6 +38,7 @@ type SubItem = {
 
 type Quadrant = {
   id: string;
+  href: string;
   title: string;
   tint: string;
   glow: string;
@@ -57,23 +59,23 @@ const quadrantMeta: Record<
     corner: "tl",
     icons: [Receipt, Settings2, CreditCard, Workflow],
   },
+  "sales-management": {
+    tint: "rgba(188, 218, 251, 0.8)",
+    glow: "rgba(188, 218, 251, 0.6)",
+    corner: "tr",
+    icons: [Tag, Briefcase, UserPlus],
+  },
   "customer-engagement": {
     tint: "rgba(215, 200, 244, 0.8)",
     glow: "rgba(215, 200, 244, 0.6)",
-    corner: "tr",
+    corner: "bl",
     icons: [Bot, LayoutDashboard, UserCircle, Sparkles],
   },
   "transition-products": {
     tint: "rgba(174, 215, 204, 0.8)",
     glow: "rgba(174, 215, 204, 0.6)",
-    corner: "bl",
-    icons: [Zap, Sun, Network, Leaf],
-  },
-  "sales-management": {
-    tint: "rgba(188, 218, 251, 0.8)",
-    glow: "rgba(188, 218, 251, 0.6)",
     corner: "br",
-    icons: [Tag, Briefcase, UserPlus],
+    icons: [Zap, Sun, Network, Leaf],
   },
 };
 
@@ -81,6 +83,7 @@ const quadrants: Quadrant[] = JP_HOME_QUADRANTS.map((q) => {
   const meta = quadrantMeta[q.id];
   return {
     id: q.id,
+    href: q.href,
     title: q.title,
     tint: meta.tint,
     glow: meta.glow,
@@ -164,9 +167,14 @@ export function HomeBetaQuadGrid() {
                 onTapStart={() => setHoveredId(q.id)}
                 animate={{ opacity: isDimmed ? 0.55 : 1 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative cursor-pointer overflow-hidden rounded-[14px] border border-white/25 backdrop-blur-md shadow-[0_24px_60px_rgba(0,0,0,0.4)]"
+                className="relative overflow-hidden rounded-[14px] border border-white/25 backdrop-blur-md shadow-[0_24px_60px_rgba(0,0,0,0.4)]"
                 style={{ backgroundColor: q.tint }}
               >
+                <MarketingLink
+                  href={q.href}
+                  className="absolute inset-0 z-20 cursor-pointer"
+                  aria-label={q.title}
+                />
                 <motion.div
                   aria-hidden
                   className="absolute inset-0 pointer-events-none"
