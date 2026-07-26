@@ -10,9 +10,14 @@ const introBandPillClassName =
 const introBandPillButtonClassName =
   "inline-flex items-center justify-center gap-2 px-5 py-[11px] rounded-full text-sm font-medium bg-white text-navy border border-stroke1 hover:bg-bg3 transition-all shadow-sm";
 
+const introBandPillButtonLargeClassName =
+  "inline-flex items-center justify-center gap-2 px-5 py-[12px] rounded-full text-[17px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy transition-all shadow-sm";
+
 export type BulletItem = { strong?: string; text: React.ReactNode };
 
-export type TechIntroPill = string | { label: string; href: string };
+export type TechIntroPill =
+  | string
+  | { label: string; href?: string; fill?: string };
 
 export function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -110,6 +115,18 @@ export function TechIntroBand({
             {pills.map((pill) => {
               const label = typeof pill === "string" ? pill : pill.label;
               const href = typeof pill === "string" ? undefined : pill.href;
+              const fill = typeof pill === "string" ? undefined : pill.fill;
+              const filledClass = fill
+                ? "border border-transparent hover:brightness-[0.96]"
+                : large
+                  ? "bg-white border border-stroke1 hover:bg-bg3"
+                  : "";
+              const buttonClass = large
+                ? `${introBandPillButtonLargeClassName} ${filledClass} w-full justify-center text-center`
+                : `${introBandPillButtonClassName} w-full justify-center text-center`;
+              const fillStyle = fill
+                ? { backgroundColor: fill }
+                : undefined;
 
               if (href) {
                 return (
@@ -117,7 +134,8 @@ export function TechIntroBand({
                     key={label}
                     href={href}
                     role="listitem"
-                    className={`${introBandPillButtonClassName} w-full justify-center text-center`}
+                    className={buttonClass}
+                    style={fillStyle}
                   >
                     {label}
                   </MarketingLink>
@@ -128,7 +146,12 @@ export function TechIntroBand({
                 <span
                   key={label}
                   role="listitem"
-                  className={`${introBandPillClassName} w-full justify-center text-center`}
+                  className={
+                    large
+                      ? buttonClass
+                      : `${introBandPillClassName} w-full justify-center text-center`
+                  }
+                  style={fillStyle}
                 >
                   {label}
                 </span>
@@ -210,13 +233,19 @@ export function TechSubheading({ children, id }: { children: React.ReactNode; id
 export function TechBodyParagraph({
   children,
   large = false,
+  wide = false,
 }: {
   children: React.ReactNode;
   large?: boolean;
+  /** Match intro-band measure (760px) instead of the default reading width */
+  wide?: boolean;
 }) {
   const sizeClass = large ? "text-[20px] leading-[1.7]" : "text-[15px] leading-[1.75]";
+  const widthClass = wide ? "max-w-[760px]" : "max-w-[60ch]";
   return (
-    <p className={`${sizeClass} text-fg2 max-w-[60ch] m-0 mt-[16px] first:mt-0`}>{children}</p>
+    <p className={`${sizeClass} ${widthClass} text-fg2 m-0 mt-[16px] first:mt-0`}>
+      {children}
+    </p>
   );
 }
 
@@ -271,8 +300,8 @@ export function TechCardGrid({
       : "bg-bg2 rounded-xl p-[28px] flex flex-col gap-[14px] h-full";
   const iconWrap =
     surface === "outline"
-      ? "w-10 h-10 rounded-[10px] bg-bg2 grid place-items-center text-navy"
-      : "w-10 h-10 rounded-[10px] bg-white border border-navy/[0.08] grid place-items-center text-navy";
+      ? "w-10 h-10 rounded-[10px] bg-bg2 grid place-items-center text-navy shrink-0"
+      : "w-10 h-10 rounded-[10px] bg-white border border-navy/[0.08] grid place-items-center text-navy shrink-0";
   return (
     <div
       className={`grid grid-cols-1 md:grid-cols-2 ${
@@ -281,14 +310,18 @@ export function TechCardGrid({
     >
       {items.map((item) => (
         <div key={item.title} className={cardClass}>
-          {item.icon && (
-            <div className={iconWrap}>
-              <span className="material-symbols-outlined text-[22px]">{item.icon}</span>
-            </div>
-          )}
-          <h3 className="text-[17px] font-semibold leading-[1.4] tracking-[-0.01em] text-fg1 m-0 text-balance">
-            {item.title}
-          </h3>
+          <div className="flex items-center gap-3">
+            {item.icon && (
+              <div className={iconWrap}>
+                <span className="material-symbols-outlined text-[22px]">
+                  {item.icon}
+                </span>
+              </div>
+            )}
+            <h3 className="text-[17px] font-semibold leading-[1.4] tracking-[-0.01em] text-fg1 m-0 text-balance">
+              {item.title}
+            </h3>
+          </div>
           <p className="text-[14px] leading-[1.7] text-fg2 m-0">{item.body}</p>
         </div>
       ))}
@@ -318,7 +351,7 @@ export function TechIntegGrid({
           key={item.title}
           className="bg-white border border-stroke1 rounded-xl px-[22px] py-[20px] flex flex-col gap-[8px]"
         >
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-navy/70 m-0">
+          <p className="text-[17px] font-semibold leading-[1.4] tracking-[-0.01em] text-fg1 m-0 text-balance">
             {item.title}
           </p>
           <p className="text-[14px] leading-[1.65] text-fg2 m-0">{item.body}</p>

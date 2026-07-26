@@ -123,7 +123,7 @@ export function HistoryTimeline({
               <span className="w-[18px] h-[1px] bg-turquoise inline-block" />
               {eyebrow}
             </div>
-            <h2 className="text-[30px] lg:text-[48px] font-light leading-[1.15] tracking-[-0.02em] text-navy">
+            <h2 className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy">
               {heading}
             </h2>
             <p className="mt-[20px] text-[17px] leading-[1.7] text-fg2">

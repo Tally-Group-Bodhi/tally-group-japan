@@ -8,7 +8,6 @@ import {
   TechIntegGrid,
   TechIntroBand,
   TechSection,
-  TechSubheading,
 } from "@/components/jp/tech/tech-page";
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ const agendaCards = [
   {
     icon: "rocket_launch",
     title: "市場投入の加速",
-    body: "商品戦略と業務運用をシームレスにつなぐ、新商品や料金メニューの迅速な市場展開",
+    body: "商品戦略と業務運用をシームレスにつなぎ、新商品や料金メニューの迅速な市場展開",
   },
   {
     icon: "savings",
@@ -42,12 +41,12 @@ const agendaCards = [
   {
     icon: "sentiment_satisfied",
     title: "優れた顧客体験",
-    body: "B2B・B2C双方におけるセルフサービスとオペレーター業務の最適化による顧客体験の向上",
+    body: "一般需要家・法人双方におけるセルフサービスとオペレーター業務の最適化による顧客体験の向上",
   },
   {
     icon: "foundation",
     title: "将来を見据えた基盤",
-    body: "再エネPPA、EV、蓄電池、デマンドレスポンスなど新たな事業機会への対応基盤",
+    body: "再エネ、PPA、EV、蓄電池、デマンドレスポンスなど新たな事業機会への対応基盤",
   },
 ];
 
@@ -99,7 +98,7 @@ const cxParagraphs = [
     text: "は、4つのAIエージェントがコンタクトセンター業務や顧客対応を支援するAI機能です。Adoraインサイトはリアルタイムガイダンスと根本原因分析、Adoraコンパニオンはセルフサービスとアプリ内支援、Adoraディフェンダーはコンプライアンス強化、Adoraプレディクトは解約リスク分析や契約拡大機会の特定を担い、需要家対応の品質向上と効率化を実現します。",
   },
   {
-    strong: "統合オペレーター画面（Tally Glass）",
+    strong: "統合オペレーター画面",
     text: "は、需要家情報、契約情報、請求情報などを一画面で確認・操作できるオペレーター向け画面です。主要業務を単一画面から実行できるため、複数システムを行き来する必要がなく、多くの業務が数クリックで実行できます。対応時間の短縮と教育期間の削減にも貢献します。",
   },
   {
@@ -108,30 +107,30 @@ const cxParagraphs = [
   },
   {
     strong: "顧客体験最適化",
-    text: "では、セルフサービス、リアルタイムコミュニケーション、パーソナライズされた顧客接点を提供します。初回解決率の向上、平均処理時間の短縮、コンプライアンス強化を通じて、一貫した顧客体験の実現を支援します。",
+    text: "は、セルフサービス、リアルタイムコミュニケーション、パーソナライズされた顧客接点を提供します。初回解決率の向上、平均処理時間の短縮、コンプライアンス強化を通じて、一貫した顧客体験の実現を支援します。",
   },
 ];
 
 const adoraCards = [
   {
     icon: "psychology",
-    title: "Adoraインサイト",
-    body: "通話中のAIガイダンス、根本原因分析、最適な対応提案、自動通話要約の提供",
+    title: "Adora インサイト",
+    body: "リアルタイムコールインテリジェンス",
   },
   {
     icon: "support_agent",
-    title: "Adoraコンパニオン",
-    body: "状況に応じたヘルプ、アプリ内支援、タスク自動化の提供",
+    title: "Adora コンパニオン",
+    body: "ガイド付きセルフサービス",
   },
   {
     icon: "security",
-    title: "Adoraディフェンダー",
-    body: "請求ルール遵守、誤った供給停止の防止、規制要件への対応の自動実行",
+    title: "Adora ディフェンダー",
+    body: "コンプライアンス強化",
   },
   {
     icon: "insights",
-    title: "Adoraプレディクト",
-    body: "解約リスク分析、契約拡大機会の特定、顧客維持施策の最適化支援",
+    title: "Adora プレディクト",
+    body: "予測インテリジェンス",
   },
 ];
 
@@ -142,15 +141,15 @@ const decarbonParagraphs = [
   },
   {
     strong: "太陽光・EV・蓄電池対応",
-    text: "では、太陽光発電、蓄電池、VPP、EV関連サービスの契約・請求・運用を支援します。PPAや非化石価値・環境価値に関連する複雑な料金・請求条件にも柔軟に対応します。",
+    text: "は、太陽光発電、蓄電池、VPP、EV関連サービスの契約・請求・運用を支援します。PPAや非化石価値・環境価値に関連する複雑な料金・請求条件にも柔軟に対応します。",
   },
   {
     strong: "分散型エネルギー管理",
-    text: "では、分散型エネルギーリソース（DER）の可視化と分析を提供します。太陽光発電、蓄電池、EVなどの稼働状況、発電・充放電状況、利用状況を把握し、最適なサービス設計と運用管理を支援します。",
+    text: "は、分散型エネルギーリソース（DER）の可視化と分析を提供します。太陽光発電、蓄電池、EVなどの稼働状況、発電・充放電状況、利用状況を把握し、最適なサービス設計と運用管理を支援します。",
   },
   {
     strong: "CO2排出量レポート",
-    text: "では、需要・使用量データに基づく炭素排出量の算定とレポート作成を支援します。サステナビリティ報告や脱炭素施策の効果測定を可能にします。",
+    text: "は、需要・使用量データに基づくCO2 排出量の算定とレポート作成を支援します。サステナビリティ報告や脱炭素施策の効果測定を可能にします。",
   },
 ];
 
@@ -198,9 +197,15 @@ function ModuleChips({ items }: { items: string[] }) {
       {items.map((label) => (
         <li
           key={label}
-          className="px-4 py-[14px] rounded-[10px] text-center text-[15px] font-semibold leading-[1.45] text-navy bg-bg2 border border-stroke1"
+          className="flex items-center justify-center px-4 py-[14px] rounded-[10px] text-center text-[15px] font-semibold leading-[1.45] text-navy bg-bg2 border border-stroke1"
         >
-          {label}
+          <span>
+            {label.split("\n").map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
+          </span>
         </li>
       ))}
     </ul>
@@ -281,17 +286,28 @@ function ProcessSteps({ steps }: { steps: string[] }) {
   );
 }
 
+/** Homepage hero quadrant tints — used for section outlines & intro CTAs */
+const HERO_ACCENTS = {
+  o2c: "rgb(185, 188, 203)",
+  sales: "rgb(188, 218, 251)",
+  customerExperience: "rgb(215, 200, 244)",
+  decarbon: "rgb(174, 215, 204)",
+} as const;
+
 function SolutionAreaCard({
   id,
   title,
   lede,
   modules,
+  accent,
   children,
 }: {
   id: string;
   title: string;
   lede: string;
   modules: string[];
+  /** Border/accent color matching the homepage hero quadrant */
+  accent: string;
   children: ReactNode;
 }) {
   return (
@@ -301,13 +317,20 @@ function SolutionAreaCard({
       aria-labelledby={`${id}-heading`}
     >
       <div className="max-w-[1240px] mx-auto px-8">
-        <article className="bg-white rounded-2xl border border-navy/[0.12] shadow-[0_10px_36px_rgba(44,54,93,0.07)] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+        <article
+          className="bg-white rounded-2xl border-2 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+          style={{ borderColor: accent }}
+        >
           <h2
             id={`${id}-heading`}
             className="flex items-center gap-3 text-[24px] lg:text-[30px] font-semibold leading-[1.3] tracking-[-0.02em] text-navy m-0"
           >
             <span
-              className="shrink-0 w-[9px] h-[9px] rounded-full bg-turquoise shadow-[0_0_0_4px_rgba(0,210,162,0.18)]"
+              className="shrink-0 w-[9px] h-[9px] rounded-full"
+              style={{
+                backgroundColor: accent,
+                boxShadow: `0 0 0 4px color-mix(in srgb, ${accent} 28%, transparent)`,
+              }}
               aria-hidden
             />
             {title}
@@ -337,10 +360,26 @@ export default function TallyPlusOverviewPage() {
           "Tally+は、電力小売事業の主要業務を支える4つの領域で構成されています。各領域の独立した機能やモジュールは、共通のプラットフォーム上でシームレスに連携。AIエージェントが領域横断で業務とデータをつなぎ、事業成長に必要な俊敏性と拡張性を提供します。",
         ]}
         pills={[
-          { label: "契約・請求・回収管理（O2C）", href: "#o2c" },
-          { label: "販売・申込管理", href: "#sales" },
-          { label: "顧客対応・顧客接点", href: "#customer-experience" },
-          { label: "脱炭素ソリューション", href: "#decarbon" },
+          {
+            label: "契約・請求・回収管理（O2C）",
+            href: "#o2c",
+            fill: HERO_ACCENTS.o2c,
+          },
+          {
+            label: "販売・申込管理",
+            href: "#sales",
+            fill: HERO_ACCENTS.sales,
+          },
+          {
+            label: "顧客対応・顧客接点",
+            href: "#customer-experience",
+            fill: HERO_ACCENTS.customerExperience,
+          },
+          {
+            label: "脱炭素ソリューション",
+            href: "#decarbon",
+            fill: HERO_ACCENTS.decarbon,
+          },
         ]}
       />
 
@@ -352,16 +391,16 @@ export default function TallyPlusOverviewPage() {
       >
         <TechCardGrid items={agendaCards} columns={3} />
         <div className="mt-[40px]">
-          <TechBodyParagraph>
+          <TechBodyParagraph wide>
             Tally+は、コンポーザブル・モジュールにより、必要な機能を選択し、お客様の要件に応じて柔軟に組み合わせることができます。各モジュールは共通プラットフォーム上でシームレスに連携し、事業要件や成長ステージの変化に対応する、柔軟で拡張性の高いシステム構成を実現します。
           </TechBodyParagraph>
         </div>
         <figure id="topology" className="mt-[48px] m-0 scroll-mt-[88px]">
           <Image
-            src="/solutions/tally-plus-topology.png"
-            alt="Tally+ プロダクトエコシステムのトポロジー図。Client & Customer Engagement、Common Services Library、Segment Billing & CRM Workflows、および凡例を示す。"
-            width={1231}
-            height={571}
+            src="/solutions/tally-plus-topology-jp.png"
+            alt="Tally+ エネルギー小売向け請求・CRMケイパビリティの全体構成図。需要家エンゲージメント、共通サービス機能、セグメント別請求・CRMワークフローを示す。"
+            width={2880}
+            height={1620}
             className="w-full h-auto rounded-xl border border-stroke1 bg-white"
             sizes="(max-width: 1240px) 100vw, 1240px"
             priority
@@ -371,6 +410,7 @@ export default function TallyPlusOverviewPage() {
 
       <SolutionAreaCard
         id="o2c"
+        accent={HERO_ACCENTS.o2c}
         title="契約・請求・回収管理（O2C）"
         lede="契約から請求・回収までの業務を単一プラットフォームで統合し、複雑な料金体系や請求・入金・収納・収益管理に対応します。申込登録から請求準備、例外処理までをワークフローでつなぎ、業務効率化と運用品質の向上を実現します。"
         modules={["請求管理", "業務運用", "与信・債権管理", "ワークフロー管理"]}
@@ -381,6 +421,7 @@ export default function TallyPlusOverviewPage() {
 
       <SolutionAreaCard
         id="sales"
+        accent={HERO_ACCENTS.sales}
         title="販売・申込管理"
         lede="複雑な料金見積の作成に時間がかかる、法人営業がバックオフィスや料金担当者に依存する、契約条件や料金条件を、料金計算・請求条件へ正確に反映しにくい――こうした課題を解決します。料金メニュー管理から見積・申込、契約登録、料金計算・請求までを一気通貫でつなぎ、見積から請求までのプロセスをシームレスに実現します。"
         modules={["料金メニュー管理", "営業支援ポータル", "自動申込・契約登録"]}
@@ -391,10 +432,11 @@ export default function TallyPlusOverviewPage() {
 
       <SolutionAreaCard
         id="customer-experience"
+        accent={HERO_ACCENTS.customerExperience}
         title="顧客対応・顧客接点"
         lede="需要家情報、契約、請求、問い合わせ履歴が複数システムに分散し、オペレーターが業務ごとに画面を切り替えなければならない――こうした課題を解決します。AIアシスタント、統合オペレーター画面、顧客ポータル、デジタルチャネルを組み合わせ、需要家対応の効率化と需要家体験の向上を実現します。"
         modules={[
-          "カスタマーサービス向け AI アシスタント",
+          "カスタマーサービス向け\nAI アシスタント",
           "統合オペレーター画面",
           "顧客ポータル",
           "顧客体験最適化",
@@ -408,6 +450,7 @@ export default function TallyPlusOverviewPage() {
 
       <SolutionAreaCard
         id="decarbon"
+        accent={HERO_ACCENTS.decarbon}
         title="脱炭素ソリューション"
         lede="再エネPPA、EV、蓄電池、デマンドレスポンスなど、新たなエネルギーサービスの展開には、契約・請求・運用を含めた業務基盤が求められます。需要家データや請求基盤と連携しながら、脱炭素ビジネスの立ち上げから拡大までを支援します。"
         modules={[
@@ -418,10 +461,13 @@ export default function TallyPlusOverviewPage() {
         ]}
       >
         <FeatureParagraphs items={decarbonParagraphs} />
-        <TechSubheading id="decarbon-billing-heading">
+        <h3
+          id="decarbon-billing-heading"
+          className="text-[20px] lg:text-[22px] font-semibold leading-[1.35] tracking-[-0.01em] text-navy mt-[48px] mb-[16px] scroll-mt-[88px]"
+        >
           新エネルギー・複雑請求への対応
-        </TechSubheading>
-        <TechBodyParagraph>
+        </h3>
+        <TechBodyParagraph wide>
           Tally+は、再エネや分散型エネルギーサービスに伴う複雑な料金体系や請求業務に対応します。新たなエネルギー商品を既存業務へ統合し、収益化までを支援します。
         </TechBodyParagraph>
         <div className="mt-[28px]">
