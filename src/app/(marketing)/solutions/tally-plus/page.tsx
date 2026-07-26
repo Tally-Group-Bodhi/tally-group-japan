@@ -397,10 +397,10 @@ export default function TallyPlusOverviewPage() {
         </div>
         <figure id="topology" className="mt-[48px] m-0 scroll-mt-[88px]">
           <Image
-            src="/solutions/tally-plus-topology-jp.png"
+            src="/solutions/tally-plus-topology-v5.png"
             alt="Tally+ エネルギー小売向け請求・CRMケイパビリティの全体構成図。需要家エンゲージメント、共通サービス機能、セグメント別請求・CRMワークフローを示す。"
-            width={2880}
-            height={1620}
+            width={5760}
+            height={3255}
             className="w-full h-auto rounded-xl border border-stroke1 bg-white"
             sizes="(max-width: 1240px) 100vw, 1240px"
             priority
