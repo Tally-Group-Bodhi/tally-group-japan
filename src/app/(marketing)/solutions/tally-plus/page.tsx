@@ -26,7 +26,7 @@ const agendaCards = [
   {
     icon: "rocket_launch",
     title: "市場投入の加速",
-    body: "商品戦略と業務運用をシームレスにつなぎ、新商品や料金メニューの迅速な市場展開",
+    body: "商品戦略と業務運用をシームレスにつなぎ、新商品や料金メニューの迅速な市場展開を支援",
   },
   {
     icon: "savings",
@@ -115,22 +115,26 @@ const adoraCards = [
   {
     icon: "psychology",
     title: "Adora インサイト",
-    body: "リアルタイムコールインテリジェンス",
+    subhead: "リアルタイムコールインテリジェンス",
+    body: "通話中のAIガイダンス、根本原因分析、最適な対応提案、自動通話要約の提供",
   },
   {
     icon: "support_agent",
     title: "Adora コンパニオン",
-    body: "ガイド付きセルフサービス",
+    subhead: "ガイド付きセルフサービス",
+    body: "状況に応じたヘルプ、アプリ内支援、タスク自動化の提供",
   },
   {
     icon: "security",
     title: "Adora ディフェンダー",
-    body: "コンプライアンス強化",
+    subhead: "コンプライアンス強化",
+    body: "請求ルール遵守、誤った供給停止の防止、規制要件への対応の自動実行",
   },
   {
     icon: "insights",
     title: "Adora プレディクト",
-    body: "予測インテリジェンス",
+    subhead: "予測インテリジェンス",
+    body: "解約リスク分析、契約拡大機会の特定、顧客維持施策の最適化支援",
   },
 ];
 
@@ -397,10 +401,10 @@ export default function TallyPlusOverviewPage() {
         </div>
         <figure id="topology" className="mt-[48px] m-0 scroll-mt-[88px]">
           <Image
-            src="/solutions/tally-plus-topology-v5.png"
+            src="/solutions/tally-plus-topology-v6.png"
             alt="Tally+ エネルギー小売向け請求・CRMケイパビリティの全体構成図。需要家エンゲージメント、共通サービス機能、セグメント別請求・CRMワークフローを示す。"
-            width={5760}
-            height={3255}
+            width={4096}
+            height={1904}
             className="w-full h-auto rounded-xl border border-stroke1 bg-white"
             sizes="(max-width: 1240px) 100vw, 1240px"
             priority

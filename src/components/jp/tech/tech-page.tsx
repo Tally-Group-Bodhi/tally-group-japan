@@ -283,7 +283,12 @@ export function TechBulletList({
   );
 }
 
-export type TechCard = { icon?: string; title: string; body: React.ReactNode };
+export type TechCard = {
+  icon?: string;
+  title: string;
+  subhead?: React.ReactNode;
+  body: React.ReactNode;
+};
 
 export function TechCardGrid({
   items,
@@ -322,6 +327,11 @@ export function TechCardGrid({
               {item.title}
             </h3>
           </div>
+          {item.subhead && (
+            <p className="text-[15px] font-semibold leading-[1.5] text-fg1 m-0">
+              {item.subhead}
+            </p>
+          )}
           <p className="text-[14px] leading-[1.7] text-fg2 m-0">{item.body}</p>
         </div>
       ))}
