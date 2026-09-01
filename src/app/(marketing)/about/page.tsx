@@ -240,29 +240,47 @@ export default function JPAboutPage() {
               <dl className="divide-y divide-stroke1 m-0">
                 {[
                   { label: "会社名", value: "タリーグループ合同会社" },
-                  { label: "設立", value: "2020年4月" },
+                  { label: "設立年月日", value: "平成29年2月17日" },
                   {
                     label: "代表者",
-                    value: "最高執行責任者 COO トラビス・レーマン",
+                    value: "最高執行責任者 COO トラビス・ルーク・リーマン",
                   },
-                  { label: "所在地", value: "東京都港区西新橋 2-20-1-4F" },
-                  { label: "資本金", value: "1億円" },
-                  { label: "従業員数", value: "27名" },
                   {
-                    label: "Email",
+                    label: "所在地",
+                    value:
+                      "東京都千代田区丸の内三丁目2番2号丸の内二重橋ビル2階",
+                  },
+                  { label: "資本金", value: "700万円" },
+                  {
+                    label: "電話番号 / Email",
                     value: (
-                      <a
-                        href="mailto:contact_jp@tally-group.com"
-                        className="text-navy font-medium hover:text-turquoise transition-colors"
-                      >
-                        contact_jp@tally-group.com
-                      </a>
+                      <>
+                        03-6809-2307 /{" "}
+                        <a
+                          href="mailto:contact_jp@tally-group.com"
+                          className="text-navy font-medium hover:text-turquoise transition-colors"
+                        >
+                          contact_jp@tally-group.com
+                        </a>
+                      </>
                     ),
                   },
                   {
                     label: "事業内容",
-                    value:
-                      "エネルギー業界向けの顧客管理・顧客体験ソリューションに関するソフトウェアの提供、関連コンサルティング等",
+                    value: (
+                      <ol className="m-0 pl-[1.25em] list-decimal space-y-1">
+                        <li>
+                          コンピュータソフトウェアの研究、開発、使用許諾、輸出入、流通、販売及び賃貸
+                        </li>
+                        <li>
+                          情報システムの構築及び関連するサービスの提供
+                        </li>
+                        <li>
+                          コンピュータソフトウェア及び情報システムに関する技術援助及びコンサルティング
+                        </li>
+                        <li>前各号に付帯又は関連する一切の事業</li>
+                      </ol>
+                    ),
                   },
                 ].map((row) => (
                   <div
