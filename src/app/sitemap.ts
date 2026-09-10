@@ -19,6 +19,11 @@ const entries: Entry[] = [
   { path: "/technology/audit", priority: 0.7, changeFrequency: "monthly" },
   { path: "/technology/api-library", priority: 0.7, changeFrequency: "monthly" },
   { path: "/insights/resources", priority: 0.7, changeFrequency: "weekly" },
+  {
+    path: "/insights/resources/japan-electricity-retail-market-outlook-2026-09-10",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
   { path: "/news/press-releases", priority: 0.6, changeFrequency: "weekly" },
   {
     path: "/news/press-releases/skipping-stone-acquisition",

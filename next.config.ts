@@ -19,6 +19,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/insights/resources/japan-electricity-retail-market-outlook",
+        destination:
+          "/insights/resources/japan-electricity-retail-market-outlook-2026-09-10",
+        permanent: true,
+      },
+      {
+        source:
+          "/insights/resources/japan-electricity-retail-market-outlook-2026",
+        destination:
+          "/insights/resources/japan-electricity-retail-market-outlook-2026-09-10",
+        permanent: true,
+      },
+      {
         source: "/jp",
         destination: "/",
         permanent: true,
