@@ -19,7 +19,7 @@ const LEARNINGS = [
   "日本の電力小売市場の進化と今後 10 年の市場予測",
   "リテール 3.0 時代における競争環境の変化",
   "卸電力市場の成熟が小売事業者へ与える影響",
-  "海外自由化市場における成功事例と失敗事例",
+  "海外自由化市場における成功事例",
   "市場再編時代を勝ち抜くための戦略的アプローチ",
   "収益性と成長を両立するためのベストプラクティス",
 ] as const;
@@ -59,19 +59,19 @@ export default function JapanElectricityRetailMarketOutlookPage() {
             資料一覧へ
           </MarketingLink>
 
-          <h1 className="mt-[28px] text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.35] tracking-[-0.02em] text-white m-0 underline decoration-white/35 decoration-1 underline-offset-[10px]">
+          <h1 className="mt-[28px] text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.35] tracking-[-0.02em] text-white m-0">
             {TITLE}
           </h1>
-          <p className="mt-[18px] text-[17px] sm:text-[19px] leading-[1.6] text-white/90 m-0">
+          <p className="mt-[18px] text-[22px] sm:text-[24px] font-semibold leading-[1.5] text-white/90 m-0">
             {SUBTITLE}
           </p>
-          <div className="mt-[24px] text-[14px] sm:text-[15px] leading-[1.7] text-white/80">
+          <div className="mt-[24px] text-[17px] sm:text-[19px] leading-[1.7] text-white/80">
             <p className="m-0">著者：ピーター・ウェイガンド</p>
             <p className="m-0">最高事業成長責任者</p>
           </div>
           <a
             href="#request-form"
-            className="mt-[32px] inline-flex items-center justify-center px-[22px] py-[12px] rounded-lg text-[14px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors"
+            className="mt-[32px] inline-flex items-center justify-center px-[22px] py-[12px] rounded-full text-[14px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors"
           >
             資料を請求する
           </a>
@@ -181,7 +181,7 @@ export default function JapanElectricityRetailMarketOutlookPage() {
               資料請求フォーム
             </h2>
             <p className="mt-[14px] mb-[28px] text-[15px] leading-[1.75] text-fg2 m-0">
-              下記フォームに必要事項をご入力の上、「送信」ボタンをクリックしてください。追って、資料を送信いたします。
+              下記フォームに必要事項をご入力の上、「資料を請求する」ボタンをクリックしてください。追って、資料を送信いたします。
             </p>
             <WhitepaperRequestForm whitepaperTitle={TITLE} />
           </div>

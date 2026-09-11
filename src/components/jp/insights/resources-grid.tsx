@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { MarketingLink } from "@/components/marketing/marketing-link";
 
@@ -33,6 +34,11 @@ const KIND_OPTIONS: { value: KindFilter; label: string }[] = [
   { value: "webinar", label: "動画・ウェビナー" },
 ];
 
+function kindFromParam(value: string | null): KindFilter {
+  if (value === "whitepaper" || value === "webinar") return value;
+  return "";
+}
+
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
@@ -43,7 +49,10 @@ const fadeUp = {
 };
 
 export function ResourcesGrid({ resources }: { resources: Resource[] }) {
-  const [kind, setKind] = useState<KindFilter>("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const kind = kindFromParam(searchParams.get("type"));
 
   const filtered = useMemo(() => {
     return resources.filter((r) => {
@@ -54,8 +63,19 @@ export function ResourcesGrid({ resources }: { resources: Resource[] }) {
 
   const visible = filtered.length;
 
+  function setKindFilter(next: KindFilter) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (next) {
+      params.set("type", next);
+    } else {
+      params.delete("type");
+    }
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }
+
   function handleReset() {
-    setKind("");
+    setKindFilter("");
   }
 
   return (
@@ -75,7 +95,7 @@ export function ResourcesGrid({ resources }: { resources: Resource[] }) {
                   type="button"
                   role="radio"
                   aria-checked={isActive}
-                  onClick={() => setKind(o.value)}
+                  onClick={() => setKindFilter(o.value)}
                   className={`inline-flex items-center px-[14px] py-[8px] rounded-full text-[13px] font-medium leading-none border transition-all ${
                     isActive
                       ? "bg-navy text-white border-navy shadow-[0_2px_8px_rgba(44,54,93,0.18)]"
@@ -185,7 +205,7 @@ function WhitepaperCard({ resource }: { resource: Whitepaper }) {
 
           <MarketingLink
             href={resource.requestHref}
-            className="relative z-20 inline-flex items-center justify-center px-[18px] py-[10px] rounded-lg text-[14px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
+            className="relative z-20 inline-flex items-center justify-center px-[18px] py-[10px] rounded-full text-[14px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
           >
             資料を請求する
           </MarketingLink>
@@ -239,11 +259,8 @@ function WebinarCard({ resource }: { resource: Webinar }) {
           {resource.description}
         </p>
         <div className="mt-auto pt-[20px]">
-          <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-navy group-hover:text-turquoise transition-colors">
+          <span className="inline-flex items-center text-[14px] font-semibold text-navy border-b border-turquoise pb-[2px] group-hover:text-turquoise transition-colors">
             視聴する
-            <span className="material-symbols-outlined text-[18px]" aria-hidden>
-              arrow_forward
-            </span>
           </span>
         </div>
       </div>

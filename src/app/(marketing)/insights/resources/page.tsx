@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   ResourcesGrid,
   type Resource,
@@ -77,7 +78,25 @@ export default function JPResourcesPage() {
         </div>
       </section>
 
-      <ResourcesGrid resources={resources} />
+      <Suspense
+        fallback={
+          <section
+            className="pt-[32px] pb-[80px] lg:pt-[40px] lg:pb-[96px]"
+            aria-hidden
+          >
+            <div className="max-w-[1240px] mx-auto px-8">
+              <div className="h-[36px] w-[280px] max-w-full rounded-full bg-bg2" />
+              <div className="mt-[32px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+                <div className="h-[320px] rounded-2xl bg-bg2" />
+                <div className="h-[320px] rounded-2xl bg-bg2" />
+                <div className="h-[320px] rounded-2xl bg-bg2" />
+              </div>
+            </div>
+          </section>
+        }
+      >
+        <ResourcesGrid resources={resources} />
+      </Suspense>
     </>
   );
 }
