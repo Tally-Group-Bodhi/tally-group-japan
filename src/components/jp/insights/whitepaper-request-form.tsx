@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { MarketingLink } from "@/components/marketing/marketing-link";
 
 const WEB3FORMS_ACCESS_KEY = "11577984-6202-4abc-a5b9-c726a76b58c8";
 
@@ -15,9 +14,6 @@ const schema = z.object({
   workEmail: z.string().email("有効なメールアドレスを入力してください"),
   phone: z.string().min(1, "電話番号を入力してください"),
   jobTitle: z.string().optional(),
-  privacyAgreed: z.literal(true, {
-    error: () => "プライバシーポリシーへの同意が必要です",
-  }),
   botcheck: z.boolean().optional(),
 });
 
@@ -51,7 +47,6 @@ export function WhitepaperRequestForm({
       workEmail: "",
       phone: "",
       jobTitle: "",
-      privacyAgreed: undefined as unknown as true,
     },
   });
 
@@ -215,30 +210,8 @@ export function WhitepaperRequestForm({
       </div>
 
       <p className="text-[13px] leading-[1.7] text-fg2 m-0">
-        お預かりした個人情報は、
-        <MarketingLink
-          href="/privacy"
-          className="text-navy underline underline-offset-2 hover:text-turquoise transition-colors"
-        >
-          個人情報保護方針
-        </MarketingLink>
-        に基づき適切に取り扱います。
+        お預かりした個人情報は、個人情報保護方針に基づき適切に取り扱います。
       </p>
-
-      <label className="inline-flex items-start gap-2 text-sm text-fg1 cursor-pointer">
-        <input
-          type="checkbox"
-          {...register("privacyAgreed")}
-          className="mt-[2px] h-[18px] w-[18px] accent-navy shrink-0"
-        />
-        <span>
-          プライバシーポリシーに同意します
-          {reqMark}
-        </span>
-      </label>
-      {errors.privacyAgreed && (
-        <p className={errorClass}>{errors.privacyAgreed.message}</p>
-      )}
 
       <button
         type="submit"
