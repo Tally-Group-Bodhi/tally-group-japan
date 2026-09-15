@@ -32,6 +32,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/news/events/hedge-pricing-seminar-2026-10-21",
+        destination: "/news/events/hedge-pricing-seminar-2026-10",
+        permanent: true,
+      },
+      {
         source: "/jp",
         destination: "/",
         permanent: true,

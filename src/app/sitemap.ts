@@ -31,6 +31,11 @@ const entries: Entry[] = [
     changeFrequency: "yearly",
   },
   { path: "/news/events", priority: 0.6, changeFrequency: "weekly" },
+  {
+    path: "/news/events/hedge-pricing-seminar-2026-10",
+    priority: 0.5,
+    changeFrequency: "monthly",
+  },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
 ];
 

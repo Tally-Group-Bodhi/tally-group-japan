@@ -10,46 +10,16 @@ export type EventItem = {
   dateISO: string;
   title: string;
   titleLines?: string[];
+  eyebrow?: string;
   location: string;
   description: string;
   href: string;
   external?: boolean;
   tone: 1 | 2 | 3 | 4;
   icon: string;
-};
-
-const MEDIA_TONES: Record<
-  1 | 2 | 3 | 4,
-  { gradient: string; pattern: string; iconColor: string }
-> = {
-  1: {
-    gradient:
-      "linear-gradient(135deg, #1E2840 0%, #2C365D 55%, #0B7A66 100%)",
-    pattern:
-      "radial-gradient(circle at 85% 20%, rgba(0,210,162,0.35), transparent 55%)",
-    iconColor: "rgba(0, 210, 162, 0.9)",
-  },
-  2: {
-    gradient:
-      "linear-gradient(135deg, #0B5468 0%, #1A88A0 55%, #00D2A2 100%)",
-    pattern:
-      "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
-  3: {
-    gradient:
-      "linear-gradient(135deg, #2C365D 0%, #3F4F8F 55%, #5A7BBF 100%)",
-    pattern:
-      "radial-gradient(circle at 75% 75%, rgba(0,210,162,0.28), transparent 55%)",
-    iconColor: "rgba(0, 210, 162, 0.95)",
-  },
-  4: {
-    gradient:
-      "linear-gradient(135deg, #2C365D 0%, #5B3F7A 50%, #C77B4A 100%)",
-    pattern:
-      "radial-gradient(circle at 30% 80%, rgba(255,210,140,0.28), transparent 55%)",
-    iconColor: "rgba(255, 255, 255, 0.95)",
-  },
+  image?: string;
+  imageFit?: "cover" | "contain";
+  logos?: { src: string; alt: string; onDark?: boolean; maxHeightClass?: string }[];
 };
 
 const fadeUp = {
@@ -118,8 +88,9 @@ export function EventsList({ events }: { events: EventItem[] }) {
 }
 
 function EventCard({ event }: { event: EventItem }) {
-  const tone = MEDIA_TONES[event.tone];
   const titleLines = event.titleLines ?? [event.title];
+  const hasImage = Boolean(event.image);
+  const hasLogos = Boolean(event.logos?.length);
 
   const linkProps = event.external
     ? { target: "_blank" as const, rel: "noopener noreferrer" }
@@ -136,45 +107,94 @@ function EventCard({ event }: { event: EventItem }) {
         <span className="sr-only">詳細情報を見る</span>
       </a>
 
-      <div
-        className="relative aspect-[16/10] overflow-hidden"
-        role="img"
-        aria-label={`${event.title}のイメージ`}
-        style={{ background: tone.gradient }}
-      >
+      {hasImage ? (
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: tone.pattern }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 grid place-items-center">
-          <span
-            className="material-symbols-outlined text-[96px]"
-            style={{ color: tone.iconColor }}
-            aria-hidden
-          >
-            {event.icon}
+          className="relative aspect-[16/10] overflow-hidden"
+          role="img"
+          aria-label={`${event.title}のイメージ`}
+          style={{
+            background:
+              event.imageFit === "contain" ? "#000000" : undefined,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={event.image}
+            alt=""
+            loading="lazy"
+            className={`absolute inset-0 w-full h-full transition-transform duration-300 group-hover:scale-[1.03] ${
+              event.imageFit === "contain"
+                ? "object-contain px-[14%] py-[10%]"
+                : "object-cover"
+            }`}
+          />
+          <span className="absolute top-[12px] right-[12px] inline-flex items-center gap-1 px-[10px] py-[5px] rounded-full bg-black/55 text-white text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-sm">
+            <span
+              className="material-symbols-outlined text-[14px]"
+              aria-hidden
+            >
+              event
+            </span>
+            イベント
+          </span>
+          <span className="absolute bottom-[12px] left-[14px] inline-flex items-center px-[10px] py-[4px] rounded-full bg-white/90 text-navy text-[11px] font-semibold tracking-[0.04em]">
+            {event.location}
           </span>
         </div>
-        <span className="absolute top-[12px] right-[12px] inline-flex items-center gap-1 px-[10px] py-[5px] rounded-full bg-black/55 text-white text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-sm">
-          <span
-            className="material-symbols-outlined text-[14px]"
-            aria-hidden
-          >
-            event
+      ) : hasLogos ? (
+        <div
+          className="relative aspect-[16/10] overflow-hidden border-b border-stroke1 bg-bg2"
+          aria-label={`${event.title}の主催ロゴ`}
+        >
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[10px] px-[28px] py-[20px]">
+            {event.logos!.map((logo) => (
+              <div
+                key={logo.src}
+                className={`relative w-full grid place-items-center ${
+                  logo.onDark
+                    ? "bg-navy-dark rounded-md px-[12px] py-[8px]"
+                    : ""
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  loading="lazy"
+                  className={`${logo.maxHeightClass ?? "max-h-[40px]"} w-auto max-w-full object-contain`}
+                />
+              </div>
+            ))}
+          </div>
+          <span className="absolute top-[12px] right-[12px] inline-flex items-center gap-1 px-[10px] py-[5px] rounded-full bg-black/55 text-white text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-sm">
+            <span
+              className="material-symbols-outlined text-[14px]"
+              aria-hidden
+            >
+              event
+            </span>
+            イベント
           </span>
-          イベント
-        </span>
-        <span className="absolute bottom-[12px] left-[14px] inline-flex items-center px-[10px] py-[4px] rounded-full bg-white/90 text-navy text-[11px] font-semibold tracking-[0.04em]">
-          {event.location}
-        </span>
-      </div>
+          <span className="absolute bottom-[12px] left-[14px] inline-flex items-center px-[10px] py-[4px] rounded-full bg-white/90 text-navy text-[11px] font-semibold tracking-[0.04em]">
+            {event.location}
+          </span>
+        </div>
+      ) : null}
 
       <div className="p-[24px] flex flex-col flex-1">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-fg2 m-0">
+        <p className="text-[12px] font-semibold tracking-[0.04em] text-fg2 m-0">
           <time dateTime={event.dateISO}>{event.date}</time>
         </p>
-        <h3 className="mt-[8px] text-[18px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy m-0">
+
+        {event.eyebrow ? (
+          <p className="mt-[10px] text-[13px] font-semibold leading-[1.5] text-navy/80 m-0">
+            {event.eyebrow}
+          </p>
+        ) : null}
+
+        <h3
+          className={`${event.eyebrow ? "mt-[6px]" : "mt-[8px]"} text-[18px] font-semibold leading-[1.4] tracking-[-0.01em] text-navy m-0`}
+        >
           {titleLines.map((line) => (
             <span key={line} className="block">
               {line}
@@ -182,12 +202,16 @@ function EventCard({ event }: { event: EventItem }) {
           ))}
         </h3>
 
+        <p className="mt-[10px] text-[13px] font-medium text-fg2 m-0">
+          {event.location}
+        </p>
+
         <p className="mt-[14px] text-[14px] leading-[1.7] text-fg2 m-0 flex-1">
           {event.description}
         </p>
 
         <div className="mt-auto pt-[20px]">
-          <span className="inline-flex items-center gap-1 text-[14px] font-semibold text-navy group-hover:text-turquoise transition-colors">
+          <span className="inline-flex items-center justify-center gap-1 w-full px-[16px] py-[12px] rounded-lg text-[14px] font-semibold bg-turquoise text-navy group-hover:bg-turquoise-hover transition-colors">
             詳細情報
             <span
               className="material-symbols-outlined text-[18px]"

@@ -14,6 +14,31 @@ export const metadata: Metadata = {
 
 const events: EventItem[] = [
   {
+    slug: "hedge-pricing-seminar-2026-10",
+    date: "2026年10月 · 9:00〜11:30",
+    dateISO: "2026-10-01",
+    eyebrow: "小売電気事業者向け無料セミナー",
+    title: "ヘッジ取引を活用した小売電気料金メニューの新潮流",
+    location: "東京",
+    description:
+      "卸電力市場の金融取引の発展により現実味を帯びてきたヘッジ型料金メニューについて、商品設計、請求・顧客管理、価格リスク管理のポイントを解説する無料セミナーです。",
+    href: "/news/events/hedge-pricing-seminar-2026-10",
+    tone: 2,
+    icon: "school",
+    logos: [
+      {
+        src: "/logos/TallyOfficialLogo.svg",
+        alt: "Tally Group",
+        maxHeightClass: "max-h-[60px]",
+      },
+      {
+        src: "/events/skipping-stone-logo.png",
+        alt: "Skipping Stone",
+        maxHeightClass: "max-h-[60px]",
+      },
+    ],
+  },
+  {
     slug: "japan-power-week-2026",
     date: "2026年10月19日〜22日",
     dateISO: "2026-10-19",
@@ -25,6 +50,7 @@ const events: EventItem[] = [
     external: true,
     tone: 1,
     icon: "bolt",
+    image: "/events/japan-power-week-2026.webp",
   },
   {
     slug: "smart-grid-expo-2026",
@@ -39,6 +65,8 @@ const events: EventItem[] = [
     external: true,
     tone: 3,
     icon: "hub",
+    image: "/events/smart-grid-expo-2026.png",
+    imageFit: "contain",
   },
 ];
 
