@@ -58,12 +58,6 @@ export function JPCtaSection({
             <div className="mt-[32px] flex flex-wrap items-center justify-start gap-3">
               <MarketingLink href={primaryHref} className={jpCtaPrimaryOnDarkClass}>
                 {primaryLabel}
-                <span
-                  className="material-symbols-outlined text-[16px]"
-                  aria-hidden
-                >
-                  arrow_forward
-                </span>
               </MarketingLink>
               {secondaryLabel ? (
                 <MarketingLink

@@ -94,7 +94,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-[28px]">
                 <div>
                   <p className="text-[26px] font-semibold text-navy leading-[1.4] m-0">
-                    タリーグループ
+                    Tally Group
                     <br />
                     東京オフィス
                   </p>

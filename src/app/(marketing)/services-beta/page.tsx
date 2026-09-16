@@ -407,7 +407,6 @@ export default function JPServicesBetaPage() {
               className={jpCtaPrimaryOnLightCompactClass}
             >
               {"\u304a\u554f\u3044\u5408\u308f\u305b"}
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </MarketingLink>
           </div>
         </div>

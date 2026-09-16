@@ -217,7 +217,7 @@ function EventCard({ event }: { event: EventItem }) {
               className="material-symbols-outlined text-[18px]"
               aria-hidden
             >
-              {event.external ? "open_in_new" : "arrow_forward"}
+              open_in_new
             </span>
           </span>
         </div>
@@ -270,12 +270,6 @@ export function MeetInPersonSection({
               className={jpCtaPrimaryOnLightClass}
             >
               お問い合わせ
-              <span
-                className="material-symbols-outlined text-[16px]"
-                aria-hidden
-              >
-                arrow_forward
-              </span>
             </MarketingLink>
           </div>
         </div>

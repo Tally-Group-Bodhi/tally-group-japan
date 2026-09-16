@@ -38,7 +38,7 @@ const SCHEDULE = [
     time: "10:00〜10:30",
     title: "ヘッジ型料金メニューに対応する請求・顧客管理の実務",
     speaker: "山口 元久",
-    role: "タリーグループ　カントリーセールスマネージャー",
+    role: "Tally Group　カントリーセールスマネージャー",
   },
   {
     time: "10:30〜11:00",
@@ -61,7 +61,7 @@ const SPEAKERS = [
   },
   {
     name: "山口 元久",
-    role: "タリーグループ　カントリーセールスマネージャー",
+    role: "Tally Group　カントリーセールスマネージャー",
     bio: "電力・ガス業界向けソリューションの分野で約10年以上にわたり事業開発に従事。請求・顧客管理、フィールドサービス、エネルギー業務DXに関する豊富な知見を有し、日本の電力小売市場におけるRetail 3.0への移行を支援。",
   },
   {
@@ -112,8 +112,10 @@ export default function HedgePricingSeminarPage() {
           <p className="text-turquoise text-[15px] sm:text-[16px] font-semibold m-0">
             {EYEBROW}
           </p>
-          <h1 className="mt-[16px] text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.35] tracking-[-0.02em] text-white max-w-[20ch] m-0">
-            {TITLE}
+          <h1 className="mt-[16px] text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-[1.35] tracking-[-0.02em] text-white m-0">
+            ヘッジ取引を活用した
+            <br />
+            小売電気料金メニューの新潮流
           </h1>
           <div className="mt-[32px]">
             <RegisterButton />
