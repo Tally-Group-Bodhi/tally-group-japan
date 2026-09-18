@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 const SLUG = "hedge-pricing-seminar-2026-10";
 const PAGE_PATH = `/news/events/${SLUG}`;
@@ -32,19 +33,20 @@ const SCHEDULE = [
   {
     time: "9:30〜10:00",
     title: "先物市場を活用したヘッジ型料金メニューの設計",
-    speaker: "講演者：TBD",
+    speaker: "鮫島 隆太郎 氏",
+    role: "株式会社Power Risk Management & Solutions 代表取締役",
   },
   {
     time: "10:00〜10:30",
     title: "ヘッジ型料金メニューに対応する請求・顧客管理の実務",
-    speaker: "山口 元久",
-    role: "Tally Group　カントリーセールスマネージャー",
+    speaker: "山口 元久 氏",
+    role: "Tally Group合同会社 カントリーセールスマネージャー",
   },
   {
     time: "10:30〜11:00",
     title: "ヘッジ型料金における価格リスク管理",
-    speaker: "浅野 泰一",
-    role: "スキッピングストーン日本法人代表取締役社長",
+    speaker: "浅野 泰一 氏",
+    role: "スキッピングストーン合同会社 代表取締役社長",
   },
   {
     time: "11:00〜11:30",
@@ -55,19 +57,22 @@ const SCHEDULE = [
 
 const SPEAKERS = [
   {
-    name: "講演者：TBD",
-    role: "",
-    bio: "",
+    name: "鮫島 隆太郎 氏",
+    role: "株式会社Power Risk Management & Solutions 代表取締役",
+    bio: "電力市場自由化黎明期から電力取引・リスク管理に従事。先物市場やヘッジ取引を活用した料金メニュー設計、ポートフォリオ管理、市場リスク管理に関する豊富な実務経験を有し、小売電力事業者の競争力強化を支援。",
+    photo: null,
   },
   {
-    name: "山口 元久",
-    role: "Tally Group　カントリーセールスマネージャー",
+    name: "山口 元久 氏",
+    role: "Tally Group合同会社 カントリーセールスマネージャー",
     bio: "電力・ガス業界向けソリューションの分野で約10年以上にわたり事業開発に従事。請求・顧客管理、フィールドサービス、エネルギー業務DXに関する豊富な知見を有し、日本の電力小売市場におけるRetail 3.0への移行を支援。",
+    photo: "/events/hedge-pricing-seminar-2026-10/motohisa-yamaguchi.jpg",
   },
   {
-    name: "浅野 泰一",
-    role: "スキッピングストーン日本法人代表取締役社長",
+    name: "浅野 泰一 氏",
+    role: "スキッピングストーン合同会社 代表取締役社長",
     bio: "三井物産にて約38年間、エネルギー・社会インフラ分野の事業開発、投資、M&Aに従事。近年は再生可能エネルギー、コーポレートPPA、グリーン水素、蓄電池事業の開発や事業性評価、電力市場リスク分析を推進。",
+    photo: "/events/hedge-pricing-seminar-2026-10/taiichi-asano.jpg",
   },
 ] as const;
 
@@ -86,7 +91,7 @@ function RegisterButton({
       {...(isExternal
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className={`inline-flex items-center justify-center px-[24px] py-[14px] rounded-lg text-[15px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors ${
+      className={`inline-flex items-center justify-center px-[24px] py-[14px] rounded-full text-[15px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors ${
         fullWidth ? "w-full sm:w-auto" : ""
       } ${className ?? ""}`}
     >
@@ -220,27 +225,46 @@ export default function HedgePricingSeminarPage() {
               id="seminar-speakers-heading"
               className="text-[22px] sm:text-[24px] font-semibold text-navy m-0"
             >
-              講師紹介
+              講演者紹介
             </h2>
             <div className="mt-[20px] grid grid-cols-1 gap-[16px]">
               {SPEAKERS.map((speaker) => (
                 <article
                   key={speaker.name}
-                  className="border border-stroke1 rounded-2xl bg-white px-[22px] py-[22px]"
+                  className="border border-stroke1 rounded-2xl bg-white px-[22px] py-[22px] flex gap-[18px] items-start"
                 >
-                  <h3 className="text-[17px] font-semibold text-navy m-0">
-                    {speaker.name}
-                  </h3>
-                  {speaker.role ? (
-                    <p className="mt-[6px] text-[13px] font-medium text-fg2 m-0">
-                      {speaker.role}
-                    </p>
-                  ) : null}
-                  {speaker.bio ? (
-                    <p className="mt-[12px] text-[14px] leading-[1.75] text-fg1 m-0">
-                      {speaker.bio}
-                    </p>
-                  ) : null}
+                  {speaker.photo ? (
+                    <div className="w-[88px] h-[88px] rounded-full overflow-hidden shrink-0 border border-stroke1 bg-bg2">
+                      <Image
+                        src={speaker.photo}
+                        alt={`${speaker.name}の肖像`}
+                        width={88}
+                        height={88}
+                        className="w-full h-full object-cover object-center"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-[88px] h-[88px] rounded-full shrink-0 border border-stroke1 bg-bg2"
+                      aria-hidden
+                    />
+                  )}
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] font-semibold text-navy m-0">
+                      {speaker.name}
+                    </h3>
+                    {speaker.role ? (
+                      <p className="mt-[6px] text-[13px] font-medium text-fg2 m-0">
+                        {speaker.role}
+                      </p>
+                    ) : null}
+                    {speaker.bio ? (
+                      <p className="mt-[12px] text-[14px] leading-[1.75] text-fg1 m-0">
+                        {speaker.bio}
+                      </p>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>

@@ -7,9 +7,16 @@ import { z } from "zod";
 
 const WEB3FORMS_ACCESS_KEY = "11577984-6202-4abc-a5b9-c726a76b58c8";
 
+const englishName = z
+  .string()
+  .min(1, "英語表記で入力してください")
+  .regex(/^[A-Za-z][A-Za-z'\-\s]*$/, "英語表記で入力してください");
+
 const schema = z.object({
   lastName: z.string().min(1, "姓を入力してください"),
   firstName: z.string().min(1, "名を入力してください"),
+  lastNameEn: englishName,
+  firstNameEn: englishName,
   companyName: z.string().min(1, "会社名を入力してください"),
   workEmail: z.string().email("有効なメールアドレスを入力してください"),
   phone: z.string().min(1, "電話番号を入力してください"),
@@ -43,6 +50,8 @@ export function WhitepaperRequestForm({
     defaultValues: {
       lastName: "",
       firstName: "",
+      lastNameEn: "",
+      firstNameEn: "",
       companyName: "",
       workEmail: "",
       phone: "",
@@ -67,6 +76,10 @@ export function WhitepaperRequestForm({
         from_name: `${data.lastName} ${data.firstName}`,
         botcheck: data.botcheck ?? false,
         資料名: whitepaperTitle,
+        姓: data.lastName,
+        名: data.firstName,
+        姓英語表記: data.lastNameEn,
+        名英語表記: data.firstNameEn,
         会社名: data.companyName,
         メールアドレス: data.workEmail,
         電話番号: data.phone,
@@ -143,6 +156,43 @@ export function WhitepaperRequestForm({
           />
           {errors.firstName && (
             <p className={errorClass}>{errors.firstName.message}</p>
+          )}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+        <div>
+          <label htmlFor="wp-last-name-en" className={labelClass}>
+            姓（英語表記）{reqMark}
+          </label>
+          <input
+            id="wp-last-name-en"
+            type="text"
+            autoComplete="family-name"
+            {...register("lastNameEn")}
+            className={inputClass}
+            dir="ltr"
+            spellCheck={false}
+          />
+          {errors.lastNameEn && (
+            <p className={errorClass}>{errors.lastNameEn.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="wp-first-name-en" className={labelClass}>
+            名（英語表記）{reqMark}
+          </label>
+          <input
+            id="wp-first-name-en"
+            type="text"
+            autoComplete="given-name"
+            {...register("firstNameEn")}
+            className={inputClass}
+            dir="ltr"
+            spellCheck={false}
+          />
+          {errors.firstNameEn && (
+            <p className={errorClass}>{errors.firstNameEn.message}</p>
           )}
         </div>
       </div>
