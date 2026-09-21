@@ -458,9 +458,6 @@ export function DemoContactForm() {
         className={`w-full ${jpCtaSubmitClass}`}
       >
         {isSubmitting ? "送信中…" : "送信"}
-        <span className="material-symbols-outlined text-[16px]">
-          arrow_forward
-        </span>
       </button>
     </form>
   );

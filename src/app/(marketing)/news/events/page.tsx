@@ -25,18 +25,9 @@ const events: EventItem[] = [
     href: "/news/events/hedge-pricing-seminar-2026-10",
     tone: 2,
     icon: "school",
-    logos: [
-      {
-        src: "/logos/TallyOfficialLogo.svg",
-        alt: "Tally Group",
-        maxHeightClass: "max-h-[60px]",
-      },
-      {
-        src: "/events/skipping-stone-logo.png",
-        alt: "Skipping Stone",
-        maxHeightClass: "max-h-[60px]",
-      },
-    ],
+    image: "/events/hedge-pricing-seminar-2026-10/card.jpg",
+    imageFit: "contain",
+    imageBackground: "#2C365D",
   },
   {
     slug: "japan-power-week-2026",

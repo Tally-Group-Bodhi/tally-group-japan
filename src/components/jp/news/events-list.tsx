@@ -19,6 +19,8 @@ export type EventItem = {
   icon: string;
   image?: string;
   imageFit?: "cover" | "contain";
+  /** Background behind contain-fit images (e.g. letterboxing). */
+  imageBackground?: string;
   logos?: { src: string; alt: string; onDark?: boolean; maxHeightClass?: string }[];
 };
 
@@ -114,7 +116,8 @@ function EventCard({ event }: { event: EventItem }) {
           aria-label={`${event.title}のイメージ`}
           style={{
             background:
-              event.imageFit === "contain" ? "#000000" : undefined,
+              event.imageBackground ??
+              (event.imageFit === "contain" ? "#000000" : undefined),
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -124,7 +127,9 @@ function EventCard({ event }: { event: EventItem }) {
             loading="lazy"
             className={`absolute inset-0 w-full h-full transition-transform duration-300 group-hover:scale-[1.03] ${
               event.imageFit === "contain"
-                ? "object-contain px-[14%] py-[10%]"
+                ? event.imageBackground
+                  ? "object-contain object-center"
+                  : "object-contain px-[14%] py-[10%]"
                 : "object-cover"
             }`}
           />

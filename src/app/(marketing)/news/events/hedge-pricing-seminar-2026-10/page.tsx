@@ -7,8 +7,7 @@ const PAGE_PATH = `/news/events/${SLUG}`;
 const EYEBROW = "小売電気事業者向け無料セミナー";
 const TITLE = "ヘッジ取引を活用した小売電気料金メニューの新潮流";
 
-/** Replace with Microsoft Forms URL from the Japan team when ready. */
-const REGISTRATION_FORM_URL = "#register";
+const REGISTRATION_FORM_URL = "https://forms.cloud.microsoft/r/Bk3CaUfwbn";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -131,21 +130,19 @@ export default function HedgePricingSeminarPage() {
       {/* Main content */}
       <article className="bg-white py-[64px] lg:py-[88px]">
         <div className="max-w-[760px] mx-auto px-8 space-y-[48px]">
-          {/* Image placeholder */}
           <div
-            className="aspect-[16/9] rounded-2xl border border-dashed border-stroke1 bg-bg2 grid place-items-center text-fg2"
+            className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-navy"
             role="img"
-            aria-label="セミナーイメージ（準備中）"
+            aria-label="ヘッジ取引を活用した小売電気料金メニューの新潮流"
           >
-            <div className="text-center px-6">
-              <span
-                className="material-symbols-outlined text-[40px] text-navy/30"
-                aria-hidden
-              >
-                image
-              </span>
-              <p className="mt-[8px] text-[13px] m-0">画像準備中</p>
-            </div>
+            <Image
+              src="/events/hedge-pricing-seminar-2026-10/card.jpg"
+              alt=""
+              fill
+              className="object-contain object-center"
+              sizes="(min-width: 760px) 696px, 100vw"
+              priority
+            />
           </div>
 
           <section aria-labelledby="seminar-overview-heading">
