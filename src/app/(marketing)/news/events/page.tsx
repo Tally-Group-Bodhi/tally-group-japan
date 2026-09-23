@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 const events: EventItem[] = [
   {
     slug: "hedge-pricing-seminar-2026-10",
-    date: "2026年10月 · 9:00〜11:30",
-    dateISO: "2026-10-01",
+    date: "2026年10月21日 9:00 ～ 11:30",
+    dateISO: "2026-10-21",
     eyebrow: "小売電気事業者向け無料セミナー",
     title: "ヘッジ取引を活用した小売電気料金メニューの新潮流",
     location: "東京",

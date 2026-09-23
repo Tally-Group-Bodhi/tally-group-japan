@@ -59,7 +59,7 @@ const SPEAKERS = [
     name: "鮫島 隆太郎 氏",
     role: "株式会社Power Risk Management & Solutions 代表取締役",
     bio: "電力市場自由化黎明期から電力取引・リスク管理に従事。先物市場やヘッジ取引を活用した料金メニュー設計、ポートフォリオ管理、市場リスク管理に関する豊富な実務経験を有し、小売電力事業者の競争力強化を支援。",
-    photo: null,
+    photo: "/events/hedge-pricing-seminar-2026-10/ryutaro-samejima.jpg",
   },
   {
     name: "山口 元久 氏",
@@ -130,20 +130,22 @@ export default function HedgePricingSeminarPage() {
       {/* Main content */}
       <article className="bg-white py-[64px] lg:py-[88px]">
         <div className="max-w-[760px] mx-auto px-8 space-y-[48px]">
-          <div
-            className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-navy"
-            role="img"
-            aria-label="ヘッジ取引を活用した小売電気料金メニューの新潮流"
+          <a
+            href={REGISTRATION_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-navy block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
+            aria-label="セミナー参加登録フォームを開く"
           >
             <Image
               src="/events/hedge-pricing-seminar-2026-10/card.jpg"
-              alt=""
+              alt="ヘッジ取引を活用した小売電気料金メニューの新潮流"
               fill
-              className="object-contain object-center"
+              className="object-contain object-center transition-opacity hover:opacity-95"
               sizes="(min-width: 760px) 696px, 100vw"
               priority
             />
-          </div>
+          </a>
 
           <section aria-labelledby="seminar-overview-heading">
             <h2 id="seminar-overview-heading" className="sr-only">
