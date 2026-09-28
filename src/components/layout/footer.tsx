@@ -8,7 +8,7 @@ type FooterLink = { label: string; href: string };
 type FooterColumn = { title: string; links: FooterLink[] };
 
 const jpLegalLinks: FooterLink[] = [
-  { label: "プライバシーポリシー", href: "/privacy" },
+  { label: "個人情報に関する基本方針", href: "/privacy" },
 ];
 
 function buildJPColumns(href: (path: string) => string): FooterColumn[] {

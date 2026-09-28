@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { jpCtaSubmitClass } from "@/components/jp/cta-button-classes";
+import { PrivacyConsentFields } from "@/components/jp/privacy-consent-fields";
 
 const WEB3FORMS_ACCESS_KEY = "e0687fb5-c504-4a5e-9e43-b6838233daa7";
 
@@ -33,6 +34,9 @@ const schema = z
     solutionOther: z.boolean().optional(),
     solutionOtherText: z.string().optional(),
     message: z.string().optional(),
+    privacyConsent: z.boolean().refine((value) => value === true, {
+      message: "プライバシーポリシーへの同意が必要です",
+    }),
     botcheck: z.boolean().optional(),
   })
   .superRefine((data, ctx) => {
@@ -102,6 +106,7 @@ export function DemoContactForm() {
       solutionOther: false,
       solutionOtherText: "",
       message: "",
+      privacyConsent: false,
     },
   });
 
@@ -158,6 +163,7 @@ export function DemoContactForm() {
         役職: data.jobTitle || "（未記入）",
         ...(solutions ? { ご関心のあるソリューション: solutions } : {}),
         ご依頼内容: data.message || "（未記入）",
+        プライバシーポリシー同意: "同意済み",
       }),
     });
     const json = await res.json();
@@ -448,9 +454,12 @@ export function DemoContactForm() {
         />
       </div>
 
-      <p className="text-xs text-fg2 leading-[1.55]">
-        お預かりした個人情報は、個人情報保護方針に基づき適切に取り扱います。
-      </p>
+      <PrivacyConsentFields
+        checkboxId="contact-privacy-consent"
+        registerProps={register("privacyConsent")}
+        error={errors.privacyConsent}
+        noticeClassName="text-xs text-fg2 leading-[1.55] m-0"
+      />
 
       <button
         type="submit"

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { PrivacyConsentFields } from "@/components/jp/privacy-consent-fields";
 
 const WEB3FORMS_ACCESS_KEY = "11577984-6202-4abc-a5b9-c726a76b58c8";
 
@@ -21,6 +22,9 @@ const schema = z.object({
   workEmail: z.string().email("有効なメールアドレスを入力してください"),
   phone: z.string().min(1, "電話番号を入力してください"),
   jobTitle: z.string().optional(),
+  privacyConsent: z.boolean().refine((value) => value === true, {
+    message: "プライバシーポリシーへの同意が必要です",
+  }),
   botcheck: z.boolean().optional(),
 });
 
@@ -56,6 +60,7 @@ export function WhitepaperRequestForm({
       workEmail: "",
       phone: "",
       jobTitle: "",
+      privacyConsent: false,
     },
   });
 
@@ -84,6 +89,7 @@ export function WhitepaperRequestForm({
         メールアドレス: data.workEmail,
         電話番号: data.phone,
         役職: data.jobTitle || "（未記入）",
+        プライバシーポリシー同意: "同意済み",
       }),
     });
     const json = await res.json();
@@ -259,9 +265,11 @@ export function WhitepaperRequestForm({
         />
       </div>
 
-      <p className="text-[13px] leading-[1.7] text-fg2 m-0">
-        お預かりした個人情報は、個人情報保護方針に基づき適切に取り扱います。
-      </p>
+      <PrivacyConsentFields
+        checkboxId="wp-privacy-consent"
+        registerProps={register("privacyConsent")}
+        error={errors.privacyConsent}
+      />
 
       <button
         type="submit"
