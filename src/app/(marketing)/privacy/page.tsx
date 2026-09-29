@@ -292,11 +292,11 @@ export default function JPPrivacyPage() {
         }}
       >
         <div className="max-w-[1240px] mx-auto px-8">
-          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy max-w-[20ch] m-0">
+          <h1 className="text-[32px] lg:text-[48px] font-light leading-[1.3] tracking-[-0.02em] text-navy whitespace-nowrap m-0">
             個人情報に関する基本方針
           </h1>
           <p className="mt-[20px] text-[15px] leading-[1.75] text-fg2 m-0">
-            制定日：2026年7月28日　最終改定日：2026年9月1日
+            制定日：2026年4月1日　最終改定日：2026年9月1日
           </p>
         </div>
       </section>

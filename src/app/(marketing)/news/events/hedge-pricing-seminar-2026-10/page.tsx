@@ -31,7 +31,8 @@ const SCHEDULE = [
   },
   {
     time: "9:30〜10:00",
-    title: "先物市場を活用したヘッジ型料金メニューの設計",
+    title: "先物市場を活用したヘッジ型料金メニューの提供",
+    subtitle: "～それを可能にするリスク管理のあり方",
     speaker: "鮫島 隆太郎 氏",
     role: "株式会社Power Risk Management & Solutions 代表取締役",
   },
@@ -43,7 +44,7 @@ const SCHEDULE = [
   },
   {
     time: "10:30〜11:00",
-    title: "ヘッジ型料金における価格リスク管理",
+    title: "供給力確保義務を踏まえた今後の小売事業展開",
     speaker: "浅野 泰一 氏",
     role: "スキッピングストーン合同会社 代表取締役社長",
   },
@@ -198,6 +199,11 @@ export default function HedgePricingSeminarPage() {
                     <p className="text-[16px] font-semibold leading-[1.5] text-navy m-0">
                       {item.title}
                     </p>
+                    {"subtitle" in item && item.subtitle ? (
+                      <p className="mt-[4px] text-[15px] font-semibold leading-[1.5] text-navy m-0">
+                        {item.subtitle}
+                      </p>
+                    ) : null}
                     {"speaker" in item && item.speaker ? (
                       <p className="mt-[6px] text-[14px] text-fg2 m-0">
                         {item.speaker}

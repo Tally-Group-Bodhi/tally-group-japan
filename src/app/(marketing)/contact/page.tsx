@@ -16,7 +16,7 @@ const contactMethods = [
     title: "LinkedInでフォロー",
     description: "最新ニュースやインサイトをお届けします。",
     detail: "LinkedInを見る",
-    href: "https://www.linkedin.com/company/tally-group",
+    href: "https://www.linkedin.com/company/tally-group-japan",
     external: true,
   },
 ];
