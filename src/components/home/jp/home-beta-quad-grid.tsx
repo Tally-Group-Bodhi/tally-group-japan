@@ -28,8 +28,6 @@ import {
   JP_HOME_QUADRANTS,
   JP_HOME_SUBHEAD,
 } from "@/components/home/jp/home-beta-quad-grid-copy";
-import { SeminarAnnouncementBanner } from "@/components/home/jp/seminar-announcement-banner";
-
 type Corner = "tl" | "tr" | "bl" | "br";
 
 type SubItem = {
@@ -117,7 +115,6 @@ export function HomeBetaQuadGrid() {
 
   return (
     <section className="relative h-[100dvh] flex flex-col bg-white pt-[84px] px-4 sm:px-6 pb-4 sm:pb-6">
-      <SeminarAnnouncementBanner />
       <div className="flex flex-col flex-1 min-h-0">
       <div className="px-2 py-4 sm:py-5 lg:py-6 text-center">
         <h1 className="flex flex-wrap items-end justify-center gap-x-3 sm:gap-x-4 gap-y-2 text-[24px] sm:text-[36px] lg:text-[52px] font-light leading-none tracking-[-0.015em] text-navy">
