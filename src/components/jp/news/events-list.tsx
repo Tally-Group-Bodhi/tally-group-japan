@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MarketingLink } from "@/components/marketing/marketing-link";
 import { jpCtaPrimaryOnLightClass } from "@/components/jp/cta-button-classes";
@@ -8,6 +9,8 @@ export type EventItem = {
   slug: string;
   date: string;
   dateISO: string;
+  /** Last day of a multi-day event. Falls back to `dateISO`. */
+  endDateISO?: string;
   title: string;
   titleLines?: string[];
   eyebrow?: string;
@@ -33,11 +36,46 @@ const fadeUp = {
   }),
 };
 
+type EventFilter = "upcoming" | "past";
+
+const EVENT_FILTERS: { id: EventFilter; label: string }[] = [
+  { id: "upcoming", label: "開催予定のイベント" },
+  { id: "past", label: "過去のイベント" },
+];
+
+function todayISOInTokyo(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+function eventEndISO(event: EventItem): string {
+  return event.endDateISO ?? event.dateISO;
+}
+
 export function EventsList({ events }: { events: EventItem[] }) {
+  const [filter, setFilter] = useState<EventFilter>("upcoming");
+  const today = useMemo(() => todayISOInTokyo(), []);
+
+  const visibleEvents = useMemo(() => {
+    const matching = events.filter((event) => {
+      const isUpcoming = eventEndISO(event) >= today;
+      return filter === "upcoming" ? isUpcoming : !isUpcoming;
+    });
+
+    return matching.sort((a, b) => {
+      const byDate = eventEndISO(a).localeCompare(eventEndISO(b));
+      return filter === "upcoming" ? byDate : -byDate;
+    });
+  }, [events, filter, today]);
+
   return (
     <section
       className="pt-[40px] pb-[56px] lg:pt-[48px] lg:pb-[72px]"
-      aria-labelledby="events-upcoming-heading"
+      aria-labelledby="events-list-heading"
     >
       <div className="max-w-[1240px] mx-auto px-8">
         <div className="flex items-baseline gap-3 mb-[24px]">
@@ -50,40 +88,97 @@ export function EventsList({ events }: { events: EventItem[] }) {
           </div>
         </div>
         <h2
-          id="events-upcoming-heading"
-          className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0 mb-[28px] lg:mb-[36px]"
+          id="events-list-heading"
+          className="text-[30px] font-light leading-[1.25] tracking-[-0.02em] text-navy m-0 mb-[20px]"
         >
           イベント・カンファレンス情報
         </h2>
 
-        {events.length === 0 ? (
-          <div
-            role="status"
-            className="border border-dashed border-stroke1 rounded-2xl bg-bg2 px-[24px] py-[48px] text-center"
-          >
-            <p className="text-base text-navy font-semibold m-0">
-              現在お知らせできる予定はありません
-            </p>
-            <p className="text-sm text-fg2 mt-[8px] m-0">
-              新しい情報が決まり次第、こちらに掲載いたします。
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-            {events.map((event, i) => (
-              <motion.div
-                key={event.slug}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
-                variants={fadeUp}
+        <div
+          role="tablist"
+          aria-label="イベントの期間"
+          className="flex flex-wrap gap-[8px] mb-[28px] lg:mb-[36px]"
+        >
+          {EVENT_FILTERS.map((tab, index) => {
+            const isActive = filter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                id={`events-tab-${tab.id}`}
+                aria-selected={isActive}
+                aria-controls="events-list-panel"
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => setFilter(tab.id)}
+                onKeyDown={(event) => {
+                  if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+                    return;
+                  }
+                  event.preventDefault();
+                  const nextIndex =
+                    event.key === "ArrowRight"
+                      ? (index + 1) % EVENT_FILTERS.length
+                      : (index - 1 + EVENT_FILTERS.length) % EVENT_FILTERS.length;
+                  const next = EVENT_FILTERS[nextIndex];
+                  if (!next) return;
+                  setFilter(next.id);
+                  document.getElementById(`events-tab-${next.id}`)?.focus();
+                }}
+                className={`inline-flex items-center px-[14px] py-[8px] rounded-full text-[13px] font-medium leading-none border transition-all ${
+                  isActive
+                    ? "bg-navy text-white border-navy shadow-[0_2px_8px_rgba(44,54,93,0.18)]"
+                    : "bg-white text-fg2 border-stroke1 hover:border-navy/40 hover:text-navy"
+                }`}
               >
-                <EventCard event={event} />
-              </motion.div>
-            ))}
-          </div>
-        )}
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          role="tabpanel"
+          id="events-list-panel"
+          aria-labelledby={`events-tab-${filter}`}
+        >
+          {visibleEvents.length === 0 ? (
+            <div
+              role="status"
+              className="border border-dashed border-stroke1 rounded-2xl bg-bg2 px-[24px] py-[48px] text-center"
+            >
+              {filter === "upcoming" ? (
+                <>
+                  <p className="text-base text-navy font-semibold m-0">
+                    現在お知らせできる予定はありません
+                  </p>
+                  <p className="text-sm text-fg2 mt-[8px] m-0">
+                    新しい情報が決まり次第、こちらに掲載いたします。
+                  </p>
+                </>
+              ) : (
+                <p className="text-base text-navy font-semibold m-0">
+                  過去のイベントはありません
+                </p>
+              )}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+              {visibleEvents.map((event, i) => (
+                <motion.div
+                  key={event.slug}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  variants={fadeUp}
+                >
+                  <EventCard event={event} />
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

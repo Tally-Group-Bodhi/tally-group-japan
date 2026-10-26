@@ -33,6 +33,7 @@ const events: EventItem[] = [
     slug: "japan-power-week-2026",
     date: "2026年10月19日〜22日",
     dateISO: "2026-10-19",
+    endDateISO: "2026-10-22",
     title: "Japan Power Week 2026",
     location: "東京",
     description:
@@ -47,6 +48,7 @@ const events: EventItem[] = [
     slug: "smart-grid-expo-2026",
     date: "2026年9月9日〜11日",
     dateISO: "2026-09-09",
+    endDateISO: "2026-09-11",
     title: "Smart Grid Expo 国際スマートグリッド展",
     titleLines: ["Smart Grid Expo", "国際スマートグリッド展"],
     location: "幕張メッセ",

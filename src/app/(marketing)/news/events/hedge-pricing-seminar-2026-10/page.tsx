@@ -7,8 +7,6 @@ const PAGE_PATH = `/news/events/${SLUG}`;
 const EYEBROW = "小売電気事業者向け無料セミナー";
 const TITLE = "ヘッジ取引を活用した小売電気料金メニューの新潮流";
 
-const REGISTRATION_FORM_URL = "https://forms.cloud.microsoft/r/Bk3CaUfwbn";
-
 export const metadata: Metadata = {
   title: TITLE,
   description:
@@ -76,30 +74,6 @@ const SPEAKERS = [
   },
 ] as const;
 
-function RegisterButton({
-  className,
-  fullWidth = false,
-}: {
-  className?: string;
-  fullWidth?: boolean;
-}) {
-  const isExternal = REGISTRATION_FORM_URL.startsWith("http");
-
-  return (
-    <a
-      href={REGISTRATION_FORM_URL}
-      {...(isExternal
-        ? { target: "_blank", rel: "noopener noreferrer" }
-        : {})}
-      className={`inline-flex items-center justify-center px-[24px] py-[14px] rounded-full text-[15px] font-semibold bg-turquoise text-navy hover:bg-turquoise-hover transition-colors ${
-        fullWidth ? "w-full sm:w-auto" : ""
-      } ${className ?? ""}`}
-    >
-      無料で参加登録する
-    </a>
-  );
-}
-
 export default function HedgePricingSeminarPage() {
   return (
     <>
@@ -122,31 +96,25 @@ export default function HedgePricingSeminarPage() {
             <br />
             小売電気料金メニューの新潮流
           </h1>
-          <div className="mt-[32px]">
-            <RegisterButton />
-          </div>
+          <p className="mt-[32px] text-[15px] font-semibold text-white m-0">
+            本セミナーは終了いたしました
+          </p>
         </div>
       </section>
 
       {/* Main content */}
       <article className="bg-white py-[64px] lg:py-[88px]">
         <div className="max-w-[760px] mx-auto px-8 space-y-[48px]">
-          <a
-            href={REGISTRATION_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-navy block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-turquoise focus-visible:ring-offset-2"
-            aria-label="セミナー参加登録フォームを開く"
-          >
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-navy">
             <Image
               src="/events/hedge-pricing-seminar-2026-10/card.jpg"
               alt="ヘッジ取引を活用した小売電気料金メニューの新潮流"
               fill
-              className="object-contain object-center transition-opacity hover:opacity-95"
+              className="object-contain object-center"
               sizes="(min-width: 760px) 696px, 100vw"
               priority
             />
-          </a>
+          </div>
 
           <section aria-labelledby="seminar-overview-heading">
             <h2 id="seminar-overview-heading" className="sr-only">
@@ -275,24 +243,6 @@ export default function HedgePricingSeminarPage() {
             </div>
           </section>
 
-          <section
-            id="register"
-            className="scroll-mt-[100px] border-t border-stroke1 pt-[40px]"
-            aria-labelledby="seminar-register-heading"
-          >
-            <h2
-              id="seminar-register-heading"
-              className="text-[22px] sm:text-[24px] font-semibold text-navy m-0"
-            >
-              お申し込み
-            </h2>
-            <p className="mt-[14px] text-[16px] leading-[1.75] text-fg1 m-0">
-              セミナーへの参加をご希望の方は、下記よりお申し込みください。
-            </p>
-            <div className="mt-[24px]">
-              <RegisterButton fullWidth />
-            </div>
-          </section>
         </div>
       </article>
     </>
