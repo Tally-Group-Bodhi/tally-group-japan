@@ -6,6 +6,29 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { useMarketingHref } from "@/contexts/marketing-region";
 
+const CURRENT_REGION_ID = "jp";
+
+const REGION_OPTIONS = [
+  {
+    id: "au",
+    code: "AU",
+    label: "AU – Australia",
+    href: "https://www.tally.co/",
+  },
+  {
+    id: "us",
+    code: "US",
+    label: "US – United States",
+    href: "https://www.tally-plus.com/",
+  },
+  {
+    id: "jp",
+    code: "JP",
+    label: "JP – 日本",
+    href: null,
+  },
+] as const;
+
 type NavChild = { href: string; label: string };
 type NavChildSection = { title: string; items: NavChild[] };
 type NavLink = {
@@ -74,12 +97,17 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [regionOpen, setRegionOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const regionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setOpenMenu(null);
+      }
+      if (regionRef.current && !regionRef.current.contains(e.target as Node)) {
+        setRegionOpen(false);
       }
     }
     function handleKey(e: KeyboardEvent) {
@@ -87,6 +115,7 @@ export function Header() {
         setMobileOpen(false);
         setOpenMenu(null);
         setMobileDropdown(null);
+        setRegionOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -101,6 +130,8 @@ export function Header() {
     setMobileOpen(false);
     setMobileDropdown(null);
   };
+
+  const closeRegion = () => setRegionOpen(false);
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4">
@@ -201,6 +232,37 @@ export function Header() {
           </nav>
 
           <div className="ml-auto hidden lg:flex items-center gap-3">
+            <div className="relative" ref={regionRef}>
+              <button
+                type="button"
+                onClick={() => setRegionOpen((open) => !open)}
+                className="inline-flex items-center gap-1 px-3.5 py-[9px] rounded-full text-[13px] font-medium text-fg1 bg-white hover:bg-bg3 transition-all leading-none"
+                aria-label="地域を変更"
+                aria-haspopup="menu"
+                aria-expanded={regionOpen}
+              >
+                <span>
+                  {REGION_OPTIONS.find((option) => option.id === CURRENT_REGION_ID)?.code}
+                </span>
+                <span className="material-symbols-outlined text-[13px] opacity-50">expand_more</span>
+              </button>
+
+              {regionOpen && (
+                <div
+                  className="absolute top-full right-0 mt-2 w-max bg-white border border-stroke1 rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.1)] py-1 z-50"
+                  role="menu"
+                  aria-label="地域"
+                >
+                  {REGION_OPTIONS.map((option) => (
+                    <RegionOption
+                      key={option.id}
+                      option={option}
+                      onSelectCurrent={closeRegion}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href={href("/contact")}
               className="inline-flex items-center gap-2 px-5 py-[9px] rounded-full text-[13px] font-medium leading-none bg-navy text-white border border-navy hover:bg-navy-dark hover:border-navy-dark transition-all shadow-sm"
@@ -270,6 +332,15 @@ export function Header() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-white/50 flex flex-col gap-3">
+              <div role="menu" aria-label="地域">
+                {REGION_OPTIONS.map((option) => (
+                  <RegionOption
+                    key={option.id}
+                    option={option}
+                    onSelectCurrent={closeMobile}
+                  />
+                ))}
+              </div>
               <Link
                 href={href("/contact")}
                 onClick={closeMobile}
@@ -282,6 +353,58 @@ export function Header() {
         )}
       </header>
     </div>
+  );
+}
+
+function RegionOption({
+  option,
+  onSelectCurrent,
+}: {
+  option: (typeof REGION_OPTIONS)[number];
+  onSelectCurrent: () => void;
+}) {
+  const isCurrent = option.id === CURRENT_REGION_ID;
+  const className = `w-full flex items-center gap-3 whitespace-nowrap px-3.5 py-2.5 text-[13px] text-left transition-colors ${
+    isCurrent ? "font-semibold text-navy bg-bg2" : "text-fg1 hover:bg-bg2"
+  }`;
+  const check = (
+    <span
+      className={`material-symbols-outlined ml-auto text-[14px] text-turquoise ${
+        isCurrent ? "" : "invisible"
+      }`}
+      aria-hidden
+    >
+      check
+    </span>
+  );
+
+  if (option.href) {
+    return (
+      <a
+        href={option.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        className={className}
+        onClick={onSelectCurrent}
+      >
+        {option.label}
+        {check}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      role="menuitem"
+      aria-current="true"
+      className={className}
+      onClick={onSelectCurrent}
+    >
+      {option.label}
+      {check}
+    </button>
   );
 }
 
