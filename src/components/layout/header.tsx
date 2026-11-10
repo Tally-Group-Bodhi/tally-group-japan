@@ -382,8 +382,6 @@ function RegionOption({
     return (
       <a
         href={option.href}
-        target="_blank"
-        rel="noopener noreferrer"
         role="menuitem"
         className={className}
         onClick={onSelectCurrent}
